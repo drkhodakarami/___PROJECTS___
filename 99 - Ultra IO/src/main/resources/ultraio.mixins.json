@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "jiraiyah.ultraio.mixin",
+	"compatibilityLevel": "JAVA_${java_ver}",
+	"mixins": [
+		"ExampleMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

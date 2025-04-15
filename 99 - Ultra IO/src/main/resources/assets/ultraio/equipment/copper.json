@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "ultraio_battle:copper"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "ultraio_battle:copper"
+      }
+    ]
+  }
+}

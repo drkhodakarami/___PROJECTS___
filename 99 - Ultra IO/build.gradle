@@ -1,0 +1,197 @@
+plugins {
+	id 'fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.mod_version
+
+base {
+	archivesName = "${project.archives_base_name}"
+}
+
+repositories {
+	mavenCentral()
+    maven { url 'https://maven.fabricmc.net/' }
+    maven { url "https://maven.shedaniel.me" }
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    maven { url = "https://api.modrinth.com/maven" }
+    maven {
+        name = "CottonMC"
+        url = "https://server.bbkr.space/artifactory/libs-release"
+    }
+    maven {
+        name = 'Ladysnake Mods'
+        url = 'https://maven.ladysnake.org/releases'
+        content {
+            includeGroup 'io.github.ladysnake'
+            includeGroupByRegex 'io\\.github\\.onyxstudios.*'
+        }
+    }
+    maven {
+        name = 'TerraformersMC'
+        url = 'https://maven.terraformersmc.com/'
+    }
+    maven { url = 'https://maven.minecraftforge.net/' }
+    maven { url = "https://maven.kyrptonaught.dev" }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+    maven { url 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
+}
+
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    // Sub Project Dependency ========================================================================================================================
+	
+	// Ji Lib Mods Dependency ========================================================================================================================
+    modImplementation include("jiraiyah.logger:jilogger:${jilogger_version}")
+    modImplementation include("jiraiyah.reference:jireference:${jireference_version}")
+    modImplementation include("jiraiyah.config:jiconfig:${jiconfig_version}")
+    modImplementation include("jiraiyah.register:jiregister:${jiregister_version}")
+	modImplementation include("jiraiyah.jiralib:jiralib:${jiralib_version}")
+	//modImplementation include("jiraiyah.inventory:jinventory:${jinventory_version}")
+	//modImplementation include("jiraiyah.fluid:jifluid:${jifluid_version}")
+	//modImplementation include("jiraiyah.energy:jienergy:${jienergy_version}")
+	//modImplementation include("jiraiyah.machina:jimachina:${jimachina_version}")
+
+    // Mod Menu ======================================================================================================================================
+    modImplementation("com.terraformersmc:modmenu:${rootProject.modmenu_version}")
+
+    // Mod Menu Badges Lib ===========================================================================================================================
+    //include(modImplementation("maven.modrinth:modmenu-badges-lib:${rootProject.badges_lib_version}"))
+
+    // PAL ===========================================================================================================================================
+	modImplementation "io.github.ladysnake:PlayerAbilityLib:${rootProject.pal_version}"
+	include "io.github.ladysnake:PlayerAbilityLib:${rootProject.pal_version}"
+
+	// Energy API Handling Dependency ================================================================================================================
+	include modApi("teamreborn:energy:${rootProject.energy_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+
+	// Terra Former Wood: Needed for Sign and Boat ===================================================================================================
+	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${rootProject.terraform_version}"
+	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${rootProject.terraform_version}"
+
+	// Jade ==========================================================================================================================================
+	modImplementation "curse.maven:jade-324717:${rootProject.jade_version}"
+
+	// Kyrptonaught ==================================================================================================================================
+	modImplementation "net.kyrptonaught:customportalapi:${rootProject.kyrptonaught_version}"
+	include "net.kyrptonaught:customportalapi:${rootProject.kyrptonaught_version}"
+
+    // TerraBlender ==================================================================================================================================
+    //modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.minecraft_version}-${project.terrablender_version}"
+
+    // LibGUI ========================================================================================================================================
+	//modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
+
+	// EMI Compatibility =============================================================================================================================
+	//modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+
+	// REI Compatibility =============================================================================================================================
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.rei_version}"
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+
+	// JEI Compatibility =============================================================================================================================
+	//modCompileOnlyApi("mezz.jei:jei-${project.jei_mc_version}-fabric-api:${project.jei_version}")
+	//modRuntimeOnly("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}")
+
+	// Cloth Config ==================================================================================================================================
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}") {
+	    exclude(group: "net.fabricmc.fabric-api")
+	}
+
+	// Architectury ==================================================================================================================================
+	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
+
+	// Tech Reborn Runtime Only ======================================================================================================================
+	//modRuntimeOnly("curse.maven:reborncore-237903:${project.reborn_curse_version}")
+	//modRuntimeOnly("curse.maven:techreborn-233564:${project.tech_reborn_version}")
+
+	// EMI Runtime Only ==============================================================================================================================
+	//modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
+
+	// REI Runtime Only ==============================================================================================================================
+	//modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+
+	// JEI Runtime Only ==============================================================================================================================
+	//modRuntimeOnly("mezz.jei:jei-${project.jei_mc_version}-fabric:${project.jei_version}")
+}
+
+processResources {
+    inputs.property "version", rootProject.mod_version
+    inputs.property "loader_ver", rootProject.loader_version
+    inputs.property "game_ver", rootProject.minecraft_version
+    inputs.property "java_ver", rootProject.java_version
+    inputs.property "mod_id", project.mod_id
+
+    filesMatching("fabric.mod.json") {
+        expand "version": rootProject.mod_version,
+                "loader_ver": rootProject.loader_version,
+                "game_ver": rootProject.minecraft_version,
+                "java_ver": rootProject.java_version,
+                "mod_id": project.mod_id
+    }
+
+    filesMatching("${project.mod_id}.mixins.json") {
+        expand "java_ver": rootProject.java_version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	inputs.property "archivesName", project.base.archivesName
+
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+}
+
+publishing {
+    publications {
+        create("mavenJava", MavenPublication) {
+            from components.java
+
+            groupId = project.maven_group
+            artifactId = project.maven_artifact
+            version = rootProject.mod_version
+        }
+    }
+
+    repositories {
+    }
+}
