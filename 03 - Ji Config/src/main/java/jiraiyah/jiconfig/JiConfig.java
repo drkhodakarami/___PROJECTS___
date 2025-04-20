@@ -24,14 +24,14 @@
 
 package jiraiyah.jiconfig;
 
-import jiraiyah.logger.Logger;
+import jiraiyah.jibase.annotations.*;
+import jiraiyah.jilogger.JiLogger;
 
-/**
- * The main config entry class. Your mod's config class should extend this class.
- *
- * @author Jiraiyah
- */
-@SuppressWarnings("unused")
+@Developer("Magistermaks")
+@ModifiedBy("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/magistermaks/fabric-simplelibs/blob/master/simple-config/SimpleConfig.java")
+
 public abstract class JiConfig
 {
     private final String modId;
@@ -43,30 +43,19 @@ public abstract class JiConfig
         this.modId = modId;
     }
 
-    /**
-     * @return the current config instance.
-     */
     public BaseConfig getConfig()
     {
         return this.config;
     }
 
-    /**
-     * Loads the config for the specified mod. The keys will be saved using upper case letters.
-     *
-     */
     public void load()
     {
         load(ConfigKeyCasing.ALL_UPPER_CASE);
     }
 
-    /**
-     * Loads the config for the specified mod. The keys will be saved using provided letter casing.
-     *
-     */
     public void load(ConfigKeyCasing casing)
     {
-        Logger logger = new Logger(this.modId);
+        JiLogger logger = new JiLogger(this.modId);
 
         this.provider = new ConfigProvider(casing);
         this.createConfigs();
@@ -85,18 +74,11 @@ public abstract class JiConfig
             logger.logWarning("The loading process is at broken state!");
     }
 
-    /**
-     * Creates the config entries for the mod.
-     */
     protected void createConfigs()
     {
     }
 
-    /**
-     * Assigns the values of the config entries to their respective variables.
-     */
     protected void assignConfigValues()
     {
     }
-
 }

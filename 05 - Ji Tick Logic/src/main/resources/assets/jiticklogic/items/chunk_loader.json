@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "jiticklogic:block/chunk_loader"
+  }
+}

@@ -127,6 +127,7 @@ public class PlayerTeleporter extends Item
                                                            user.getYaw(),
                                                            user.getPitch(),
                                                            TeleportTarget.NO_OP);
+                //TODO: Check and test teleportTo for the same dimension teleportation!
                 if (user.getWorld().getRegistryKey().equals(storedKey))
                     ((ServerPlayerEntity) user).networkHandler.requestTeleport(target.position().getX(),
                                                                                target.position().getY(),

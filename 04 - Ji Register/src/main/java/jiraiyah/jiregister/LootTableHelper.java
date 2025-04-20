@@ -1,5 +1,6 @@
 package jiraiyah.jiregister;
 
+import jiraiyah.jibase.annotations.*;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
@@ -12,6 +13,12 @@ import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+
+@Developer("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
 public class LootTableHelper
 {

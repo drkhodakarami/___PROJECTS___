@@ -1,11 +1,17 @@
 package jiraiyah.jilogger;
 
+import jiraiyah.jibase.annotations.*;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.LoggerFactory;
 
-import static jiraiyah.jilogger.LoggerConstants.*;
+import static jiraiyah.jibase.constants.LoggerConstants.*;
 
-@SuppressWarnings({"unused"})
+@Developer("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+
 public class JiLogger
 {
     private final org.slf4j.Logger logger;

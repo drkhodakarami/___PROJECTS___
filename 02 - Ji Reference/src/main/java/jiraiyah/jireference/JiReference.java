@@ -2,6 +2,8 @@ package jiraiyah.jireference;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.constants.BEKeys;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -12,16 +14,12 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * The `JiReference` class provides utility methods and constants for managing
- * mod-specific identifiers, localization, and logging within the mod.
- * It serves as a central reference point for accessing the mod's ID, creating
- * identifiers, and handling translations.
- *
- * <p>This class is abstract and cannot be instantiated. It contains static
- * methods and constants that are used throughout the mod's codebase.</p>
- */
-@SuppressWarnings("unused")
+@Developer("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+
 public class JiReference
  {
      /**

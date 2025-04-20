@@ -33,7 +33,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	
 	// Ji Lib Mods Dependency ========================================================================================================================
-    //modImplementation include("jiraiyah.logger:jilogger:${jilogger_version}")
+	modImplementation include("jiraiyah.base:jibase:${jibase_version}")
+	//modImplementation include("jiraiyah.logger:jilogger:${jilogger_version}")
 	modImplementation include("jiraiyah.reference:jireference:${jireference_version}")
     modImplementation include("jiraiyah.jiralib:jiralib:${jiralib_version}")
     modImplementation include("jiraiyah.inventory:jinventory:${jinventory_version}")

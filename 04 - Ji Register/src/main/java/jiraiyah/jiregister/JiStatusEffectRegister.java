@@ -1,5 +1,6 @@
 package jiraiyah.jiregister;
 
+import jiraiyah.jibase.annotations.*;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
@@ -9,6 +10,12 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 
 import java.util.function.BiFunction;
+
+@Developer("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
 public class JiStatusEffectRegister
 {

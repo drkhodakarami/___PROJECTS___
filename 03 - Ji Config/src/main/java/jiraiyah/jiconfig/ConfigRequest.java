@@ -24,23 +24,21 @@
 
 package jiraiyah.jiconfig;
 
+import jiraiyah.jibase.annotations.*;
+
 import java.io.File;
 
-/**
- * A request for a config object.
- */
+@Developer("Magistermaks")
+@ModifiedBy("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/magistermaks/fabric-simplelibs/blob/master/simple-config/SimpleConfig.java")
+
 public class ConfigRequest
 {
     private final File file;
     private final String filename;
     private IConfigProvider provider;
 
-    /**
-     * Creates a new config request.
-     *
-     * @param file     the file to load the config from
-     * @param filename the filename of the config file
-     */
     public ConfigRequest(File file, String filename)
     {
         this.file = file;
@@ -48,53 +46,27 @@ public class ConfigRequest
         this.provider = IConfigProvider::empty;
     }
 
-    /**
-     * @return the file to load the config from
-     */
     public File getFile()
     {
         return this.file;
     }
 
-    /**
-     * @return the filename of the config file
-     */
     public String getFilename()
     {
         return this.filename;
     }
 
-    /**
-     * Sets the default config provider, used to generate the
-     * config if it's missing.
-     *
-     * @param provider default config provider
-     *
-     * @return current config request object
-     *
-     * @see IConfigProvider
-     */
     public ConfigRequest provider(IConfigProvider provider)
     {
         this.provider = provider;
         return this;
     }
 
-    /**
-     * Loads the config from the filesystem.
-     *
-     * @return config object
-     *
-     * @see BaseConfig
-     */
     public BaseConfig request(String modId, ConfigKeyCasing casing)
     {
         return new BaseConfig(modId, this, casing);
     }
 
-    /**
-     * @return the config from the provider
-     */
     public String getConfig()
     {
         return provider.get(filename) + "\n";

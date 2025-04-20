@@ -1,13 +1,17 @@
 package jiraiyah.jiregister;
 
+import jiraiyah.jibase.annotations.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.data.*;
 import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 
-import java.util.function.BiConsumer;
+@Developer("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
 public class ModelHelper
 {

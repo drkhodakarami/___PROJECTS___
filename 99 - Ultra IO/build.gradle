@@ -66,6 +66,7 @@ dependencies {
     // Sub Project Dependency ========================================================================================================================
 	
 	// Ji Lib Mods Dependency ========================================================================================================================
+    modImplementation include("jiraiyah.base:jibase:${jibase_version}")
     modImplementation include("jiraiyah.logger:jilogger:${jilogger_version}")
     modImplementation include("jiraiyah.reference:jireference:${jireference_version}")
     modImplementation include("jiraiyah.config:jiconfig:${jiconfig_version}")

@@ -24,29 +24,18 @@
 
 package jiraiyah.jiconfig;
 
-/**
- * An interface for providing configuration values.
- */
+import jiraiyah.jibase.annotations.*;
+
+@Developer("Magistermaks")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/magistermaks/fabric-simplelibs/blob/master/simple-config/SimpleConfig.java")
+
 public interface IConfigProvider
 {
-    /**
-     * The default empty value for a namespace.
-     *
-     * @param ignoredNamespace The namespace to get the default value for.
-     *
-     * @return The default value for the given namespace.
-     */
     static String empty(String ignoredNamespace)
     {
         return "";
     }
 
-    /**
-     * Get a configuration value for the given namespace.
-     *
-     * @param namespace The namespace to get the value for.
-     *
-     * @return The value for the given namespace, or an empty string if the value is not found.
-     */
     String get(String namespace);
 }

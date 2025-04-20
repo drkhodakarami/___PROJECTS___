@@ -13,7 +13,7 @@
 		"issues": ""
 	},
 	"license": "MIT",
-	"icon": "assets/ultraio/icon.png",
+	"icon": "assets/jilogger/icon.png",
 	"environment": "*",
 	"depends": {
 		"fabricloader": ">=${loader_ver}",

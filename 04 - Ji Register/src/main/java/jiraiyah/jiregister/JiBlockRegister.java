@@ -1,13 +1,19 @@
 package jiraiyah.jiregister;
 
+import jiraiyah.jibase.annotations.*;
 import net.minecraft.block.*;
-import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
 import java.util.function.Function;
+
+@Developer("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
 public class JiBlockRegister
 {
@@ -93,7 +99,7 @@ public class JiBlockRegister
         return registerBlock(name, new FenceBlock(AbstractBlock.Settings.copy(copyBlock).registryKey(key)));
     }
 
-    public FenceGateBlock registerFence(String name, WoodType woodType, Block copyBlock)
+    public FenceGateBlock registerFenceGate(String name, WoodType woodType, Block copyBlock)
     {
         RegistryKey<Block> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.BLOCK);
         return registerBlock(name, new FenceGateBlock(woodType, AbstractBlock.Settings.copy(copyBlock).registryKey(key)));
@@ -112,7 +118,7 @@ public class JiBlockRegister
                                               AbstractBlock.Settings.copy(copyBlock).registryKey(key)));
     }
 
-    public TrapdoorBlock registerTrapDoor(String name, BlockSetType blockType, Block copyBlock)
+    public TrapdoorBlock registerTrapdoor(String name, BlockSetType blockType, Block copyBlock)
     {
         RegistryKey<Block> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.BLOCK);
         return registerBlock(name, new TrapdoorBlock(blockType,
