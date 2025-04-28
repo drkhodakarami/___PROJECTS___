@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "ultraio:gem_ruby"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:block_ruby_button"
+  }
+}

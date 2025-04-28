@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:water_bucket",
+    "ultraio:chalice_empty"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:chalice"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "ultraio:dust_enderite",
+    "ultraio:dust_iron",
+    "ultraio:dust_soul"
+  ],
+  "result": {
+    "count": 3,
+    "id": "ultraio:dust_pulsating"
+  }
+}

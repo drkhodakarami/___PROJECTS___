@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ultraio:item/armor_ruby_helmet",
+    "layer1": "ultraio:ruby_redstone"
+  }
+}

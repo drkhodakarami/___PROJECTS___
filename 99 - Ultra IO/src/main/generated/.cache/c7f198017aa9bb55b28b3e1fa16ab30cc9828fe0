@@ -1,0 +1,4 @@
+// 1.21.5	-999999999-01-01T00:00:00	Ultra IO/Tags for minecraft:entity_type
+669025814936e708d42d9d0a5b88c11e62cf12ef data/ultraio/tags/entity_type/enderite_sword_blacklist.json
+3fccdda7550527c5e985d7b8e7fac83d3ec4bb92 data/ultraio/tags/entity_type/ruby_sword_whitelist.json
+e00f2931577049b9a4400a87ed9c249373be376c data/ultraio/tags/entity_type/tuner_blacklist.json

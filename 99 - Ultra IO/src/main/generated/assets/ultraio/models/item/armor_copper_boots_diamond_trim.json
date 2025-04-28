@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ultraio:item/armor_copper_boots",
+    "layer1": "ultraio:copper_diamond"
+  }
+}

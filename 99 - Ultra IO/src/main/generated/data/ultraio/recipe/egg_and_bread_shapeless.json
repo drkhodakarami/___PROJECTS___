@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "ultraio:cooked_egg",
+    "minecraft:bread"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:egg_and_bread"
+  }
+}

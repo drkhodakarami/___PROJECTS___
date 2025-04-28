@@ -1,0 +1,65 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_enderman_eye": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ultraio:enderman_eye"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_enderman_gland": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ultraio:enderman_gland"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_enderman_heart": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ultraio:enderman_heart"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_ingot_enderite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ultraio:ingot_enderite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:ender_charm"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_enderman_eye",
+      "has_ingot_enderite",
+      "has_enderman_gland",
+      "has_enderman_heart"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:ender_charm"
+    ]
+  }
+}

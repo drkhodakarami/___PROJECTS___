@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "ultraio:block_enderite",
+  "result": {
+    "count": 9,
+    "id": "ultraio:block_enderite_stairs"
+  }
+}

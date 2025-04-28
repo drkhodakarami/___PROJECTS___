@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dust_enderite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ultraio:dust_enderite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gem_ruby": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ultraio:gem_ruby"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_redstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:redstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:dust_red_alloy_shapeless"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gem_ruby",
+      "has_dust_enderite",
+      "has_redstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:dust_red_alloy_shapeless"
+    ]
+  }
+}

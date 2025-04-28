@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ultraio:item/armor_sapphire_leggings",
+    "layer1": "ultraio:sapphire_gold"
+  }
+}

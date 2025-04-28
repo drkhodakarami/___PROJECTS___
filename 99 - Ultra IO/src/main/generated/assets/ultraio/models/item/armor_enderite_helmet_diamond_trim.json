@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ultraio:item/armor_enderite_helmet",
+    "layer1": "ultraio:enderite_diamond"
+  }
+}

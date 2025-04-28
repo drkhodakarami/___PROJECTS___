@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "ultraio:block/block_enderite",
+    "side": "ultraio:block/block_enderite",
+    "top": "ultraio:block/block_enderite"
+  }
+}
