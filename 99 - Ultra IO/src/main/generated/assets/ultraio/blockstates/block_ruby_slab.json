@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ultraio:block/block_ruby_slab"
+    },
+    "type=double": {
+      "model": "ultraio:block/block_ruby"
+    },
+    "type=top": {
+      "model": "ultraio:block/block_ruby_slab_top"
+    }
+  }
+}

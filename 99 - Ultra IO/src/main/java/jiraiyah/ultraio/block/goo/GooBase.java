@@ -68,20 +68,14 @@ public abstract class GooBase extends JiBlock implements BlockEntityProvider
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack)
     {
+        //TODO: Turn off the powered state!
+        //TODO: Move the logic to the BlockPropety class itself!!
         if (this.properties.stateProperties().containsProperty(Properties.POWERED))
         {
             // Set the "powered" property to false when the block is placed
             BlockState newState = state.with(Properties.POWERED, false);
             world.setBlockState(pos, newState, Block.NOTIFY_ALL);
         }
-
-        //TODO: Turn off the powered state!
-        //BlockState newState = this.stateManager.getDefaultState().with(Properties.POWERED, false);
-        //newState = this.properties.stateProperties().applyDefaults(newState);
-        //setDefaultState(newState);
-        //this.properties.stateProperties().setDefaultValue(Properties.POWERED.getName(), false);
-        //TODO: Update listeners around the block
-        //world.setBlockState(pos, getDefaultState(), NOTIFY_ALL);//.with(Properties.POWERED, false), NOTIFY_ALL);
         super.onPlaced(world, pos, state, placer, itemStack);
     }
 
@@ -96,26 +90,12 @@ public abstract class GooBase extends JiBlock implements BlockEntityProvider
     {
         if (!stack.isOf(ModItems.ROD_COPPER))
             return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+        //TODO: Turn on the powered state!
         if (this.properties.stateProperties().containsProperty(Properties.POWERED))
         {
-            boolean isPowered = state.get(Properties.POWERED);
-            LOGGER.log("Block used at " + pos + " with powered state before toggle: " + isPowered);
-
             BlockState newState = state.cycle(Properties.POWERED);
             world.setBlockState(pos, newState, Block.NOTIFY_ALL);
-
-            BlockState actualState = world.getBlockState(pos);
-            boolean actualPoweredState = actualState.get(Properties.POWERED);
-            LOGGER.log("Block powered state after toggle (actual): " + actualPoweredState);
         }
-        //    return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
-        //TODO: Turn on the powered state!
-        //BlockState newState = this.stateManager.getDefaultState().cycle(Properties.POWERED);
-        //newState = this.properties.stateProperties().applyDefaults(newState);
-        //setDefaultState(newState);
-        //this.properties.stateProperties().setDefaultValue(Properties.POWERED.getName(), true);
-        //TODO: Update listeners around the block
-        //world.setBlockState(pos, getDefaultState(), NOTIFY_ALL);//.with(ACTIVATED, true), Block.NOTIFY_ALL);
         player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
         world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.2F, world.getRandom().nextFloat() * 0.6F + 0.8F);
         if (!player.isCreative())

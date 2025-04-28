@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "ultraio:block/generator_front",
+    "side": "ultraio:block/generator_side",
+    "top": "ultraio:block/generator_top"
+  }
+}

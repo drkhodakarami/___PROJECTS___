@@ -31,17 +31,14 @@ public class ModelHelper
                                                                                 .coordinate(((BlockStateModelGeneratorAccessor) generator).getNorthDefaultHorizontalRotationOperations()));
     }
 
+    @ThanksTo(discordUsers = "Waveless")
     public static void registerCubeVariantBlock(BlockStateModelGenerator generator, Block block, BooleanProperty property)
     {
+        //TODO: Overview this
         WeightedVariant cubeOff = BlockStateModelGenerator.createWeightedVariant(TexturedModel.CUBE_ALL.upload(block, generator.modelCollector));
-        Identifier blockAll = TextureMap.getSubId(block, "_on");
-        WeightedVariant cubeOn = BlockStateModelGenerator.createWeightedVariant(TexturedModel.ORIENTABLE.get(block)
-                                                                                                        .textures(textureMap ->
-                                                                                                                          textureMap.put(TextureKey.ALL, blockAll))
-                                                                                                        .upload(block, "_on", generator.modelCollector));
+        WeightedVariant cubeOn = BlockStateModelGenerator.createWeightedVariant((generator.createSubModel(block, "_on", Models.CUBE_ALL, TextureMap::all)));
+        BlockStateVariantMap<WeightedVariant> cubeStatus = BlockStateModelGenerator.createBooleanModelMap(property, cubeOn, cubeOff);
         generator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(block)
-                                                                       .with(BlockStateModelGenerator.createBooleanModelMap(property,
-                                                                                                                                  cubeOn,
-                                                                                                                                  cubeOff)));
+                                                                                .with(cubeStatus));
     }
 }

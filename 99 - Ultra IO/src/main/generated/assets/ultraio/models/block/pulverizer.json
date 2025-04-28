@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "ultraio:block/pulverizer_front",
+    "side": "ultraio:block/pulverizer_side",
+    "top": "ultraio:block/pulverizer_top"
+  }
+}

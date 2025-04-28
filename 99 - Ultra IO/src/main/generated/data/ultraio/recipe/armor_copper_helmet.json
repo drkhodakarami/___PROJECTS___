@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": "ultraio:gear_copper",
+    "I": "ultraio:reinforced_copper"
+  },
+  "pattern": [
+    "III",
+    "IGI",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:armor_copper_helmet"
+  }
+}

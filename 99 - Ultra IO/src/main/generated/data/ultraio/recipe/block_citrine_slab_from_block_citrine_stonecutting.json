@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "ultraio:block_citrine",
+  "result": {
+    "count": 18,
+    "id": "ultraio:block_citrine_slab"
+  }
+}

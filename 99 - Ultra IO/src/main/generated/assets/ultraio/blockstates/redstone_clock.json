@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "ultraio:block/redstone_clock"
+    },
+    "powered=true": {
+      "model": "ultraio:block/redstone_clock_on"
+    }
+  }
+}

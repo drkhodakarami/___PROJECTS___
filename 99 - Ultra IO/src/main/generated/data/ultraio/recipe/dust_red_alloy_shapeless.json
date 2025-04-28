@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "ultraio:dust_enderite",
+    "ultraio:gem_ruby",
+    "minecraft:redstone"
+  ],
+  "result": {
+    "count": 3,
+    "id": "ultraio:dust_red_alloy"
+  }
+}

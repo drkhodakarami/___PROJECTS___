@@ -43,7 +43,6 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     //TODO: Explain this
     public static MapCodec<? extends JiBlock> CODEC;
     //TODO: Explain this (Protected and not final!)
-    //TODO: Remove boolean properties from the BlockProperties implementation and explain why
     protected BlockProperties properties;
 
     public JiBlock(Settings settings, BlockProperties properties)
@@ -224,21 +223,23 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
         //    return ActionResult.SUCCESS;
         //}
 
-        if (this.properties.blockEntityProperties().hasGUI())
+        //TODO: Check for null on this.properties.blockEntityProperties
+        if (this.properties.blockEntityProperties() != null && this.properties.blockEntityProperties().hasGUI())
         {
             if (!world.isClient)
             {
                 BlockEntity blockEntity = world.getBlockEntity(pos);
                 if (player instanceof ServerPlayerEntity sPlayer && blockEntity instanceof IBEScreen<?> blockEntityWithGui)
-                { // TODO: Replace with component access maybe?
-                    sPlayer.openHandledScreen(blockEntityWithGui);
+                {
+                    sPlayer.openHandledScreen(blockEntityWithGui);// TODO: Replace with component access maybe?
                 }
             }
 
             return ActionResult.SUCCESS;
         }
 
-        return super.onUse(state, world, pos, player, hit);
+        //TODO: change from super to show the hand animation (super is returning PASS)
+        return ActionResult.SUCCESS;
     }
 
     /*@Override

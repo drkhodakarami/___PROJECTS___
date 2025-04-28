@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": "ultraio:plate_netherite",
+    "R": "ultraio:reinforced_netherite"
+  },
+  "pattern": [
+    "I I",
+    "R R"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:netherite_boots"
+  }
+}

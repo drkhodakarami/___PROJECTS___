@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.datagen.base;
 
+import jiraiyah.jibase.utils.BaseHelper;
 import jiraiyah.jiregister.ArmorHelper;
 import jiraiyah.jiregister.ModelHelper;
 import jiraiyah.ultraio.Main;
@@ -12,8 +13,21 @@ import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.data.Models;
 import net.minecraft.client.data.TexturedModel;
+import net.minecraft.component.Component;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.EquippableComponent;
 import net.minecraft.item.Item;
+import net.minecraft.item.equipment.ArmorMaterial;
+import net.minecraft.item.equipment.EquipmentAsset;
+import net.minecraft.item.equipment.EquipmentAssetKeys;
+import net.minecraft.item.equipment.EquipmentType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Identifier;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static jiraiyah.ultraio.Main.ModID;
 public class ModModelProvider extends FabricModelProvider

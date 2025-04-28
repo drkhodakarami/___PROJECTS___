@@ -1,0 +1,28 @@
+{
+  "values": [
+    "ultraio:block_citrine",
+    "ultraio:block_enderite",
+    "ultraio:block_ruby",
+    "ultraio:block_sapphire",
+    "ultraio:block_raw_citrine",
+    "ultraio:block_raw_enderite",
+    "ultraio:block_raw_quartz",
+    "ultraio:block_raw_ruby",
+    "ultraio:block_raw_sapphire",
+    "ultraio:ore_deep_citrine",
+    "ultraio:ore_deep_ruby",
+    "ultraio:ore_deep_sapphire",
+    "ultraio:ore_end_citrine",
+    "ultraio:ore_end_ruby",
+    "ultraio:ore_end_sapphire",
+    "ultraio:ore_nether_citrine",
+    "ultraio:ore_nether_diamond",
+    "ultraio:ore_nether_lapis",
+    "ultraio:ore_nether_redstone",
+    "ultraio:ore_nether_ruby",
+    "ultraio:ore_nether_sapphire",
+    "ultraio:ore_world_citrine",
+    "ultraio:ore_world_ruby",
+    "ultraio:ore_world_sapphire"
+  ]
+}

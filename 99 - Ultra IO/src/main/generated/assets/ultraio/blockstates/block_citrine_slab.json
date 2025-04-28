@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ultraio:block/block_citrine_slab"
+    },
+    "type=double": {
+      "model": "ultraio:block/block_citrine"
+    },
+    "type=top": {
+      "model": "ultraio:block/block_citrine_slab_top"
+    }
+  }
+}

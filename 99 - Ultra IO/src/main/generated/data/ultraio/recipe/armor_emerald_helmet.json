@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": "ultraio:gear_emerald",
+    "I": "ultraio:reinforced_emerald"
+  },
+  "pattern": [
+    "III",
+    "IGI",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:armor_emerald_helmet"
+  }
+}

@@ -4,13 +4,15 @@ import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.utils.BaseHelper;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.render.entity.equipment.EquipmentModel;
+import net.minecraft.component.Component;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.EquippableComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.equipment.ArmorMaterial;
 import net.minecraft.item.equipment.EquipmentAsset;
 import net.minecraft.item.equipment.EquipmentAssetKeys;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
@@ -19,6 +21,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 
 import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
 
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -28,6 +32,20 @@ import java.util.EnumMap;
 
 public class ArmorHelper
 {
+
+
+    public static Map<String, Identifier> SlotToArmorNames = new HashMap<>();
+
+    static
+    {
+
+        SlotToArmorNames.put("head", ItemModelGenerator.HELMET_TRIM_ID_PREFIX);
+        SlotToArmorNames.put("chest", ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX);
+        SlotToArmorNames.put("legs", ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX);
+        SlotToArmorNames.put("feet", ItemModelGenerator.BOOTS_TRIM_ID_PREFIX);
+        SlotToArmorNames.put("body", ItemModelGenerator.getTrimAssetIdPrefix("body"));
+    }
+
     public static ArmorMaterial getArmorMaterial(String modID, String name, int durability, int bootDefence, int leggingsDefence, int chestplateDefence, int helmetDefence,
                                                  int bodyDefence, int enchantmentValue, RegistryEntry<SoundEvent> equipSound, float toughness,
                                                  float knockbackResistance, TagKey<Item> repairIngredient)
@@ -63,10 +81,16 @@ public class ArmorHelper
 
     public static void generateArmorModel(String modID, ItemModelGenerator generator, Item armor, ArmorMaterial material, boolean dyeable)
     {
-        Identifier id = material.assetId().getValue();
+
+        //TODO: Explain all of this
+        Component<EquippableComponent> component = armor.getComponents().getTyped(DataComponentTypes.EQUIPPABLE);
+        if (component == null)
+            throw new IllegalArgumentException("The item " + armor.getName() + " does not have equippable component");
+        Identifier TrimID = SlotToArmorNames.get(component.value().slot().getName());
+        ;
         String name = Registries.ITEM.getId(armor).getPath();
         RegistryKey<EquipmentAsset> key = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, BaseHelper.identifier(modID, name));
-        generator.registerArmor(armor, key, id, dyeable);
+        generator.registerArmor(armor, key, TrimID, dyeable);
     }
 
     public static EquipmentModel buildHumanoid(String modID, String name)

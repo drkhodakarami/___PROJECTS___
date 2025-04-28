@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": "ultraio:gear_sapphire",
+    "I": "ultraio:reinforced_sapphire"
+  },
+  "pattern": [
+    "IGI",
+    "I I",
+    "I I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:armor_sapphire_leggings"
+  }
+}
