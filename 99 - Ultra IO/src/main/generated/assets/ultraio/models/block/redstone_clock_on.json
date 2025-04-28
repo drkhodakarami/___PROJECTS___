@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "ultraio:block/redstone_clock_front",
-    "side": "ultraio:block/redstone_clock_side",
-    "top": "ultraio:block/redstone_clock_top"
-  }
-}

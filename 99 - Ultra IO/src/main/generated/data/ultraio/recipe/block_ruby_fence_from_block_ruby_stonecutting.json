@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "ultraio:block_ruby",
-  "result": {
-    "count": 9,
-    "id": "ultraio:block_ruby_fence"
-  }
-}

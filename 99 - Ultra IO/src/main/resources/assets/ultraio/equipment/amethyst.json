@@ -2,12 +2,12 @@
   "layers": {
     "humanoid": [
       {
-        "texture": "ultraio_battle:amethyst"
+        "texture": "ultraio:amethyst"
       }
     ],
     "humanoid_leggings": [
       {
-        "texture": "ultraio_battle:amethyst"
+        "texture": "ultraio:amethyst"
       }
     ]
   }

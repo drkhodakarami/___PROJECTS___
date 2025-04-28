@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "ultraio:block/alloy_mixer_front",
-    "side": "ultraio:block/alloy_mixer_side",
-    "top": "ultraio:block/alloy_mixer_top"
-  }
-}

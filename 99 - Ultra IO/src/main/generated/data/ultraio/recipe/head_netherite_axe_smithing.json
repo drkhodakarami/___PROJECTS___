@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smithing_transform",
-  "addition": "minecraft:netherite_ingot",
-  "base": "ultraio:head_diamond_axe",
-  "result": {
-    "id": "ultraio:head_netherite_axe"
-  },
-  "template": "minecraft:netherite_upgrade_smithing_template"
-}

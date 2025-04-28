@@ -145,7 +145,7 @@ dependencies {
     modImplementation("com.terraformersmc:modmenu:${modmenuVersion}")
 
     // Mod Menu Badges Lib ===========================================================================================================================
-    //include(modImplementation("maven.modrinth:modmenu-badges-lib:${badgesVersion}"))
+    include(modImplementation("maven.modrinth:modmenu-badges-lib:${badgesVersion}"))
 
     // PAL ===========================================================================================================================================
     modImplementation "io.github.ladysnake:PlayerAbilityLib:${palVersion}"

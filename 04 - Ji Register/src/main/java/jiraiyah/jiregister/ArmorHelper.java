@@ -7,6 +7,7 @@ import net.minecraft.client.render.entity.equipment.EquipmentModel;
 import net.minecraft.item.Item;
 import net.minecraft.item.equipment.ArmorMaterial;
 import net.minecraft.item.equipment.EquipmentAsset;
+import net.minecraft.item.equipment.EquipmentAssetKeys;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -31,8 +32,7 @@ public class ArmorHelper
                                                  int bodyDefence, int enchantmentValue, RegistryEntry<SoundEvent> equipSound, float toughness,
                                                  float knockbackResistance, TagKey<Item> repairIngredient)
     {
-        RegistryKey<Registry<EquipmentAsset>> equipmentAssetKey = RegistryKey.ofRegistry(Identifier.ofVanilla("equipment_asset"));
-        RegistryKey<EquipmentAsset> key = RegistryKey.of(equipmentAssetKey, BaseHelper.identifier(modID, name));
+        RegistryKey<EquipmentAsset> key = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, BaseHelper.identifier(modID, name));
         return new ArmorMaterial(durability,
                                  Util.make(new EnumMap<>(EquipmentType.class),
                                             (map) ->
@@ -65,8 +65,7 @@ public class ArmorHelper
     {
         Identifier id = material.assetId().getValue();
         String name = Registries.ITEM.getId(armor).getPath();
-        RegistryKey<Registry<EquipmentAsset>> equipmentAssetKey = RegistryKey.ofRegistry(Identifier.ofVanilla("equipment_asset"));
-        RegistryKey<EquipmentAsset> key = RegistryKey.of(equipmentAssetKey, BaseHelper.identifier(modID, name));
+        RegistryKey<EquipmentAsset> key = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, BaseHelper.identifier(modID, name));
         generator.registerArmor(armor, key, id, dyeable);
     }
 

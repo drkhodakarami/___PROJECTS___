@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "ultraio:block/block_citrine",
-    "side": "ultraio:block/block_citrine",
-    "top": "ultraio:block/block_citrine"
-  }
-}

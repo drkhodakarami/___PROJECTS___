@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smithing_transform",
-  "addition": "ultraio:ingot_enderite",
-  "base": "ultraio:head_netherite_hammer",
-  "result": {
-    "id": "ultraio:head_enderite_hammer"
-  },
-  "template": "minecraft:netherite_upgrade_smithing_template"
-}

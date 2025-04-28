@@ -152,7 +152,6 @@ def repsyUrl = localRepsyUrl != null ? localRepsyUrl : systemRepsyURL
 def repsyUsername = localRepsyUsername != null ? localRepsyUsername : systemRepsyUsername
 def repsyPassword = localRepsyPassword != null ? localRepsyPassword : systemRepsyPassword
 
-
 publishing {
 	publications {
 		maven(MavenPublication) {

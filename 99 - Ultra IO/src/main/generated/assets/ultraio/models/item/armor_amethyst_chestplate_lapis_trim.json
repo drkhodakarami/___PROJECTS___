@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "ultraio:item/armor_amethyst_chestplate",
-    "layer1": "ultraio:amethyst_lapis"
-  }
-}

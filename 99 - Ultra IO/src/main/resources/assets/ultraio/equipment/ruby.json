@@ -2,12 +2,12 @@
   "layers": {
     "humanoid": [
       {
-        "texture": "ultraio_battle:ruby"
+        "texture": "ultraio:ruby"
       }
     ],
     "humanoid_leggings": [
       {
-        "texture": "ultraio_battle:ruby"
+        "texture": "ultraio:ruby"
       }
     ]
   }
