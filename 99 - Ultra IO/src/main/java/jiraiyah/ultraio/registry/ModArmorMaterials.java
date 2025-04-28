@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.registry;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.jiregister.ArmorHelper;
 import net.minecraft.item.equipment.ArmorMaterial;
 import net.minecraft.sound.SoundEvents;
@@ -12,8 +13,8 @@ public class ModArmorMaterials
                                                             20,
                                                             1, 5, 7, 3, 5,
                                                             20,
-                     SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.5f, 0.05f,
-                     REFERENCE.REPAIRS_AMETHYST_ARMOR);
+                                                                        SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.5f, 0.05f,
+                                                                        REFERENCE.REPAIRS_AMETHYST_ARMOR);
     public static ArmorMaterial CITRINE = ArmorHelper.getArmorMaterial(ModID, "citrine",
                                                            30,
                                                            3, 6, 8, 3, 7,
@@ -53,7 +54,7 @@ public class ModArmorMaterials
 
     public ModArmorMaterials()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

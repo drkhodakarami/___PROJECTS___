@@ -1,6 +1,7 @@
 package jiraiyah.jibase.utils;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant;
@@ -19,6 +20,11 @@ import java.util.Optional;
 
 public class TransferHelper
 {
+    public TransferHelper()
+    {
+        Exceptions.throwCtorAssertion();
+    }
+
     public static <V, T extends TransferVariant<V>>Optional<T> findFirstVariant(Storage<T> storage, @Nullable T variant, long transferAmount)
     {
         if(storage instanceof SingleVariantStorage<T> singleVariantStorage)

@@ -10,6 +10,11 @@ import jiraiyah.jibase.annotations.*;
 
 public class Exceptions
 {
+    public Exceptions()
+    {
+        throwCtorAssertion();
+    }
+
     public static void throwCtorAssertion()
     {
         throw new InitCtorException();

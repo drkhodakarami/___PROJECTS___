@@ -3,6 +3,7 @@ package jiraiyah.jiralib.util;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.enumerations.MappedDirection;
 import jiraiyah.jibase.interfaces.INBTSerializable;
+import jiraiyah.jibase.interfaces.IStorageHandler;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.Direction;
 
@@ -18,7 +19,7 @@ import java.util.Map;
 @Discord("https://discord.turtywurty.dev/")
 @Youtube("https://www.youtube.com/@TurtyWurty")
 
-public abstract class StorageConnector<T> implements INBTSerializable<NbtList>
+public abstract class StorageConnector<T> implements INBTSerializable<NbtList>, IStorageHandler<T>
 {
     protected final List<T> storages = new ArrayList<>(MappedDirection.values().length);
     protected final Map<MappedDirection, T> sidedMap = new HashMap<>(MappedDirection.values().length);

@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 32],
 	"textures": {
-		"0": "ultraio_machina:block/animal_feed",
-		"particle": "ultraio_machina:block/animal_feed"
+      "0": "ultraio:block/animal_feed",
+      "particle": "ultraio:block/animal_feed"
 	},
 	"elements": [
 		{

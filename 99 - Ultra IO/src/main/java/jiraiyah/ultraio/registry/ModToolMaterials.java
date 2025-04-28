@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.registry;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.tag.BlockTags;
 
@@ -16,7 +17,7 @@ public class ModToolMaterials
 
     public ModToolMaterials()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

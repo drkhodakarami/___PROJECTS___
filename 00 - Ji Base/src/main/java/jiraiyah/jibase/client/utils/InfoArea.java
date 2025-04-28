@@ -1,4 +1,4 @@
-package jiraiyah.jibase.utils.client;
+package jiraiyah.jibase.client.utils;
 
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.client.MinecraftClient;

@@ -24,6 +24,7 @@
 
 package jiraiyah.ultraio.event;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.registry.ModDataComponentTypes;
 import jiraiyah.ultraio.registry.ModItems;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
@@ -41,7 +42,7 @@ public class UseEntityCallbackListener
 {
     public UseEntityCallbackListener()
     {
-        throw new AssertionError();
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

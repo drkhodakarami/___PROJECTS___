@@ -1,6 +1,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.utils.BaseHelper;
 import jiraiyah.jiregister.factory.IToolFactory;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.Item;
@@ -51,28 +52,28 @@ public class JiItemRegister
 
     public <R extends Item> R register(String name, Function<Item.Settings, R> factory)
     {
-        RegistryKey<Item> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ITEM);
+        RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
         R item = factory.apply(new Item.Settings().registryKey(key));
         return Registry.register(Registries.ITEM, key, item);
     }
 
     public <R extends Item> R register(String name, int stackCount, Function<Item.Settings, R> factory)
     {
-        RegistryKey<Item> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ITEM);
+        RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
         R item = factory.apply(new Item.Settings().registryKey(key). maxCount(stackCount));
         return Registry.register(Registries.ITEM, key, item);
     }
 
     public <R extends Item> R register(String name, Item.Settings settings, Function<Item.Settings, R> factory)
     {
-        RegistryKey<Item> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ITEM);
+        RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
         R item = factory.apply(settings.registryKey(key));
         return Registry.register(Registries.ITEM, key, item);
     }
 
     public <R extends Item> R register(String name, int stackCount, Item.Settings settings, Function<Item.Settings, R> factory)
     {
-        RegistryKey<Item> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ITEM);
+        RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
         R item = factory.apply(settings.registryKey(key). maxCount(stackCount));
         return Registry.register(Registries.ITEM, key, item);
     }
@@ -105,7 +106,7 @@ public class JiItemRegister
     public <R extends Item> R registerTool(String name, ToolMaterial material, float attackDamage, float attackSpeed,
                                            IToolFactory<Item.Settings, R> factory)
     {
-        RegistryKey<Item> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ITEM);
+        RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
         R item = factory.apply(material, attackDamage, attackSpeed, new Item.Settings().registryKey(key));
         return Registry.register(Registries.ITEM, key, item);
     }
@@ -113,7 +114,7 @@ public class JiItemRegister
     public <R extends Item> R registerTool(String name, ToolMaterial material, float attackDamage, float attackSpeed,
                                            Item.Settings settings, IToolFactory<Item.Settings, R> factory)
     {
-        RegistryKey<Item> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ITEM);
+        RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
         R item = factory.apply(material, attackDamage, attackSpeed, settings.registryKey(key));
         return Registry.register(Registries.ITEM, key, item);
     }

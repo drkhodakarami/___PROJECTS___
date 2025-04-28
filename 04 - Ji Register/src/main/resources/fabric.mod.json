@@ -15,6 +15,9 @@
 	"license": "MIT",
 	"icon": "assets/jiregister/icon.png",
 	"environment": "*",
+  "mixins": [
+    "jiregister.mixins.json"
+  ],
 	"depends": {
 		"fabricloader": ">=${loader_ver}",
 		"minecraft": "~${game_ver}",

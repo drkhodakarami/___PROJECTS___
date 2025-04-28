@@ -1,6 +1,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.utils.BaseHelper;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.render.entity.equipment.EquipmentModel;
 import net.minecraft.item.Item;
@@ -31,7 +32,7 @@ public class ArmorHelper
                                                  float knockbackResistance, TagKey<Item> repairIngredient)
     {
         RegistryKey<Registry<EquipmentAsset>> equipmentAssetKey = RegistryKey.ofRegistry(Identifier.ofVanilla("equipment_asset"));
-        RegistryKey<EquipmentAsset> key = RegistryKey.of(equipmentAssetKey, identifier(modID, name));
+        RegistryKey<EquipmentAsset> key = RegistryKey.of(equipmentAssetKey, BaseHelper.identifier(modID, name));
         return new ArmorMaterial(durability,
                                  Util.make(new EnumMap<>(EquipmentType.class),
                                             (map) ->
@@ -65,26 +66,21 @@ public class ArmorHelper
         Identifier id = material.assetId().getValue();
         String name = Registries.ITEM.getId(armor).getPath();
         RegistryKey<Registry<EquipmentAsset>> equipmentAssetKey = RegistryKey.ofRegistry(Identifier.ofVanilla("equipment_asset"));
-        RegistryKey<EquipmentAsset> key = RegistryKey.of(equipmentAssetKey, identifier(modID, name));
+        RegistryKey<EquipmentAsset> key = RegistryKey.of(equipmentAssetKey, BaseHelper.identifier(modID, name));
         generator.registerArmor(armor, key, id, dyeable);
     }
 
     public static EquipmentModel buildHumanoid(String modID, String name)
     {
-        return EquipmentModel.builder().addHumanoidLayers(identifier(modID, name)).build();
+        return EquipmentModel.builder().addHumanoidLayers(BaseHelper.identifier(modID, name)).build();
     }
 
     public static EquipmentModel buildHumanoidAndHorse(String modID, String name)
     {
         return EquipmentModel.builder()
-                             .addHumanoidLayers(identifier(modID, name))
+                             .addHumanoidLayers(BaseHelper.identifier(modID, name))
                 .addLayers(EquipmentModel.LayerType.HORSE_BODY,
-                           EquipmentModel.Layer.createWithLeatherColor(identifier(modID, name), false))
+                           EquipmentModel.Layer.createWithLeatherColor(BaseHelper.identifier(modID, name), false))
                              .build();
-    }
-
-    private static Identifier identifier(String modID, String path)
-    {
-        return Identifier.of(modID, path);
     }
 }

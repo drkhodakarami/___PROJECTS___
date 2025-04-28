@@ -37,7 +37,7 @@ public class CitrineSword extends Item
 {
     public CitrineSword(ToolMaterial toolMaterial, float attackDamage, float attackSpeed, Settings settings)
     {
-        super(new Settings().sword(toolMaterial, attackDamage, attackSpeed));
+        super(settings.sword(toolMaterial, attackDamage, attackSpeed));
     }
 
     @Override

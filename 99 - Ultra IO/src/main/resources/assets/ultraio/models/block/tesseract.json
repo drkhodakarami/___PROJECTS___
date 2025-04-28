@@ -2,11 +2,11 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "ultraio_machina:block/tesseract_glass_wall",
-		"1": "ultraio_machina:block/tesseract_borders",
-		"2": "ultraio_machina:block/tesseract_core",
-		"3": "ultraio_machina:block/tesseract_pads",
-		"particle": "ultraio_machina:block/tesseract_glass_wall"
+      "0": "ultraio:block/tesseract_glass_wall",
+      "1": "ultraio:block/tesseract_borders",
+      "2": "ultraio:block/tesseract_core",
+      "3": "ultraio:block/tesseract_pads",
+      "particle": "ultraio:block/tesseract_glass_wall"
 	},
 	"elements": [
 		{

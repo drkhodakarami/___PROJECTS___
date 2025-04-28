@@ -1,6 +1,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.utils.BaseHelper;
 import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -26,7 +27,7 @@ public class JiComponentTypeRegister
 
     public <R> ComponentType<R> register(String name, UnaryOperator<ComponentType.Builder<R>> buildOperator)
     {
-        RegistryKey<ComponentType<?>> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.DATA_COMPONENT_TYPE);
+        RegistryKey<ComponentType<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.DATA_COMPONENT_TYPE);
         return Registry.register(Registries.DATA_COMPONENT_TYPE, key, buildOperator.apply(ComponentType.builder()).build());
     }
 }

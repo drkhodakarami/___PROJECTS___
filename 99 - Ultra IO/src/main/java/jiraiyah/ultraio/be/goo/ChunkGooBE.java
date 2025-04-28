@@ -1,30 +1,35 @@
 package jiraiyah.ultraio.be.goo;
 
-import jiraiyah.jiralib.blockentity.NoScreenUpdatableBE;
-import jiraiyah.jiralib.interfaces.ITick;
+import jiraiyah.jibase.interfaces.ITickLogic;
+import jiraiyah.jibase.properties.BEProperties;
+import jiraiyah.jibase.properties.BlockEntityFields;
+import jiraiyah.jiralib.blockentity.TickableBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 
-public class ChunkGooBE extends NoScreenUpdatableBE implements ITick
+public class ChunkGooBE extends TickableBE<ChunkGooBE>
 {
     public ChunkGooBE(BlockPos pos, BlockState state)
     {
         super(ModBlockEntities.CHUNK_GOO, pos, state);
+        this.properties.tickLogic(new TickLogic());
     }
 
-    //TODO : Add Functionality
-    @Override
-    public void tick()
+    //TODO: Make the tick logic not an inner class but an actual class of itself
+    static class TickLogic implements ITickLogic<ChunkGooBE, BlockEntityFields<ChunkGooBE>>
     {
 
+        @Override
+        public void tick(BEProperties<ChunkGooBE> properties)
+        {
+
+        }
+
+        @Override
+        public void tickClient(BEProperties<ChunkGooBE> properties)
+        {
+
+        }
     }
-
-    @Override
-    public void tickClient()
-    {}
-
-    @Override
-    public void onTickClientEnd()
-    {}
 }

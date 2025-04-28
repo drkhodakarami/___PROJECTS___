@@ -1,6 +1,5 @@
 package jiraiyah.ultraio.datagen.base;
 
-import jiraiyah.jiralib.block.AbstractActivatableBlock;
 import jiraiyah.jiregister.ArmorHelper;
 import jiraiyah.jiregister.ModelHelper;
 import jiraiyah.ultraio.Main;
@@ -14,6 +13,7 @@ import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.data.Models;
 import net.minecraft.client.data.TexturedModel;
 import net.minecraft.item.Item;
+import net.minecraft.state.property.Properties;
 
 import static jiraiyah.ultraio.Main.ModID;
 public class ModModelProvider extends FabricModelProvider
@@ -162,15 +162,16 @@ public class ModModelProvider extends FabricModelProvider
         generator.registerSimpleCubeAll(ModBlocks.CREATIVE_BANK);
         generator.registerSimpleCubeAll(ModBlocks.BATTERY_BANK);
 
-        ModelHelper.registerCubeVariantBlock(generator, ModBlocks.REDSTONE_CLOCK, AbstractActivatableBlock.ACTIVATED);
+        //TODO: Explain Property change
+        ModelHelper.registerCubeVariantBlock(generator, ModBlocks.REDSTONE_CLOCK, Properties.POWERED);
 
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.ALLOY_MIXER, AbstractActivatableMachineBlock.ACTIVATED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.GEM_CLEANER, AbstractActivatableMachineBlock.ACTIVATED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.OVEN, AbstractActivatableMachineBlock.ACTIVATED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.PULVERIZER, AbstractActivatableMachineBlock.ACTIVATED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.SMELTER, AbstractActivatableMachineBlock.ACTIVATED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.GENERATOR, AbstractActivatableMachineBlock.ACTIVATED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.BUILDER, AbstractActivatableMachineBlock.ACTIVATED);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.ALLOY_MIXER, Properties.POWERED);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.GEM_CLEANER, Properties.POWERED);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.OVEN, Properties.POWERED);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.PULVERIZER, Properties.POWERED);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.SMELTER, Properties.POWERED);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.GENERATOR, Properties.POWERED);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.BUILDER, Properties.POWERED);
         //endregion
     }
 

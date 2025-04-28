@@ -25,7 +25,9 @@
 package jiraiyah.ultraio.block.machine;
 
 import com.mojang.serialization.MapCodec;
-import jiraiyah.jiralib.interfaces.ITickBE;
+import jiraiyah.jibase.interfaces.ITick;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -46,13 +48,15 @@ import org.jetbrains.annotations.Nullable;
 // - We have total of 18 casts available
 // - One input slot for gold / wood ingot
 // - one output slot for cast item
-public class CastPress extends Block implements BlockEntityProvider
+public class CastPress extends JiBlock implements BlockEntityProvider
 {
     private static MapCodec<CastPress> CODEC;
 
     public CastPress(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty()
+                .hasHorizontalFacing());
         CODEC = createCodec(CastPress::new);
     }
 
@@ -72,6 +76,6 @@ public class CastPress extends Block implements BlockEntityProvider
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type)
     {
-        return ITickBE.createTicker(world);
+        return ITick.createTicker(world);
     }
 }

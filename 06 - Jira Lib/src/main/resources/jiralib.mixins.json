@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "jiraiyah.jiralib.mixin",
+  "compatibilityLevel": "JAVA_${java_ver}",
+  "mixins": [
+    "BlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

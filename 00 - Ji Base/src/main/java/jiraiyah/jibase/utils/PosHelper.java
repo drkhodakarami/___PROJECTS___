@@ -1,6 +1,7 @@
 package jiraiyah.jibase.utils;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
@@ -13,6 +14,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class PosHelper
 {
+    public PosHelper()
+    {
+        Exceptions.throwCtorAssertion();
+    }
+
     public static BlockPos[] positionNextTo(BlockPos pos)
     {
         return new BlockPos[]{pos.up(), pos.down(), pos.east(), pos.west(), pos.north(), pos.south()};

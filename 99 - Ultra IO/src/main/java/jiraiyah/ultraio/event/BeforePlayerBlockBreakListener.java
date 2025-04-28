@@ -24,6 +24,7 @@
 
 package jiraiyah.ultraio.event;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.item.ExcavatorItem;
 import jiraiyah.ultraio.item.HammerItem;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
@@ -42,6 +43,11 @@ import java.util.Set;
 public class BeforePlayerBlockBreakListener implements PlayerBlockBreakEvents.Before
 {
     private static final Set<BlockPos> HARVESTED_BLOCK = new HashSet<>();
+
+    public BeforePlayerBlockBreakListener()
+    {
+        //NOOP
+    }
 
     @Override
     public boolean beforeBlockBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity)

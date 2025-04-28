@@ -1,6 +1,8 @@
 package jiraiyah.ultraio.compat.rei;
 
-public class ModREIPlugin// implements REIClientPlugin
+import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
+
+public class ModREIPlugin implements REIClientPlugin
 {
     /*@Override
     public void registerCategories(CategoryRegistry registry)

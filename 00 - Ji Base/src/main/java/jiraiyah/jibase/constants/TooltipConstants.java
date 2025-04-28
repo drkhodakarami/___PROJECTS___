@@ -1,6 +1,7 @@
 package jiraiyah.jibase.constants;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
 
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -32,4 +33,9 @@ public class TooltipConstants
     public static final String STYLE_UNDERLINE = "§n";
     public static final String STYLE_ITALIC = "§o";
     public static final String RESET = "§r";
+
+    public TooltipConstants()
+    {
+        Exceptions.throwCtorAssertion();
+    }
 }

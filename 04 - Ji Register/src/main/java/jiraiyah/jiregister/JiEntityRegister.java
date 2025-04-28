@@ -1,6 +1,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.utils.BaseHelper;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
@@ -30,14 +31,14 @@ public class JiEntityRegister
 
     public <R extends BlockEntity> BlockEntityType<R> register(String name, Block block, FabricBlockEntityTypeBuilder.Factory<R> factory)
     {
-        RegistryKey<BlockEntityType<?>> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.BLOCK_ENTITY_TYPE);
+        RegistryKey<BlockEntityType<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.BLOCK_ENTITY_TYPE);
         BlockEntityType<R> beType = FabricBlockEntityTypeBuilder.create(factory, block).build();
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, key, beType);
     }
 
     public <R extends Entity> EntityType<R> register(String name, SpawnGroup spawnGroup, EntityType.EntityFactory<R> factory)
     {
-        RegistryKey<EntityType<?>> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ENTITY_TYPE);
+        RegistryKey<EntityType<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ENTITY_TYPE);
         EntityType<R> entityType = EntityType.Builder.create(factory, spawnGroup).build(key);
         return Registry.register(Registries.ENTITY_TYPE, key, entityType);
     }

@@ -1,6 +1,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.utils.BaseHelper;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
@@ -27,13 +28,13 @@ public class JiRecipeRegister
 
     public <R extends Recipe<D>, D extends RecipeInput> RecipeSerializer<R> register(String name, RecipeSerializer<R> serializer)
     {
-        RegistryKey<RecipeSerializer<?>> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.RECIPE_SERIALIZER);
+        RegistryKey<RecipeSerializer<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.RECIPE_SERIALIZER);
         return Registry.register(Registries.RECIPE_SERIALIZER, key, serializer);
     }
 
     public <R extends Recipe<D>, D extends RecipeInput> RecipeType<R> register(String name, RecipeType<R> recipeType)
     {
-        RegistryKey<RecipeType<?>> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.RECIPE_TYPE);
+        RegistryKey<RecipeType<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.RECIPE_TYPE);
         return Registry.register(Registries.RECIPE_TYPE, key, recipeType);
     }
 }

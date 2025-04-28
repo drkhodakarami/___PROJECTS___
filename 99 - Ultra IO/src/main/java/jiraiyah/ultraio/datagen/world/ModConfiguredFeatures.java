@@ -1,6 +1,7 @@
 package jiraiyah.ultraio.datagen.world;
 
-import jiraiyah.jiregister.RegistryHelper;
+import jiraiyah.jibase.exceptions.Exceptions;
+import jiraiyah.jibase.utils.BaseHelper;
 import jiraiyah.jiregister.WorldGenHelper;
 import jiraiyah.ultraio.registry.ModBlocks;
 import net.minecraft.block.Blocks;
@@ -22,26 +23,26 @@ import static jiraiyah.ultraio.Main.ModID;
 
 public class ModConfiguredFeatures
 {
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_CITRINE_KEY = RegistryHelper.getKey(ModID, "ore_citrine", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_RUBY_KEY = RegistryHelper.getKey(ModID, "ore_ruby", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_SAPPHIRE_KEY = RegistryHelper.getKey(ModID, "ore_sapphire", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_CITRINE_KEY = RegistryHelper.getKey(ModID, "ore_nether_citrine", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_RUBY_KEY = RegistryHelper.getKey(ModID, "ore_nether_ruby", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_SAPPHIRE_KEY = RegistryHelper.getKey(ModID, "ore_nether_sapphire", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_COAL_KEY = RegistryHelper.getKey(ModID, "ore_nether_coal", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_COPPER_KEY = RegistryHelper.getKey(ModID, "ore_nether_copper", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_DIAMOND_KEY = RegistryHelper.getKey(ModID, "ore_nether_diamond", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_IRON_KEY = RegistryHelper.getKey(ModID, "ore_nether_iron", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_LAPIS_KEY = RegistryHelper.getKey(ModID, "ore_nether_lapis", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_REDSTONE_KEY = RegistryHelper.getKey(ModID, "ore_nether_redstone", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_END_CITRINE_KEY = RegistryHelper.getKey(ModID, "ore_end_citrine", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_END_RUBY_KEY = RegistryHelper.getKey(ModID, "ore_end_ruby", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_END_SAPPHIRE_KEY = RegistryHelper.getKey(ModID, "ore_end_sapphire", RegistryKeys.CONFIGURED_FEATURE);
-    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_END_ENDERITE_KEY = RegistryHelper.getKey(ModID, "ore_end_enderite", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_CITRINE_KEY = BaseHelper.getKey(ModID, "ore_citrine", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_RUBY_KEY = BaseHelper.getKey(ModID, "ore_ruby", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_SAPPHIRE_KEY = BaseHelper.getKey(ModID, "ore_sapphire", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_CITRINE_KEY = BaseHelper.getKey(ModID, "ore_nether_citrine", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_RUBY_KEY = BaseHelper.getKey(ModID, "ore_nether_ruby", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_SAPPHIRE_KEY = BaseHelper.getKey(ModID, "ore_nether_sapphire", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_COAL_KEY = BaseHelper.getKey(ModID, "ore_nether_coal", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_COPPER_KEY = BaseHelper.getKey(ModID, "ore_nether_copper", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_DIAMOND_KEY = BaseHelper.getKey(ModID, "ore_nether_diamond", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_IRON_KEY = BaseHelper.getKey(ModID, "ore_nether_iron", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_LAPIS_KEY = BaseHelper.getKey(ModID, "ore_nether_lapis", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_NETHER_REDSTONE_KEY = BaseHelper.getKey(ModID, "ore_nether_redstone", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_END_CITRINE_KEY = BaseHelper.getKey(ModID, "ore_end_citrine", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_END_RUBY_KEY = BaseHelper.getKey(ModID, "ore_end_ruby", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_END_SAPPHIRE_KEY = BaseHelper.getKey(ModID, "ore_end_sapphire", RegistryKeys.CONFIGURED_FEATURE);
+    public static RegistryKey<ConfiguredFeature<?, ?>> ORE_END_ENDERITE_KEY = BaseHelper.getKey(ModID, "ore_end_enderite", RegistryKeys.CONFIGURED_FEATURE);
 
     public ModConfiguredFeatures()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context)

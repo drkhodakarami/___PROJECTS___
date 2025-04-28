@@ -24,6 +24,7 @@
 
 package jiraiyah.ultraio.item;
 
+import jiraiyah.jiralib.record.CoordinateDataPayload;
 import jiraiyah.ultraio.registry.ModDataComponentTypes;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.player.PlayerEntity;
@@ -84,7 +85,7 @@ public class PlayerTeleporter extends Item
                 {
                     context.getStack().set(ModDataComponentTypes.COORDINATE,
                                            new CoordinateDataPayload(context.getBlockPos(),
-                                                              player.getWorld().getRegistryKey().getValue().toString()));
+                                                                     player.getWorld().getRegistryKey().getValue().toString()));
                 }
                 else
                 {

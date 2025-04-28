@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jimachina.block.AbstractFluidMachineBlock;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -47,11 +48,13 @@ import org.jetbrains.annotations.Nullable;
 // - It can accept upgrades for water / speed
 // - Default water capacity is 10 buckets
 // - Default speed changed for gems but the smallest time is 10 seconds
-public class GemCleaner extends AbstractFluidMachineBlock
+public class GemCleaner extends JiBlock
 {
     public GemCleaner(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty()
+                .hasHorizontalFacing());
         CODEC = createCodec(GemCleaner::new);
     }
 

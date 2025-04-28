@@ -24,6 +24,8 @@
 
 package jiraiyah.ultraio.block.goo;
 
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jibase.properties.BlockPropertiesBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -37,13 +39,16 @@ public class ChunkGoo extends GooBase
 {
     public ChunkGoo(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .blockEntityProperties(
+                        new BlockPropertiesBE<>(() -> ModBlockEntities.CHUNK_GOO)
+                                .shouldTick()));
         CODEC = createCodec(ChunkGoo::new);
     }
 
-    @Override
+    /*@Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
     {
         return ModBlockEntities.CHUNK_GOO.instantiate(pos, state);
-    }
+    }*/
 }

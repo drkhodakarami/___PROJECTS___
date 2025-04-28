@@ -51,7 +51,7 @@ public class ExcavatorItem extends Item
 
     public ExcavatorItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings)
     {
-        super(new TunerItem.Settings().shovel(material, attackDamage, attackSpeed));
+        super(settings.shovel(material, attackDamage, attackSpeed));
         this.depth = depth / 2;
         this.radius = radius - 1;
     }

@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jimachina.block.AbstractFluidMachineBlock;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -47,11 +48,13 @@ import org.jetbrains.annotations.Nullable;
 // - Can accept upgrades to increase lava / energy capacity
 // - Default lava capacity : 10 buckets
 // - Default energy capacity : 1000 unites
-public class Smelter extends AbstractFluidMachineBlock
+public class Smelter extends JiBlock
 {
     public Smelter(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty()
+                .hasHorizontalFacing());
         CODEC = createCodec(Smelter::new);
     }
 

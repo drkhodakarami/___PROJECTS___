@@ -50,7 +50,7 @@ public class HammerItem extends Item
 
     public HammerItem(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings)
     {
-        super(new Settings().pickaxe(material, attackDamage, attackSpeed));
+        super(settings.pickaxe(material, attackDamage, attackSpeed));
         this.depth = depth / 2;
         this.radius = radius - 1;
     }

@@ -1,6 +1,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.utils.BaseHelper;
 import jiraiyah.jiregister.factory.IBlockItemFactory;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -27,8 +28,8 @@ public class JiBlockItemRegister
 
     public BlockItem register(Block block)
     {
-        String name = Registries.BLOCK.getId(block).getPath();
-        RegistryKey<Item> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ITEM);
+        String name = BaseHelper.getRegistryName(block);
+        RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
         return Registry.register(Registries.ITEM, key, new BlockItem(block,
                                                                      new Item.Settings()
                                                                              .useBlockPrefixedTranslationKey()
@@ -37,8 +38,8 @@ public class JiBlockItemRegister
 
     public <R extends BlockItem> R register(Block block, IBlockItemFactory<Item.Settings, R> factory)
     {
-        String name = Registries.BLOCK.getId(block).getPath();
-        RegistryKey<Item> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ITEM);
+        String name = BaseHelper.getRegistryName(block);
+        RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
         R item = factory.apply(block, new Item.Settings()
                                                 .useBlockPrefixedTranslationKey()
                                                 .registryKey(key));
@@ -47,8 +48,8 @@ public class JiBlockItemRegister
 
     public <R extends BlockItem> R register(Block block, Item.Settings settings, IBlockItemFactory<Item.Settings, R> factory)
     {
-        String name = Registries.BLOCK.getId(block).getPath();
-        RegistryKey<Item> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.ITEM);
+        String name = BaseHelper.getRegistryName(block);
+        RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
         R item = factory.apply(block, settings
                                         .useBlockPrefixedTranslationKey()
                                         .registryKey(key));

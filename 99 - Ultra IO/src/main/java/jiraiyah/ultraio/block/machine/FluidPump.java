@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jimachina.block.AbstractFluidMachineBlock;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -48,11 +49,13 @@ import org.jetbrains.annotations.Nullable;
 // - The internal energy is used to power the pump and fill the bucket
 // - Pump uses 1 energy unit per block pumped
 // - The internal energy capacity is 10 units
-public class FluidPump extends AbstractFluidMachineBlock
+public class FluidPump extends JiBlock
 {
     public FluidPump(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty()
+                .hasHorizontalFacing());
         CODEC = createCodec(FluidPump::new);
     }
 

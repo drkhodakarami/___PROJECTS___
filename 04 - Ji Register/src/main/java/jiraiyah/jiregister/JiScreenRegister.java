@@ -1,6 +1,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.utils.BaseHelper;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -31,7 +32,7 @@ public class JiScreenRegister
             register(String name, ExtendedScreenHandlerType.ExtendedFactory<R, D> factory,
                      PacketCodec<? super RegistryByteBuf, D> codec)
     {
-        RegistryKey<ScreenHandlerType<?>> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.SCREEN_HANDLER);
+        RegistryKey<ScreenHandlerType<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.SCREEN_HANDLER);
         return Registry.register(Registries.SCREEN_HANDLER, key, new ExtendedScreenHandlerType<>(factory, codec));
     }
 }

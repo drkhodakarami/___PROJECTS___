@@ -1,11 +1,11 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"top_texture": "ultraio_machina:block/enderchanter_top",
-		"top_texture2": "ultraio_machina:block/enderchanter_top2",
-		"side_texture": "ultraio_machina:block/enderchanter_side",
-		"particle": "ultraio_machina:block/enderchanter_base",
-		"base_texture": "ultraio_machina:block/enderchanter_base"
+      "top_texture": "ultraio:block/enderchanter_top",
+      "top_texture2": "ultraio:block/enderchanter_top2",
+      "side_texture": "ultraio:block/enderchanter_side",
+      "particle": "ultraio:block/enderchanter_base",
+      "base_texture": "ultraio:block/enderchanter_base"
 	},
 	"elements": [
 		{

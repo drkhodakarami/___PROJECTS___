@@ -31,6 +31,6 @@ public class RubySword extends Item
 {
     public RubySword(ToolMaterial material, float attackDamage, float attackSpeed, Settings settings)
     {
-        super(new Settings().sword(material, attackDamage, attackSpeed));
+        super(settings.sword(material, attackDamage, attackSpeed));
     }
 }

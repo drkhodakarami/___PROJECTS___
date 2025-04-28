@@ -24,6 +24,9 @@
 
 package jiraiyah.ultraio.block.goo;
 
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jibase.properties.BlockPropertiesBE;
+import jiraiyah.ultraio.be.goo.AirGooBombBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -34,13 +37,18 @@ public class AirGooBomb extends GooBase
 {
     public AirGooBomb(Settings settings)
     {
-        super(settings);
+        //TODO: Explain This
+        super(settings, new BlockProperties()
+                .blockEntityProperties(
+                        new BlockPropertiesBE<>(() -> ModBlockEntities.AIR_GOO_BOMB)
+                                .shouldTick()));
         CODEC = createCodec(AirGooBomb::new);
     }
 
-    @Override
+    //TODO: Explain This --> No more need to manually override this method!
+    /*@Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
     {
         return ModBlockEntities.AIR_GOO_BOMB.instantiate(pos, state);
-    }
+    }*/
 }

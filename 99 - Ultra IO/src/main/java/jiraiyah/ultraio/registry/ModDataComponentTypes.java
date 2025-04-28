@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.registry;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.jiralib.record.CoordinateDataPayload;
 import net.minecraft.component.ComponentType;
 
@@ -12,7 +13,7 @@ public class ModDataComponentTypes
 
     public ModDataComponentTypes()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

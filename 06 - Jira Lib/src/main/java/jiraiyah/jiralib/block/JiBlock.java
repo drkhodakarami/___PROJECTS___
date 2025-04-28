@@ -1,9 +1,12 @@
 package jiraiyah.jiralib.block;
 
+import com.mojang.serialization.MapCodec;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.interfaces.IBEScreen;
 import jiraiyah.jibase.interfaces.ITick;
 import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.interfaces.BlockStateManagerAccessor;
+import jiraiyah.jiralib.mixin.BlockMixin;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -27,15 +30,21 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 
-@Developer("Jiraiyah")
+@Developer("TurtyWurty")
+@ModifiedBy("Jiraiyah")
+@ThanksTo(discordUsers = "TheWhyEvenHow")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+@Repository("https://github.com/DaRealTurtyWurty/Industria")
+@Discord("https://discord.turtywurty.dev/")
+@Youtube("https://www.youtube.com/@TurtyWurty")
 
 public abstract class JiBlock extends Block implements BlockEntityProvider
 {
-    private final BlockProperties properties;
+    //TODO: Explain this
+    public static MapCodec<? extends JiBlock> CODEC;
+    //TODO: Explain this (Protected and not final!)
+    //TODO: Remove boolean properties from the BlockProperties implementation and explain why
+    protected BlockProperties properties;
 
     public JiBlock(Settings settings, BlockProperties properties)
     {
@@ -44,7 +53,12 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
 
         StateManager.Builder<Block, BlockState> builder = new StateManager.Builder<>(this);
         appendProperties(builder);
-        this.stateManager = builder.build(Block::getDefaultState, BlockState::new);
+        //TODO: Explain the encapsulation
+        /*Caused by: java.lang.IllegalAccessError: Update to non-static final field jiraiyah.jiralib.block.JiBlock.stateManager
+                        attempted from a different class (jiraiyah.jiralib.block.JiBlock) than the field's declaring class*/
+        //this.stateManager = builder.build(Block::getDefaultState, BlockState::new);
+        //updateStateManager(builder.build(Block::getDefaultState, BlockState::new));
+        ((BlockStateManagerAccessor) this).setStateManager(builder.build(Block::getDefaultState, BlockState::new));
         setDefaultState(this.stateManager.getDefaultState());
 
         BlockState state = this.stateManager.getDefaultState();
@@ -57,7 +71,7 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     {
         super.appendProperties(builder);
 
-        if(this.properties.stateProperties() != null)
+        if (this.properties != null && this.properties.stateProperties() != null)
             this.properties.stateProperties().addToBuilder(builder);
     }
 

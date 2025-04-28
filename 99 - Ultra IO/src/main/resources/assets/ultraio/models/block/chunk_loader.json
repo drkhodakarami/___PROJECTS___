@@ -2,12 +2,12 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"4": "ultraio_machina:block/chunk_loader_top",
+      "4": "ultraio:block/chunk_loader_top",
 		"base": "block/chiseled_quartz_block",
-		"top": "ultraio_machina:block/chunk_loader_base_top",
-		"particle": "ultraio_machina:block/custom_end_rod",
-		"rod": "ultraio_machina:block/custom_end_rod",
-		"sides": "ultraio_machina:block/chunk_loader_base_side"
+      "top": "ultraio:block/chunk_loader_base_top",
+      "particle": "ultraio:block/custom_end_rod",
+      "rod": "ultraio:block/custom_end_rod",
+      "sides": "ultraio:block/chunk_loader_base_side"
 	},
 	"elements": [
 		{

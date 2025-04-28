@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.registry;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.blockitem.AngelBlockItem;
 import net.minecraft.item.BlockItem;
 
@@ -36,7 +37,7 @@ public class ModBlockItems
 
     public ModBlockItems()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

@@ -1,6 +1,7 @@
 package jiraiyah.ultraio.registry;
 
-import jiraiyah.jiregister.RegistryHelper;
+import jiraiyah.jibase.exceptions.Exceptions;
+import jiraiyah.jibase.utils.BaseHelper;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
@@ -14,14 +15,14 @@ import static jiraiyah.ultraio.Main.LOGGER;
 
 public class ModItemGroups
 {
-    public static final RegistryKey<ItemGroup> BLOCKS_KEY = RegistryHelper.getKey(ModID, REFERENCE.BLOCK_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
-    public static final RegistryKey<ItemGroup> INGREDIENTS_KEY = RegistryHelper.getKey(ModID, REFERENCE.INGREDIENT_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
-    public static final RegistryKey<ItemGroup> MISC_KEY = RegistryHelper.getKey(ModID, REFERENCE.MISC_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
-    public static final RegistryKey<ItemGroup> ARMORS_KEY = RegistryHelper.getKey(ModID, REFERENCE.ARMOR_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
-    public static final RegistryKey<ItemGroup> DECORATION_KEY = RegistryHelper.getKey(ModID, REFERENCE.DECORATION_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
-    public static final RegistryKey<ItemGroup> MACHINES_KEY = RegistryHelper.getKey(ModID, REFERENCE.MACHINE_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
-    public static final RegistryKey<ItemGroup> STORAGE_KEY = RegistryHelper.getKey(ModID, REFERENCE.STORAGE_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
-    public static final RegistryKey<ItemGroup> TOOLS_KEY = RegistryHelper.getKey(ModID, REFERENCE.TOOLS_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
+    public static final RegistryKey<ItemGroup> BLOCKS_KEY = BaseHelper.getKey(ModID, REFERENCE.BLOCK_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
+    public static final RegistryKey<ItemGroup> INGREDIENTS_KEY = BaseHelper.getKey(ModID, REFERENCE.INGREDIENT_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
+    public static final RegistryKey<ItemGroup> MISC_KEY = BaseHelper.getKey(ModID, REFERENCE.MISC_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
+    public static final RegistryKey<ItemGroup> ARMORS_KEY = BaseHelper.getKey(ModID, REFERENCE.ARMOR_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
+    public static final RegistryKey<ItemGroup> DECORATION_KEY = BaseHelper.getKey(ModID, REFERENCE.DECORATION_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
+    public static final RegistryKey<ItemGroup> MACHINES_KEY = BaseHelper.getKey(ModID, REFERENCE.MACHINE_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
+    public static final RegistryKey<ItemGroup> STORAGE_KEY = BaseHelper.getKey(ModID, REFERENCE.STORAGE_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
+    public static final RegistryKey<ItemGroup> TOOLS_KEY = BaseHelper.getKey(ModID, REFERENCE.TOOLS_ITEM_GROUP_NAME, RegistryKeys.ITEM_GROUP);
 
     public static final ItemGroup BLOCKS = Registry.register(Registries.ITEM_GROUP,
                                                              BLOCKS_KEY,
@@ -511,7 +512,7 @@ public class ModItemGroups
 
     public ModItemGroups()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

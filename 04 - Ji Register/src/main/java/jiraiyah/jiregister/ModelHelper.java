@@ -1,6 +1,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jiregister.interfaces.BlockStateModelGeneratorAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.client.data.*;
 import net.minecraft.client.render.model.json.WeightedVariant;
@@ -27,10 +28,10 @@ public class ModelHelper
                                                                                                       .upload(block, "_on", generator.modelCollector));
         generator.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(block)
                                                         .with(BlockStateModelGenerator.createBooleanModelMap(property, blockON, blockOFF))
-                                                        .coordinate(BlockStateModelGenerator.NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS));
+                                                                                .coordinate(((BlockStateModelGeneratorAccessor) generator).getNorthDefaultHorizontalRotationOperations()));
     }
 
-    public static void registerCubeVariantBlock(BlockStateModelGenerator generator, net.minecraft.block.Block block, BooleanProperty property)
+    public static void registerCubeVariantBlock(BlockStateModelGenerator generator, Block block, BooleanProperty property)
     {
         WeightedVariant cubeOff = BlockStateModelGenerator.createWeightedVariant(TexturedModel.CUBE_ALL.upload(block, generator.modelCollector));
         Identifier blockAll = TextureMap.getSubId(block, "_on");
@@ -42,10 +43,5 @@ public class ModelHelper
                                                                        .with(BlockStateModelGenerator.createBooleanModelMap(property,
                                                                                                                                   cubeOn,
                                                                                                                                   cubeOff)));
-    }
-
-    private static Identifier identifier(String modID, String path)
-    {
-        return Identifier.of(modID, path);
     }
 }

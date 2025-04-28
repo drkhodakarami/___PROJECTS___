@@ -25,7 +25,8 @@
 package jiraiyah.ultraio.block.machine;
 
 import com.mojang.serialization.MapCodec;
-import jiraiyah.jiralib.block.AbstractActivatableBlock;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.Block;
 
 //TODO : Handle Block Entity
@@ -37,13 +38,14 @@ import net.minecraft.block.Block;
 // - Can be set to go as fast as 1 pulse per tick or as slow as 1 pulse per minute
 // - The interface provides buttons to increase / decrease the speed
 // ==> 1 / 5 / 10 / 100 tick buttons
-public class RedstoneClock extends AbstractActivatableBlock
+public class RedstoneClock extends JiBlock
 {
     public static MapCodec<RedstoneClock> CODEC;
 
     public RedstoneClock(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty());
         CODEC = createCodec(RedstoneClock::new);
     }
 

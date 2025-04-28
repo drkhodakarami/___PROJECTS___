@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jimachina.block.AbstractMachineBlock;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -44,11 +45,13 @@ import org.jetbrains.annotations.Nullable;
 // - After learning the enchantment, put an empty book and choose the enchantment to apply to the item
 // - Enchantments can be shown inside a sliding list (maybe)
 // - You should select the enchantment, and hit a button to apply it to the book
-public class EnderChanter extends AbstractMachineBlock
+public class EnderChanter extends JiBlock
 {
     public EnderChanter(Settings settings)
     {
-        super(settings.nonOpaque());
+        super(settings.nonOpaque(), new BlockProperties()
+                .hasPoweredProperty()
+                .hasHorizontalFacing());
         CODEC = createCodec(EnderChanter::new);
     }
 

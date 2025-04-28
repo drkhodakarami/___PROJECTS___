@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jimachina.block.AbstractMachineBlock;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -50,11 +51,13 @@ import org.jetbrains.annotations.Nullable;
 // - Snowy biomes have negative effect on energy production
 // - Nether has positive effect on energy production
 
-public class Generator extends AbstractMachineBlock
+public class Generator extends JiBlock
 {
     public Generator(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty()
+                .hasHorizontalFacing());
         CODEC = createCodec(Generator::new);
     }
 

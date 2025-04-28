@@ -1,6 +1,7 @@
 package jiraiyah.jibase.utils;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
 import net.minecraft.world.World;
 
 import java.util.function.Predicate;
@@ -13,6 +14,11 @@ import java.util.function.Predicate;
 
 public class MathHelper
 {
+    public MathHelper()
+    {
+        Exceptions.throwCtorAssertion();
+    }
+
     public static Predicate<Integer> countEquals(int value)
     {
         return count -> count == value;

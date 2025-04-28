@@ -24,7 +24,9 @@
 
 package jiraiyah.ultraio.block.storage;
 
-import jiraiyah.jienergy.block.AbstractEnergyBlock;
+import com.mojang.serialization.MapCodec;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
@@ -40,11 +42,14 @@ import org.jetbrains.annotations.Nullable;
 // Ideas :
 // - Just a creative energy bank without recipe
 // - Transfers up to 10_000 energy units per tick
-public class CreativeEnergyBank extends AbstractEnergyBlock
+public class CreativeEnergyBank extends JiBlock
 {
+    public static MapCodec<CreativeEnergyBank> CODEC;
+
     public CreativeEnergyBank(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty());
         CODEC = createCodec(CreativeEnergyBank::new);
     }
 

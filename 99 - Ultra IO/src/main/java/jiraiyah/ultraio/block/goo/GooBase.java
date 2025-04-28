@@ -25,8 +25,9 @@
 package jiraiyah.ultraio.block.goo;
 
 import com.mojang.serialization.MapCodec;
-import jiraiyah.jiralib.block.AbstractActivatableBlock;
-import jiraiyah.jiralib.interfaces.ITick;
+import jiraiyah.jibase.interfaces.ITick;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import jiraiyah.ultraio.registry.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -40,6 +41,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -47,13 +49,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class GooBase extends AbstractActivatableBlock implements BlockEntityProvider
-{
-    public static MapCodec<? extends GooBase> CODEC;
+import static jiraiyah.ultraio.Main.LOGGER;
 
-    public GooBase(Settings settings)
+//TODO: Utilize properties from JiBlock
+public abstract class GooBase extends JiBlock implements BlockEntityProvider
+{
+    public GooBase(Settings settings, BlockProperties properties)
     {
-        super(settings);
+        super(settings, properties.hasPoweredProperty());
     }
 
     @Override
@@ -65,7 +68,20 @@ public abstract class GooBase extends AbstractActivatableBlock implements BlockE
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack)
     {
-        world.setBlockState(pos, state.with(ACTIVATED, false), NOTIFY_ALL);
+        if (this.properties.stateProperties().containsProperty(Properties.POWERED))
+        {
+            // Set the "powered" property to false when the block is placed
+            BlockState newState = state.with(Properties.POWERED, false);
+            world.setBlockState(pos, newState, Block.NOTIFY_ALL);
+        }
+
+        //TODO: Turn off the powered state!
+        //BlockState newState = this.stateManager.getDefaultState().with(Properties.POWERED, false);
+        //newState = this.properties.stateProperties().applyDefaults(newState);
+        //setDefaultState(newState);
+        //this.properties.stateProperties().setDefaultValue(Properties.POWERED.getName(), false);
+        //TODO: Update listeners around the block
+        //world.setBlockState(pos, getDefaultState(), NOTIFY_ALL);//.with(Properties.POWERED, false), NOTIFY_ALL);
         super.onPlaced(world, pos, state, placer, itemStack);
     }
 
@@ -80,7 +96,26 @@ public abstract class GooBase extends AbstractActivatableBlock implements BlockE
     {
         if (!stack.isOf(ModItems.ROD_COPPER))
             return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
-        world.setBlockState(pos, state.with(ACTIVATED, true), Block.NOTIFY_ALL);
+        if (this.properties.stateProperties().containsProperty(Properties.POWERED))
+        {
+            boolean isPowered = state.get(Properties.POWERED);
+            LOGGER.log("Block used at " + pos + " with powered state before toggle: " + isPowered);
+
+            BlockState newState = state.cycle(Properties.POWERED);
+            world.setBlockState(pos, newState, Block.NOTIFY_ALL);
+
+            BlockState actualState = world.getBlockState(pos);
+            boolean actualPoweredState = actualState.get(Properties.POWERED);
+            LOGGER.log("Block powered state after toggle (actual): " + actualPoweredState);
+        }
+        //    return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+        //TODO: Turn on the powered state!
+        //BlockState newState = this.stateManager.getDefaultState().cycle(Properties.POWERED);
+        //newState = this.properties.stateProperties().applyDefaults(newState);
+        //setDefaultState(newState);
+        //this.properties.stateProperties().setDefaultValue(Properties.POWERED.getName(), true);
+        //TODO: Update listeners around the block
+        //world.setBlockState(pos, getDefaultState(), NOTIFY_ALL);//.with(ACTIVATED, true), Block.NOTIFY_ALL);
         player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
         world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.2F, world.getRandom().nextFloat() * 0.6F + 0.8F);
         if (!player.isCreative())

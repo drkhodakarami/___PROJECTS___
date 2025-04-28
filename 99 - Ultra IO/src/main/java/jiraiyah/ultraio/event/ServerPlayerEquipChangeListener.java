@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.event;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.registry.ModEffects;
 import jiraiyah.ultraio.registry.ModItems;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
@@ -20,7 +21,7 @@ public class ServerPlayerEquipChangeListener
 {
     public ServerPlayerEquipChangeListener()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void register()

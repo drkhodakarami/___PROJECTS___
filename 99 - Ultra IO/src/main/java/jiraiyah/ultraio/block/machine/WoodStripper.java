@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jiralib.block.BlockWithBE;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
@@ -40,11 +41,12 @@ import org.jetbrains.annotations.Nullable;
 // - It will simply strip the wooden planks from the block and leave the stripped logs behind.
 // - It only has one input slot and one output slot
 // - No energy / item / fluid usage
-public class WoodStripper extends BlockWithBE
+public class WoodStripper extends JiBlock
 {
     public WoodStripper(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty());
         CODEC = createCodec(WoodStripper::new);
     }
 

@@ -40,7 +40,7 @@ public class EnderiteSword extends Item
 {
     public EnderiteSword(ToolMaterial toolMaterial, float attackDamage, float attackSpeed, Settings settings)
     {
-        super(new Settings().sword(toolMaterial, attackDamage, attackSpeed));
+        super(settings.sword(toolMaterial, attackDamage, attackSpeed));
     }
 
     @Override

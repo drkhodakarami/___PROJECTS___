@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.registry;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.block.AngelBlock;
 import jiraiyah.ultraio.block.Elevator;
 import jiraiyah.ultraio.block.OreEndEnderite;
@@ -83,7 +84,7 @@ public class ModBlocks
 
     public ModBlocks()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

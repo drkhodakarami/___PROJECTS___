@@ -1,6 +1,7 @@
 package jiraiyah.jibase.constants;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.minecraft.util.math.Direction;
 
@@ -42,4 +43,9 @@ public class Constants
     public static int DEFAULT_ENERGY_CAPACITY = 100_000;
     public static int DEFAULT_ENERGY_MAX_INSERT = 100;
     public static int DEFAULT_ENERGY_MAX_EXTRACT = 100;
+
+    public Constants()
+    {
+        Exceptions.throwCtorAssertion();
+    }
 }

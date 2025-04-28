@@ -1,6 +1,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.utils.BaseHelper;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
@@ -29,7 +30,7 @@ public class JiStatusEffectRegister
     public RegistryEntry<StatusEffect> register(String name, StatusEffectCategory category, int color,
                                                BiFunction<StatusEffectCategory, Integer, StatusEffect> factory)
     {
-        RegistryKey<StatusEffect> key = RegistryHelper.getKey(this.modId, name, RegistryKeys.STATUS_EFFECT);
+        RegistryKey<StatusEffect> key = BaseHelper.getKey(this.modId, name, RegistryKeys.STATUS_EFFECT);
         StatusEffect effect = factory.apply(category, color);
         return Registry.registerReference(Registries.STATUS_EFFECT, key, effect);
     }

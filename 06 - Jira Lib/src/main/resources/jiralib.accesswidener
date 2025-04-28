@@ -14,4 +14,4 @@ accessible field net/minecraft/util/math/intprovider/WeightedListIntProvider wei
 
 accessible method net/minecraft/util/collection/Pool <init> (Ljava/util/List;)V
 
-mutable field net/minecraft/block/Block stateManager Lnet/minecraft/state/StateManager;
+#mutable field net/minecraft/block/Block stateManager Lnet/minecraft/state/StateManager;

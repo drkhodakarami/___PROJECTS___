@@ -1,6 +1,7 @@
-package jiraiyah.jibase.utils.client;
+package jiraiyah.jibase.client.utils;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
 import net.minecraft.client.util.math.Rect2i;
 
 @Developer("Jiraiyah")
@@ -11,6 +12,11 @@ import net.minecraft.client.util.math.Rect2i;
 
 public class MouseHelper
 {
+    public MouseHelper()
+    {
+        Exceptions.throwCtorAssertion();
+    }
+
     public static boolean isMouseOver(double mouseX, double mouseY, int x, int y, int width, int height, int offsetX, int offsetY)
     {
         return mouseX >= x + offsetX &&

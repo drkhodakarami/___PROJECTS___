@@ -1,32 +1,212 @@
 package jiraiyah.jibase.utils;
 
+import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
+import net.minecraft.advancement.criterion.Criterion;
+import net.minecraft.block.Block;
+import net.minecraft.block.DecoratedPotPattern;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.component.ComponentType;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.map.MapDecorationType;
+import net.minecraft.potion.Potion;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.book.RecipeBookCategory;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.screen.ScreenHandlerType;
+import net.minecraft.util.math.floatprovider.FloatProviderType;
+import net.minecraft.util.math.intprovider.IntProviderType;
+import net.minecraft.village.VillagerProfession;
+import net.minecraft.village.VillagerType;
+import net.minecraft.world.chunk.ChunkStatus;
 import org.jetbrains.annotations.NotNull;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Developer("Jiraiyah")
+@CreatedAt("2025-04-18")
+@ModifiedAt("2025-04-23")
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+
 public class BaseHelper
 {
+    public BaseHelper()
+    {
+        Exceptions.throwCtorAssertion();
+    }
+
     public static Identifier identifier(String modID, @NotNull String path)
     {
         return Identifier.of(modID, path);
     }
 
-    public static String getFluidName(Fluid fluid)
+    public static <T> RegistryKey<T> getKey(String modID, String name, RegistryKey<? extends Registry<T>> registryKey)
+    {
+        return RegistryKey.of(registryKey, identifier(modID, name));
+    }
+
+    public static @NotNull String hasTag(@NotNull TagKey<Item> tag)
+    {
+        return "has_" + tag.id().toString();
+    }
+
+    public static String getRegistryName(Fluid fluid)
     {
         return Registries.FLUID.getId(fluid).getPath();
     }
 
-    public static String getItemName(Item item)
+    public static String getRegistryName(Item item)
     {
         return Registries.ITEM.getId(item).getPath();
     }
 
-    public static String getItemName(ItemStack item)
+    public static String getRegistryName(ItemStack item)
     {
-        return Registries.ITEM.getId(item.asItem()).getPath();
+        return Registries.ITEM.getId(item.getItem()).getPath();
     }
 
-    public static String getBlockName(Block block)
+    public static String getRegistryName(Block block)
     {
         return Registries.BLOCK.getId(block).getPath();
+    }
+
+    public static String getRegistryName(EntityType<?> entityType)
+    {
+        return Registries.ENTITY_TYPE.getId(entityType).getPath();
+    }
+
+    public static String getRegistryName(Potion potion)
+    {
+        return Registries.POTION.getId(potion).getPath();
+    }
+
+    public static String getRegistryName(BlockEntityType<?> blockEntityType)
+    {
+        return Registries.BLOCK_ENTITY_TYPE.getId(blockEntityType).getPath();
+    }
+
+    public static String getRegistryName(Identifier identifier)
+    {
+        return Registries.CUSTOM_STAT.getId(identifier).getPath();
+    }
+
+    public static String getRegistryName(ChunkStatus chunkStatus)
+    {
+        return Registries.CHUNK_STATUS.getId(chunkStatus).getPath();
+    }
+
+    public static String getRegistryName(EntityAttribute entityAttribute)
+    {
+        return Registries.ATTRIBUTE.getId(entityAttribute).getPath();
+    }
+
+    public static String getRegistryName(ScreenHandlerType<?> screenHandlerType)
+    {
+        return Registries.SCREEN_HANDLER.getId(screenHandlerType).getPath();
+    }
+
+    public static String getRegistryName(RecipeType<?> recipeType)
+    {
+        return Registries.RECIPE_TYPE.getId(recipeType).getPath();
+    }
+
+    public static String getRegistryName(RecipeSerializer<?> recipeSerializer)
+    {
+        return Registries.RECIPE_SERIALIZER.getId(recipeSerializer).getPath();
+    }
+
+    public static String getRegistryName(VillagerType villagerType)
+    {
+        return Registries.VILLAGER_TYPE.getId(villagerType).getPath();
+    }
+
+    public static String getRegistryName(VillagerProfession villagerProfession)
+    {
+        return Registries.VILLAGER_PROFESSION.getId(villagerProfession).getPath();
+    }
+
+    public static String getRegistryName(FloatProviderType<?> floatProviderType)
+    {
+        return Registries.FLOAT_PROVIDER_TYPE.getId(floatProviderType).getPath();
+    }
+
+    public static String getRegistryName(IntProviderType<?> intProviderType)
+    {
+        return Registries.INT_PROVIDER_TYPE.getId(intProviderType).getPath();
+    }
+
+    public static String getRegistryName(DecoratedPotPattern decoratedPotPattern)
+    {
+        return Registries.DECORATED_POT_PATTERN.getId(decoratedPotPattern).getPath();
+    }
+
+    public static String getRegistryName(ItemGroup itemGroup)
+    {
+        return Registries.ITEM_GROUP.getId(itemGroup).getPath();
+    }
+
+    public static String getRegistryName(Criterion<?> criterion)
+    {
+        return Registries.CRITERION.getId(criterion).getPath();
+    }
+
+    public static String getRegistryName(ComponentType<?> componentType, boolean isEnchantment)
+    {
+        return isEnchantment
+               ? Registries.ENCHANTMENT_EFFECT_COMPONENT_TYPE.getId(componentType).getPath()
+               : Registries.DATA_COMPONENT_TYPE.getId(componentType).getPath();
+    }
+
+    public static String getRegistryName(MapDecorationType mapDecorationType)
+    {
+        return Registries.MAP_DECORATION_TYPE.getId(mapDecorationType).getPath();
+    }
+
+    public static String getRegistryName(RecipeBookCategory recipeBookCategory)
+    {
+        return Registries.RECIPE_BOOK_CATEGORY.getId(recipeBookCategory).getPath();
+    }
+
+    public static List<Item> getItemsWithTag(TagKey<Item> tagKey)
+    {
+        return Registries.ITEM.stream()
+                              .filter(item -> Registries.ITEM.getEntry(item).isIn(tagKey))
+                              .toList();
+    }
+
+    public static List<Block> getBlocksWithTag(TagKey<Block> tagKey)
+    {
+        return Registries.BLOCK.stream()
+                               .filter(block -> Registries.BLOCK.getEntry(block).isIn(tagKey))
+                               .toList();
+    }
+
+    public static List<BlockEntityType<?>> getBlockEntitiesWithTag(TagKey<BlockEntityType<?>> tagKey)
+    {
+        return Registries.BLOCK_ENTITY_TYPE.stream()
+                                           .filter(blockEntityType -> Registries.BLOCK_ENTITY_TYPE.getEntry(blockEntityType).isIn(tagKey))
+                                           .toList();
+    }
+
+    public static List<EntityType<?>> getEntitiesWithTag(TagKey<EntityType<?>> tagKey)
+    {
+        return Registries.ENTITY_TYPE.stream()
+                                     .filter(entityType -> Registries.ENTITY_TYPE.getEntry(entityType).isIn(tagKey))
+                                     .toList();
     }
 }

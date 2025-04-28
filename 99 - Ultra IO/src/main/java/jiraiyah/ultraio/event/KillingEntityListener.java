@@ -24,6 +24,7 @@
 
 package jiraiyah.ultraio.event;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.registry.ModItems;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.minecraft.entity.Entity;
@@ -40,6 +41,11 @@ import net.minecraft.util.math.random.Random;
 
 public class KillingEntityListener implements ServerEntityCombatEvents.AfterKilledOtherEntity
 {
+    public KillingEntityListener()
+    {
+        //NOOP
+    }
+
     @Override
     public void afterKilledOtherEntity(ServerWorld world, Entity entity, LivingEntity killedEntity)
     {

@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jiralib.block.BlockWithBE;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
@@ -47,41 +48,42 @@ import org.jetbrains.annotations.Nullable;
 // - It will have upgrade slots that will increase the distance it can feed animals
 // - The default distance is one block around itself.
 // - The biggest possible distance is 8 blocks radius (makes 17 * 17 square)
-public class AnimalFeed extends BlockWithBE
+public class AnimalFeed extends JiBlock
 {
-    private static VoxelShape SHAPE;
+    private static final VoxelShape SHAPE = VoxelShapes.union(
+                                                               VoxelShapes.cuboid(0.0003125, 0, 0.0003125, 0.9996875000000001, 0.0625, 0.9996875000000001),
+                                                               VoxelShapes.cuboid(0, 0.375, 0.9375, 1, 0.5, 1),
+                                                               VoxelShapes.cuboid(0, 0.375, 0, 1, 0.5, 0.0625),
+                                                               VoxelShapes.cuboid(0.9375, 0.375, 0.0625, 1, 0.5, 0.9375),
+                                                               VoxelShapes.cuboid(0, 0.375, 0.0625, 0.0625, 0.5, 0.9375),
+                                                               VoxelShapes.cuboid(0.0625, 0.125, 0.0624375, 0.9375, 0.1875, 0.06249999999999999),
+                                                               VoxelShapes.cuboid(0.0624375, 0.125, 0.0625, 0.06249999999999999, 0.1875, 0.9375),
+                                                               VoxelShapes.cuboid(0.0625, 0.125, 0.9375625, 0.9375, 0.1875, 0.9376249999999999),
+                                                               VoxelShapes.cuboid(0.9375625, 0.125, 0.0625, 0.9376249999999999, 0.1875, 0.9375),
+                                                               VoxelShapes.cuboid(0.0624375, 0.3125, 0.0625, 0.06249999999999999, 0.375, 0.9375),
+                                                               VoxelShapes.cuboid(0.0625, 0.3125, 0.9375625, 0.9375, 0.375, 0.9376249999999999),
+                                                               VoxelShapes.cuboid(0.0625, 0.3125, 0.0624375, 0.9375, 0.375, 0.0624375),
+                                                               VoxelShapes.cuboid(0.9375625, 0.3125, 0.0625, 0.9376249999999999, 0.375, 0.9375),
+                                                               VoxelShapes.cuboid(0, 0.0003125, 0, 0.0625, 0.1253125, 1),
+                                                               VoxelShapes.cuboid(0.9375, 0.0003125, 0, 1, 0.1253125, 1),
+                                                               VoxelShapes.cuboid(0.0625, 0.0003125, 0.9375, 0.9375, 0.1253125, 1),
+                                                               VoxelShapes.cuboid(0.0625, 0.0003125, 0, 0.9375, 0.1253125, 0.0625),
+                                                               VoxelShapes.cuboid(0.0625, 0.1875, 0, 0.9375, 0.3125, 0.0625),
+                                                               VoxelShapes.cuboid(0.0625, 0.1875, 0.9375, 0.9375, 0.3125, 1),
+                                                               VoxelShapes.cuboid(0, 0.1875, 0.0625, 0.0625, 0.3125, 0.9375),
+                                                               VoxelShapes.cuboid(0.9375, 0.1875, 0.0625, 1, 0.3125, 0.9375),
+                                                               VoxelShapes.cuboid(0, 0.125, 0, 0.0625, 0.375, 0.0625),
+                                                               VoxelShapes.cuboid(0, 0.125, 0.9375, 0.0625, 0.375, 1),
+                                                               VoxelShapes.cuboid(0.9375, 0.125, 0.9375, 1, 0.375, 1),
+                                                               VoxelShapes.cuboid(0.9375, 0.125, 0, 1, 0.375, 0.0625),
+                                                               VoxelShapes.cuboid(0.0628125, 0.3125, 0.0628125, 0.9371875000000001, 0.375, 0.9371875000000001))
+                                                       .simplify();
 
     public AnimalFeed(Settings settings)
     {
-        super(settings.nonOpaque());
-        SHAPE = VoxelShapes.union(
-                                   VoxelShapes.cuboid(0.0003125, 0, 0.0003125, 0.9996875000000001, 0.0625, 0.9996875000000001),
-                                   VoxelShapes.cuboid(0, 0.375, 0.9375, 1, 0.5, 1),
-                                   VoxelShapes.cuboid(0, 0.375, 0, 1, 0.5, 0.0625),
-                                   VoxelShapes.cuboid(0.9375, 0.375, 0.0625, 1, 0.5, 0.9375),
-                                   VoxelShapes.cuboid(0, 0.375, 0.0625, 0.0625, 0.5, 0.9375),
-                                   VoxelShapes.cuboid(0.0625, 0.125, 0.0624375, 0.9375, 0.1875, 0.06249999999999999),
-                                   VoxelShapes.cuboid(0.0624375, 0.125, 0.0625, 0.06249999999999999, 0.1875, 0.9375),
-                                   VoxelShapes.cuboid(0.0625, 0.125, 0.9375625, 0.9375, 0.1875, 0.9376249999999999),
-                                   VoxelShapes.cuboid(0.9375625, 0.125, 0.0625, 0.9376249999999999, 0.1875, 0.9375),
-                                   VoxelShapes.cuboid(0.0624375, 0.3125, 0.0625, 0.06249999999999999, 0.375, 0.9375),
-                                   VoxelShapes.cuboid(0.0625, 0.3125, 0.9375625, 0.9375, 0.375, 0.9376249999999999),
-                                   VoxelShapes.cuboid(0.0625, 0.3125, 0.0624375, 0.9375, 0.375, 0.0624375),
-                                   VoxelShapes.cuboid(0.9375625, 0.3125, 0.0625, 0.9376249999999999, 0.375, 0.9375),
-                                   VoxelShapes.cuboid(0, 0.0003125, 0, 0.0625, 0.1253125, 1),
-                                   VoxelShapes.cuboid(0.9375, 0.0003125, 0, 1, 0.1253125, 1),
-                                   VoxelShapes.cuboid(0.0625, 0.0003125, 0.9375, 0.9375, 0.1253125, 1),
-                                   VoxelShapes.cuboid(0.0625, 0.0003125, 0, 0.9375, 0.1253125, 0.0625),
-                                   VoxelShapes.cuboid(0.0625, 0.1875, 0, 0.9375, 0.3125, 0.0625),
-                                   VoxelShapes.cuboid(0.0625, 0.1875, 0.9375, 0.9375, 0.3125, 1),
-                                   VoxelShapes.cuboid(0, 0.1875, 0.0625, 0.0625, 0.3125, 0.9375),
-                                   VoxelShapes.cuboid(0.9375, 0.1875, 0.0625, 1, 0.3125, 0.9375),
-                                   VoxelShapes.cuboid(0, 0.125, 0, 0.0625, 0.375, 0.0625),
-                                   VoxelShapes.cuboid(0, 0.125, 0.9375, 0.0625, 0.375, 1),
-                                   VoxelShapes.cuboid(0.9375, 0.125, 0.9375, 1, 0.375, 1),
-                                   VoxelShapes.cuboid(0.9375, 0.125, 0, 1, 0.375, 0.0625),
-                                   VoxelShapes.cuboid(0.0628125, 0.3125, 0.0628125, 0.9371875000000001, 0.375, 0.9371875000000001))
-                           .simplify();
+        super(settings.nonOpaque(), new BlockProperties()
+                .hasPoweredProperty()
+                .constantShape(SHAPE));
         CODEC = createCodec(AnimalFeed::new);
     }
 

@@ -24,6 +24,8 @@
 
 package jiraiyah.ultraio.block.goo;
 
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jibase.properties.BlockPropertiesBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -38,13 +40,16 @@ public class LavaPumpGoo extends GooBase
 {
     public LavaPumpGoo(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .blockEntityProperties(
+                        new BlockPropertiesBE<>(() -> ModBlockEntities.LAVA_PUMP_GOO)
+                                .shouldTick()));
         CODEC = createCodec(LavaPumpGoo::new);
     }
 
-    @Override
+    /*@Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
     {
         return ModBlockEntities.LAVA_PUMP_GOO.instantiate(pos, state);
-    }
+    }*/
 }

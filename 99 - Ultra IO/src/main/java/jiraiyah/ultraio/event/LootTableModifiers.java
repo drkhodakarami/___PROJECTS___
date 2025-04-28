@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.event;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.registry.ModItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.entity.EntityType;
@@ -20,7 +21,7 @@ public class LootTableModifiers
 
     public LootTableModifiers()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

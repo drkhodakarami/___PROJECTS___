@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.registry;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.be.goo.*;
 import net.minecraft.block.entity.BlockEntityType;
 
@@ -24,7 +25,7 @@ public class ModBlockEntities
 
     public ModBlockEntities()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

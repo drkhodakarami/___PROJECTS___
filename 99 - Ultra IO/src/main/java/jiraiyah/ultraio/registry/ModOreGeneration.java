@@ -1,6 +1,6 @@
 package jiraiyah.ultraio.registry;
 
-import jiraiyah.jilogger.ExceptionHelper;
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.datagen.world.ModPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -12,7 +12,7 @@ public class ModOreGeneration
 {
     public ModOreGeneration()
     {
-        ExceptionHelper.throwCtorAssertion();
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

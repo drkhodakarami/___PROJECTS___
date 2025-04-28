@@ -1,6 +1,6 @@
 package jiraiyah.ultraio.registry;
 
-import jiraiyah.jilogger.ExceptionHelper;
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.item.*;
 import net.minecraft.item.*;
 import net.minecraft.item.equipment.EquipmentType;
@@ -80,7 +80,7 @@ public class ModItems
 
     public ModItems()
     {
-        ExceptionHelper.throwCtorAssertion();
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

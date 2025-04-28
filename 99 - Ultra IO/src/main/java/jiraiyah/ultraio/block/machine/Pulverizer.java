@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jimachina.block.AbstractMachineBlock;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -45,11 +46,13 @@ import org.jetbrains.annotations.Nullable;
 // - Uses energy per tick for pulverizing
 // - Can accept upgrades for speed / energy
 // - Speed changes based on the ingot type
-public class Pulverizer extends AbstractMachineBlock
+public class Pulverizer extends JiBlock
 {
     public Pulverizer(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty()
+                .hasHorizontalFacing());
         CODEC = createCodec(Pulverizer::new);
     }
 

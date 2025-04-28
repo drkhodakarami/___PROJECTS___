@@ -24,7 +24,9 @@
 
 package jiraiyah.ultraio.block.storage;
 
-import jiraiyah.jienergy.block.AbstractEnergyBlock;
+import com.mojang.serialization.MapCodec;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
@@ -42,11 +44,14 @@ import org.jetbrains.annotations.Nullable;
 // - It will have upgrade slots to increase the capacity
 // - It will draw the capacity and stored amount in world
 // - It will have enabled / disabled slots for directions in/out
-public class BatteryBank extends AbstractEnergyBlock
+public class BatteryBank extends JiBlock
 {
+    public static MapCodec<BatteryBank> CODEC;
+
     public BatteryBank(Settings settings)
     {
-        super(settings);
+        super(settings, new BlockProperties()
+                .hasPoweredProperty());
         CODEC = createCodec(BatteryBank::new);
     }
 

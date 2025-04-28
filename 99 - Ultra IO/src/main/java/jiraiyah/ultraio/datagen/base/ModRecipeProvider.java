@@ -34,7 +34,7 @@ public class ModRecipeProvider extends FabricRecipeProvider
     @Override
     public String getName()
     {
-        return ModID;
+        return ModID + "Recipes";
     }
 
     @Override

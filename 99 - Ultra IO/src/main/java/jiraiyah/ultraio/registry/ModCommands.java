@@ -1,5 +1,6 @@
 package jiraiyah.ultraio.registry;
 
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.command.DclrCommand;
 
 import static jiraiyah.ultraio.Main.LOGGER;
@@ -8,7 +9,7 @@ public class ModCommands
 {
     public ModCommands()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void init()

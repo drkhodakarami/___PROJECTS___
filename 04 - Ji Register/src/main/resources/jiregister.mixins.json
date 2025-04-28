@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "jiraiyah.jiregister.mixin",
+  "compatibilityLevel": "JAVA_${java_ver}",
+  "mixins": [
+    "BlockStateModelGeneratorMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

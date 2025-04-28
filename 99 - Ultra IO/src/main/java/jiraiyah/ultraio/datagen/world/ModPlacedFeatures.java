@@ -1,6 +1,7 @@
 package jiraiyah.ultraio.datagen.world;
 
-import jiraiyah.jiregister.RegistryHelper;
+import jiraiyah.jibase.exceptions.Exceptions;
+import jiraiyah.jibase.utils.BaseHelper;
 import jiraiyah.jiregister.WorldGenHelper;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -14,26 +15,26 @@ import static jiraiyah.ultraio.Main.ModID;
 
 public class ModPlacedFeatures
 {
-    public static final RegistryKey<PlacedFeature> ORE_CITRINE_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_citrine_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_RUBY_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_ruby_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_SAPPHIRE_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_sapphire_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_NETHER_CITRINE_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_nether_citrine_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_NETHER_RUBY_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_nether_ruby_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_NETHER_SAPPHIRE_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_nether_sapphire_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_NETHER_COAL_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_nether_coal_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_NETHER_COPPER_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_nether_copper_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_NETHER_DIAMOND_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_nether_diamond_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_NETHER_IRON_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_nether_iron_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_NETHER_LAPIS_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_nether_lapis_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_NETHER_REDSTONE_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_nether_redstone_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_END_CITRINE_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_end_citrine_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_END_RUBY_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_end_ruby_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_END_SAPPHIRE_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_end_sapphire_placed", RegistryKeys.PLACED_FEATURE);
-    public static final RegistryKey<PlacedFeature> ORE_END_ENDERITE_PLACED_KEY = RegistryHelper.getKey(ModID, "ore_end_enderite_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_CITRINE_PLACED_KEY = BaseHelper.getKey(ModID, "ore_citrine_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_RUBY_PLACED_KEY = BaseHelper.getKey(ModID, "ore_ruby_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_SAPPHIRE_PLACED_KEY = BaseHelper.getKey(ModID, "ore_sapphire_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_NETHER_CITRINE_PLACED_KEY = BaseHelper.getKey(ModID, "ore_nether_citrine_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_NETHER_RUBY_PLACED_KEY = BaseHelper.getKey(ModID, "ore_nether_ruby_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_NETHER_SAPPHIRE_PLACED_KEY = BaseHelper.getKey(ModID, "ore_nether_sapphire_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_NETHER_COAL_PLACED_KEY = BaseHelper.getKey(ModID, "ore_nether_coal_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_NETHER_COPPER_PLACED_KEY = BaseHelper.getKey(ModID, "ore_nether_copper_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_NETHER_DIAMOND_PLACED_KEY = BaseHelper.getKey(ModID, "ore_nether_diamond_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_NETHER_IRON_PLACED_KEY = BaseHelper.getKey(ModID, "ore_nether_iron_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_NETHER_LAPIS_PLACED_KEY = BaseHelper.getKey(ModID, "ore_nether_lapis_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_NETHER_REDSTONE_PLACED_KEY = BaseHelper.getKey(ModID, "ore_nether_redstone_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_END_CITRINE_PLACED_KEY = BaseHelper.getKey(ModID, "ore_end_citrine_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_END_RUBY_PLACED_KEY = BaseHelper.getKey(ModID, "ore_end_ruby_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_END_SAPPHIRE_PLACED_KEY = BaseHelper.getKey(ModID, "ore_end_sapphire_placed", RegistryKeys.PLACED_FEATURE);
+    public static final RegistryKey<PlacedFeature> ORE_END_ENDERITE_PLACED_KEY = BaseHelper.getKey(ModID, "ore_end_enderite_placed", RegistryKeys.PLACED_FEATURE);
 
     public ModPlacedFeatures()
     {
-        throw new AssertionError("This class should not be instantiated");
+        Exceptions.throwCtorAssertion();
     }
 
     public static void bootstrap(Registerable<PlacedFeature> context)

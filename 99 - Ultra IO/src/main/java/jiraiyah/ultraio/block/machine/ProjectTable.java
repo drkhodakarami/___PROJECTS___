@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jiralib.block.BlockWithBE;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
@@ -40,11 +41,13 @@ import org.jetbrains.annotations.Nullable;
 // - It's a crafting table that remembers the recipe
 // - Has internal inventory of 2 * 9 slots
 // - Can't be automated with redstone, only manual for repetitive recipes you want
-public class ProjectTable extends BlockWithBE
+public class ProjectTable extends JiBlock
 {
     public ProjectTable(Settings settings)
     {
-        super(settings.nonOpaque());
+        super(settings.nonOpaque(), new BlockProperties()
+                .hasPoweredProperty()
+                .hasHorizontalFacing());
         CODEC = createCodec(ProjectTable::new);
     }
 

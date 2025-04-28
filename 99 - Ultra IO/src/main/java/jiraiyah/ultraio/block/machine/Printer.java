@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.block.machine;
 
-import jiraiyah.jiralib.block.BlockWithBE;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jiralib.block.JiBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
@@ -41,11 +42,13 @@ import org.jetbrains.annotations.Nullable;
 // - It will print the schema on an empty blueprint to get the printed one
 // - You can use the printed blueprint in builders to build your structure
 // - The process is slow (takes 1 minute per print)
-public class Printer extends BlockWithBE
+public class Printer extends JiBlock
 {
     public Printer(Settings settings)
     {
-        super(settings.nonOpaque());
+        super(settings.nonOpaque(), new BlockProperties()
+                .hasPoweredProperty()
+                .hasHorizontalFacing());
         CODEC = createCodec(Printer::new);
     }
 
