@@ -1,5 +1,5 @@
 /***********************************************************************************
- * Copyright (c) 2024 Alireza Khodakarami (Jiraiyah)                               *
+ * Copyright (c) 2025 Alireza Khodakarami (Jiraiyah)                               *
  * ------------------------------------------------------------------------------- *
  * MIT License                                                                     *
  * =============================================================================== *
@@ -48,8 +48,6 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import static jiraiyah.ultraio.Main.LOGGER;
 
 //TODO: Utilize properties from JiBlock
 public abstract class GooBase extends JiBlock implements BlockEntityProvider

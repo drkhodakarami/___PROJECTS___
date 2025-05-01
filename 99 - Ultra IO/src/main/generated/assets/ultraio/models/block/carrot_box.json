@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "ultraio:block/carrot_box_bottom",
-    "side": "ultraio:block/carrot_box_side",
-    "top": "ultraio:block/carrot_box_top"
-  }
-}

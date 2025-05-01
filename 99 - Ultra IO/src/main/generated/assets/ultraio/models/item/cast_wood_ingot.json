@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "ultraio:item/cast_wood_ingot"
-  }
-}

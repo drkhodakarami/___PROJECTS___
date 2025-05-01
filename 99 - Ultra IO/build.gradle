@@ -1,3 +1,27 @@
+/*
+ * Copyright (c) 2025 Alireza Khodakarami (Jiraiyah)
+ * -------------------------------------------------------------------------------
+ * MIT License
+ * ===============================================================================
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * -------------------------------------------------------------------------------
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * -------------------------------------------------------------------------------
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 // The loom version is being set in settings.gradle. This solution is tailored specifically for my use case that each sub folder
 // under "___ PROJECT ___" folder is a separate mod / library. Now We have a single dependencies.properties on the top level
 // (the "___ PROJECT ___" folder itself) and every build.gradle will read the needed values from this single file.
@@ -286,71 +310,5 @@ publishing {
                 }
             }
         }
-    }
-}
-
-tasks.register("generateRunConfigurations") {
-    group = "fabric"
-    description = "Generates IntelliJ IDEA run configurations for RunClient, RunServer, and RunDatagen."
-
-    doLast {
-        // Root project directory (parent of the current project)
-        def mainRoot = file(rootDir.parent) // Points to `__PROJECTS__`
-        def runConfigsDir = new File(mainRoot, ".idea/runConfigurations")
-
-        // Ensure the runConfigurations directory exists
-        if (!runConfigsDir.exists()) {
-            runConfigsDir.mkdirs()
-        }
-
-        // IntelliJ IDEA module name (replace with the actual module name in IntelliJ)
-        def intellijModuleName = "99_-_Ultra_IO" // IntelliJ converts spaces to underscores and uses this format
-        def intellijModuleClasspath = "${intellijModuleName}.main" // Correct IntelliJ classpath format
-
-        // Create a list of run configurations to generate
-        def configurations = [
-                [
-                        name             : "RunClient",
-                        vmParameters     : "-Dfabric.dli.env=client -Dfabric.dli.main=net.fabricmc.loader.impl.launch.knot.KnotClient",
-                        programParameters: "",
-                        workingDirectory : "\$PROJECT_DIR\$/${intellijModuleName.replace('_-_', ' - ').replace('_', ' ')}/run",
-                        classpath        : intellijModuleClasspath
-                ],
-                [
-                        name             : "RunServer",
-                        vmParameters     : "-Dfabric.dli.env=server -Dfabric.dli.main=net.fabricmc.loader.impl.launch.knot.KnotServer",
-                        programParameters: "",
-                        workingDirectory : "\$PROJECT_DIR\$/${intellijModuleName.replace('_-_', ' - ')}/run",
-                        classpath        : intellijModuleClasspath
-                ],
-                [
-                        name             : "RunDatagen",
-                        vmParameters     : "-Dfabric.dli.env=datagen -Dfabric.dli.main=net.fabricmc.loader.impl.launch.knot.KnotServer",
-                        programParameters: "--datagen",
-                        workingDirectory : "\$PROJECT_DIR\$/${intellijModuleName.replace('_-_', ' - ')}/run",
-                        classpath        : intellijModuleClasspath
-                ]
-        ]
-
-        // Generate each run configuration
-        configurations.each { config ->
-            def configFile = new File(runConfigsDir, "${config.name}.xml")
-            configFile.text = """
-                <component name="ProjectRunConfigurationManager">
-                    <configuration default="false" name="${config.name}" type="Application" factoryName="Application">
-                        <option name="MAIN_CLASS_NAME" value="net.fabricmc.devlaunchinjector.Main" />
-                        <option name="VM_PARAMETERS" value="${config.vmParameters}" />
-                        <option name="PROGRAM_PARAMETERS" value="${config.programParameters}" />
-                        <module name="${intellijModuleClasspath}" />
-                        <option name="WORKING_DIRECTORY" value="${config.workingDirectory}" />
-                        <method v="2">
-                            <option name="Make" enabled="true" />
-                        </method>
-                    </configuration>
-                </component>
-            """
-        }
-
-        println "Generated IntelliJ IDEA run configurations for module: ${runConfigsDir}"
     }
 }

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "ultraio:block/builder_front_on",
-    "side": "ultraio:block/builder_side",
-    "top": "ultraio:block/builder_top"
-  }
-}

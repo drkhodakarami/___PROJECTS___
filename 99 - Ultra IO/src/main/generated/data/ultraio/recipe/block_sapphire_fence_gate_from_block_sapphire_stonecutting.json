@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "ultraio:block_sapphire",
-  "result": {
-    "count": 9,
-    "id": "ultraio:block_sapphire_fence_gate"
-  }
-}

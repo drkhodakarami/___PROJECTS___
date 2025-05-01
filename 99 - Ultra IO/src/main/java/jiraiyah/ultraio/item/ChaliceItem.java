@@ -1,5 +1,5 @@
 /***********************************************************************************
- * Copyright (c) 2024 Alireza Khodakarami (Jiraiyah)                               *
+ * Copyright (c) 2025 Alireza Khodakarami (Jiraiyah)                               *
  * ------------------------------------------------------------------------------- *
  * MIT License                                                                     *
  * =============================================================================== *
@@ -88,7 +88,7 @@ public class ChaliceItem extends Item
 
     private boolean placeFluid(@Nullable PlayerEntity player, World world, BlockPos pos, @Nullable BlockHitResult hitResult)
     {
-        BlockState targetBS = world.getBlockState(pos);;
+        BlockState targetBS = world.getBlockState(pos);
         Block targetBlock = targetBS.getBlock();
         boolean canPlace = targetBS.canBucketPlace(Fluids.WATER);
         boolean placeInSpot = targetBS.isAir()

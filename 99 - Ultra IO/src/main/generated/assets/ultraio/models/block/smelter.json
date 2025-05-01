@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "ultraio:block/smelter_front",
-    "side": "ultraio:block/smelter_side",
-    "top": "ultraio:block/smelter_top"
-  }
-}

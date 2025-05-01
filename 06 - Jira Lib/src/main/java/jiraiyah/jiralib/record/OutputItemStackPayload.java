@@ -1,3 +1,27 @@
+/***********************************************************************************
+ * Copyright (c) 2025 Alireza Khodakarami (Jiraiyah)                               *
+ * ------------------------------------------------------------------------------- *
+ * MIT License                                                                     *
+ * =============================================================================== *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy    *
+ * of this software and associated documentation files (the "Software"), to deal   *
+ * in the Software without restriction, including without limitation the rights    *
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell       *
+ * copies of the Software, and to permit persons to whom the Software is           *
+ * furnished to do so, subject to the following conditions:                        *
+ * ------------------------------------------------------------------------------- *
+ * The above copyright notice and this permission notice shall be included in all  *
+ * copies or substantial portions of the Software.                                 *
+ * ------------------------------------------------------------------------------- *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR      *
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,        *
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE     *
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER          *
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,   *
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE   *
+ * SOFTWARE.                                                                       *
+ ***********************************************************************************/
+
 package jiraiyah.jiralib.record;
 
 import com.mojang.serialization.Codec;
@@ -77,6 +101,43 @@ public record OutputItemStackPayload(Item output, IntProvider count, FloatProvid
     public OutputItemStackPayload(Item output, int count, FloatProvider chance)
     {
         this(output, ConstantIntProvider.create(count), chance);
+    }
+
+    //TODO: Explain Adding more ctor overloads without the count or without the chance (any combo)
+
+    public OutputItemStackPayload(Item output, int count)
+    {
+        this(output, ConstantIntProvider.create(count), DEFAULT_CHANCE);
+    }
+
+    public OutputItemStackPayload(Item output, IntProvider count)
+    {
+        this(output, count, DEFAULT_CHANCE);
+    }
+
+    public OutputItemStackPayload(Item output, float chance)
+    {
+        this(output, ConstantIntProvider.create(1), ConstantFloatProvider.create(chance));
+    }
+
+    public OutputItemStackPayload(Item output, FloatProvider chance)
+    {
+        this(output, ConstantIntProvider.create(1), chance);
+    }
+
+    public OutputItemStackPayload(Item output)
+    {
+        this(output, ConstantIntProvider.create(1), DEFAULT_CHANCE);
+    }
+
+    public OutputItemStackPayload(ItemStack stack, float chance)
+    {
+        this(stack.getItem(), ConstantIntProvider.create(stack.getCount()), ConstantFloatProvider.create(chance));
+    }
+
+    public OutputItemStackPayload(ItemStack stack, FloatProvider chance)
+    {
+        this(stack.getItem(), ConstantIntProvider.create(stack.getCount()), chance);
     }
 
     public ItemStack createStack(Random random)

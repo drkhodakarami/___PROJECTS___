@@ -1,3 +1,27 @@
+/***********************************************************************************
+ * Copyright (c) 2025 Alireza Khodakarami (Jiraiyah)                               *
+ * ------------------------------------------------------------------------------- *
+ * MIT License                                                                     *
+ * =============================================================================== *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy    *
+ * of this software and associated documentation files (the "Software"), to deal   *
+ * in the Software without restriction, including without limitation the rights    *
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell       *
+ * copies of the Software, and to permit persons to whom the Software is           *
+ * furnished to do so, subject to the following conditions:                        *
+ * ------------------------------------------------------------------------------- *
+ * The above copyright notice and this permission notice shall be included in all  *
+ * copies or substantial portions of the Software.                                 *
+ * ------------------------------------------------------------------------------- *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR      *
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,        *
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE     *
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER          *
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,   *
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE   *
+ * SOFTWARE.                                                                       *
+ ***********************************************************************************/
+
 package jiraiyah.jiralib.record;
 
 import com.mojang.serialization.Codec;
@@ -57,6 +81,25 @@ public record ConfiguredIngredient(RegistryEntryList<Item> entries, StackDataPay
     public ConfiguredIngredient(int count, Item... items)
     {
         this(RegistryEntryList.of(Arrays.stream(items).map(Item::getRegistryEntry).toList()), StackDataPayload.create(count));
+    }
+
+    //TODO: Explain Adding more ctor overloads
+    @SuppressWarnings("deprecation")
+    public ConfiguredIngredient(Item... items)
+    {
+        this(RegistryEntryList.of(Arrays.stream(items).map(Item::getRegistryEntry).toList()), StackDataPayload.create(1));
+    }
+
+    @SuppressWarnings("deprecation")
+    public ConfiguredIngredient(int count, Item item)
+    {
+        this(RegistryEntryList.of(Arrays.stream(new Item[]{item}).map(Item::getRegistryEntry).toList()), StackDataPayload.create(count));
+    }
+
+    @SuppressWarnings("deprecation")
+    public ConfiguredIngredient(Item item)
+    {
+        this(RegistryEntryList.of(Arrays.stream(new Item[]{item}).map(Item::getRegistryEntry).toList()), StackDataPayload.create(1));
     }
 
     public ConfiguredIngredient(RegistryEntryList<Item> entries, int count, ComponentChanges components)
