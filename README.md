@@ -11,23 +11,22 @@
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#thelibrary)
 # ➤ Latest Versions
 
-#### ➤ Ji Base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Logger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Reference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Config&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Register&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+#### ➤ Ji Base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
 
+#### ➤ Ji Logger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Reference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Config&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Register&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
 #### ➤ Ji Tic Logic_*(WIP)*_&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Jira Lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
 
+#### ➤ Jira Lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
 #### ➤ Ji Fluid_*(WIP)*_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-
 #### ➤ Ji Energy_*(WIP)*_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-
 #### ➤ J Inventory_*(WIP)*_&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-
 #### ➤ Ji Machina_*(WIP)*_&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-
 #### ➤ Ultra IO_*(WIP)*_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
 
 
