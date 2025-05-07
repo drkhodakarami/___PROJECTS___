@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": "minecraft:cyan_dye",
+    "E": "minecraft:ender_pearl",
+    "W": "ultraio:unstable_goo_core"
+  },
+  "pattern": [
+    "DED",
+    "EWE",
+    "DED"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:tunneling_goo"
+  }
+}

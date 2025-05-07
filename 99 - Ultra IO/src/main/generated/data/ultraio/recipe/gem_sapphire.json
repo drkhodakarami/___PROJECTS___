@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "ultraio:block_sapphire"
+  ],
+  "result": {
+    "count": 9,
+    "id": "ultraio:gem_sapphire"
+  }
+}

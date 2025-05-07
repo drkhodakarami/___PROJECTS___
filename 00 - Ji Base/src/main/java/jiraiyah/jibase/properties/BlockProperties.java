@@ -113,6 +113,7 @@ public class BlockProperties
     }
     //endregion
 
+    //TODO: Remove hard coded string names for default mehtods and use property name instead
     //region SETTERS
     public BlockProperties hasHorizontalFacing()
     {
@@ -223,6 +224,25 @@ public class BlockProperties
     public BlockProperties defaultPowered(boolean defaultPowered)
     {
         this.stateProperties.setDefaultValue("powered", defaultPowered);
+        return this;
+    }
+
+    public BlockProperties hasUnstableProperty()
+    {
+        return hasUnstableProperty(true);
+    }
+
+    public BlockProperties hasUnstableProperty(boolean hasPoweredProperty)
+    {
+        if (hasPoweredProperty)
+            this.stateProperties.addUnstable();
+
+        return this;
+    }
+
+    public BlockProperties defaultUnstable(boolean defaultUnstable)
+    {
+        this.stateProperties.setDefaultValue("unstable", defaultUnstable);
         return this;
     }
 

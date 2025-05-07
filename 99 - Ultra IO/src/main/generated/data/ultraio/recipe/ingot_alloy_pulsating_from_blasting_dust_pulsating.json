@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 4800,
+  "experience": 3.0,
+  "group": "pulsating_alloy",
+  "ingredient": "ultraio:dust_pulsating",
+  "result": {
+    "id": "ultraio:ingot_alloy_pulsating"
+  }
+}

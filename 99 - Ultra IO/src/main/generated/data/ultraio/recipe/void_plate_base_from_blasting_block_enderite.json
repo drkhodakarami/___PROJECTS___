@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 3600,
+  "experience": 5.0,
+  "group": "void_plate_base",
+  "ingredient": "ultraio:block_enderite",
+  "result": {
+    "id": "ultraio:void_plate_base"
+  }
+}

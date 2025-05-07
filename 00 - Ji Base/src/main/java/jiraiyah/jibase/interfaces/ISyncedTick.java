@@ -26,6 +26,8 @@ package jiraiyah.jibase.interfaces;
 
 import jiraiyah.jibase.annotations.*;
 
+import java.util.List;
+
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -44,8 +46,11 @@ public interface ISyncedTick extends ITick, ISync
     {
         onTick();
 
-        if(shouldSync() && getSyncables() != null && !getSyncables().isEmpty())
-            getSyncables().forEach(ISync::sync);
+        // TODO: Local cache of method call result prevents 3 method calls for a simple task!!
+        List<ISync> syncables = getSyncables();
+
+        if (shouldSync() && syncables != null && !syncables.isEmpty())
+            syncables.forEach(ISync::sync);
 
         if(this instanceof IUpdatable updatable)
             updatable.onTickEnd();

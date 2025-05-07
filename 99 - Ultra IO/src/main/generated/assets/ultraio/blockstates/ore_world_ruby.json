@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ultraio:block/ore_world_ruby"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": "ultraio:gear_ruby",
+    "I": "ultraio:reinforced_ruby"
+  },
+  "pattern": [
+    "IGI",
+    "III",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:armor_ruby_chestplate"
+  }
+}

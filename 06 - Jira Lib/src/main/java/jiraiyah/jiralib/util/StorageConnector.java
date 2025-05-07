@@ -59,6 +59,13 @@ public abstract class StorageConnector<T> implements INBTSerializable<NbtList>, 
         this.sidedMap.put(direction, storage);
     }
 
+    //TODO: Added one overload for ctor
+    public void addStorage(T storage, Direction direction)
+    {
+        this.storages.add(storage);
+        this.sidedMap.put(MappedDirection.fromDirection(direction), storage);
+    }
+
     public List<T> getStorages()
     {
         return this.storages;

@@ -40,6 +40,7 @@ import java.util.function.Supplier;
 @Discord("https://discord.turtywurty.dev/")
 @Youtube("https://www.youtube.com/@TurtyWurty")
 
+//TODO : Merge into BlockProperties
 public class BlockPropertiesBE<T extends BlockEntity>
 {
     private final Supplier<BlockEntityType<T>> blockEntityTypeSupplier;

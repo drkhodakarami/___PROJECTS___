@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "E": "ultraio:tool_tuner",
+    "I": "ultraio:ender_charm",
+    "P": "ultraio:hot_coal"
+  },
+  "pattern": [
+    "PIP",
+    "IEI",
+    "PIP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:tool_tuner_advanced"
+  }
+}

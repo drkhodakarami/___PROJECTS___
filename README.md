@@ -1,24 +1,45 @@
 <p align="center">
 <a href="https://discord.gg/jEtwguzZ4R"><img alt="" src="https://img.shields.io/badge/Discord-Channel-blue" height="20"/></a>
 <a href="https://www.youtube.com/@YourTradeMaster"><img alt="" src="https://img.shields.io/badge/Youtube-Channel-db2e73" height="20"/></a>
-<a href=""><img alt="" src="https://img.shields.io/github/commit-activity/t/drkhodakarami/JiRegister" height="20"/></a>
-<a href=""><img alt="" src="https://img.shields.io/github/last-commit/drkhodakarami/JiRegister" height="20"/></a>
-<a href=""><img alt="" src="https://img.shields.io/github/downloads/drkhodakarami/JiRegister/total" height="20"/></a>
-<a href=""><img alt="" src="https://img.shields.io/github/license/drkhodakarami/JiRegister" height="20"/></a>
+<a href=""><img alt="" src="https://img.shields.io/github/commit-activity/t/drkhodakarami/___PROJECTS___" height="20"/></a>
+<a href=""><img alt="" src="https://img.shields.io/github/last-commit/drkhodakarami/___PROJECTS___" height="20"/></a>
+<a href=""><img alt="" src="https://img.shields.io/github/downloads/drkhodakarami/___PROJECTS___/total" height="20"/></a>
+<a href=""><img alt="" src="https://img.shields.io/github/license/drkhodakarami/___PROJECTS___" height="20"/></a>
 <a href=""><img alt="" src="https://img.shields.io/badge/Maintained-YES-31ad31" height="20"/></a>
 	</p>
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#thelibrary)
 # ➤ Latest Versions
-#### ➤ Ji Logger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Reference: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Config&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Register&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Jira Lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Fluid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Energy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ J Inventory&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
-#### ➤ Ji Machina&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Logger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Reference&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Config&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Register&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Tic Logic&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+_*WIP*_
+
+#### ➤ Jira Lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+
+#### ➤ Ji Fluid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+_*WIP*_
+
+#### ➤ Ji Energy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+_*WIP*_
+
+#### ➤ J Inventory&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+_*WIP*_
+
+#### ➤ Ji Machina&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+_*WIP*_
+
+#### ➤ Ultra IO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+_*WIP*_
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#thelibrary)
 
@@ -32,6 +53,13 @@ Some of the codes in the libraries, are taken from **TurtyWurty's** [REPOSITORY]
 directly here with or without some modifications and 
 addition. You can refer to his licensing if you need to. Each file that is using his code in any shape or condition, has a credit and link to his 
 repository on top of the file.
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#dependency)
+
+## ➤ Ji Base
+
+This is a simple yet useful library that provides annotations, exceptions, constant values, enums, functions, interfaces and other infrastructure
+code that will be used by all of my other libraries. Every library in the system is depending on the base library.
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#dependency)
 
@@ -145,11 +173,13 @@ build.gradle files in each library).
 
 First you need to add the maven to your `build.gradle` repositories:
 
-```Maven Repository
+```groovy
 repositories 
 {
     mavenCentral()
+    // For JiLibs
     maven { url 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
+    // For Energy API
 	maven {
         url "https://cursemaven.com"
         content {
@@ -161,10 +191,11 @@ repositories
 
 then you need to add the dependency into your dependency section in `build.gradle`
 
-```dependencies
+```groovy
 dependencies 
 {
-    // Ji Lib Mods Dependency ========================================================================================================================
+    // Ji Libs ===============================================================================================================================
+    modImplementation include("jiraiyah.base:jibase:${jibase_version}")
     modImplementation include("jiraiyah.logger:jilogger:${jilogger_version}")
     modImplementation include("jiraiyah.reference:jireference:${jireference_version}")
     modImplementation include("jiraiyah.config:jiconfig:${jiconfig_version}")
@@ -174,9 +205,9 @@ dependencies
     modImplementation include("jiraiyah.energy:jienergy:${jienergy_version}")
     modImplementation include("jiraiyah.inventory:jinventory:${jinventory_version}")
     modImplementation include("jiraiyah.machina:jimachina:${jimachina_version}")
-	
-	// Energy API Handling Dependency ================================================================================================================
-	include modApi("teamreborn:energy:${project.energy_version}") {
+
+    // Energy API ============================================================================================================================
+    include modApi("teamreborn:energy:${project.energy_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 }
@@ -186,7 +217,8 @@ Finally, we need to add an entry inside `gradle.properties` using the version fr
 
 Look into [MAVEN REPOSITORY](https://repo.repsy.io/mvn/jiraiyah/jilibs/jiraiyah/register/) for the proper versioning.
 
-```gradle.properties
+```groovy
+jibase_version=1.0.0+MC-1.21.5
 jilogger_version=1.0.0+MC-1.21.5
 jireference_version=1.0.0+MC-1.21.5
 jiconfig_version=1.0.0+MC-1.21.5

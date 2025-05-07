@@ -27,6 +27,7 @@ package jiraiyah.jinventory;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.enumerations.MappedDirection;
 import jiraiyah.jinventory.record.PredicateInventoryStorage;
+import jiraiyah.jiralib.blockentity.UpdatableBE;
 import jiraiyah.jiralib.util.StorageConnector;
 import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
@@ -36,6 +37,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
@@ -50,6 +52,8 @@ import oshi.util.tuples.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 @Developer("TurtyWurty")
@@ -66,15 +70,22 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
 
     private final CombinedStorage<ItemVariant, InventoryStorage> combinedStorage = new CombinedStorage<>(this.storages);
 
+    //region ADD INVENTORY
     public void addInventory(@NotNull T inventory) {
         addInventory(inventory, MappedDirection.NONE);
     }
 
-    public void addInventory(@NotNull T inventory, MappedDirection side) {
+    public void addInventory(@NotNull T inventory, MappedDirection side)
+    {
         this.inventories.add(inventory);
         this.sidedInventories.add(new Pair<>(side, inventory));
         var storage = InventoryStorage.of(inventory, MappedDirection.toDirection(side));
         addStorage(storage, side);
+    }
+
+    public void addInventory(@NotNull T inventory, Direction side)
+    {
+        addInventory(inventory, MappedDirection.fromDirection(side));
     }
 
     public void addInventory(@NotNull T inventory, Supplier<Boolean> canInsert, Supplier<Boolean> canExtract) {
@@ -88,21 +99,103 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
         addStorage(storage, side);
     }
 
-    public void addInsertOnlyInventory(@NotNull T inventory, MappedDirection side) {
+    //TODO : Explain with use case example (recipe, simple)
+    public void addInventory(int size, Function<Integer, T> factory)
+    {
+        addInventory(factory.apply(size));
+    }
+
+    //TODO : Explain with use case example (recipe, simple)
+    public void addInventory(int size, MappedDirection side, Function<Integer, T> factory)
+    {
+        addInventory(factory.apply(size), side);
+    }
+
+    //TODO : Explain with use case example (recipe, simple)
+    public void addInventory(int size, Direction side, Function<Integer, T> factory)
+    {
+        addInventory(factory.apply(size), side);
+    }
+
+    //TODO : Explain with use case example (recipe, simple)
+    public void addInventory(Function<ItemStack[], T> factory, ItemStack... items)
+    {
+        addInventory(factory.apply(items));
+    }
+
+    //TODO : Explain with use case example (recipe, simple)
+    public void addInventory(MappedDirection side, Function<ItemStack[], T> factory, ItemStack... items)
+    {
+        addInventory(factory.apply(items), side);
+    }
+
+    //TODO : Explain with use case example (recipe, simple)
+    public void addInventory(Direction side, Function<ItemStack[], T> factory, ItemStack... items)
+    {
+        addInventory(factory.apply(items), side);
+    }
+
+    //TODO : Explain with use case example (Used for synced, output, predicate)
+    public void addInventory(UpdatableBE<?> blockEntity, int size, BiFunction<UpdatableBE<?>, Integer, T> factory)
+    {
+        addInventory(factory.apply(blockEntity, size));
+    }
+
+    //TODO : Explain with use case example (Used for synced, output, predicate)
+    public void addInventory(UpdatableBE<?> blockEntity, int size, MappedDirection side, BiFunction<UpdatableBE<?>, Integer, T> factory)
+    {
+        addInventory(factory.apply(blockEntity, size), side);
+    }
+
+    //TODO : Explain with use case example (Used for synced, output, predicate)
+    public void addInventory(UpdatableBE<?> blockEntity, int size, Direction side, BiFunction<UpdatableBE<?>, Integer, T> factory)
+    {
+        addInventory(factory.apply(blockEntity, size), side);
+    }
+
+    //TODO : Explain with use case example (Used for synced, output, predicate)
+    public void addInventory(UpdatableBE<?> blockEntity, BiFunction<UpdatableBE<?>, ItemStack[], T> factory, ItemStack... items)
+    {
+        addInventory(factory.apply(blockEntity, items));
+    }
+
+    //TODO : Explain with use case example (Used for synced, output, predicate)
+    public void addInventory(UpdatableBE<?> blockEntity, MappedDirection side, BiFunction<UpdatableBE<?>, ItemStack[], T> factory, ItemStack... items)
+    {
+        addInventory(factory.apply(blockEntity, items), side);
+    }
+
+    //TODO : Explain with use case example (Used for synced, output, predicate)
+    public void addInventory(UpdatableBE<?> blockEntity, Direction side, BiFunction<UpdatableBE<?>, ItemStack[], T> factory, ItemStack... items)
+    {
+        addInventory(factory.apply(blockEntity, items), side);
+    }
+    //endregion
+
+    //region ADD INSERT / EXTRACT ONLY
+    //TODO: Add Insert Only and Extract Only overloads using factories above!!!!!
+    public void addInsertOnlyInventory(@NotNull T inventory, MappedDirection side)
+    {
         addInsertOnlyInventory(inventory, side, () -> true);
     }
 
-    public void addInsertOnlyInventory(@NotNull T inventory, MappedDirection side, Supplier<Boolean> canInsert) {
+    public void addInsertOnlyInventory(@NotNull T inventory, MappedDirection side, Supplier<Boolean> canInsert)
+    {
         addInventory(inventory, side, canInsert, () -> false);
     }
 
-    public void addExtractOnlyInventory(@NotNull T inventory, MappedDirection side) {
-        addInventory(inventory, side, () -> false, () -> true);
+    public void addExtractOnlyInventory(@NotNull T inventory, MappedDirection side)
+    {
+        addExtractOnlyInventory(inventory, side, () -> true);
     }
 
-    public void addExtractOnlyInventory(@NotNull T inventory, MappedDirection side, Supplier<Boolean> canExtract) {
+    public void addExtractOnlyInventory(@NotNull T inventory, MappedDirection side, Supplier<Boolean> canExtract)
+    {
         addInventory(inventory, side, () -> false, canExtract);
     }
+
+    //TODO: Add isert only and Extract only overloads using Direction
+    //endregion
 
     public List<T> getInventories()
     {
@@ -114,6 +207,7 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
         return combinedStorage;
     }
 
+    //region GET INVENTORY
     public @Nullable T getInventory(int index)
     {
         return this.inventories.get(index);
@@ -128,7 +222,9 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
     {
         return this.inventories.get(this.storages.indexOf(getStorage(side)));
     }
+    //endregion
 
+    //region GET SLOT(S)
     public @Nullable SingleSlotStorage<ItemVariant> getSlot(int slotIndex, MappedDirection side)
     {
         return this.getStorage(side).getSlot(slotIndex);
@@ -158,6 +254,7 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
     {
         return this.getStorage(index).getSlots();
     }
+    //endregion
 
     public @NotNull List<ItemStack> getStacks()
     {
@@ -200,6 +297,7 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
         return this.sidedInventories;
     }
 
+    //region NBT
     @Override
     public NbtList writeNbt(RegistryWrapper.WrapperLookup registryLookup)
     {
@@ -223,5 +321,13 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
             SimpleInventory inventory = this.inventories.get(i);
             Inventories.readNbt(inventoryNbt, inventory.getHeldStacks(), registryLookup);
         }
+    }
+    //endregion
+
+    //TODO : Implement in the storage connector!!!! (From IStorageHandler)
+    @Override
+    public void addStorage(InventoryStorage storage, Direction direction)
+    {
+
     }
 }

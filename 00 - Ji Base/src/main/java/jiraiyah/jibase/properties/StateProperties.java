@@ -47,6 +47,7 @@ public class StateProperties
 {
     private final Map<String, StateProperty<?>> properties = new ConcurrentHashMap<>();
 
+    //region FACINS AND AXIS
     public void addHorizontalFacing()
     {
         addProperty(new StateProperty<>(Properties.HORIZONTAL_FACING, Direction.NORTH));
@@ -61,7 +62,9 @@ public class StateProperties
     {
         addProperty(new StateProperty<>(Properties.AXIS, Direction.Axis.Y));
     }
+    //endregion
 
+    //region BOOLEAN
     public void addEnabled()
     {
         addProperty(new StateProperty<>(Properties.ENABLED, true));
@@ -81,6 +84,12 @@ public class StateProperties
     {
         addProperty(new StateProperty<>(Properties.LIT, false));
     }
+
+    public void addUnstable()
+    {
+        addProperty(new StateProperty<>(Properties.UNSTABLE, false));
+    }
+    //endregion
 
     public void addWaterlogged()
     {
@@ -102,8 +111,8 @@ public class StateProperties
         if (stateProperty == null)
             throw new IllegalArgumentException("Property with name: " + name + " does not exist!");
 
-        /*if(!type.isInstance(stateProperty.delegate().getType()))
-            throw new IllegalArgumentException("Property with name: " + name + " is not of the correct type!");*/
+        if (!type.isInstance(stateProperty.delegate().getType()))
+            throw new IllegalArgumentException("Property with name: " + name + " is not of the correct type: " + type.getSimpleName());
 
         try
         {
@@ -111,7 +120,7 @@ public class StateProperties
         }
         catch (ClassCastException e)
         {
-            throw new IllegalArgumentException("Property with name: " + name + " is not of the correct type!");
+            throw new IllegalArgumentException("Property with name: " + name + " is not of the correct type: " + type.getSimpleName());
         }
     }
 

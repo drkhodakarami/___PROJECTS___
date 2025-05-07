@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "ultraio:block/fluid_pump_front",
+    "side": "ultraio:block/fluid_pump_side",
+    "top": "ultraio:block/fluid_pump_top"
+  }
+}

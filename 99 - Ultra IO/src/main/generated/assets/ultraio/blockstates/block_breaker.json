@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ultraio:block/block_breaker",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ultraio:block/block_breaker"
+    },
+    "facing=south": {
+      "model": "ultraio:block/block_breaker",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "ultraio:block/block_breaker",
+      "y": 270
+    }
+  }
+}

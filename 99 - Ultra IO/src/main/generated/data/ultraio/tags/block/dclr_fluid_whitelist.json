@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:water",
+    "minecraft:lava",
+    "minecraft:kelp",
+    "minecraft:kelp_plant",
+    "minecraft:seagrass",
+    "minecraft:tall_seagrass",
+    "minecraft:air",
+    "minecraft:bubble_column",
+    "minecraft:glow_lichen"
+  ]
+}

@@ -39,9 +39,9 @@ public class AirGooBomb extends GooBase
     {
         //TODO: Explain This
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.AIR_GOO_BOMB)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(
+                        () -> ModBlockEntities.AIR_GOO_BOMB)
+                                               .shouldTick()));
         CODEC = createCodec(AirGooBomb::new);
     }
 

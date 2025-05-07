@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ultraio:block/block_enderite_slab"
+    },
+    "type=double": {
+      "model": "ultraio:block/block_enderite"
+    },
+    "type=top": {
+      "model": "ultraio:block/block_enderite_slab_top"
+    }
+  }
+}

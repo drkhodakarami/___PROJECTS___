@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ultraio:block/miner",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ultraio:block/miner"
+    },
+    "facing=south": {
+      "model": "ultraio:block/miner",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "ultraio:block/miner",
+      "y": 270
+    }
+  }
+}

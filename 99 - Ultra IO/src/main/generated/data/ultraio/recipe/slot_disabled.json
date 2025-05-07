@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": "minecraft:redstone",
+    "S": "ultraio:plate_stone",
+    "W": "minecraft:lapis_lazuli"
+  },
+  "pattern": [
+    "RWR",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:slot_disabled"
+  }
+}

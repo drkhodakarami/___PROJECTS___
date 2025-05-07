@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_left_open",
+  "textures": {
+    "bottom": "ultraio:block/block_citrine_door_bottom",
+    "top": "ultraio:block/block_citrine_door_top"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "ultraio:block/oven_front_on",
+    "side": "ultraio:block/oven_side",
+    "top": "ultraio:block/oven_top"
+  }
+}

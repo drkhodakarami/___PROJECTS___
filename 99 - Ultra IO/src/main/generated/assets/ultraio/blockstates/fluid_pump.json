@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "ultraio:block/fluid_pump",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ultraio:block/fluid_pump"
+    },
+    "facing=south": {
+      "model": "ultraio:block/fluid_pump",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "ultraio:block/fluid_pump",
+      "y": 270
+    }
+  }
+}

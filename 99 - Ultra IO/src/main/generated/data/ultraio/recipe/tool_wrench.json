@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": "ultraio:rod_iron",
+    "O": "ultraio:rod_obsidian"
+  },
+  "pattern": [
+    "O O",
+    " O ",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:tool_wrench"
+  }
+}

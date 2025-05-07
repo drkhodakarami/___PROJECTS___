@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "ultraio:block/block_enderite_door_bottom",
+    "top": "ultraio:block/block_enderite_door_top"
+  }
+}

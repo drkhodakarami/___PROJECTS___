@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "ultraio:ingot_enderite"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:block_enderite_button"
+  }
+}

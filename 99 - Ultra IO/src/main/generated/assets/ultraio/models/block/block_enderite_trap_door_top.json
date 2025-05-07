@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_trapdoor_top",
+  "textures": {
+    "texture": "ultraio:block/block_enderite_trap_door"
+  }
+}

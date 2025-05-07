@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "ultraio:block_ruby",
+  "result": {
+    "count": 18,
+    "id": "ultraio:block_ruby_slab"
+  }
+}
