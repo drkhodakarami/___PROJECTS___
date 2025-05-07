@@ -23,7 +23,7 @@
 
 #### ➤ Ji Tic Logic&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>&nbsp;<a href=""><img alt="" src="https://img.shields.io/badge/WIP-FF2BE2" height="18" style="margin-bottom: -5px"/></a>
 
-#### ➤ Jira Lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
+#### ➤ Jira Lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>
 
 #### ➤ Ji Fluid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a href=""><img alt="" src="https://img.shields.io/badge/1.0.0+MC--1.21.5-8A2BE2" height="18" style="margin-bottom: -5px"/></a>&nbsp;<a href=""><img alt="" src="https://img.shields.io/badge/WIP-FF2BE2" height="18" style="margin-bottom: -5px"/></a>
 
