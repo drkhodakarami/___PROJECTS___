@@ -3,7 +3,6 @@
 <a href="https://www.youtube.com/@YourTradeMaster"><img alt="" src="https://img.shields.io/badge/Youtube-Channel-db2e73" height="20"/></a>
 <a href=""><img alt="" src="https://img.shields.io/github/commit-activity/t/drkhodakarami/___PROJECTS___" height="20"/></a>
 <a href=""><img alt="" src="https://img.shields.io/github/last-commit/drkhodakarami/___PROJECTS___" height="20"/></a>
-<a href=""><img alt="" src="https://img.shields.io/github/downloads/drkhodakarami/___PROJECTS___/total" height="20"/></a>
 <a href=""><img alt="" src="https://img.shields.io/github/license/drkhodakarami/___PROJECTS___" height="20"/></a>
 <a href=""><img alt="" src="https://img.shields.io/badge/Maintained-YES-31ad31" height="20"/></a>
 	</p>
