@@ -30,7 +30,6 @@ import jiraiyah.jibase.interfaces.IBEScreen;
 import jiraiyah.jibase.interfaces.ITick;
 import jiraiyah.jibase.properties.BlockProperties;
 import jiraiyah.jiralib.interfaces.BlockStateManagerAccessor;
-import jiraiyah.jiralib.mixin.BlockMixin;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -64,9 +63,8 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class JiBlock extends Block implements BlockEntityProvider
 {
-    //TODO: Explain this
     public static MapCodec<? extends JiBlock> CODEC;
-    //TODO: Explain this (Protected and not final!)
+
     protected BlockProperties properties;
 
     public JiBlock(Settings settings, BlockProperties properties)
@@ -76,11 +74,7 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
 
         StateManager.Builder<Block, BlockState> builder = new StateManager.Builder<>(this);
         appendProperties(builder);
-        //TODO: Explain the encapsulation
-        /*Caused by: java.lang.IllegalAccessError: Update to non-static final field jiraiyah.jiralib.block.JiBlock.stateManager
-                        attempted from a different class (jiraiyah.jiralib.block.JiBlock) than the field's declaring class*/
-        //this.stateManager = builder.build(Block::getDefaultState, BlockState::new);
-        //updateStateManager(builder.build(Block::getDefaultState, BlockState::new));
+
         ((BlockStateManagerAccessor) this).setStateManager(builder.build(Block::getDefaultState, BlockState::new));
         setDefaultState(this.stateManager.getDefaultState());
 
@@ -215,6 +209,7 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
         return this.properties.shapeFactory().create(state, world, pos, context);
     }
 
+    //TODO: Rewrite the method
     //@Override
     //protected void onStateReplaced(BlockState newState, ServerWorld world, BlockPos pos, boolean moved)
     //{
@@ -227,14 +222,13 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
         //{
         //    if (!this.getDefaultState().isOf(newState.getBlock())) {
         //        BlockEntity blockEntity = world.getBlockEntity(pos);
-        //        if (blockEntity instanceof BlockEntityContentsDropper blockEntityWithInventory) { // TODO: Replace with component access maybe?
+        //        if (blockEntity instanceof BlockEntityContentsDropper blockEntityWithInventory) {
         //            blockEntityWithInventory.dropContents(world, pos);
         //        }
         //    }
         //}
         //super.onStateReplaced(state, world, pos, moved);
     //}
-
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit)
@@ -247,7 +241,6 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
         //    return ActionResult.SUCCESS;
         //}
 
-        //TODO: Check for null on this.properties.blockEntityProperties
         if (this.properties.blockEntityProperties() != null && this.properties.blockEntityProperties().hasGUI())
         {
             if (!world.isClient)
@@ -255,14 +248,13 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
                 BlockEntity blockEntity = world.getBlockEntity(pos);
                 if (player instanceof ServerPlayerEntity sPlayer && blockEntity instanceof IBEScreen<?> blockEntityWithGui)
                 {
-                    sPlayer.openHandledScreen(blockEntityWithGui);// TODO: Replace with component access maybe?
+                    sPlayer.openHandledScreen(blockEntityWithGui);
                 }
             }
 
             return ActionResult.SUCCESS;
         }
 
-        //TODO: change from super to show the hand animation (super is returning PASS)
         return ActionResult.SUCCESS;
     }
 

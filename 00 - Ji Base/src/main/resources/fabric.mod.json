@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "jibase",
 	"version": "${version}",
 	"name": "Ji Annotation",
 	"description": "A library mod that adds few base constants, Enums, Interfaces and annotations.",

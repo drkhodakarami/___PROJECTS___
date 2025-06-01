@@ -27,6 +27,7 @@ package jiraiyah.ultraio;
 import jiraiyah.ultraio.registry.ModBlocks;
 import jiraiyah.ultraio.registry.ModMessages;
 import jiraiyah.ultraio.registry.ModModelPredicate;
+import jiraiyah.ultraio.registry.ModScreenRenderers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
@@ -53,5 +54,7 @@ public class Client implements ClientModInitializer
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SAPPHIRE_TRAP_DOOR, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TESSERACT, RenderLayer.getTranslucent());
+
+        ModScreenRenderers.init();
     }
 }

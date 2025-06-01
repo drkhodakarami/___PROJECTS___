@@ -62,6 +62,11 @@ public class JiLogger
         this.log("Registering Item Groups");
     }
 
+    public void logScreenRendererInit()
+    {
+        this.logG("Registering Screen Renderers");
+    }
+
     public void logItemToGroupAdd()
     {
         this.log("Adding Items to Item Groups");

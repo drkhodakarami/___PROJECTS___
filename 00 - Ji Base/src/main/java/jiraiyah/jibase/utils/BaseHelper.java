@@ -53,6 +53,7 @@ import net.minecraft.util.math.floatprovider.FloatProviderType;
 import net.minecraft.util.math.intprovider.IntProviderType;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.village.VillagerType;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkStatus;
 import org.jetbrains.annotations.NotNull;
 import net.minecraft.util.Identifier;
@@ -232,5 +233,22 @@ public class BaseHelper
         return Registries.ENTITY_TYPE.stream()
                                      .filter(entityType -> Registries.ENTITY_TYPE.getEntry(entityType).isIn(tagKey))
                                      .toList();
+    }
+
+    public static Identifier getDimensionId(World world)
+    {
+        return world.getRegistryKey().getValue();
+    }
+
+    public String getDimensionName(World world)
+    {
+        return getDimensionId(world).toString();
+    }
+
+    public String getDimensionNameClean(World world)
+    {
+        String dimension = getDimensionName(world);
+        dimension = dimension.substring(dimension.indexOf(':') + 1).replace('_', ' ');
+        return dimension;
     }
 }

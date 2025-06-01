@@ -29,10 +29,19 @@ import jiraiyah.jibase.properties.BEProperties;
 import jiraiyah.jibase.properties.BlockEntityFields;
 import jiraiyah.jiralib.blockentity.TickableBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
+import jiraiyah.ultraio.registry.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.WallTorchBlock;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 
-public class BridgeGooBE extends TickableBE<BridgeGooBE>
+import static jiraiyah.ultraio.Main.CONFIGS;
+
+public class BridgeGooBE extends GooBaseBE<BridgeGooBE>
 {
     public BridgeGooBE(BlockPos pos, BlockState state)
     {
@@ -40,20 +49,219 @@ public class BridgeGooBE extends TickableBE<BridgeGooBE>
         this.properties.tickLogic(new TickLogic());
     }
 
-    //TODO: Make the tick logic not an inner class but an actual class of itself
     static class TickLogic implements ITickLogic<BridgeGooBE, BlockEntityFields<BridgeGooBE>>
     {
-
         @Override
         public void tick(BEProperties<BridgeGooBE> properties)
         {
+            BridgeGooBE entity = properties.blockEntity();
+            World world = entity.getWorld();
+            BlockPos pos = entity.getPos();
 
-        }
+            if(shouldNotTick(world, pos))
+                return;
 
-        @Override
-        public void tickClient(BEProperties<BridgeGooBE> properties)
-        {
+            Direction facing = entity.properties.fields().getField("player.facing", Direction.class).getValue();
+            BlockPos newPos;
+            BlockPos temp;
 
+            for (int z = 0; z < CONFIGS.GOO_SPREAD_DISTANCE; z++)
+            {
+                for (int x = -1; x < 2; x++)
+                {
+                    for (int y = 1; y < 4; y++)
+                    {
+                        newPos = pos.up(y);
+                        if (facing == Direction.NORTH)
+                        {
+                            newPos = newPos.north(z);
+                            newPos = newPos.east(x);
+                        }
+                        if (facing == Direction.SOUTH)
+                        {
+                            newPos = newPos.south(z);
+                            newPos = newPos.west(x);
+                        }
+                        if (facing == Direction.EAST)
+                        {
+                            newPos = newPos.east(z);
+                            newPos = newPos.south(x);
+                        }
+                        if (facing == Direction.WEST)
+                        {
+                            newPos = newPos.west(z);
+                            newPos = newPos.north(x);
+                        }
+                        processBlock(world, newPos, entity, ModBlocks.AIR_BOMB_GOO);
+                    }
+                }
+
+                if(facing == Direction.NORTH)
+                {
+                    newPos = pos.north(z);
+                    for (int x = -1; x < 2; x++)
+                    {
+                        temp = newPos.east(x);
+                        if(!world.getBlockState(temp).isOf(ModBlocks.BRIDGE_GOO))
+                            processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                        processBlock(world, temp.up(4), entity, ModBlocks.STONE_BOMB_GOO);
+                    }
+
+                    newPos = pos.north(z).up();
+                    temp = newPos.east(-2);
+                    processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                    processBlock(world, temp.up(2), entity, ModBlocks.STONE_BOMB_GOO);
+
+                    temp = newPos.east(2);
+                    processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                    processBlock(world, temp.up(2), entity, ModBlocks.STONE_BOMB_GOO);
+
+                    newPos = pos.north(z).up(2);
+                    temp = newPos.east(-2);
+
+                    if(z % 2 != 0)
+                    {
+                        processBlock(world, temp, entity, ModBlocks.AIR_BOMB_GOO);
+                        processBlock(world, newPos.east(2), entity, ModBlocks.AIR_BOMB_GOO);
+                    }
+                    else
+                    {
+                        processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                        processBlock(world, newPos.east(2), entity, ModBlocks.STONE_BOMB_GOO);
+                    }
+
+                    temp = newPos.east(1);
+                    if(z % 8 == 0)
+                        world.setBlockState(temp, Blocks.WALL_TORCH.getDefaultState()
+                                                                   .with(WallTorchBlock.FACING, Direction.WEST),
+                                            Block.NOTIFY_ALL);
+                }
+
+                if(facing == Direction.SOUTH)
+                {
+                    newPos = pos.south(z);
+                    for (int x = -1; x < 2; x++)
+                    {
+                        temp = newPos.west(x);
+                        if(!world.getBlockState(temp).isOf(ModBlocks.BRIDGE_GOO))
+                            processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                        processBlock(world, temp.up(4), entity, ModBlocks.STONE_BOMB_GOO);
+                    }
+
+                    newPos = pos.south(z).up();
+                    temp = newPos.west(-2);
+                    processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                    processBlock(world, temp.up(2), entity, ModBlocks.STONE_BOMB_GOO);
+
+                    temp = newPos.west(2);
+                    processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                    processBlock(world, temp.up(2), entity, ModBlocks.STONE_BOMB_GOO);
+
+                    newPos = pos.south(z).up(2);
+                    temp = newPos.west(-2);
+
+                    if(z % 2 != 0)
+                    {
+                        processBlock(world, temp, entity, ModBlocks.AIR_BOMB_GOO);
+                        processBlock(world, newPos.west(2), entity, ModBlocks.AIR_BOMB_GOO);
+                    }
+                    else
+                    {
+                        processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                        processBlock(world, newPos.west(2), entity, ModBlocks.STONE_BOMB_GOO);
+                    }
+
+                    temp = newPos.west(1);
+                    if(z % 8 == 0)
+                        world.setBlockState(temp, Blocks.WALL_TORCH.getDefaultState()
+                                                                   .with(WallTorchBlock.FACING, Direction.EAST),
+                                            Block.NOTIFY_ALL);
+                }
+
+                if(facing == Direction.EAST)
+                {
+                    newPos = pos.east(z);
+                    for (int x = -1; x < 2; x++)
+                    {
+                        temp = newPos.south(x);
+                        if(!world.getBlockState(temp).isOf(ModBlocks.BRIDGE_GOO))
+                            processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                        processBlock(world, temp.up(4), entity, ModBlocks.STONE_BOMB_GOO);
+                    }
+
+                    newPos = pos.east(z).up();
+                    temp = newPos.south(-2);
+                    processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                    processBlock(world, temp.up(2), entity, ModBlocks.STONE_BOMB_GOO);
+
+                    temp = newPos.south(2);
+                    processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                    processBlock(world, temp.up(2), entity, ModBlocks.STONE_BOMB_GOO);
+
+                    newPos = pos.east(z).up(2);
+                    temp = newPos.south(-2);
+
+                    if(z % 2 != 0)
+                    {
+                        processBlock(world, temp, entity, ModBlocks.AIR_BOMB_GOO);
+                        processBlock(world, newPos.south(2), entity, ModBlocks.AIR_BOMB_GOO);
+                    }
+                    else
+                    {
+                        processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                        processBlock(world, newPos.south(2), entity, ModBlocks.STONE_BOMB_GOO);
+                    }
+
+                    temp = newPos.south(1);
+                    if(z % 8 == 0)
+                        world.setBlockState(temp, Blocks.WALL_TORCH.getDefaultState()
+                                                                   .with(WallTorchBlock.FACING, Direction.NORTH),
+                                            Block.NOTIFY_ALL);
+                }
+
+                if(facing == Direction.WEST)
+                {
+                    newPos = pos.west(z);
+                    for (int x = -1; x < 2; x++)
+                    {
+                        temp = newPos.north(x);
+                        if(!world.getBlockState(temp).isOf(ModBlocks.BRIDGE_GOO))
+                            processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                        processBlock(world, temp.up(4), entity, ModBlocks.STONE_BOMB_GOO);
+                    }
+
+                    newPos = pos.west(z).up();
+                    temp = newPos.north(-2);
+                    processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                    processBlock(world, temp.up(2), entity, ModBlocks.STONE_BOMB_GOO);
+
+                    temp = newPos.north(2);
+                    processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                    processBlock(world, temp.up(2), entity, ModBlocks.STONE_BOMB_GOO);
+
+                    newPos = pos.west(z).up(2);
+                    temp = newPos.north(-2);
+
+                    if(z % 2 != 0)
+                    {
+                        processBlock(world, temp, entity, ModBlocks.AIR_BOMB_GOO);
+                        processBlock(world, newPos.north(2), entity, ModBlocks.AIR_BOMB_GOO);
+                    }
+                    else
+                    {
+                        processBlock(world, temp, entity, ModBlocks.STONE_BOMB_GOO);
+                        processBlock(world, newPos.north(2), entity, ModBlocks.STONE_BOMB_GOO);
+                    }
+
+                    temp = newPos.north(1);
+                    if(z % 8 == 0)
+                        world.setBlockState(temp, Blocks.WALL_TORCH.getDefaultState()
+                                                                   .with(WallTorchBlock.FACING, Direction.SOUTH),
+                                            Block.NOTIFY_ALL);
+                }
+            }
+
+            world.setBlockState(pos, Blocks.STONE.getDefaultState(), Block.NOTIFY_ALL);
         }
     }
 }

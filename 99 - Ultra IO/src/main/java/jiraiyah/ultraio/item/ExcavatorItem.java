@@ -143,7 +143,6 @@ public class ExcavatorItem extends Item
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type)
     {
-        //TODO: 1.21.5
         textConsumer.accept(REFERENCE.translate(REFERENCE.EXCAVATOR_PARAM_TOOLTIP,
                                                          this.radius * 2 + 1, this.radius * 2 + 1, this.depth + 1));
     }

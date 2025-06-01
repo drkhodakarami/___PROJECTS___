@@ -24,10 +24,14 @@
 
 package jiraiyah.jibase.properties;
 
-import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.interfaces.IBEFactory;
+import jiraiyah.jibase.interfaces.IBETickerFactory;
 import jiraiyah.jibase.interfaces.IShapeFactory;
+import jiraiyah.jibase.interfaces.ITick;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -46,60 +50,137 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiPredicate;
+import java.util.function.Supplier;
 
-@Developer("TurtyWurty")
-@ModifiedBy("Jiraiyah")
-@CreatedAt("2025-04-18")
-@Repository("https://github.com/DaRealTurtyWurty/Industria")
-@Discord("https://discord.turtywurty.dev/")
-@Youtube("https://www.youtube.com/@TurtyWurty")
-
-public class BlockProperties
+public class BlockProperties<T extends BlockEntity>
 {
-    private boolean placeFacingOpposite = true;
-    private BlockPropertiesBE<?> blockEntityProperties;
-    private boolean hasComparatorOutput = false;
-    private TriFunction<BlockState, World, BlockPos, Integer> comparatorOutput = (state, world, pos) -> ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
-    private BlockRenderType renderType = BlockRenderType.MODEL;
-    private IShapeFactory shapeFactory = (state, world, pos, context) -> VoxelShapes.fullCube();
-    private final StateProperties stateProperties = new StateProperties();
-    private BiPredicate<WorldView, BlockPos> canExistAt = (world, pos) -> true;
-    private final Map<Direction, VoxelShape> cachedDirectionalShapes = new HashMap<>();
+    private boolean placeFacingOpposite;
+    private boolean hasComparatorOutput;
+    private TriFunction<BlockState, World, BlockPos, Integer> comparatorOutput;
+    private BlockRenderType renderType;
+    private IShapeFactory shapeFactory;
+    private final StateProperties stateProperties;
+    private BiPredicate<WorldView, BlockPos> canExistAt;
+    private final Map<Direction, VoxelShape> cachedDirectionalShapes;
+
+    private final Supplier<BlockEntityType<T>> blockEntityTypeSupplier;
+    private boolean shouldTick;
+    private final IBEFactory<T> blockEntityFactory;
+    private final IBETickerFactory<T> blockEntityTicker;
+    //private MultiblockProperties<T> multiblockProperties;
+    private boolean rightClickToOpenGui = false;
+    private boolean dropContentsOnBreak = false;
+
+    public BlockProperties(Supplier<BlockEntityType<T>> blockEntityTypeSupplier)
+    {
+        placeFacingOpposite = true;
+        hasComparatorOutput = false;
+        comparatorOutput = (state, world, pos) -> ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+        renderType = BlockRenderType.MODEL;
+        shapeFactory = (state, world, pos, context) -> VoxelShapes.fullCube();
+        stateProperties = new StateProperties();
+        canExistAt = (world, pos) -> true;
+        cachedDirectionalShapes = new HashMap<>();
+
+        this.blockEntityTypeSupplier = blockEntityTypeSupplier;
+        shouldTick = false;
+        rightClickToOpenGui = false;
+        dropContentsOnBreak = false;
+
+        if(blockEntityTypeSupplier != null && blockEntityTypeSupplier.get() == null)
+        {
+            this.blockEntityFactory = (pos, state) -> this.blockEntityTypeSupplier.get().instantiate(pos, state);
+            this.blockEntityTicker = (world, state, type) -> ITick.createTicker(world);
+        }
+        else
+        {
+            this.blockEntityFactory = null;
+            this.blockEntityTicker = null;
+        }
+    }
 
     //region GETTERS
-    public BlockPropertiesBE<?> blockEntityProperties()
-    {
-        return this.blockEntityProperties;
-    }
 
-    public boolean facingOpposite()
-    {
-        return this.placeFacingOpposite;
-    }
+    //region BLOCK
 
     public boolean hasComparatorOutput()
     {
         return this.hasComparatorOutput;
     }
 
-    public TriFunction<BlockState, World, BlockPos, Integer> comparatorOutput()
+    public boolean hasHorizontalFacing()
+    {
+        return this.stateProperties.containsProperty(Properties.HORIZONTAL_FACING);
+    }
+
+    public boolean hasFacing()
+    {
+        return this.stateProperties.containsProperty(Properties.FACING);
+    }
+
+    public boolean hasAxisProperty()
+    {
+        return this.stateProperties.containsProperty(Properties.AXIS);
+    }
+
+    public boolean hasEnabledProperty()
+    {
+        return this.stateProperties.containsProperty(Properties.ENABLED);
+    }
+
+    public boolean hasLockedProperty()
+    {
+        return this.stateProperties.containsProperty(Properties.LOCKED);
+    }
+
+    public boolean hasPoweredProperty()
+    {
+        return this.stateProperties.containsProperty(Properties.POWERED);
+    }
+
+    public boolean hasUnstableProperty()
+    {
+        return this.stateProperties.containsProperty(Properties.UNSTABLE);
+    }
+
+    public boolean hasLitProperty()
+    {
+        return this.stateProperties.containsProperty(Properties.LIT);
+    }
+
+    public boolean hasWaterloggedProperty()
+    {
+        return this.stateProperties.containsProperty(Properties.WATERLOGGED);
+    }
+
+    public boolean isFacingOpposite()
+    {
+        return this.placeFacingOpposite;
+    }
+
+    public TriFunction<BlockState, World, BlockPos, Integer> getComparatorOutput()
     {
         return this.comparatorOutput;
     }
 
-    public BlockRenderType renderType()
+    public BlockRenderType getRenderType()
     {
         return this.renderType;
     }
 
-    public IShapeFactory shapeFactory()
+    public IShapeFactory getShapeFactory()
     {
         return this.shapeFactory;
     }
 
-    public StateProperties stateProperties()
+    public StateProperties getStateProperties()
     {
         return this.stateProperties;
+    }
+
+    public Map<Direction, VoxelShape> getCachedDirectionalShapes()
+    {
+        return this.cachedDirectionalShapes;
     }
 
     public BiPredicate<WorldView, BlockPos> canExistAt()
@@ -107,263 +188,353 @@ public class BlockProperties
         return this.canExistAt;
     }
 
-    public Map<Direction, VoxelShape> cachedDirectionalShapes()
-    {
-        return this.cachedDirectionalShapes;
-    }
     //endregion
 
-    //TODO: Remove hard coded string names for default mehtods and use property name instead
-    //region SETTERS
-    public BlockProperties hasHorizontalFacing()
+    //region BLOCK ENTITY
+
+    public Supplier<BlockEntityType<T>> getBETypeSupplier()
     {
-        return hasHorizontalFacing(true);
+        return this.blockEntityTypeSupplier;
     }
 
-    public BlockProperties hasHorizontalFacing(boolean hasHorizontalFacing)
+    public BlockEntityType<T> getBEType()
+    {
+        return this.blockEntityTypeSupplier.get();
+    }
+
+    public boolean isTickable()
+    {
+        return this.shouldTick;
+    }
+
+    public IBEFactory<T> getBEFactory()
+    {
+        return this.blockEntityFactory;
+    }
+
+    public IBETickerFactory<T> getBETicker()
+    {
+        return this.blockEntityTicker;
+    }
+
+    public boolean hasGUI()
+    {
+        return this.rightClickToOpenGui;
+    }
+
+    public boolean hasInventory()
+    {
+        return this.dropContentsOnBreak;
+    }
+
+    //endregion
+
+    //endregion
+
+    //region SETTERS
+
+    //region BLOCK
+
+    public BlockProperties<T> addHorizontalFacing()
+    {
+        return setHorizontalFacing(true);
+    }
+
+    public BlockProperties<T> setHorizontalFacing(boolean flag)
     {
         if(stateProperties.containsProperty(Properties.FACING))
             throw new IllegalArgumentException("Cannot add horizontal facing property when facing property is already present");
-        if (hasHorizontalFacing)
+        if (flag)
             this.stateProperties.addHorizontalFacing();
 
         return this;
     }
 
-    public BlockProperties defaultDirection(Direction defaultDirection)
+    public BlockProperties<T> setDefaultDirection(Direction defaultDirection)
     {
         this.stateProperties.setDefaultValue("facing", defaultDirection);
         return this;
     }
 
-    public BlockProperties hasFacing()
+    public BlockProperties<T> addFacing()
     {
-        return hasFacing(true);
+        return setFacing(true);
     }
 
-    public BlockProperties hasFacing(boolean hasFacing)
+    public BlockProperties<T> setFacing(boolean flag)
     {
         if(stateProperties.containsProperty(Properties.HORIZONTAL_FACING))
             throw new IllegalArgumentException("Cannot add facing property when horizontal facing property is already present");
-        if (hasFacing)
+        if (flag)
             this.stateProperties.addFacing();
 
         return this;
     }
 
-    public BlockProperties hasAxisProperty()
+    public BlockProperties<T> addAxisProperty()
     {
-        return hasAxisProperty(true);
+        return setAxisProperty(true);
     }
 
-    public BlockProperties hasAxisProperty(boolean hasAxisProperty)
+    public BlockProperties<T> setAxisProperty(boolean flag)
     {
-        if (hasAxisProperty)
+        if (flag)
             this.stateProperties.addAxis();
 
         return this;
     }
 
-    public BlockProperties defaultAxis(Direction.Axis defaultAxis)
+    public BlockProperties<T> setDefaultAxis(Direction.Axis defaultAxis)
     {
         this.stateProperties.setDefaultValue("axis", defaultAxis);
         return this;
     }
 
-    public BlockProperties hasEnabledProperty()
+    public BlockProperties<T> addEnabledProperty()
     {
-        return hasEnabledProperty(true);
+        return setEnabledProperty(true);
     }
 
-    public BlockProperties hasEnabledProperty(boolean hasEnabledProperty)
+    public BlockProperties<T> setEnabledProperty(boolean flag)
     {
-        if (hasEnabledProperty)
+        if (flag)
             this.stateProperties.addEnabled();
 
         return this;
     }
 
-    public BlockProperties defaultEnabled(boolean defaultEnabled)
+    public BlockProperties<T> setDefaultEnabled(boolean flag)
     {
-        this.stateProperties.setDefaultValue("enabled", defaultEnabled);
+        this.stateProperties.setDefaultValue("enabled", flag);
         return this;
     }
 
-    public BlockProperties hasLockedProperty()
+    public BlockProperties<T> addLockedProperty()
     {
-        return hasLockedProperty(true);
+        return setLockedProperty(true);
     }
 
-    public BlockProperties hasLockedProperty(boolean hasLockedProperty)
+    public BlockProperties<T> setLockedProperty(boolean flag)
     {
-        if (hasLockedProperty)
+        if (flag)
             this.stateProperties.addLocked();
 
         return this;
     }
 
-    public BlockProperties defaultLocked(boolean defaultLocked)
+    public BlockProperties<T> setDefaultLocked(boolean flag)
     {
-        this.stateProperties.setDefaultValue("locked", defaultLocked);
+        this.stateProperties.setDefaultValue("locked", flag);
         return this;
     }
 
-    public BlockProperties hasPoweredProperty()
+    public BlockProperties<T> addPoweredProperty()
     {
-        return hasPoweredProperty(true);
+        return setPoweredProperty(true);
     }
 
-    public BlockProperties hasPoweredProperty(boolean hasPoweredProperty)
+    public BlockProperties<T> setPoweredProperty(boolean flag)
     {
-        if (hasPoweredProperty)
+        if (flag)
             this.stateProperties.addPowered();
 
         return this;
     }
 
-    public BlockProperties defaultPowered(boolean defaultPowered)
+    public BlockProperties<T> setDefaultPowered(boolean flag)
     {
-        this.stateProperties.setDefaultValue("powered", defaultPowered);
+        this.stateProperties.setDefaultValue("powered", flag);
         return this;
     }
 
-    public BlockProperties hasUnstableProperty()
+    public BlockProperties<T> addUnstableProperty()
     {
-        return hasUnstableProperty(true);
+        return setUnstableProperty(true);
     }
 
-    public BlockProperties hasUnstableProperty(boolean hasPoweredProperty)
+    public BlockProperties<T> setUnstableProperty(boolean flag)
     {
-        if (hasPoweredProperty)
+        if (flag)
             this.stateProperties.addUnstable();
 
         return this;
     }
 
-    public BlockProperties defaultUnstable(boolean defaultUnstable)
+    public BlockProperties<T> setDefaultUnstable(boolean flag)
     {
-        this.stateProperties.setDefaultValue("unstable", defaultUnstable);
+        this.stateProperties.setDefaultValue("unstable", flag);
         return this;
     }
 
-    public BlockProperties hasLitProperty()
+    public BlockProperties<T> addLitProperty()
     {
-        return hasLitProperty(true);
+        return setLitProperty(true);
     }
 
-    public BlockProperties hasLitProperty(boolean hasLitProperty)
+    public BlockProperties<T> setLitProperty(boolean flag)
     {
-        if (hasLitProperty)
+        if (flag)
             this.stateProperties.addLit();
 
         return this;
     }
 
-    public BlockProperties defaultLit(boolean defaultLit)
+    public BlockProperties<T> setDefaultLit(boolean flag)
     {
-        this.stateProperties.setDefaultValue("lit", defaultLit);
+        this.stateProperties.setDefaultValue("lit", flag);
         return this;
     }
 
-    public BlockProperties hasWaterloggableProperty()
+    public BlockProperties<T> addWaterloggableProperty()
     {
-        return hasWaterloggableProperty(true);
+        return setWaterloggableProperty(true);
     }
 
-    public BlockProperties hasWaterloggableProperty(boolean hasWaterloggableProperty)
+    public BlockProperties<T> setWaterloggableProperty(boolean flag)
     {
-        if (hasWaterloggableProperty)
+        if (flag)
             this.stateProperties.addWaterlogged();
 
         return this;
     }
 
-    public BlockProperties defaultWaterlogged(boolean defaultWaterlogged)
+    public BlockProperties<T> setDefaultWaterlogged(boolean flag)
     {
-        this.stateProperties.setDefaultValue("waterlogged", defaultWaterlogged);
+        this.stateProperties.setDefaultValue("waterlogged", flag);
         return this;
     }
 
-    public BlockProperties notFacingOpposite()
+    public BlockProperties<T> notFacingOpposite()
     {
-        return shouldFacingOpposite(false);
+        return setFacingOpposite(false);
     }
 
-    public BlockProperties shouldFacingOpposite(boolean placeFacingOpposite)
+    public BlockProperties<T> facingOpposite()
     {
-        this.placeFacingOpposite = placeFacingOpposite;
+        return setFacingOpposite(true);
+    }
+
+    public BlockProperties<T> setFacingOpposite(boolean flag)
+    {
+        this.placeFacingOpposite = flag;
         return this;
     }
 
-    public BlockProperties blockEntityProperties(BlockPropertiesBE<?> blockEntityProperties)
+    public BlockProperties<T> addComparatorOutput() {
+        return setComparatorOutput(true);
+    }
+
+    public BlockProperties<T> setComparatorOutput(boolean flag)
     {
-        this.blockEntityProperties = blockEntityProperties;
+        this.hasComparatorOutput = flag;
         return this;
     }
 
-    public BlockProperties shouldComparatorOutput() {
-        return shouldComparatorOutput(true);
-    }
-
-    public BlockProperties shouldComparatorOutput(boolean hasComparatorOutput)
-    {
-        this.hasComparatorOutput = hasComparatorOutput;
-        return this;
-    }
-
-    public BlockProperties comparatorOutput(TriFunction<BlockState, World, BlockPos, Integer> comparatorOutput)
+    public BlockProperties<T> setComparatorOutput(TriFunction<BlockState, World, BlockPos, Integer> comparatorOutput)
     {
         this.comparatorOutput = comparatorOutput;
         return this;
     }
 
-    public BlockProperties hasBlockEntityRenderer()
+    public BlockProperties<T> addInvisibleRenderer()
     {
-        return hasBlockEntityRenderer(true);
+        return setInvisibleRenderer(true);
     }
 
-    public BlockProperties hasBlockEntityRenderer(boolean isInvisible)
+    public BlockProperties<T> setInvisibleRenderer(boolean flag)
     {
-        return isInvisible ? renderType(BlockRenderType.INVISIBLE) : renderType(BlockRenderType.MODEL);
+        return flag ? setRenderType(BlockRenderType.INVISIBLE) : setRenderType(BlockRenderType.MODEL);
     }
 
-    public BlockProperties renderType(BlockRenderType renderType)
+    public BlockProperties<T> setRenderType(BlockRenderType renderType)
     {
         this.renderType = renderType;
         return this;
     }
 
-    public BlockProperties constantShape() {
-        return constantShape(VoxelShapes.empty());
+    public BlockProperties<T> addEmptyShape() {
+        return setConstantShape(VoxelShapes.empty());
     }
 
-    public BlockProperties constantShape(VoxelShape shape)
+    public BlockProperties<T> setConstantShape(VoxelShape shape)
     {
-        return shapeFactory((state, world, pos, context) -> shape);
+        return setShapeFactory((state, world, pos, context) -> shape);
     }
 
-    public BlockProperties shapeFactory(IShapeFactory shapeFactory)
+    public BlockProperties<T> setShapeFactory(IShapeFactory shapeFactory)
     {
         this.shapeFactory = shapeFactory;
         return this;
     }
 
-    public BlockProperties canExistAt(BiPredicate<WorldView, BlockPos> canExistAt)
+    public BlockProperties<T> addRotatedShapes(VoxelShape shape)
+    {
+        if(!this.stateProperties.containsProperty(Properties.HORIZONTAL_FACING))
+            addHorizontalFacing();
+
+        if(this.cachedDirectionalShapes.isEmpty())
+            runShapeCalculation(this.cachedDirectionalShapes, shape);
+
+        return setShapeFactory((state, world, pos, context) -> this.cachedDirectionalShapes.get(state.get(Properties.HORIZONTAL_FACING)));
+    }
+
+    public BlockProperties<T> canExistAt(BiPredicate<WorldView, BlockPos> canExistAt)
     {
         this.canExistAt = canExistAt;
         return this;
     }
 
-    public BlockProperties useRotatedShapes(VoxelShape shape)
+    //endregion
+
+    //region BLOCK ENTITY
+
+    public BlockProperties<T> tick()
     {
-        if(!this.stateProperties.containsProperty(Properties.HORIZONTAL_FACING))
-            hasHorizontalFacing();
-
-        if(this.cachedDirectionalShapes.isEmpty())
-            runShapeCalculation(this.cachedDirectionalShapes, shape);
-
-        return shapeFactory((state, world, pos, context) -> this.cachedDirectionalShapes.get(state.get(Properties.HORIZONTAL_FACING)));
+        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
+            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a ticking block entity!");
+        return tick(true);
     }
+
+    public BlockProperties<T> tick(boolean flag)
+    {
+        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
+            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a ticking block entity!");
+        this.shouldTick = flag;
+        return this;
+    }
+
+    public BlockProperties<T> addGui()
+    {
+        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
+            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a gui on block entity!");
+        return addGui(true);
+    }
+
+    public BlockProperties<T> addGui(boolean flag)
+    {
+        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
+            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a gui on block entity!");
+        this.rightClickToOpenGui = flag;
+        return this;
+    }
+
+    public BlockProperties<T> addInventory()
+    {
+        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
+            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want an inventory on block entity!");
+        return addInventory(true);
+    }
+
+    public BlockProperties<T> addInventory(boolean flag)
+    {
+        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
+            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want an inventory on block entity!");
+        this.dropContentsOnBreak = flag;
+        return this;
+    }
+
+    //endregion
+
     //endregion
 
     //region HELPER METHODS
@@ -388,7 +559,7 @@ public class BlockProperties
             buffer[0].forEachBox((minX, minY, minZ, maxX, maxY, maxZ) ->
                                          // For each box, calculate its rotated position and add it to the second shape (buffer[1]).
                                          buffer[1] = VoxelShapes.union(buffer[1],
-                                                                        VoxelShapes.cuboid(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
+                                                                       VoxelShapes.cuboid(1 - maxZ, minY, minX, 1 - minZ, maxY, maxX)));
             // After processing all boxes, update buffer[0] to be the newly rotated shape.
             buffer[0] = buffer[1];
             // Reset buffer[1] to an empty shape for the next rotation iteration.
@@ -398,25 +569,25 @@ public class BlockProperties
         return buffer[0];
     }
 
-    public <T extends Comparable<T>> BlockProperties addStateProperty(Property<T> property, T defaultValue)
+    public <U extends Comparable<U>> BlockProperties<T> addStateProperty(Property<U> property, U defaultValue)
     {
         this.stateProperties.addProperty(new StateProperty<>(property, defaultValue));
         return this;
     }
 
-    public BlockProperties addBooleanStateProperty(String name, boolean defaultValue)
+    public BlockProperties<T> addBooleanStateProperty(String name, boolean defaultValue)
     {
         this.stateProperties.addProperty(new StateProperty<>(BooleanProperty.of(name), defaultValue));
         return this;
     }
 
-    public <T extends Enum<T> & StringIdentifiable> BlockProperties addEnumStateProperty(String name, Class<T> clazz, T defaultValue)
+    public <U extends Enum<U> & StringIdentifiable> BlockProperties<T> addEnumStateProperty(String name, Class<U> clazz, U defaultValue)
     {
         this.stateProperties.addProperty(new StateProperty<>(EnumProperty.of(name, clazz), defaultValue));
         return this;
     }
 
-    public <T extends Enum<T> & StringIdentifiable> BlockProperties addEnumStateProperty(String name, Class<T> clazz, T defaultValue, List<T> values)
+    public <U extends Enum<U> & StringIdentifiable> BlockProperties<T> addEnumStateProperty(String name, Class<U> clazz, U defaultValue, List<U> values)
     {
         this.stateProperties.addProperty(new StateProperty<>(EnumProperty.of(name, clazz, values), defaultValue));
         return this;

@@ -103,8 +103,6 @@ public record OutputItemStackPayload(Item output, IntProvider count, FloatProvid
         this(output, ConstantIntProvider.create(count), chance);
     }
 
-    //TODO: Explain Adding more ctor overloads without the count or without the chance (any combo)
-
     public OutputItemStackPayload(Item output, int count)
     {
         this(output, ConstantIntProvider.create(count), DEFAULT_CHANCE);

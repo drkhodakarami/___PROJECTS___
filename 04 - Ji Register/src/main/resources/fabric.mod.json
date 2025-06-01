@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "jiregister",
 	"version": "${version}",
 	"name": "Ji Register",
 	"description": "A library mod that helps with registring different things in Fabric API and Minecraft.",

@@ -32,23 +32,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-//TODO : Make goo blocks functional
-
-//idea: Dig straight down until bedrock or the lowest level of the dimension.
 public class ToweringGoo extends GooBase
 {
     public ToweringGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.TOWERING_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.TOWERING_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(ToweringGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.TOWERING_GOO.instantiate(pos, state);
-    }*/
 }

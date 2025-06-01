@@ -32,23 +32,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-//TODO : Make goo blocks functional
-
-//idea: Convert the air block into still lava!
 public class LavaGeneratingGoo extends GooBase
 {
     public LavaGeneratingGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.LAVA_GENERATING_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.LAVA_GENERATING_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(LavaGeneratingGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.LAVA_GENERATING_GOO.instantiate(pos, state);
-    }*/
 }

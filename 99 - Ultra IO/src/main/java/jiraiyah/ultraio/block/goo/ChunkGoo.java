@@ -27,28 +27,14 @@ package jiraiyah.ultraio.block.goo;
 import jiraiyah.jibase.properties.BlockProperties;
 import jiraiyah.jibase.properties.BlockPropertiesBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
 
-//TODO : Make goo blocks functional
-
-//idea: Destroy a chunk and empty it from blocks, leave behind only valuable blocks.
 public class ChunkGoo extends GooBase
 {
     public ChunkGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.CHUNK_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.CHUNK_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(ChunkGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.CHUNK_GOO.instantiate(pos, state);
-    }*/
 }

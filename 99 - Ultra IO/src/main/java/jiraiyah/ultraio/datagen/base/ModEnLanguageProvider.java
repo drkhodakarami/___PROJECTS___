@@ -487,9 +487,15 @@ public class ModEnLanguageProvider extends FabricLanguageProvider
         builder.add(ModBlocks.SAPPHIRE_TRAP_DOOR, "Sapphire Trap Door");
         //endregion
         //region REFERENCE
-        builder.add(REFERENCE.GEM_BLOCKS, "");
-        builder.add(REFERENCE.IS_MACHINE, "");
+        builder.add(REFERENCE.GEM_BLOCKS, "Gem Blocks");
+        builder.add(REFERENCE.CITRINE_BLOCKS, "Citrine Blocks");
+        builder.add(REFERENCE.RUBY_BLOCKS, "Ruby Blocks");
+        builder.add(REFERENCE.SAPPHIRE_BLOCKS, "Sapphire Blocks");
+        builder.add(REFERENCE.IS_MACHINE, "Is Machine");
         builder.add(REFERENCE.HAMMER_BLACKLIST, "Hammer Blacklist");
+        builder.add(REFERENCE.EXCAVATOR_BLACKLIST, "Excavator Blacklist");
+        builder.add(REFERENCE.INCORRECT_FOR_ENDERITE_TOOL, "Incorrect For Enderite Tool");
+        builder.add(REFERENCE.GOO_BLACKLIST, "Goo Blacklist");
 
         builder.add(REFERENCE.FLUID_BUCKET, "Fluid Buckets");
         builder.add(REFERENCE.CAST, "Casts");
@@ -550,6 +556,12 @@ public class ModEnLanguageProvider extends FabricLanguageProvider
         //endregion
 
         builder.add("effect." + ModID + ".flight", "Flight");
+        builder.add(ModID + ".goo.category", "GOO");
+        builder.add("gamerule.goo.spread", "Should Goo Spread");
+        builder.add("gamerule.lava.pump.goo.active", "Should Lava Pump Goo Work");
+        builder.add("gamerule.water.pump.goo.active", "Should Water Pump Goo Work");
+
+        builder.add(ModID + ".container.gem.cleaner", "Gem Cleaner");
 
         //region TITLES
         addText(builder, REFERENCE.BLOCKS_TITLE, "Blocks");

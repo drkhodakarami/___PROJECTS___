@@ -32,23 +32,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-//TODO : Make goo blocks functional
-
-//idea: Replace a 3 * 3 are with air making a tunnel.
 public class TunnelingGoo extends GooBase
 {
     public TunnelingGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.TUNNELING_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.TUNNELING_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(TunnelingGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.TUNNELING_GOO.instantiate(pos, state);
-    }*/
 }

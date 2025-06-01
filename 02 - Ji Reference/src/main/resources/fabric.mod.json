@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "jireference",
 	"version": "${version}",
 	"name": "Ji Reference",
 	"description": "A library mod that helps with referencing predefined values.",

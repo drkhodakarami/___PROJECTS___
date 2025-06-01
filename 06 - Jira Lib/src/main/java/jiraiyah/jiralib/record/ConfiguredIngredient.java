@@ -83,7 +83,6 @@ public record ConfiguredIngredient(RegistryEntryList<Item> entries, StackDataPay
         this(RegistryEntryList.of(Arrays.stream(items).map(Item::getRegistryEntry).toList()), StackDataPayload.create(count));
     }
 
-    //TODO: Explain Adding more ctor overloads
     @SuppressWarnings("deprecation")
     public ConfiguredIngredient(Item... items)
     {

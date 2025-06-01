@@ -62,6 +62,12 @@ ext.jiralibVersion = sharedProperties.getProperty("jiralib_version")
 ext.jinventoryVersion = sharedProperties.getProperty("jinventory_version")
 ext.jifluidVersion = sharedProperties.getProperty("jifluid_version")
 ext.jienergyVersion = sharedProperties.getProperty("jienergy_version")
+ext.jigasVersion = sharedProperties.getProperty("jigas_version")
+ext.jiheatVersion = sharedProperties.getProperty("jiheat_version")
+ext.jipressureVersion = sharedProperties.getProperty("jipressure_version")
+ext.jimoltenVersion = sharedProperties.getProperty("jimolten_version")
+ext.jipipenetworkVersion = sharedProperties.getProperty("jipipenetwork_version")
+ext.jiguiVersion = sharedProperties.getProperty("jigui_version")
 ext.jimachinaVersion = sharedProperties.getProperty("jimachina_version")
 
 ext.ultraioVersion = sharedProperties.getProperty("ultraio_version")
@@ -95,7 +101,7 @@ base {
 
 repositories {
 	mavenCentral()
-	maven { url 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
+	maven { url = 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
 }
 
 fabricApi {
@@ -111,32 +117,32 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricVersion}"
 
 	// Ji Lib Mods Dependency ========================================================================================================================
-    modImplementation include("jiraiyah.base:jibase:${jibaseVersion}")
+    modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
 }
 
 processResources {
-    inputs.property "version", version
-    inputs.property "loader_ver", loaderVersion
-    inputs.property "game_ver", minecraftVersion
-    inputs.property "java_ver", javaVersion
-    inputs.property "mod_id", modId
+	inputs.property "version", version
+	inputs.property "loader_ver", loaderVersion
+	inputs.property "game_ver", minecraftVersion
+	inputs.property "java_ver", javaVersion
+	//inputs.property "mod_id", modId
 
-    filesMatching("fabric.mod.json") {
-        expand "version": version,
-                "loader_ver": loaderVersion,
-                "game_ver": minecraftVersion,
-                "java_ver": javaVersion,
-                "mod_id": modId
-    }
+	filesMatching("fabric.mod.json") {
+		expand "version": version,
+				"loader_ver": loaderVersion,
+				"game_ver": minecraftVersion,
+				"java_ver": javaVersion//,
+		//"mod_id": modId
+	}
 
-    filesMatching("${modId}.mixins.json") {
-        expand "java_ver": javaVersion,
-                "mod_id": modId
-    }
+	filesMatching("${modId}.mixins.json") {
+		expand "java_ver": javaVersion//,
+		//"mod_id": modId
+	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+	options.release = 21
 }
 
 java {
@@ -187,75 +193,12 @@ publishing {
 	repositories {
 		if (repsyUrl) {
 			maven {
-				url repsyUrl
+				url = repsyUrl
 				credentials {
-					username repsyUsername
-					password repsyPassword
+					username = repsyUsername
+					password = repsyPassword
 				}
 			}
 		}
 	}
-}
-
-tasks.register("generateRunConfigurations") {
-    group = "fabric"
-    description = "Generates IntelliJ IDEA run configurations for RunClient, RunServer, and RunDatagen."
-
-    doLast {
-        // Determine the main root directory (relative to the module's Gradle file)
-        def mainRoot = file(rootProject.projectDir)
-        def runConfigsDir = new File(mainRoot, ".idea/runConfigurations")
-
-        // Ensure the runConfigurations directory exists
-        if (!runConfigsDir.exists()) {
-            runConfigsDir.mkdirs()
-        }
-
-        // Get the module name
-        def moduleName = project.name
-
-        // Create the RunClient configuration
-        def runClientConfig = new File(runConfigsDir, "RunClient_${moduleName}.xml")
-        runClientConfig.text = """
-            <component name="ProjectRunConfigurationManager">
-                <configuration default="false" name="RunClient - ${moduleName}" type="Application" factoryName="Application">
-                    <option name="MAIN_CLASS_NAME" value="net.fabricmc.devlaunchinjector.Main" />
-                    <option name="VM_PARAMETERS" value="-Dfabric.dli.env=client -Dfabric.dli.main=net.fabricmc.loader.impl.launch.knot.KnotClient" />
-                    <option name="PROGRAM_PARAMETERS" value="" />
-                    <module name="${moduleName}" />
-                    <option name="WORKING_DIRECTORY" value="\$PROJECT_DIR\$/${moduleName}" />
-                </configuration>
-            </component>
-        """
-
-        // Create the RunServer configuration
-        def runServerConfig = new File(runConfigsDir, "RunServer_${moduleName}.xml")
-        runServerConfig.text = """
-            <component name="ProjectRunConfigurationManager">
-                <configuration default="false" name="RunServer - ${moduleName}" type="Application" factoryName="Application">
-                    <option name="MAIN_CLASS_NAME" value="net.fabricmc.devlaunchinjector.Main" />
-                    <option name="VM_PARAMETERS" value="-Dfabric.dli.env=server -Dfabric.dli.main=net.fabricmc.loader.impl.launch.knot.KnotServer" />
-                    <option name="PROGRAM_PARAMETERS" value="" />
-                    <module name="${moduleName}" />
-                    <option name="WORKING_DIRECTORY" value="\$PROJECT_DIR\$/${moduleName}" />
-                </configuration>
-            </component>
-        """
-
-        // Create the RunDatagen configuration
-        def runDatagenConfig = new File(runConfigsDir, "RunDatagen_${moduleName}.xml")
-        runDatagenConfig.text = """
-            <component name="ProjectRunConfigurationManager">
-                <configuration default="false" name="RunDatagen - ${moduleName}" type="Application" factoryName="Application">
-                    <option name="MAIN_CLASS_NAME" value="net.fabricmc.devlaunchinjector.Main" />
-                    <option name="VM_PARAMETERS" value="-Dfabric.dli.env=datagen -Dfabric.dli.main=net.fabricmc.loader.impl.launch.knot.KnotServer" />
-                    <option name="PROGRAM_PARAMETERS" value="--datagen" />
-                    <module name="${moduleName}" />
-                    <option name="WORKING_DIRECTORY" value="\$PROJECT_DIR\$/${moduleName}" />
-                </configuration>
-            </component>
-        """
-
-        println "Generated IntelliJ IDEA run configurations for module: ${moduleName}"
-    }
 }

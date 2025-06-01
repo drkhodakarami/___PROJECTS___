@@ -78,4 +78,23 @@ public class ConfigKeys
     public static final String WOOD_EXCAVATOR_DEPTH = "wood.excavator.depth";
     public static final String WOOD_HAMMER_WIDTH = "wood.hammer.width";
     public static final String WOOD_HAMMER_DEPTH = "wood.hammer.depth";
+    public static final String GOO_SPREAD_DISTANCE = "goo.spread.distance";
+    public static final String LAVA_GOO_SPREAD_DISTANCE = "lava.goo.spread.distance";
+    public static final String WATER_GOO_SPREAD_DISTANCE = "water.goo.spread.distance";
+    public static final String GOO_DESTROY_DISTANCE = "goo.destroy.distance";
+    public static final String LAVA_GOO_DESTROY_DISTANCE = "lava.goo.destroy.distance";
+    public static final String WATER_GOO_DESTROY_DISTANCE = "water.goo.destroy.distance";
+    public static final String GOO_PUMP_DISTANCE = "goo.pump.distance";
+    public static final String GOO_PUMP_DEPTH = "goo.pump.depth";
+    public static final String AIR_BOMB_GOO_CHANCE = "goo.air.bomb.chance";
+    public static final String CHUNK_BOMB_GOO_CHANCE = "goo.chunk.bomb.chance";
+    public static final String LAVA_EATING_GOO_CHANCE = "goo.lava.eating.chance";
+    public static final String LAVA_GENERATING_GOO_CHANCE = "goo.lava.generating.chance";
+    public static final String STONE_BOMB_GOO_CHANCE = "goo.stone.bomb.chance";
+    public static final String TOWERING_GOO_CHANCE = "goo.towering.chance";
+    public static final String TUNNELING_GOO_CHANCE = "goo.tunneling.chance";
+    public static final String WATER_EATING_GOO_CHANCE = "goo.water.eating.chance";
+    public static final String WATER_GENERATING_GOO_CHANCE = "goo.water.generating.chance";
+    public static final String LAVA_PUMP_GOO_COOLDOWN = "goo.lava.pump.cooldown";
+    public static final String WATER_PUMP_GOO_COOLDOWN = "goo.water.pump.cooldown";
 }

@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "jilogger",
 	"version": "${version}",
 	"name": "Ji Logger",
 	"description": "A library mod that helps with logging information.",

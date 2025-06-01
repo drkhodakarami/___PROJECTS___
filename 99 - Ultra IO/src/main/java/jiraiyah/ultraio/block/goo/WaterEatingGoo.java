@@ -37,16 +37,8 @@ public class WaterEatingGoo extends GooBase
     public WaterEatingGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.WATER_EATING_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.WATER_EATING_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(WaterEatingGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        //return new WaterEatingGooBE(pos, state);
-        return ModBlockEntities.WATER_EATING_GOO.instantiate(pos, state);
-    }*/
 }

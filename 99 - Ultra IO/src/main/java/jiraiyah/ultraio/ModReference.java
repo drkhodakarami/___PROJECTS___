@@ -106,6 +106,26 @@ public class ModReference extends JiReference
     public final int WOOD_HAMMER_DEFAULT_DEPTH = 1;
 
     public final double SAPPHIRE_SWORD_DEFAULT_MULTIPLIER = 5.0d;
+
+    public final int GOO_SPREAD_DISTANCE = 256;
+    public final int WATER_GOO_SPREAD_DISTANCE = 128;
+    public final int LAVA_GOO_SPREAD_DISTANCE = 128;
+    public final int GOO_DESTROY_DISTANCE = 256;
+    public final int WATER_GOO_DESTROY_DISTANCE = 128;
+    public final int LAVA_GOO_DESTROY_DISTANCE = 128;
+    public final int GOO_PUMP_DISTANCE = 128;
+    public final int GOO_PUMP_DEPTH = 64;
+    public final int AIR_BOMB_GOO_CHANCE = 10;
+    public final int CHUNK_BOMB_GOO_CHANCE = 2;
+    public final int LAVA_EATING_GOO_CHANCE = 10;
+    public final int LAVA_GENERATING_GOO_CHANCE = 10;
+    public final int STONE_BOMB_GOO_CHANCE = 5;
+    public final int TOWERING_GOO_CHANCE = 5;
+    public final int TUNNELING_GOO_CHANCE = 5;
+    public final int WATER_EATING_GOO_CHANCE = 50;
+    public final int WATER_GENERATING_GOO_CHANCE = 10;
+    public final int LAVA_PUMP_GOO_COOLDOWN = 20;
+    public final int WATER_PUMP_GOO_COOLDOWN = 20;
     //endregion
 
     //region ITEM GROUP NAMES
@@ -139,6 +159,7 @@ public class ModReference extends JiReference
     public final TagKey<Block> HAMMER_BLACKLIST = createBlockTag("hammer_blacklist");
     public final TagKey<Block> EXCAVATOR_BLACKLIST = createBlockTag("excavator_blacklist");
     public final TagKey<Block> INCORRECT_FOR_ENDERITE_TOOL = createBlockTag("incorrect_for_enderite_tool");
+    public final TagKey<Block> GOO_BLACKLIST = createBlockTag("goo_blacklist");
     //endregion
 
     //region INGREDIENT TAGS

@@ -32,7 +32,7 @@ import jiraiyah.ultraio.registry.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 
-public class LavaPumpGooBE extends TickableBE<LavaPumpGooBE>
+public class LavaPumpGooBE extends GooBaseBE<LavaPumpGooBE>
 {
     public LavaPumpGooBE(BlockPos pos, BlockState state)
     {
@@ -46,12 +46,6 @@ public class LavaPumpGooBE extends TickableBE<LavaPumpGooBE>
 
         @Override
         public void tick(BEProperties<LavaPumpGooBE> properties)
-        {
-
-        }
-
-        @Override
-        public void tickClient(BEProperties<LavaPumpGooBE> properties)
         {
 
         }

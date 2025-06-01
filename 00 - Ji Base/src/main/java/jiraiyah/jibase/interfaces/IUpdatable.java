@@ -35,12 +35,9 @@ import jiraiyah.jibase.annotations.*;
 
 public interface IUpdatable
 {
-    boolean update();
+    void update();
     void onTickEnd();
 
-    default boolean updateClient()
-    {
-        return true;
-    }
+    default void updateClient(){}
     default void onTickClientEnd(){}
 }

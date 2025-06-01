@@ -38,15 +38,8 @@ public class BridgeGoo extends GooBase
     public BridgeGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.BRIDGE_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.BRIDGE_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(BridgeGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.BRIDGE_GOO.instantiate(pos, state);
-    }*/
 }

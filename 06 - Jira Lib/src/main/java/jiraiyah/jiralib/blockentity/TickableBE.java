@@ -102,21 +102,17 @@ public abstract class TickableBE<T extends TickableBE<T>> extends UpdatableBE<T>
         onFirstTick();
     }
 
+    private void onInternalFirstTickClient()
+    {
+        onFirstTickClient();
+    }
+
     protected void onFirstTick()
     {
     }
 
     protected void onFirstTickClient()
     {
-    }
-
-    protected void registerFields()
-    {
-    }
-
-    private void onInternalFirstTickClient()
-    {
-        onFirstTickClient();
     }
 
     private void onInternalTick()
@@ -129,5 +125,9 @@ public abstract class TickableBE<T extends TickableBE<T>> extends UpdatableBE<T>
     {
         if (this.properties.tickLogic() != null)
             this.properties.tickLogic().tickClient(this.properties);
+    }
+
+    protected void registerFields()
+    {
     }
 }

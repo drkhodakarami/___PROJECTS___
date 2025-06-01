@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:iron_ingot",
+    "F": "minecraft:furnace",
+    "S": "minecraft:smooth_stone",
+    "W": "#minecraft:planks"
+  },
+  "pattern": [
+    "W#W",
+    "#S#",
+    "SFS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:cast_press"
+  }
+}

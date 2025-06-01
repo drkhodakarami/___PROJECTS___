@@ -31,6 +31,7 @@ import net.minecraft.client.render.entity.equipment.EquipmentModel;
 import net.minecraft.component.Component;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.EquippableComponent;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.equipment.ArmorMaterial;
 import net.minecraft.item.equipment.EquipmentAsset;
@@ -62,12 +63,11 @@ public class ArmorHelper
 
     static
     {
-
-        SlotToArmorNames.put("head", ItemModelGenerator.HELMET_TRIM_ID_PREFIX);
-        SlotToArmorNames.put("chest", ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX);
-        SlotToArmorNames.put("legs", ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX);
-        SlotToArmorNames.put("feet", ItemModelGenerator.BOOTS_TRIM_ID_PREFIX);
-        SlotToArmorNames.put("body", ItemModelGenerator.getTrimAssetIdPrefix("body"));
+        SlotToArmorNames.put(EquipmentSlot.HEAD.getName(), ItemModelGenerator.HELMET_TRIM_ID_PREFIX);
+        SlotToArmorNames.put(EquipmentSlot.CHEST.getName(), ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX);
+        SlotToArmorNames.put(EquipmentSlot.LEGS.getName(), ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX);
+        SlotToArmorNames.put(EquipmentSlot.FEET.getName(), ItemModelGenerator.BOOTS_TRIM_ID_PREFIX);
+        SlotToArmorNames.put(EquipmentSlot.BODY.getName(), ItemModelGenerator.getTrimAssetIdPrefix(EquipmentSlot.BODY.getName()));
     }
 
     public static ArmorMaterial getArmorMaterial(String modID, String name, int durability, int bootDefence, int leggingsDefence, int chestplateDefence, int helmetDefence,
@@ -90,23 +90,21 @@ public class ArmorHelper
                                  key);
     }
 
-    public static void generateAllArmorModels(String modID, ItemModelGenerator generator, Item[] armors, ArmorMaterial material)
+    public static void generateAllArmorModels(String modID, ItemModelGenerator generator, Item[] armors)
     {
         EquipmentType slot;
 
         for (Item armor : armors)
-            generateArmorModel(modID, generator, armor, material);
+            generateArmorModel(modID, generator, armor);
     }
 
-    public static void generateArmorModel(String modID, ItemModelGenerator generator, Item armor, ArmorMaterial material)
+    public static void generateArmorModel(String modID, ItemModelGenerator generator, Item armor)
     {
-        generateArmorModel(modID, generator, armor, material, false);
+        generateArmorModel(modID, generator, armor, false);
     }
 
-    public static void generateArmorModel(String modID, ItemModelGenerator generator, Item armor, ArmorMaterial material, boolean dyeable)
+    public static void generateArmorModel(String modID, ItemModelGenerator generator, Item armor, boolean dyeable)
     {
-
-        //TODO: Explain all of this
         Component<EquippableComponent> component = armor.getComponents().getTyped(DataComponentTypes.EQUIPPABLE);
         if (component == null)
             throw new IllegalArgumentException("The item " + armor.getName() + " does not have equippable component");

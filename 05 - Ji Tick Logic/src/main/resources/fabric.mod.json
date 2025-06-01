@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "jiticklogic",
 	"version": "${version}",
 	"name": "Ji Tick Logic",
 	"description": "This a powerful library that will bring the concept of behavior trees into minecraft for logic building and ticking your block entities.",

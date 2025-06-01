@@ -25,7 +25,7 @@
 // The loom version is being set in settings.gradle. This solution is tailored specifically for my use case that each sub folder
 // under "___ PROJECT ___" folder is a separate mod / library. Now We have a single dependencies.properties on the top level
 // (the "___ PROJECT ___" folder itself) and every build.gradle will read the needed values from this single file.
-// The changes in plugins section and settings.gradle is to mimic this behvaior for reading the loom version from this top level file.
+// The changes in plugins section and settings.gradle is to mimic this behavior for reading the loom version from this top level file.
 
 plugins {
     id 'fabric-loom' //version "${loom_version}"
@@ -62,6 +62,12 @@ ext.jiralibVersion = sharedProperties.getProperty("jiralib_version")
 ext.jinventoryVersion = sharedProperties.getProperty("jinventory_version")
 ext.jifluidVersion = sharedProperties.getProperty("jifluid_version")
 ext.jienergyVersion = sharedProperties.getProperty("jienergy_version")
+ext.jigasVersion = sharedProperties.getProperty("jigas_version")
+ext.jiheatVersion = sharedProperties.getProperty("jiheat_version")
+ext.jipressureVersion = sharedProperties.getProperty("jipressure_version")
+ext.jimoltenVersion = sharedProperties.getProperty("jimolten_version")
+ext.jipipenetworkVersion = sharedProperties.getProperty("jipipenetwork_version")
+ext.jiguiVersion = sharedProperties.getProperty("jigui_version")
 ext.jimachinaVersion = sharedProperties.getProperty("jimachina_version")
 
 ext.ultraioVersion = sharedProperties.getProperty("ultraio_version")
@@ -99,10 +105,10 @@ base {
 
 repositories {
 	mavenCentral()
-    maven { url 'https://maven.fabricmc.net/' }
-    maven { url "https://maven.shedaniel.me" }
+    maven { url = 'https://maven.fabricmc.net/' }
+    maven { url = "https://maven.shedaniel.me" }
     maven {
-        url "https://cursemaven.com"
+        url = "https://cursemaven.com"
         content {
             includeGroup "curse.maven"
         }
@@ -136,7 +142,7 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
-    maven { url 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
+    maven { url = 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
 }
 
 fabricApi {
@@ -163,6 +169,12 @@ dependencies {
 	//modImplementation include("jiraiyah.inventory:jinventory:${jinventory_version}")
 	//modImplementation include("jiraiyah.fluid:jifluid:${jifluid_version}")
 	//modImplementation include("jiraiyah.energy:jienergy:${jienergy_version}")
+    //modImplementation include("jiraiyah.gas:jigas:${jigasVersion}")
+    //modImplementation include("jiraiyah.heat:jiheat:${jiheatVersion}")
+    //modImplementation include("jiraiyah.pressure:jipressure:${jipressureVersion}")
+    //modImplementation include("jiraiyah.molten:jimolten:${jimoltenVersion}")
+    //modImplementation include("jiraiyah.pipenetwork:jipipenetwork:${jipipenetworkVersion}")
+	//modImplementation include("jiraiyah.gui:jigui:${jigui_version}")
 	//modImplementation include("jiraiyah.machina:jimachina:${jimachina_version}")
 
     // Mod Menu ======================================================================================================================================
@@ -236,24 +248,24 @@ processResources {
     inputs.property "loader_ver", loaderVersion
     inputs.property "game_ver", minecraftVersion
     inputs.property "java_ver", javaVersion
-    inputs.property "mod_id", modId
+    //inputs.property "mod_id", modId
 
     filesMatching("fabric.mod.json") {
         expand "version": version,
                 "loader_ver": loaderVersion,
                 "game_ver": minecraftVersion,
-                "java_ver": javaVersion,
-                "mod_id": modId
+                "java_ver": javaVersion//,
+        //"mod_id": modId
     }
 
     filesMatching("${modId}.mixins.json") {
-        expand "java_ver": javaVersion,
-                "mod_id": modId
+        expand "java_ver": javaVersion//,
+        //"mod_id": modId
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+	options.release = 21
 }
 
 java {
@@ -303,10 +315,10 @@ publishing {
     repositories {
         if (repsyUrl) {
             maven {
-                url repsyUrl
+                url = repsyUrl
                 credentials {
-                    username repsyUsername
-                    password repsyPassword
+                    username = repsyUsername
+                    password = repsyPassword
                 }
             }
         }

@@ -29,10 +29,20 @@ import jiraiyah.jibase.properties.BEProperties;
 import jiraiyah.jibase.properties.BlockEntityFields;
 import jiraiyah.jiralib.blockentity.TickableBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
+import jiraiyah.ultraio.registry.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
-public class TunnelingGooBE extends TickableBE<TunnelingGooBE>
+import static jiraiyah.ultraio.Main.CONFIGS;
+import static jiraiyah.ultraio.Main.REFERENCE;
+
+public class TunnelingGooBE extends GooBaseBE<TunnelingGooBE>
 {
     public TunnelingGooBE(BlockPos pos, BlockState state)
     {
@@ -40,20 +50,59 @@ public class TunnelingGooBE extends TickableBE<TunnelingGooBE>
         this.properties.tickLogic(new TickLogic());
     }
 
-    //TODO: Make the tick logic not an inner class but an actual class of itself
     static class TickLogic implements ITickLogic<TunnelingGooBE, BlockEntityFields<TunnelingGooBE>>
     {
-
         @Override
         public void tick(BEProperties<TunnelingGooBE> properties)
         {
+            TunnelingGooBE entity = properties.blockEntity();
+            World world = entity.getWorld();
+            BlockPos pos = entity.getPos();
 
-        }
+            if(shouldNotTick(world, pos))
+                return;
 
-        @Override
-        public void tickClient(BEProperties<TunnelingGooBE> properties)
-        {
+            Direction facing = entity.properties.fields().getField("player.facing", Direction.class).getValue();
 
+            if(facing == null)
+                return;
+
+            BlockPos newPos;
+
+            for (int x = -1; x < 2; x++)
+            {
+                for (int y = 1; y < 4; y++)
+                {
+                    for (int z = 0; z < CONFIGS.GOO_SPREAD_DISTANCE; z++)
+                    {
+                        newPos = pos.up(y);
+                        if(facing == Direction.NORTH)
+                        {
+                            newPos = newPos.north(z);
+                            newPos = newPos.east(x);
+                        }
+                        else if(facing == Direction.SOUTH)
+                        {
+                            newPos = newPos.south(z);
+                            newPos = newPos.west(x);
+                        }
+                        else if(facing == Direction.EAST)
+                        {
+                            newPos = newPos.east(z);
+                            newPos = newPos.south(x);
+                        }
+                        else if(facing == Direction.WEST)
+                        {
+                            newPos = newPos.west(z);
+                            newPos = newPos.north(x);
+                        }
+                        processBlock(world, newPos, entity, ModBlocks.AIR_BOMB_GOO);
+                    }
+                }
+            }
+
+            entity.dropItems(world, entity);
+            world.setBlockState(pos, Blocks.STONE.getDefaultState(), Block.NOTIFY_ALL);
         }
     }
 }

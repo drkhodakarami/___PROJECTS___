@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "jiralib",
 	"version": "${version}",
 	"name": "Jira Lib",
 	"description": "A library mod that helps with handling base classes of my mods.",

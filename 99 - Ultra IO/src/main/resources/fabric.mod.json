@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "ultraio",
 	"version": "${version}",
 	"name": "Ultra IO",
 	"description": "Ultra IO is a mod that will combine industrial approach with a little bit of magic from Ender universe!",

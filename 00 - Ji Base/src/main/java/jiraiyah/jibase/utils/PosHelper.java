@@ -160,4 +160,39 @@ public class PosHelper
             relative = relative.rotateYClockwise();
         return relative;
     }
+
+    public static double getDistance(BlockPos pos, BlockPos origin)
+    {
+        return Math.sqrt(Math.pow(pos.getX() - origin.getX(), 2) + Math.pow(pos.getY() - origin.getY(), 2) + Math.pow(pos.getZ() - origin.getZ(), 2));
+    }
+
+    public static double getDistance(int x1, int y1, int z1 , int x2, int y2, int z2)
+    {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) + Math.pow(z1 - z2, 2));
+    }
+
+    public static double getDistance(int x1, int y1 , int x2, int y2)
+    {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    }
+
+    public static double getDistance(float x1, float y1, float z1 , float x2, float y2, float z2)
+    {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) + Math.pow(z1 - z2, 2));
+    }
+
+    public static double getDistance(float x1, float y1 , float x2, float y2)
+    {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    }
+
+    public static double getDistance(double x1, double y1, double z1 , double x2, double y2, double z2)
+    {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2) + Math.pow(z1 - z2, 2));
+    }
+
+    public static double getDistance(double x1, double y1 , double x2, double y2)
+    {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    }
 }

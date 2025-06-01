@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "jimachina",
 	"version": "${version}",
 	"name": "Ji Machina",
 	"description": "A library mod that helps with handling advanced machines and block entities.",

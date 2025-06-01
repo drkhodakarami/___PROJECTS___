@@ -26,6 +26,8 @@ package jiraiyah.ultraio.registry;
 
 import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.ultraio.be.goo.*;
+import jiraiyah.ultraio.be.machine.GemCleanerBE;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.minecraft.block.entity.BlockEntityType;
 
 import static jiraiyah.ultraio.Main.LOGGER;
@@ -46,6 +48,8 @@ public class ModBlockEntities
     public static BlockEntityType<WaterEatingGooBE> WATER_EATING_GOO;
     public static BlockEntityType<WaterGeneratingGooBE> WATER_GENERATING_GOO;
     public static BlockEntityType<WaterPumpGooBE> WATER_PUMP_GOO;
+
+    public static BlockEntityType<GemCleanerBE> GEM_CLEANER;
 
     public ModBlockEntities()
     {
@@ -69,5 +73,9 @@ public class ModBlockEntities
         WATER_EATING_GOO = JENTITY.register("water_eating_goo", ModBlocks.WATER_EATING_GOO, WaterEatingGooBE::new);
         WATER_GENERATING_GOO = JENTITY.register("water_generating_goo", ModBlocks.WATER_GENERATING_GOO, WaterGeneratingGooBE::new);
         WATER_PUMP_GOO = JENTITY.register("water_pump_goo", ModBlocks.WATER_PUMP_GOO, WaterPumpGooBE::new);
+
+        GEM_CLEANER = JENTITY.register("gem_cleaner", ModBlocks.GEM_CLEANER, GemCleanerBE::new);
+
+        ItemStorage.SIDED.registerForBlockEntity(GemCleanerBE::getInventoryProvider, GEM_CLEANER);
     }
 }

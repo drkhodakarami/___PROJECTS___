@@ -59,6 +59,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
         getOrCreateTagBuilder(REFERENCE.SAPPHIRE_BLOCKS)
                 .add(ModBlocks.SAPPHIRE);
 
+        //region PICKAXE MINABLE
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.CITRINE)
                 .add(ModBlocks.ENDERITE)
@@ -107,12 +108,14 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.MINER)
                 .add(ModBlocks.CREATIVE_BANK)
                 .add(ModBlocks.BATTERY_BANK);
+        //endregion
 
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .add(ModBlocks.ANIMAL_FEED)
                 .add(ModBlocks.PRINTER)
                 .add(ModBlocks.PROJECT_TABLE);
 
+        //region NEED IRON TOOL
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.CITRINE)
                 .add(ModBlocks.ENDERITE)
@@ -138,11 +141,13 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.ORE_WORLD_CITRINE)
                 .add(ModBlocks.ORE_WORLD_RUBY)
                 .add(ModBlocks.ORE_WORLD_SAPPHIRE);
+        //endregion
 
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ORE_END_ENDERITE_CRACKED)
                 .add(ModBlocks.ORE_ENDERITE);
 
+        //region ORE
         getOrCreateTagBuilder(BlockTags.COPPER_ORES)
                 .add(ModBlocks.ORE_NETHER_COPPER);
 
@@ -162,7 +167,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
         getOrCreateTagBuilder(BlockTags.COAL_ORES)
                 .add(ModBlocks.ORE_NETHER_COAL);
+        //endregion
 
+        //region HAMMER BLACK LIST
         getOrCreateTagBuilder(REFERENCE.HAMMER_BLACKLIST)
                 .add(ModBlocks.ELEVATOR)
                 .add(ModBlocks.ANGEL)
@@ -189,6 +196,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.MINER)
                 .add(ModBlocks.CREATIVE_BANK)
                 .add(ModBlocks.BATTERY_BANK);
+        //endregion
 
         getOrCreateTagBuilder(REFERENCE.EXCAVATOR_BLACKLIST)
                 .add(ModBlocks.ELEVATOR)
@@ -200,6 +208,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SAPPHIRE)
                 .add(ModBlocks.ENDERITE);
 
+        //region IS MACHINE
         getOrCreateTagBuilder(REFERENCE.IS_MACHINE)
                 .add(ModBlocks.ELEVATOR)
                 .add(ModBlocks.ANGEL)
@@ -226,6 +235,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.MINER)
                 .add(ModBlocks.CREATIVE_BANK)
                 .add(ModBlocks.BATTERY_BANK);
+        //endregion
 
         //region DCLR
         getOrCreateTagBuilder(REFERENCE.DCLR_ORE_WHITELIST)
@@ -490,6 +500,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.GLOW_LICHEN);
         //endregion
 
+        //region DECORATION
         getOrCreateTagBuilder(BlockTags.FENCES)
                 .add(ModBlocks.CITRINE_FENCE)
                 .add(ModBlocks.ENDERITE_FENCE)
@@ -505,5 +516,182 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.ENDERITE_WALL)
                 .add(ModBlocks.RUBY_WALL)
                 .add(ModBlocks.SAPPHIRE_WALL);
+        //endregion
+
+        //region GOO BLACKLIST
+        getOrCreateTagBuilder(REFERENCE.GOO_BLACKLIST)
+                .add(Blocks.AMETHYST_BLOCK)
+                .add(Blocks.AMETHYST_CLUSTER)
+                .add(Blocks.ANCIENT_DEBRIS)
+                .add(Blocks.ANVIL)
+                .add(Blocks.BARREL)
+                .add(Blocks.BEACON)
+                .add(Blocks.BEDROCK)
+                .add(Blocks.BEE_NEST)
+                .add(Blocks.BEEHIVE)
+                .add(Blocks.BELL)
+                .add(Blocks.BLACK_SHULKER_BOX)
+                .add(Blocks.BLAST_FURNACE)
+                .add(Blocks.BLUE_SHULKER_BOX)
+                .add(Blocks.BREWING_STAND)
+                .add(Blocks.BROWN_SHULKER_BOX)
+                .add(Blocks.BUDDING_AMETHYST)
+                .add(Blocks.CALIBRATED_SCULK_SENSOR)
+                .add(Blocks.CAULDRON)
+                .add(Blocks.CHEST)
+                .add(Blocks.CHIPPED_ANVIL)
+                .add(Blocks.COAL_BLOCK)
+                .add(Blocks.COAL_ORE)
+                .add(Blocks.COMMAND_BLOCK)
+                .add(Blocks.COMPOSTER)
+                .add(Blocks.CONDUIT)
+                .add(Blocks.COPPER_BLOCK)
+                .add(Blocks.COPPER_ORE)
+                .add(Blocks.CYAN_SHULKER_BOX)
+                .add(Blocks.DAMAGED_ANVIL)
+                .add(Blocks.DARK_PRISMARINE)
+                .add(Blocks.DARK_PRISMARINE_SLAB)
+                .add(Blocks.DARK_PRISMARINE_STAIRS)
+                .add(Blocks.DAYLIGHT_DETECTOR)
+                .add(Blocks.DEEPSLATE_COAL_ORE)
+                .add(Blocks.DEEPSLATE_COPPER_ORE)
+                .add(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .add(Blocks.DEEPSLATE_EMERALD_ORE)
+                .add(Blocks.DEEPSLATE_GOLD_ORE)
+                .add(Blocks.DEEPSLATE_IRON_ORE)
+                .add(Blocks.DEEPSLATE_LAPIS_ORE)
+                .add(Blocks.DEEPSLATE_REDSTONE_ORE)
+                .add(Blocks.DIAMOND_BLOCK)
+                .add(Blocks.DIAMOND_ORE)
+                .add(Blocks.DISPENSER)
+                .add(Blocks.DRAGON_EGG)
+                .add(Blocks.DROPPER)
+                .add(Blocks.EMERALD_BLOCK)
+                .add(Blocks.EMERALD_ORE)
+                .add(Blocks.ENCHANTING_TABLE)
+                .add(Blocks.END_GATEWAY)
+                .add(Blocks.END_PORTAL)
+                .add(Blocks.END_PORTAL_FRAME)
+                .add(Blocks.ENDER_CHEST)
+                .add(Blocks.FURNACE)
+                .add(Blocks.GLOWSTONE)
+                .add(Blocks.GOLD_BLOCK)
+                .add(Blocks.GOLD_ORE)
+                .add(Blocks.GRAY_SHULKER_BOX)
+                .add(Blocks.GREEN_SHULKER_BOX)
+                .add(Blocks.GRINDSTONE)
+                .add(Blocks.HONEY_BLOCK)
+                .add(Blocks.HONEYCOMB_BLOCK)
+                .add(Blocks.HOPPER)
+                .add(Blocks.IRON_BLOCK)
+                .add(Blocks.IRON_DOOR)
+                .add(Blocks.IRON_ORE)
+                .add(Blocks.LAPIS_BLOCK)
+                .add(Blocks.LAPIS_ORE)
+                .add(Blocks.LARGE_AMETHYST_BUD)
+                .add(Blocks.LAVA_CAULDRON)
+                .add(Blocks.LIGHT_BLUE_SHULKER_BOX)
+                .add(Blocks.LIGHT_GRAY_SHULKER_BOX)
+                .add(Blocks.MAGENTA_SHULKER_BOX)
+                .add(Blocks.NETHER_GOLD_ORE)
+                .add(Blocks.NETHER_PORTAL)
+                .add(Blocks.NETHER_QUARTZ_ORE)
+                .add(Blocks.NETHERITE_BLOCK)
+                .add(Blocks.ORANGE_SHULKER_BOX)
+                .add(Blocks.PINK_SHULKER_BOX)
+                .add(Blocks.PISTON)
+                .add(Blocks.PISTON_HEAD)
+                .add(Blocks.PRISMARINE)
+                .add(Blocks.PRISMARINE_BRICK_SLAB)
+                .add(Blocks.PRISMARINE_BRICK_STAIRS)
+                .add(Blocks.PRISMARINE_BRICKS)
+                .add(Blocks.PRISMARINE_SLAB)
+                .add(Blocks.PRISMARINE_STAIRS)
+                .add(Blocks.PURPLE_SHULKER_BOX)
+                .add(Blocks.QUARTZ_BLOCK)
+                .add(Blocks.QUARTZ_BRICKS)
+                .add(Blocks.QUARTZ_PILLAR)
+                .add(Blocks.QUARTZ_SLAB)
+                .add(Blocks.QUARTZ_STAIRS)
+                .add(Blocks.RED_SHULKER_BOX)
+                .add(Blocks.REDSTONE_BLOCK)
+                .add(Blocks.REDSTONE_LAMP)
+                .add(Blocks.REDSTONE_ORE)
+                .add(Blocks.REPEATER)
+                .add(Blocks.REPEATING_COMMAND_BLOCK)
+                .add(Blocks.SCULK)
+                .add(Blocks.SCULK_CATALYST)
+                .add(Blocks.SCULK_SENSOR)
+                .add(Blocks.SCULK_SHRIEKER)
+                .add(Blocks.SCULK_VEIN)
+                .add(Blocks.SEA_LANTERN)
+                .add(Blocks.SHULKER_BOX)
+                .add(Blocks.SLIME_BLOCK)
+                .add(Blocks.SPAWNER)
+                .add(Blocks.SPONGE)
+                .add(Blocks.STICKY_PISTON)
+                .add(Blocks.TRAPPED_CHEST)
+                .add(Blocks.WHITE_SHULKER_BOX)
+                .add(Blocks.YELLOW_SHULKER_BOX)
+                .add(ModBlocks.ALLOY_MIXER)
+                .add(ModBlocks.ANGEL)
+                .add(ModBlocks.ANIMAL_FEED)
+                .add(ModBlocks.BATTERY_BANK)
+                .add(ModBlocks.BLOCK_BREAKER)
+                .add(ModBlocks.BLOCK_PLACER)
+                .add(ModBlocks.BUILDER)
+                .add(ModBlocks.CARROT_BOX)
+                .add(ModBlocks.CAST_PRESS)
+                .add(ModBlocks.CHUNK_LOADER)
+                .add(ModBlocks.CITRINE)
+                .add(ModBlocks.CREATIVE_BANK)
+                .add(ModBlocks.ELEVATOR)
+                .add(ModBlocks.ENDER_CHANTER)
+                .add(ModBlocks.ENDERITE)
+                .add(ModBlocks.FLUID_PUMP)
+                .add(ModBlocks.GEM_CLEANER)
+                .add(ModBlocks.GENERATOR)
+                .add(ModBlocks.MINER)
+                .add(ModBlocks.ORE_DEEP_CITRINE)
+                .add(ModBlocks.ORE_DEEP_RUBY)
+                .add(ModBlocks.ORE_DEEP_SAPPHIRE)
+                .add(ModBlocks.ORE_END_CITRINE)
+                .add(ModBlocks.ORE_END_ENDERITE)
+                .add(ModBlocks.ORE_END_ENDERITE_CRACKED)
+                .add(ModBlocks.ORE_END_RUBY)
+                .add(ModBlocks.ORE_END_SAPPHIRE)
+                .add(ModBlocks.ORE_ENDERITE)
+                .add(ModBlocks.ORE_NETHER_CITRINE)
+                .add(ModBlocks.ORE_NETHER_COAL)
+                .add(ModBlocks.ORE_NETHER_COPPER)
+                .add(ModBlocks.ORE_NETHER_DIAMOND)
+                .add(ModBlocks.ORE_NETHER_IRON)
+                .add(ModBlocks.ORE_NETHER_LAPIS)
+                .add(ModBlocks.ORE_NETHER_REDSTONE)
+                .add(ModBlocks.ORE_NETHER_RUBY)
+                .add(ModBlocks.ORE_NETHER_SAPPHIRE)
+                .add(ModBlocks.ORE_WORLD_CITRINE)
+                .add(ModBlocks.ORE_WORLD_RUBY)
+                .add(ModBlocks.ORE_WORLD_SAPPHIRE)
+                .add(ModBlocks.OVEN)
+                .add(ModBlocks.POTATO_BOX)
+                .add(ModBlocks.PRINTER)
+                .add(ModBlocks.PROJECT_TABLE)
+                .add(ModBlocks.PULVERIZER)
+                .add(ModBlocks.RUBY)
+                .add(ModBlocks.SAPPHIRE)
+                .add(ModBlocks.RAW_CITRINE)
+                .add(ModBlocks.RAW_ENDERITE)
+                .add(ModBlocks.RAW_QUARTZ)
+                .add(ModBlocks.RAW_RUBY)
+                .add(ModBlocks.RAW_SAPPHIRE)
+                .add(ModBlocks.REDSTONE_CLOCK)
+                .add(ModBlocks.SMELTER)
+                .add(ModBlocks.SOLAR_PANEL)
+                .add(ModBlocks.TESSERACT)
+                .add(ModBlocks.WOOD_STRIPPER)
+                .add(ModBlocks.LAVA_PUMP_GOO)
+                .add(ModBlocks.WATER_PUMP_GOO);
+        //endregion
     }
 }

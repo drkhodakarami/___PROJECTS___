@@ -29,32 +29,42 @@ import jiraiyah.jibase.properties.BEProperties;
 import jiraiyah.jibase.properties.BlockEntityFields;
 import jiraiyah.jiralib.blockentity.TickableBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import jiraiyah.ultraio.block.goo.GooBase;
 
-public class AirGooBombBE extends TickableBE<AirGooBombBE>
+import static jiraiyah.ultraio.Main.CONFIGS;
+
+public class AirGooBombBE extends GooBaseBE<AirGooBombBE>
 {
     public AirGooBombBE(BlockPos pos, BlockState state)
     {
         super(ModBlockEntities.AIR_GOO_BOMB, pos, state);
-        //TODO: Explain why this works
         this.properties.tickLogic(new TickLogic());
     }
 
-    //TODO: Make the tick logic not an inner class but an actual class of itself
     static class TickLogic implements ITickLogic<AirGooBombBE, BlockEntityFields<AirGooBombBE>>
     {
-
         @Override
         public void tick(BEProperties<AirGooBombBE> properties)
         {
+            AirGooBombBE entity = properties.blockEntity();
+            World world = entity.getWorld();
+            BlockPos pos = entity.getPos();
 
-        }
+            if(shouldNotTick(world, pos, true, CONFIGS.AIR_BOMB_GOO_CHANCE))
+                return;
 
-        @Override
-        public void tickClient(BEProperties<AirGooBombBE> properties)
-        {
+            if(world.getBlockState(pos.up()).isOf(Blocks.WATER) ||
+                world.getBlockState(pos.up()).isOf(Blocks.LAVA))
+                    world.setBlockState(pos.up(), Blocks.STONE.getDefaultState(), Block.NOTIFY_ALL);
 
+            entity.dropItems(world, entity);
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
         }
     }
 }

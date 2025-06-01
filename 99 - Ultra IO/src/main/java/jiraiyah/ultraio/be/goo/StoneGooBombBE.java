@@ -30,9 +30,16 @@ import jiraiyah.jibase.properties.BlockEntityFields;
 import jiraiyah.jiralib.blockentity.TickableBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import jiraiyah.ultraio.block.goo.GooBase;
 
-public class StoneGooBombBE extends TickableBE<StoneGooBombBE>
+import static jiraiyah.ultraio.Main.CONFIGS;
+
+public class StoneGooBombBE extends GooBaseBE<StoneGooBombBE>
 {
     public StoneGooBombBE(BlockPos pos, BlockState state)
     {
@@ -40,20 +47,21 @@ public class StoneGooBombBE extends TickableBE<StoneGooBombBE>
         this.properties.tickLogic(new TickLogic());
     }
 
-    //TODO: Make the tick logic not an inner class but an actual class of itself
     static class TickLogic implements ITickLogic<StoneGooBombBE, BlockEntityFields<StoneGooBombBE>>
     {
 
         @Override
         public void tick(BEProperties<StoneGooBombBE> properties)
         {
+            StoneGooBombBE entity = properties.blockEntity();
+            World world = entity.getWorld();
+            BlockPos pos = entity.getPos();
 
-        }
+            if(shouldNotTick(world, pos, true, CONFIGS.AIR_BOMB_GOO_CHANCE))
+                return;
 
-        @Override
-        public void tickClient(BEProperties<StoneGooBombBE> properties)
-        {
-
+            entity.dropItems(world, entity);
+            world.setBlockState(pos, Blocks.STONE.getDefaultState(), Block.NOTIFY_ALL);
         }
     }
 }

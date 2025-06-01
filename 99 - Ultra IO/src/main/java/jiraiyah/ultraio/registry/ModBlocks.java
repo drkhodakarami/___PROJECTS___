@@ -34,6 +34,8 @@ import jiraiyah.ultraio.block.storage.BatteryBank;
 import jiraiyah.ultraio.block.storage.CreativeEnergyBank;
 import jiraiyah.ultraio.block.storage.EnderiteShulker;
 import net.minecraft.block.*;
+import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.sound.BlockSoundGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -212,19 +214,25 @@ public class ModBlocks
         SAPPHIRE_TRAP_DOOR = JBLOCK.registerTrapdoor("block_sapphire_trap_door", BlockSetType.IRON, Blocks.IRON_DOOR);
         //endregion
         //region GOO
-        WATER_EATING_GOO = JBLOCK.register("water_eating_goo", Blocks.GRAY_WOOL, WaterEatingGoo::new);
-        WATER_GENERATING_GOO = JBLOCK.register("water_generating_goo", Blocks.GRAY_WOOL, WaterGeneratingGoo::new);
-        LAVA_EATING_GOO = JBLOCK.register("lava_eating_goo", Blocks.GRAY_WOOL, LavaEatingGoo::new);
-        LAVA_GENERATING_GOO = JBLOCK.register("lava_generating_goo", Blocks.GRAY_WOOL, LavaGeneratingGoo::new);
-        CHUNK_GOO = JBLOCK.register("chunk_goo", Blocks.GRAY_WOOL, ChunkGoo::new);
-        TOWERING_GOO = JBLOCK.register("towering_goo", Blocks.GRAY_WOOL, ToweringGoo::new);
-        TUNNELING_GOO = JBLOCK.register("tunneling_goo", Blocks.GRAY_WOOL, TunnelingGoo::new);
-        BRIDGE_GOO = JBLOCK.register("bridge_goo", Blocks.GRAY_WOOL, BridgeGoo::new);
-        AIR_BOMB_GOO = JBLOCK.register("air_goo_bomb", Blocks.GRAY_WOOL, AirGooBomb::new);
-        CHUNK_BOMB_GOO = JBLOCK.register("chunk_goo_bomb", Blocks.GRAY_WOOL, ChunkGooBomb::new);
-        STONE_BOMB_GOO = JBLOCK.register("stone_goo_bomb", Blocks.GRAY_WOOL, StoneGooBomb::new);
-        LAVA_PUMP_GOO = JBLOCK.register("lava_pump_goo", Blocks.GRAY_WOOL, LavaPumpGoo::new);
-        WATER_PUMP_GOO = JBLOCK.register("water_pump_goo", Blocks.GRAY_WOOL, WaterPumpGoo::new);
+        AbstractBlock.Settings gooSettings = AbstractBlock.Settings //Settings from gray wool
+                .create()
+                .mapColor(MapColor.GRAY)
+                .instrument(NoteBlockInstrument.GUITAR)
+                .strength(0.8F)
+                .sounds(BlockSoundGroup.WOOL);//.burnable()
+        WATER_EATING_GOO = JBLOCK.register("water_eating_goo", gooSettings, WaterEatingGoo::new);
+        WATER_GENERATING_GOO = JBLOCK.register("water_generating_goo", gooSettings, WaterGeneratingGoo::new);
+        LAVA_EATING_GOO = JBLOCK.register("lava_eating_goo", gooSettings, LavaEatingGoo::new);
+        LAVA_GENERATING_GOO = JBLOCK.register("lava_generating_goo", gooSettings, LavaGeneratingGoo::new);
+        CHUNK_GOO = JBLOCK.register("chunk_goo", gooSettings, ChunkGoo::new);
+        TOWERING_GOO = JBLOCK.register("towering_goo", gooSettings, ToweringGoo::new);
+        TUNNELING_GOO = JBLOCK.register("tunneling_goo", gooSettings, TunnelingGoo::new);
+        BRIDGE_GOO = JBLOCK.register("bridge_goo", gooSettings, BridgeGoo::new);
+        AIR_BOMB_GOO = JBLOCK.register("air_goo_bomb", gooSettings, AirGooBomb::new);
+        CHUNK_BOMB_GOO = JBLOCK.register("chunk_goo_bomb", gooSettings, ChunkGooBomb::new);
+        STONE_BOMB_GOO = JBLOCK.register("stone_goo_bomb", gooSettings, StoneGooBomb::new);
+        LAVA_PUMP_GOO = JBLOCK.register("lava_pump_goo", gooSettings, LavaPumpGoo::new);
+        WATER_PUMP_GOO = JBLOCK.register("water_pump_goo", gooSettings, WaterPumpGoo::new);
         //endregion
         //region MACHINE
         REDSTONE_CLOCK = JBLOCK.register("redstone_clock", Blocks.GRAY_WOOL, RedstoneClock::new);

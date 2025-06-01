@@ -41,15 +41,8 @@ public class LavaPumpGoo extends GooBase
     public LavaPumpGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.LAVA_PUMP_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.LAVA_PUMP_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(LavaPumpGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.LAVA_PUMP_GOO.instantiate(pos, state);
-    }*/
 }

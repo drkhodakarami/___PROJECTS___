@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "jiconfig",
 	"version": "${version}",
 	"name": "Ji Config",
 	"description": "A library mod that helps with generating and handling config files.",

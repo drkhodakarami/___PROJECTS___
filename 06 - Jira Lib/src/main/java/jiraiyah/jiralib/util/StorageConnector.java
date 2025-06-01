@@ -28,6 +28,7 @@ import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.enumerations.MappedDirection;
 import jiraiyah.jibase.interfaces.INBTSerializable;
 import jiraiyah.jibase.interfaces.IStorageHandler;
+import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.Direction;
 
@@ -59,7 +60,6 @@ public abstract class StorageConnector<T> implements INBTSerializable<NbtList>, 
         this.sidedMap.put(direction, storage);
     }
 
-    //TODO: Added one overload for ctor
     public void addStorage(T storage, Direction direction)
     {
         this.storages.add(storage);

@@ -44,3 +44,5 @@ pluginManagement {
         }
     }
 }
+
+rootProject.name = 'jilogger'

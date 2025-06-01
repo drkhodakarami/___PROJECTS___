@@ -37,18 +37,9 @@ public class AirGooBomb extends GooBase
 {
     public AirGooBomb(Settings settings)
     {
-        //TODO: Explain This
         super(settings, new BlockProperties()
-                .blockEntityProperties(new BlockPropertiesBE<>(
-                        () -> ModBlockEntities.AIR_GOO_BOMB)
-                                               .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.AIR_GOO_BOMB)
+                                                                                        .shouldTick()));
         CODEC = createCodec(AirGooBomb::new);
     }
-
-    //TODO: Explain This --> No more need to manually override this method!
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.AIR_GOO_BOMB.instantiate(pos, state);
-    }*/
 }

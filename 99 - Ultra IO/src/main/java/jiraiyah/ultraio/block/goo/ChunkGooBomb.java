@@ -27,26 +27,14 @@ package jiraiyah.ultraio.block.goo;
 import jiraiyah.jibase.properties.BlockProperties;
 import jiraiyah.jibase.properties.BlockPropertiesBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
 
-//TODO : Make goo blocks functional
 public class ChunkGooBomb extends GooBase
 {
     public ChunkGooBomb(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.CHUNK_GOO_BOMB)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.CHUNK_GOO_BOMB)
+                                                                                        .shouldTick()));
         CODEC = createCodec(ChunkGooBomb::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.CHUNK_GOO_BOMB.instantiate(pos, state);
-    }*/
 }

@@ -58,7 +58,6 @@ public class ModelHelper
     @ThanksTo(discordUsers = "Waveless")
     public static void registerCubeVariantBlock(BlockStateModelGenerator generator, Block block, BooleanProperty property)
     {
-        //TODO: Overview this
         WeightedVariant cubeOff = BlockStateModelGenerator.createWeightedVariant(TexturedModel.CUBE_ALL.upload(block, generator.modelCollector));
         WeightedVariant cubeOn = BlockStateModelGenerator.createWeightedVariant((generator.createSubModel(block, "_on", Models.CUBE_ALL, TextureMap::all)));
         BlockStateVariantMap<WeightedVariant> cubeStatus = BlockStateModelGenerator.createBooleanModelMap(property, cubeOn, cubeOff);

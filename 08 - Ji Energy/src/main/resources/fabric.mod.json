@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${mod_id}",
+	"id": "jienergy",
 	"version": "${version}",
 	"name": "Ji Energy",
 	"description": "A library mod that helps with handling energy API.",

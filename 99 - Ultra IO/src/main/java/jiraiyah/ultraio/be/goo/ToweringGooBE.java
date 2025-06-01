@@ -27,12 +27,19 @@ package jiraiyah.ultraio.be.goo;
 import jiraiyah.jibase.interfaces.ITickLogic;
 import jiraiyah.jibase.properties.BEProperties;
 import jiraiyah.jibase.properties.BlockEntityFields;
-import jiraiyah.jiralib.blockentity.TickableBE;
+import jiraiyah.jibase.utils.PosHelper;
 import jiraiyah.ultraio.registry.ModBlockEntities;
+import jiraiyah.ultraio.registry.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.Block;
 
-public class ToweringGooBE extends TickableBE<ToweringGooBE>
+import static jiraiyah.ultraio.Main.CONFIGS;
+import static jiraiyah.ultraio.Main.REFERENCE;
+
+public class ToweringGooBE extends GooBaseBE<ToweringGooBE>
 {
     public ToweringGooBE(BlockPos pos, BlockState state)
     {
@@ -40,20 +47,42 @@ public class ToweringGooBE extends TickableBE<ToweringGooBE>
         this.properties.tickLogic(new TickLogic());
     }
 
-    //TODO: Make the tick logic not an inner class but an actual class of itself
     static class TickLogic implements ITickLogic<ToweringGooBE, BlockEntityFields<ToweringGooBE>>
     {
-
         @Override
         public void tick(BEProperties<ToweringGooBE> properties)
         {
+            ToweringGooBE entity = properties.blockEntity();
+            World world = entity.getWorld();
+            BlockPos pos = entity.getPos();
 
-        }
+            if(shouldNotTick(world, pos, true, CONFIGS.AIR_BOMB_GOO_CHANCE))
+                return;
 
-        @Override
-        public void tickClient(BEProperties<ToweringGooBE> properties)
-        {
+            BlockPos[] sides = PosHelper.positionSideBottom(pos);
 
+            for (BlockPos side : sides)
+                if (world.getBlockState(side).isOf(Blocks.LAVA) ||
+                    world.getBlockState(side).isOf(Blocks.WATER) ||
+                    world.getBlockState(side).isOf(Blocks.AIR))
+                    world.setBlockState(side,
+                                        Blocks.STONE.getDefaultState(),
+                                        Block.NOTIFY_ALL);
+
+            BlockPos newPos = PosHelper.bottom(pos);
+
+            if(newPos.getY() >= world.getBottomY())
+            {
+                if (!processBlock(world, newPos, entity, ModBlocks.TOWERING_GOO))
+                    if (!processBlock(world, newPos.down(), entity, ModBlocks.TOWERING_GOO))
+                        if (!processBlock(world, newPos.down(2), entity, ModBlocks.TOWERING_GOO))
+                            if (!processBlock(world, newPos.down(3), entity, ModBlocks.TOWERING_GOO))
+                                if (!processBlock(world, newPos.down(4), entity, ModBlocks.TOWERING_GOO))
+                                    processBlock(world, newPos.down(5), entity, ModBlocks.TOWERING_GOO);
+
+                entity.dropItems(world, entity);
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
+            }
         }
     }
 }

@@ -207,16 +207,15 @@ public class ModModelProvider extends FabricModelProvider
 
         generator.registerNorthDefaultHorizontalRotation(ModBlocks.SOLAR_PANEL);
 
-        //TODO: Explain Property change
-        ModelHelper.registerCubeVariantBlock(generator, ModBlocks.REDSTONE_CLOCK, Properties.POWERED);
+        ModelHelper.registerCubeVariantBlock(generator, ModBlocks.REDSTONE_CLOCK, Properties.LIT);
 
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.ALLOY_MIXER, Properties.POWERED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.GEM_CLEANER, Properties.POWERED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.OVEN, Properties.POWERED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.PULVERIZER, Properties.POWERED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.SMELTER, Properties.POWERED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.GENERATOR, Properties.POWERED);
-        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.BUILDER, Properties.POWERED);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.ALLOY_MIXER, Properties.LIT);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.GEM_CLEANER, Properties.LIT);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.OVEN, Properties.LIT);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.PULVERIZER, Properties.LIT);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.SMELTER, Properties.LIT);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.GENERATOR, Properties.LIT);
+        ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.BUILDER, Properties.LIT);
         //endregion
     }
 

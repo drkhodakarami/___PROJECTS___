@@ -41,15 +41,8 @@ public class WaterPumpGoo extends GooBase
     public WaterPumpGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.WATER_PUMP_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.WATER_PUMP_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(WaterPumpGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.WATER_PUMP_GOO.instantiate(pos, state);
-    }*/
 }

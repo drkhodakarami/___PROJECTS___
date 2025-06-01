@@ -46,7 +46,6 @@ public interface ISyncedTick extends ITick, ISync
     {
         onTick();
 
-        // TODO: Local cache of method call result prevents 3 method calls for a simple task!!
         List<ISync> syncables = getSyncables();
 
         if (shouldSync() && syncables != null && !syncables.isEmpty())

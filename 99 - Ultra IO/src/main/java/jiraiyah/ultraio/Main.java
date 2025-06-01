@@ -25,6 +25,7 @@
 package jiraiyah.ultraio;
 
 import jiraiyah.jiregister.*;
+import jiraiyah.ultraio.config.Rules;
 import jiraiyah.ultraio.registry.*;
 import jiraiyah.ultraio.config.Configs;
 import net.fabricmc.api.ModInitializer;
@@ -52,6 +53,7 @@ public class Main implements ModInitializer
 		LOGGER.logMain();
 
 		CONFIGS.load();
+		Rules.init();
 
 		initializeAll();
 	}

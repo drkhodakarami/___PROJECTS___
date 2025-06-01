@@ -32,23 +32,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-//TODO : Make goo blocks functional
-
-//idea : This is like lava one, but works with water.
 public class WaterGeneratingGoo extends GooBase
 {
     public WaterGeneratingGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.WATER_GENERATING_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.WATER_GENERATING_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(WaterEatingGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.WATER_GENERATING_GOO.instantiate(pos, state);
-    }*/
 }

@@ -60,10 +60,4 @@ public record CoordinateDataPayload(BlockPos pos, String dimension) implements C
     {
         return ID;
     }
-
-    //TODO : Finish the code here. It should get a world and get the dimension name from the world
-    public void setDimension(World world)
-    {
-
-    }
 }

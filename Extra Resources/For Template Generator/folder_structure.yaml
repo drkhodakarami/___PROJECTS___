@@ -1,0 +1,840 @@
+resources:
+  assets:
+    minecraft:
+      atlases: {}
+      blockstates: {}
+      equipment: {}
+      font:
+        include: {}
+      items: {}
+      lang: {}
+      models:
+        block: {}
+        item: {}
+      particles: {}
+      post_effect: {}
+      shaders:
+        core: {}
+        include: {}
+        post: {}
+      texts: {}
+      textures:
+        block: {}
+        colormap: {}
+        effect: {}
+        entity:
+          allay: {}
+          armorstand: {}
+          axolotl: {}
+          banner: {}
+          bear: {}
+          bed: {}
+          bee: {}
+          bell: {}
+          boat: {}
+          breeze: {}
+          camel: {}
+          cat: {}
+          chest: {}
+          chest_boat: {}
+          chicken: {}
+          conduit: {}
+          cow: {}
+          creaking: {}
+          creeper: {}
+          decorated_pot: {}
+          end_crystal: {}
+          enderdragon: {}
+          enderman: {}
+          equipment:
+            camel_saddle: {}
+            donkey_saddle: {}
+            horse_body: {}
+            horse_saddle: {}
+            humanoid: {}
+            humanoid_leggings: {}
+            llama_body: {}
+            mule_saddle: {}
+            pig_saddle: {}
+            skeleton_horse_saddle: {}
+            strider_saddle: {}
+            wings: {}
+            wolf_body: {}
+            zombie_horse_saddle: {}
+          fish: {}
+          fox: {}
+          frog: {}
+          ghast: {}
+          goat: {}
+          hoglin: {}
+          horse: {}
+          illager: {}
+          iron_golem: {}
+          llama: {}
+          panda: {}
+          parrot: {}
+          pig: {}
+          piglin: {}
+          player:
+            slim: {}
+            wide: {}
+          projectiles: {}
+          rabbit: {}
+          sheep: {}
+          shield: {}
+          shulker: {}
+          signs:
+            hanging: {}
+          skeleton: {}
+          slime: {}
+          sniffer: {}
+          spider: {}
+          squid: {}
+          strider: {}
+          tadpole: {}
+          turtle: {}
+          villager:
+            profession: {}
+            profession_level: {}
+            type: {}
+          warden: {}
+          wither: {}
+          wolf: {}
+          zombie: {}
+          zombie_villager:
+            profession: {}
+            profession_level: {}
+            type: {}
+        environment: {}
+        font: {}
+        gui:
+          advancements:
+            backgrounds: {}
+          container:
+            creative_inventory: {}
+          hanging_signs: {}
+          presets: {}
+          realms: {}
+          sprites:
+            advancements: {}
+            boss_bar: {}
+            container:
+              anvil: {}
+              beacon: {}
+              blast_furnace: {}
+              brewing_stand: {}
+              bundle: {}
+              cartography_table: {}
+              crafter: {}
+              creative_inventory: {}
+              enchanting_table: {}
+              furnace: {}
+              grindstone: {}
+              horse: {}
+              inventory: {}
+              loom: {}
+              slot: {}
+              smithing: {}
+              smoker: {}
+              stonecutter: {}
+              villager: {}
+            gamemode_switcher: {}
+            hud:
+              heart: {}
+            icon: {}
+            notification: {}
+            pending_invite: {}
+            player_list: {}
+            popup: {}
+            realm_status: {}
+            recipe_book: {}
+            server_list: {}
+            social_interactions: {}
+            spectator: {}
+            statistics: {}
+            toast: {}
+            tooltip: {}
+            transferable_list: {}
+            widget: {}
+            world_list: {}
+          title:
+            background: {}
+        item: {}
+        map:
+          decorations: {}
+        misc: {}
+        mob_effect: {}
+        painting: {}
+        particle: {}
+        trims:
+          color_palettes: {}
+          entity:
+            humanoid: {}
+            humanoid_leggings: {}
+          items: {}
+  data:
+    minecraft:
+      advancement:
+        adventure: {}
+        end: {}
+        husbandry: {}
+        nether: {}
+        recipes:
+          brewing: {}
+          building_blocks: {}
+          combat: {}
+          decorations: {}
+          food: {}
+          misc: {}
+          redstone: {}
+          tools: {}
+          transportation: {}
+        story: {}
+      banner_pattern: {}
+      cat_variant: {}
+      chat_type: {}
+      chicken_variant: {}
+      cow_variant: {}
+      damage_type: {}
+      datapacks:
+        minecart_improvements: {}
+        redstone_experiments: {}
+        trade_rebalance:
+          data:
+            minecraft:
+              enchantment_provider:
+                trades: {}
+              loot_table:
+                chests: {}
+              tags:
+                enchantment:
+                  trades: {}
+      dimension_type: {}
+      enchantment: {}
+      enchantment_provider:
+        raid: {}
+      frog_variant: {}
+      instrument: {}
+      jukebox_song: {}
+      loot_table:
+        archaeology: {}
+        blocks: {}
+        chests:
+          trial_chambers: {}
+          village: {}
+        dispensers:
+          trial_chambers: {}
+        entities:
+          sheep: {}
+        equipment: {}
+        gameplay:
+          fishing: {}
+          hero_of_the_village: {}
+        pots:
+          trial_chambers: {}
+        shearing:
+          mooshroom: {}
+          sheep: {}
+        spawners:
+          ominous:
+            trial_chamber: {}
+          trial_chamber: {}
+      painting_variant: {}
+      pig_variant: {}
+      recipe: {}
+      structure:
+        ancient_city:
+          city:
+            entrance: {}
+          city_center:
+            walls: {}
+          structures: {}
+          walls: {}
+        bastion:
+          blocks: {}
+          bridge:
+            bridge_pieces: {}
+            connectors: {}
+            legs: {}
+            rampart_plates: {}
+            ramparts: {}
+            starting_pieces: {}
+            walls: {}
+          hoglin_stable:
+            connectors: {}
+            large_stables: {}
+            posts: {}
+            rampart_plates: {}
+            ramparts: {}
+            small_stables: {}
+            stairs: {}
+            starting_pieces: {}
+            walls: {}
+          mobs: {}
+          treasure:
+            bases:
+              centers: {}
+            brains: {}
+            connectors: {}
+            corners:
+              bottom: {}
+              edges: {}
+              middle: {}
+              top: {}
+            entrances: {}
+            extensions: {}
+            ramparts: {}
+            roofs: {}
+            stairs: {}
+            walls:
+              bottom: {}
+              mid: {}
+              outer: {}
+              top: {}
+          units:
+            center_pieces: {}
+            edges: {}
+            fillers: {}
+            pathways: {}
+            rampart_plates: {}
+            ramparts: {}
+            stages:
+              rot: {}
+            wall_units: {}
+            walls: {}
+        end_city: {}
+        fossil: {}
+        igloo: {}
+        nether_fossils: {}
+        pillager_outpost: {}
+        ruined_portal: {}
+        shipwreck: {}
+        trail_ruins:
+          buildings: {}
+          decor: {}
+          roads: {}
+          tower: {}
+        trial_chambers:
+          chamber:
+            addon: {}
+            assembly: {}
+            eruption: {}
+            pedestal: {}
+            slanted: {}
+          chests:
+            connectors: {}
+          corridor:
+            addon: {}
+            atrium: {}
+          decor: {}
+          dispensers: {}
+          hallway: {}
+          intersection: {}
+          reward: {}
+          spawner:
+            breeze: {}
+            connectors: {}
+            melee: {}
+            ranged: {}
+            slow_ranged: {}
+            small_melee: {}
+        underwater_ruin: {}
+        village:
+          common:
+            animals: {}
+          decays: {}
+          desert:
+            houses: {}
+            streets: {}
+            terminators: {}
+            town_centers: {}
+            villagers: {}
+            zombie:
+              houses: {}
+              streets: {}
+              terminators: {}
+              town_centers: {}
+              villagers: {}
+          plains:
+            houses: {}
+            streets: {}
+            terminators: {}
+            town_centers: {}
+            villagers: {}
+            zombie:
+              houses: {}
+              streets: {}
+              town_centers: {}
+              villagers: {}
+          savanna:
+            houses: {}
+            streets: {}
+            terminators: {}
+            town_centers: {}
+            villagers: {}
+            zombie:
+              houses: {}
+              streets: {}
+              terminators: {}
+              town_centers: {}
+              villagers: {}
+          snowy:
+            houses: {}
+            streets: {}
+            town_centers: {}
+            villagers: {}
+            zombie:
+              houses: {}
+              streets: {}
+              town_centers: {}
+              villagers: {}
+          taiga:
+            houses: {}
+            streets: {}
+            town_centers: {}
+            villagers: {}
+            zombie:
+              houses: {}
+              streets: {}
+              town_centers: {}
+              villagers: {}
+        woodland_mansion: {}
+      tags:
+        banner_pattern:
+          pattern_item: {}
+        block:
+          mineable: {}
+        damage_type: {}
+        enchantment:
+          exclusive_set: {}
+        entity_type: {}
+        fluid: {}
+        game_event: {}
+        instrument: {}
+        item:
+          enchantable: {}
+        painting_variant: {}
+        point_of_interest_type: {}
+        worldgen:
+          biome:
+            has_structure: {}
+          flat_level_generator_preset: {}
+          structure: {}
+          world_preset: {}
+      test_environment: {}
+      test_instance: {}
+      trial_spawner:
+        trial_chamber:
+          breeze: {}
+          melee:
+            husk: {}
+            spider: {}
+            zombie: {}
+          ranged:
+            poison_skeleton: {}
+            skeleton: {}
+            stray: {}
+          slow_ranged:
+            poison_skeleton: {}
+            skeleton: {}
+            stray: {}
+          small_melee:
+            baby_zombie: {}
+            cave_spider: {}
+            silverfish: {}
+            slime: {}
+      trim_material: {}
+      trim_pattern: {}
+      wolf_sound_variant: {}
+      wolf_variant: {}
+      worldgen:
+        biome: {}
+        configured_carver: {}
+        configured_feature: {}
+        density_function:
+          end: {}
+          nether: {}
+          overworld:
+            caves: {}
+          overworld_amplified: {}
+          overworld_large_biomes: {}
+        flat_level_generator_preset: {}
+        multi_noise_biome_source_parameter_list: {}
+        noise: {}
+        noise_settings: {}
+        placed_feature: {}
+        processor_list: {}
+        structure: {}
+        structure_set: {}
+        template_pool:
+          ancient_city:
+            city: {}
+            city_center: {}
+            walls: {}
+          bastion:
+            blocks: {}
+            bridge: {}
+            hoglin_stable:
+              large_stables: {}
+              small_stables: {}
+            mobs: {}
+            treasure:
+              bases: {}
+              corners: {}
+              extensions: {}
+              walls: {}
+            units:
+              fillers: {}
+              stages:
+                rot: {}
+              walls: {}
+          pillager_outpost: {}
+          trail_ruins:
+            buildings: {}
+            tower: {}
+          trial_chambers:
+            chamber: {}
+            chambers: {}
+            chests:
+              contents: {}
+            corridor: {}
+            corridors:
+              addon: {}
+            decor: {}
+            dispensers: {}
+            hallway: {}
+            reward:
+              contents: {}
+            spawner:
+              contents: {}
+              melee: {}
+              ranged: {}
+              slow_ranged: {}
+              small_melee: {}
+          village:
+            common: {}
+            desert:
+              zombie: {}
+            plains:
+              zombie: {}
+            savanna:
+              zombie: {}
+            snowy:
+              zombie: {}
+            taiga:
+              zombie: {}
+        world_preset: {}
+src:
+  net:
+    minecraft:
+      advancement:
+        criterion: {}
+      block:
+        cauldron: {}
+        dispenser: {}
+        entity: {}
+        enums: {}
+        jukebox: {}
+        pattern: {}
+        piston: {}
+        spawner: {}
+        vault: {}
+      client:
+        color:
+          block: {}
+          world: {}
+        data: {}
+        font: {}
+        gl: {}
+        gui:
+          hud:
+            debug: {}
+            spectator: {}
+          navigation: {}
+          screen:
+            advancement: {}
+            ingame: {}
+            multiplayer: {}
+            narration: {}
+            option: {}
+            pack: {}
+            recipebook: {}
+            report: {}
+            world: {}
+          tab: {}
+          tooltip: {}
+          widget: {}
+        input: {}
+        item: {}
+        main: {}
+        model: {}
+        network:
+          message: {}
+        option: {}
+        particle: {}
+        realms:
+          dto: {}
+          exception:
+            upload: {}
+          gui:
+            screen: {}
+          task: {}
+          util: {}
+        recipebook: {}
+        render:
+          block:
+            entity:
+              model: {}
+          chunk: {}
+          debug: {}
+          entity:
+            animation: {}
+            equipment: {}
+            feature: {}
+            model: {}
+            state: {}
+          item:
+            model:
+              special: {}
+            property:
+              bool: {}
+              numeric: {}
+              select: {}
+            tint: {}
+          model:
+            json: {}
+        resource:
+          language: {}
+          metadata: {}
+          server: {}
+        search: {}
+        session:
+          report:
+            log: {}
+          telemetry: {}
+        sound: {}
+        texture:
+          atlas: {}
+        toast: {}
+        tutorial: {}
+        util:
+          math: {}
+          tracy: {}
+        world: {}
+      command:
+        argument:
+          serialize: {}
+        suggestion: {}
+      component:
+        type: {}
+      data:
+        advancement:
+          vanilla: {}
+        dev: {}
+        family: {}
+        loottable:
+          rebalance: {}
+          vanilla: {}
+        recipe: {}
+        report: {}
+        tag:
+          rebalance: {}
+          vanilla: {}
+        validate: {}
+      datafixer:
+        fix: {}
+        mapping: {}
+        schema: {}
+      enchantment:
+        effect:
+          entity: {}
+          value: {}
+        provider: {}
+      entity:
+        ai:
+          brain:
+            sensor: {}
+            task: {}
+          control: {}
+          goal: {}
+          pathing: {}
+        attribute: {}
+        boss:
+          dragon:
+            phase: {}
+        conversion: {}
+        damage: {}
+        data: {}
+        decoration:
+          painting: {}
+        effect: {}
+        mob: {}
+        passive: {}
+        player: {}
+        projectile:
+          thrown: {}
+        raid: {}
+        spawn: {}
+        vehicle: {}
+      fluid: {}
+      gametest: {}
+      inventory: {}
+      item:
+        consume: {}
+        equipment:
+          trim: {}
+        map: {}
+        tooltip: {}
+      loot:
+        condition: {}
+        context: {}
+        entry: {}
+        function: {}
+        operator: {}
+        provider:
+          nbt: {}
+          number: {}
+          score: {}
+      nbt:
+        scanner: {}
+        visitor: {}
+      network:
+        codec: {}
+        encoding: {}
+        encryption: {}
+        handler: {}
+        listener: {}
+        message: {}
+        packet:
+          c2s:
+            common: {}
+            config: {}
+            handshake: {}
+            login: {}
+            play: {}
+            query: {}
+          s2c:
+            common: {}
+            config: {}
+            custom: {}
+            login: {}
+            play: {}
+            query: {}
+        state: {}
+      obfuscate: {}
+      particle: {}
+      potion: {}
+      predicate:
+        block: {}
+        collection: {}
+        component: {}
+        entity: {}
+        item: {}
+      recipe:
+        book: {}
+        display: {}
+        input: {}
+      registry:
+        entry: {}
+        tag: {}
+      resource:
+        featuretoggle: {}
+        fs: {}
+        metadata: {}
+      scoreboard:
+        number: {}
+      screen:
+        slot: {}
+        sync: {}
+      server:
+        chase: {}
+        command: {}
+        dedicated:
+          command: {}
+          gui: {}
+        filter: {}
+        function: {}
+        integrated: {}
+        network: {}
+        rcon: {}
+        world: {}
+      sound: {}
+      stat: {}
+      state:
+        property: {}
+      structure:
+        pool:
+          alias: {}
+        processor: {}
+        rule:
+          blockentity: {}
+      test: {}
+      text: {}
+      unused:
+        packageinfo: {}
+      util:
+        annotation: {}
+        collection: {}
+        context: {}
+        crash: {}
+        dynamic: {}
+        function: {}
+        hit: {}
+        logging: {}
+        math:
+          floatprovider: {}
+          intprovider: {}
+          noise: {}
+          random: {}
+        packrat: {}
+        path: {}
+        profiler:
+          log: {}
+        profiling:
+          jfr:
+            event: {}
+            sample: {}
+        shape: {}
+        thread: {}
+      village:
+        raid: {}
+      world:
+        biome:
+          source:
+            util: {}
+        block: {}
+        border: {}
+        chunk:
+          light: {}
+        dimension: {}
+        entity: {}
+        event:
+          listener: {}
+        explosion: {}
+        gen:
+          blockpredicate: {}
+          carver: {}
+          chunk:
+            placement: {}
+          densityfunction: {}
+          feature:
+            size: {}
+            util: {}
+          foliage: {}
+          heightprovider: {}
+          noise: {}
+          placementmodifier: {}
+          root: {}
+          stateprovider: {}
+          structure: {}
+          surfacebuilder: {}
+          treedecorator: {}
+          trunk: {}
+        level:
+          storage: {}
+        poi: {}
+        spawner: {}
+        storage: {}
+        tick: {}
+        timer: {}
+        updater: {}

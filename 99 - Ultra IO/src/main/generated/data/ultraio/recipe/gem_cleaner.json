@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:bucket",
+    "F": "minecraft:furnace",
+    "R": "minecraft:iron_ingot",
+    "S": "ultraio:plate_iron"
+  },
+  "pattern": [
+    "RRR",
+    "SBS",
+    "SFS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultraio:gem_cleaner"
+  }
+}

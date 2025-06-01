@@ -27,33 +27,89 @@ package jiraiyah.ultraio.be.goo;
 import jiraiyah.jibase.interfaces.ITickLogic;
 import jiraiyah.jibase.properties.BEProperties;
 import jiraiyah.jibase.properties.BlockEntityFields;
+import jiraiyah.jibase.utils.PosHelper;
 import jiraiyah.jiralib.blockentity.TickableBE;
+import jiraiyah.ultraio.block.goo.GooBase;
 import jiraiyah.ultraio.registry.ModBlockEntities;
+import jiraiyah.ultraio.registry.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class LavaGeneratingGooBE extends TickableBE<LavaGeneratingGooBE>
+import static jiraiyah.ultraio.Main.CONFIGS;
+
+public class LavaGeneratingGooBE extends GooBaseBE<LavaGeneratingGooBE>
 {
+    private BlockPos originalPos;
+
     public LavaGeneratingGooBE(BlockPos pos, BlockState state)
     {
         super(ModBlockEntities.LAVA_GENERATING_GOO, pos, state);
         this.properties.tickLogic(new TickLogic());
+        originalPos = pos;
+        this.properties.fields().addField("originPos", this.originalPos,
+                                          blockEntity -> blockEntity.originalPos,
+                                          (blockEntity, value) -> blockEntity.originalPos = value);
     }
 
-    //TODO: Make the tick logic not an inner class but an actual class of itself
+    public void setOrigin(BlockPos pos)
+    {
+        originalPos = pos;
+        update();
+    }
+
+    @Override
+    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    {
+        super.readNbt(nbt, registries);
+        originalPos = nbt.get("original.pos", BlockPos.CODEC).orElse(null);
+    }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    {
+        super.writeNbt(nbt, registries);
+        nbt.put("original.pos", BlockPos.CODEC, originalPos);
+    }
+
     static class TickLogic implements ITickLogic<LavaGeneratingGooBE, BlockEntityFields<LavaGeneratingGooBE>>
     {
-
         @Override
         public void tick(BEProperties<LavaGeneratingGooBE> properties)
         {
+            LavaGeneratingGooBE entity = properties.blockEntity();
+            World world = entity.getWorld();
+            BlockPos pos = entity.getPos();
 
-        }
+            if(shouldNotTick(world, pos, true, CONFIGS.LAVA_GENERATING_GOO_CHANCE))
+                return;
 
-        @Override
-        public void tickClient(BEProperties<LavaGeneratingGooBE> properties)
-        {
+            if(getDistance(pos, entity.originalPos) > CONFIGS.LAVA_GOO_SPREAD_DISTANCE)
+            {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
+                return;
+            }
 
+            BlockPos[] sides = PosHelper.positionSideBottom(pos);
+
+            for (BlockPos side : sides)
+                if(world.getBlockState(side).isOf(Blocks.AIR))
+                {
+                    world.setBlockState(side,
+                                        ModBlocks.LAVA_GENERATING_GOO.getDefaultState()
+                                                                     .with(Properties.POWERED, true), Block.NOTIFY_ALL);
+
+                    if(world.getBlockEntity(side) instanceof LavaGeneratingGooBE be)
+                        be.setOrigin(entity.originalPos);
+                }
+
+            world.setBlockState(pos, Blocks.LAVA.getDefaultState(), Block.NOTIFY_ALL);
         }
     }
 }

@@ -24,49 +24,63 @@
 
 package jiraiyah.ultraio.block.machine;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jibase.properties.BlockPropertiesBE;
 import jiraiyah.jiralib.block.JiBlock;
-import net.minecraft.block.BlockState;
+import jiraiyah.ultraio.be.machine.GemCleanerBE;
+import jiraiyah.ultraio.registry.ModBlockEntities;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
+import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-//TODO : Create Model
-//TODO : Create Block Recipe
-//TODO : Handle Block Entity
-//TODO : Add GUI
-//TODO : Add Custom Recipe
-//TODO : Add Custom Recipe Datagen
-
-// Ideas :
-// - It uses water
-// - It will clean raw gem and give 3 gems per raw item
-// - It will use different amount of water to clean different types of gems
-// - It can accept upgrades for water / speed
-// - Default water capacity is 10 buckets
-// - Default speed changed for gems but the smallest time is 10 seconds
-public class GemCleaner extends JiBlock
+public class GemCleaner extends JiBlock implements BlockEntityProvider
 {
     public GemCleaner(Settings settings)
     {
         super(settings, new BlockProperties()
-                .hasPoweredProperty()
-                .hasHorizontalFacing());
+                .hasLitProperty()
+                .hasHorizontalFacing()
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.GEM_CLEANER)
+                                               .shouldTick()
+                                               .dropContentsOnBreak()
+                                               .rightClickToOpenGui()));
         CODEC = createCodec(GemCleaner::new);
     }
 
     @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
+    protected void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved)
     {
-        return null;
+        ItemScatterer.onStateReplaced(state, world,pos);
     }
 
     @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type)
+    public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player)
     {
-        return super.getTicker(world, state, type);
+        var be = world.getBlockEntity(pos);
+        if(be instanceof GemCleanerBE blockEntity)
+            ItemScatterer.spawn(world, pos, blockEntity.getInventory());
+
+        return super.onBreak(world, pos, state, player);
     }
 }

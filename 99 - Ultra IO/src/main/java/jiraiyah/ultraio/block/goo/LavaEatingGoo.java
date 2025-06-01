@@ -32,23 +32,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-//TODO : Make goo blocks functional
-
-//idea: Eat lava blocks and convert them to air
 public class LavaEatingGoo extends GooBase
 {
     public LavaEatingGoo(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.LAVA_EATING_GOO)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.LAVA_EATING_GOO)
+                                                                                        .shouldTick()));
         CODEC = createCodec(LavaEatingGoo::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.LAVA_EATING_GOO.instantiate(pos, state);
-    }*/
 }

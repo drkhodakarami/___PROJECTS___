@@ -40,5 +40,5 @@ public interface ITickLogic<T extends BlockEntity, U extends BlockEntityFields<T
 {
     void tick(BEProperties<T> properties);
 
-    void tickClient(BEProperties<T> properties);
+    default void tickClient(BEProperties<T> properties){}
 }

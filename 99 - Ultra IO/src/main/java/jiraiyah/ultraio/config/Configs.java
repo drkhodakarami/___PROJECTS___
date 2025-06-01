@@ -42,7 +42,13 @@ public class Configs extends JiConfig
             GOLD_EXCAVATOR_WIDTH, GOLD_EXCAVATOR_DEPTH, GOLD_HAMMER_WIDTH, GOLD_HAMMER_DEPTH, IRON_EXCAVATOR_WIDTH, IRON_EXCAVATOR_DEPTH,
             IRON_HAMMER_WIDTH, IRON_HAMMER_DEPTH, NETHERITE_EXCAVATOR_WIDTH, NETHERITE_EXCAVATOR_DEPTH, NETHERITE_HAMMER_WIDTH, NETHERITE_HAMMER_DEPTH,
             STONE_EXCAVATOR_WIDTH, STONE_EXCAVATOR_DEPTH, STONE_HAMMER_WIDTH, STONE_HAMMER_DEPTH, WOOD_EXCAVATOR_WIDTH, WOOD_EXCAVATOR_DEPTH,
-            WOOD_HAMMER_WIDTH, WOOD_HAMMER_DEPTH;
+            WOOD_HAMMER_WIDTH, WOOD_HAMMER_DEPTH,
+            GOO_SPREAD_DISTANCE, LAVA_GOO_SPREAD_DISTANCE, WATER_GOO_SPREAD_DISTANCE,
+            GOO_DESTROY_DISTANCE, LAVA_GOO_DESTROY_DISTANCE, WATER_GOO_DESTROY_DISTANCE,
+            GOO_PUMP_DISTANCE, GOO_PUMP_DEPTH,
+            AIR_BOMB_GOO_CHANCE, CHUNK_BOMB_GOO_CHANCE, LAVA_EATING_GOO_CHANCE, LAVA_GENERATING_GOO_CHANCE, STONE_BOMB_GOO_CHANCE,
+            TOWERING_GOO_CHANCE, TUNNELING_GOO_CHANCE, WATER_EATING_GOO_CHANCE, WATER_GENERATING_GOO_CHANCE,
+            LAVA_PUMP_GOO_COOLDOWN, WATER_PUMP_GOO_COOLDOWN;
     public double SAPPHIRE_SWORD_MULTIPLIER;
 
     public Configs(String mod_Id)
@@ -154,6 +160,39 @@ public class Configs extends JiConfig
 
         provider.addPair(new Pair<>(ConfigKeys.WOOD_HAMMER_WIDTH, REFERENCE.WOOD_HAMMER_DEFAULT_WIDTH), false);
         provider.addPair(new Pair<>(ConfigKeys.WOOD_HAMMER_DEPTH, REFERENCE.WOOD_HAMMER_DEFAULT_DEPTH));
+
+        provider.addComment("===================================================================================================");
+        provider.addComment("===============================            GOO BLOCK SETTINGS           ===========================");
+        provider.addComment("===================================================================================================");
+
+        provider.addComment("The max distance for all goo blocks to spread / destroy in the world.");
+        provider.addPair(new Pair<>(ConfigKeys.GOO_SPREAD_DISTANCE, REFERENCE.GOO_SPREAD_DISTANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.LAVA_GOO_SPREAD_DISTANCE, REFERENCE.LAVA_GOO_SPREAD_DISTANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.WATER_GOO_SPREAD_DISTANCE, REFERENCE.WATER_GOO_SPREAD_DISTANCE));
+        provider.addPair(new Pair<>(ConfigKeys.GOO_DESTROY_DISTANCE, REFERENCE.GOO_DESTROY_DISTANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.LAVA_GOO_DESTROY_DISTANCE, REFERENCE.LAVA_GOO_DESTROY_DISTANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.WATER_GOO_DESTROY_DISTANCE, REFERENCE.WATER_GOO_DESTROY_DISTANCE));
+
+        provider.addComment("The max distance and depth for lava and water pump goo blocks.");
+        provider.addPair(new Pair<>(ConfigKeys.GOO_PUMP_DISTANCE, REFERENCE.GOO_PUMP_DISTANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.GOO_PUMP_DEPTH, REFERENCE.GOO_PUMP_DEPTH));
+
+
+        provider.addComment("The chance value to destroy the goo bomb in each tick the higher value means faster destruction.");
+        provider.addPair(new Pair<>(ConfigKeys.AIR_BOMB_GOO_CHANCE, REFERENCE.AIR_BOMB_GOO_CHANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.CHUNK_BOMB_GOO_CHANCE, REFERENCE.CHUNK_BOMB_GOO_CHANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.LAVA_EATING_GOO_CHANCE, REFERENCE.LAVA_EATING_GOO_CHANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.LAVA_GENERATING_GOO_CHANCE, REFERENCE.LAVA_GENERATING_GOO_CHANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.STONE_BOMB_GOO_CHANCE, REFERENCE.STONE_BOMB_GOO_CHANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.TOWERING_GOO_CHANCE, REFERENCE.TOWERING_GOO_CHANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.TUNNELING_GOO_CHANCE, REFERENCE.TUNNELING_GOO_CHANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.WATER_EATING_GOO_CHANCE, REFERENCE.WATER_EATING_GOO_CHANCE), false);
+        provider.addPair(new Pair<>(ConfigKeys.WATER_GENERATING_GOO_CHANCE, REFERENCE.WATER_GENERATING_GOO_CHANCE));
+
+        provider.addComment("The cooldown timer for goo pumps to work.");
+        provider.addPair(new Pair<>(ConfigKeys.LAVA_PUMP_GOO_COOLDOWN, REFERENCE.LAVA_PUMP_GOO_COOLDOWN), false);
+        provider.addPair(new Pair<>(ConfigKeys.WATER_PUMP_GOO_COOLDOWN, REFERENCE.WATER_PUMP_GOO_COOLDOWN));
+
         provider.addComment("===================================================================================================");
         provider.addComment("===============================            COMMANDS SETTINGS            ===========================");
         provider.addComment("===================================================================================================");
@@ -226,6 +265,26 @@ public class Configs extends JiConfig
         WOOD_EXCAVATOR_DEPTH = config.getOrDefault(ConfigKeys.WOOD_EXCAVATOR_DEPTH, REFERENCE.WOOD_EXCAVATOR_DEFAULT_DEPTH);
         WOOD_HAMMER_WIDTH = config.getOrDefault(ConfigKeys.WOOD_HAMMER_WIDTH, REFERENCE.WOOD_HAMMER_DEFAULT_WIDTH);
         WOOD_HAMMER_DEPTH = config.getOrDefault(ConfigKeys.WOOD_HAMMER_DEPTH, REFERENCE.WOOD_HAMMER_DEFAULT_DEPTH);
+
+        GOO_SPREAD_DISTANCE = config.getOrDefault(ConfigKeys.GOO_SPREAD_DISTANCE, REFERENCE.GOO_SPREAD_DISTANCE);
+        LAVA_GOO_SPREAD_DISTANCE = config.getOrDefault(ConfigKeys.LAVA_GOO_SPREAD_DISTANCE, REFERENCE.LAVA_GOO_SPREAD_DISTANCE);
+        WATER_GOO_SPREAD_DISTANCE = config.getOrDefault(ConfigKeys.WATER_GOO_SPREAD_DISTANCE, REFERENCE.WATER_GOO_SPREAD_DISTANCE);
+        GOO_DESTROY_DISTANCE = config.getOrDefault(ConfigKeys.GOO_DESTROY_DISTANCE, REFERENCE.GOO_DESTROY_DISTANCE);
+        LAVA_GOO_DESTROY_DISTANCE = config.getOrDefault(ConfigKeys.LAVA_GOO_DESTROY_DISTANCE, REFERENCE.LAVA_GOO_DESTROY_DISTANCE);
+        WATER_GOO_DESTROY_DISTANCE = config.getOrDefault(ConfigKeys.WATER_GOO_DESTROY_DISTANCE, REFERENCE.WATER_GOO_DESTROY_DISTANCE);
+        GOO_PUMP_DISTANCE = config.getOrDefault(ConfigKeys.GOO_PUMP_DISTANCE, REFERENCE.GOO_PUMP_DISTANCE);
+        GOO_PUMP_DEPTH = config.getOrDefault(ConfigKeys.GOO_PUMP_DEPTH, REFERENCE.GOO_PUMP_DEPTH);
+        AIR_BOMB_GOO_CHANCE = config.getOrDefault(ConfigKeys.AIR_BOMB_GOO_CHANCE, REFERENCE.AIR_BOMB_GOO_CHANCE);
+        CHUNK_BOMB_GOO_CHANCE = config.getOrDefault(ConfigKeys.CHUNK_BOMB_GOO_CHANCE, REFERENCE.CHUNK_BOMB_GOO_CHANCE);
+        LAVA_EATING_GOO_CHANCE = config.getOrDefault(ConfigKeys.LAVA_EATING_GOO_CHANCE, REFERENCE.LAVA_EATING_GOO_CHANCE);
+        LAVA_GENERATING_GOO_CHANCE = config.getOrDefault(ConfigKeys.LAVA_GENERATING_GOO_CHANCE, REFERENCE.LAVA_GENERATING_GOO_CHANCE);
+        STONE_BOMB_GOO_CHANCE = config.getOrDefault(ConfigKeys.STONE_BOMB_GOO_CHANCE, REFERENCE.STONE_BOMB_GOO_CHANCE);
+        TOWERING_GOO_CHANCE = config.getOrDefault(ConfigKeys.TOWERING_GOO_CHANCE, REFERENCE.TOWERING_GOO_CHANCE);
+        TUNNELING_GOO_CHANCE = config.getOrDefault(ConfigKeys.TUNNELING_GOO_CHANCE, REFERENCE.TUNNELING_GOO_CHANCE);
+        WATER_EATING_GOO_CHANCE = config.getOrDefault(ConfigKeys.WATER_EATING_GOO_CHANCE, REFERENCE.WATER_EATING_GOO_CHANCE);
+        WATER_GENERATING_GOO_CHANCE = config.getOrDefault(ConfigKeys.WATER_GENERATING_GOO_CHANCE, REFERENCE.WATER_GENERATING_GOO_CHANCE);
+        LAVA_PUMP_GOO_COOLDOWN = config.getOrDefault(ConfigKeys.LAVA_PUMP_GOO_COOLDOWN, REFERENCE.LAVA_PUMP_GOO_COOLDOWN);
+        WATER_PUMP_GOO_COOLDOWN = config.getOrDefault(ConfigKeys.WATER_PUMP_GOO_COOLDOWN, REFERENCE.WATER_PUMP_GOO_COOLDOWN);
 
         DCLR_RADIUS = config.getOrDefault(ConfigKeys.DCLR, REFERENCE.DCLR_DEFAULT_RADIUS);
     }

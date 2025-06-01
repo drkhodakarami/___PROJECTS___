@@ -27,12 +27,19 @@ package jiraiyah.ultraio.be.goo;
 import jiraiyah.jibase.interfaces.ITickLogic;
 import jiraiyah.jibase.properties.BEProperties;
 import jiraiyah.jibase.properties.BlockEntityFields;
-import jiraiyah.jiralib.blockentity.TickableBE;
+import jiraiyah.jibase.utils.PosHelper;
 import jiraiyah.ultraio.registry.ModBlockEntities;
+import jiraiyah.ultraio.registry.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class ChunkGooBombBE extends TickableBE<ChunkGooBombBE>
+import static jiraiyah.ultraio.Main.CONFIGS;
+import static jiraiyah.ultraio.Main.REFERENCE;
+
+public class ChunkGooBombBE extends GooBaseBE<ChunkGooBombBE>
 {
     public ChunkGooBombBE(BlockPos pos, BlockState state)
     {
@@ -40,20 +47,54 @@ public class ChunkGooBombBE extends TickableBE<ChunkGooBombBE>
         this.properties.tickLogic(new TickLogic());
     }
 
-    //TODO: Make the tick logic not an inner class but an actual class of itself
     static class TickLogic implements ITickLogic<ChunkGooBombBE, BlockEntityFields<ChunkGooBombBE>>
     {
 
         @Override
         public void tick(BEProperties<ChunkGooBombBE> properties)
         {
+            ChunkGooBombBE entity = properties.blockEntity();
+            World world = entity.getWorld();
+            BlockPos pos = entity.getPos();
 
-        }
+            if(shouldNotTick(world, pos, true, CONFIGS.CHUNK_BOMB_GOO_CHANCE))
+                return;
 
-        @Override
-        public void tickClient(BEProperties<ChunkGooBombBE> properties)
-        {
+            BlockPos[] sides = PosHelper.positionSideBottom(pos);
 
+            for (BlockPos side : sides)
+            {
+                if(world.getWorldChunk(pos).equals(world.getWorldChunk(side)))
+                {
+                    if (world.getBlockState(side).isOf(Blocks.LAVA) ||
+                        world.getBlockState(side).isOf(Blocks.WATER))
+                        world.setBlockState(side,
+                                            Blocks.AIR.getDefaultState(),
+                                            Block.NOTIFY_ALL);
+                    continue;
+                }
+                if (world.getBlockState(side).isOf(Blocks.LAVA) ||
+                    world.getBlockState(side).isOf(Blocks.WATER) ||
+                    world.getBlockState(side).isOf(Blocks.AIR))
+                    world.setBlockState(side,
+                                        Blocks.STONE.getDefaultState(),
+                                        Block.NOTIFY_ALL);
+            }
+
+            BlockPos newPos = PosHelper.bottom(pos);
+
+            if(newPos.getY() >= world.getBottomY())
+            {
+                if(!processBlock(world, newPos, entity, ModBlocks.CHUNK_BOMB_GOO))
+                    if (!processBlock(world, newPos.down(), entity, ModBlocks.CHUNK_BOMB_GOO))
+                        if (!processBlock(world, newPos.down(2), entity, ModBlocks.CHUNK_BOMB_GOO))
+                            if (!processBlock(world, newPos.down(3), entity, ModBlocks.CHUNK_BOMB_GOO))
+                                if (!processBlock(world, newPos.down(4), entity, ModBlocks.CHUNK_BOMB_GOO))
+                                    processBlock(world, newPos.down(5), entity, ModBlocks.CHUNK_BOMB_GOO);
+
+                entity.dropItems(world, entity);
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
+            }
         }
     }
 }

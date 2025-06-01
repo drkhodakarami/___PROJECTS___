@@ -30,10 +30,7 @@ import jiraiyah.ultraio.registry.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.recipe.CookingRecipeJsonBuilder;
-import net.minecraft.data.recipe.RecipeExporter;
-import net.minecraft.data.recipe.RecipeGenerator;
-import net.minecraft.data.recipe.SmithingTransformRecipeJsonBuilder;
+import net.minecraft.data.recipe.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.*;
@@ -787,25 +784,78 @@ public class ModRecipeProvider extends FabricRecipeProvider
                         .criterion(hasItem(Blocks.REDSTONE_BLOCK), conditionsFromItem(Blocks.REDSTONE_BLOCK))
                         .criterion("has_wool", conditionsFromTag(ItemTags.WOOL))
                         .offerTo(exporter, getRecipeName(ModBlocks.REDSTONE_CLOCK));
+
+                //TODO: Alloy Mixer
+                //TODO: Animal Feed
+                //TODO: Block Breaker
+                //TODO: Block Placer
+                //TODO: Builder
+
+                createShaped(RecipeCategory.MISC, ModBlocks.CAST_PRESS, 1)
+                                       .pattern("W#W")
+                                       .pattern("#S#")
+                                       .pattern("SFS")
+                                       .input('#', Items.IRON_INGOT)
+                                       .input('F', Items.FURNACE)
+                                       .input('W', ItemTags.PLANKS)
+                                       .input('S', Items.SMOOTH_STONE)
+                                       .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                                       .offerTo(exporter, getRecipeName(ModBlocks.CAST_PRESS));
+
+                createShaped(RecipeCategory.MISC, ModBlocks.CHUNK_LOADER, 1)
+                                       .pattern("#/#")
+                                       .pattern("#E#")
+                                       .pattern("QQQ")
+                                       .input('#', Items.ENDER_PEARL)
+                                       .input('/', Items.ENDER_EYE)
+                                       .input('E', Items.END_ROD)
+                                       .input('Q', ModItems.INGOT_ALLOY_ENDERITE)
+                                       .criterion(hasItem(Items.ENDER_PEARL), conditionsFromItem(Items.ENDER_PEARL))
+                                       .criterion(hasItem(Items.ENDER_EYE), conditionsFromItem(Items.ENDER_EYE))
+                                       .criterion(hasItem(Items.END_ROD), conditionsFromItem(Items.END_ROD))
+                                       .criterion(hasItem(ModItems.INGOT_ALLOY_ENDERITE), conditionsFromItem(ModItems.INGOT_ALLOY_ENDERITE))
+                                       .offerTo(exporter, getRecipeName(ModBlocks.CHUNK_LOADER));
+
+                //TODO: Ender Chanter
+                //TODO: Fluid Pump
+
+                createShaped(RecipeCategory.MISC, ModBlocks.GEM_CLEANER, 1)
+                        .pattern("RRR")
+                        .pattern("SBS")
+                        .pattern("SFS")
+                        .input('R', Items.IRON_INGOT)
+                        .input('F', Items.FURNACE)
+                        .input('B', Items.BUCKET)
+                        .input('S', ModItems.PLATE_IRON)
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .criterion(hasItem(Items.FURNACE), conditionsFromItem(Items.FURNACE))
+                        .criterion(hasItem(Items.BUCKET), conditionsFromItem(Items.BUCKET))
+                        .criterion(hasItem(ModItems.PLATE_IRON), conditionsFromItem(ModItems.PLATE_IRON))
+                        .offerTo(exporter, getRecipeName(ModBlocks.GEM_CLEANER));
+
+                //TODO: Generator
+                //TODO: Miner
+                //TODO: Oven
+                //TODO: Printer
+                //TODO: Project Table
+                //TODO: Pulverizer
+                //TODO: Redstone Clock
+
+                createShaped(RecipeCategory.MISC, ModBlocks.SMELTER, 1)
+                                       .pattern("###")
+                                       .pattern("#B#")
+                                       .pattern("#F#")
+                                       .input('#', Items.IRON_INGOT)
+                                       .input('F', Items.FURNACE)
+                                       .input('B', Items.BUCKET)
+                                       .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                                       .offerTo(exporter, getRecipeName(ModBlocks.SMELTER));
+
+                //TODO: Solar Panel
+                //TODO: Tesseract
+                //TODO: Wood Stripper
+                //TODO: Storage Banks
                 //endregion
-                //TODO: Alloy Mixer Shaped Recipe
-                //TODO: Cast Press Shaped Recipe
-                //TODO: Gem Cleaner Shaped Recipe
-                //TODO: Generator Shaped Recipe
-                //TODO: Oven Shaped Recipe
-                //TODO: Pulverizer Shaped Recipe
-                //TODO: Smelter Shaped Recipe
-                //TODO: Fluid Pump Shaped Recipe
-                //TODO: Block Breaker Shaped Recipe
-                //TODO: Block Placer Shaped Recipe
-                //TODO: Wood Stripper Shaped Recipe
-                //TODO: Animal Feed Shaped Recipe
-                //TODO: Tesseract Shaped Recipe
-                //TODO: Ender Chanter Shaped Recipe
-                //TODO: Project Table Shaped Recipe
-
-                //TODO: Add Recipe for Storage Banks
-
                 //region TOOLS
                 //region MAIN TOOLS
                 createShaped(RecipeCategory.TOOLS, ModItems.PLAYER_TELEPORT, 1)

@@ -32,21 +32,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-//TODO : Make goo blocks functional
 public class StoneGooBomb extends GooBase
 {
     public StoneGooBomb(Settings settings)
     {
         super(settings, new BlockProperties()
-                .blockEntityProperties(
-                        new BlockPropertiesBE<>(() -> ModBlockEntities.STONE_GOO_BOMB)
-                                .shouldTick()));
+                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.STONE_GOO_BOMB)
+                                                                                        .shouldTick()));
         CODEC = createCodec(StoneGooBomb::new);
     }
-
-    /*@Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return ModBlockEntities.STONE_GOO_BOMB.instantiate(pos, state);
-    }*/
 }

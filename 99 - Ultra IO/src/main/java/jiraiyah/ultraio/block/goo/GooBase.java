@@ -28,6 +28,7 @@ import com.mojang.serialization.MapCodec;
 import jiraiyah.jibase.interfaces.ITick;
 import jiraiyah.jibase.properties.BlockProperties;
 import jiraiyah.jiralib.block.JiBlock;
+import jiraiyah.ultraio.be.goo.GooBaseBE;
 import jiraiyah.ultraio.registry.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -49,7 +50,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-//TODO: Utilize properties from JiBlock
 public abstract class GooBase extends JiBlock implements BlockEntityProvider
 {
     public GooBase(Settings settings, BlockProperties properties)
@@ -66,11 +66,8 @@ public abstract class GooBase extends JiBlock implements BlockEntityProvider
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack)
     {
-        //TODO: Turn off the powered state!
-        //TODO: Move the logic to the BlockPropety class itself!!
         if (this.properties.stateProperties().containsProperty(Properties.POWERED))
         {
-            // Set the "powered" property to false when the block is placed
             BlockState newState = state.with(Properties.POWERED, false);
             world.setBlockState(pos, newState, Block.NOTIFY_ALL);
         }
@@ -88,16 +85,17 @@ public abstract class GooBase extends JiBlock implements BlockEntityProvider
     {
         if (!stack.isOf(ModItems.ROD_COPPER))
             return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
-        //TODO: Turn on the powered state!
         if (this.properties.stateProperties().containsProperty(Properties.POWERED))
         {
-            BlockState newState = state.cycle(Properties.POWERED);
+            BlockState newState = state.with(Properties.POWERED, true);
             world.setBlockState(pos, newState, Block.NOTIFY_ALL);
         }
         player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
-        world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.2F, world.getRandom().nextFloat() * 0.6F + 0.8F);
+        world.playSound(player, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.2F, world.getRandom().nextFloat() * 0.6F + 0.8F);
         if (!player.isCreative())
             stack.decrement(1);
+        if(world.getBlockEntity(pos) instanceof GooBaseBE<?> be)
+            be.setPlayerPos(player);
         return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
     }
 

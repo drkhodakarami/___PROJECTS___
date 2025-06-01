@@ -1,32 +1,32 @@
 {
   "variants": {
-    "facing=east,powered=false": {
+    "facing=east,lit=false": {
       "model": "ultraio:block/gem_cleaner",
       "y": 90
     },
-    "facing=east,powered=true": {
+    "facing=east,lit=true": {
       "model": "ultraio:block/gem_cleaner_on",
       "y": 90
     },
-    "facing=north,powered=false": {
+    "facing=north,lit=false": {
       "model": "ultraio:block/gem_cleaner"
     },
-    "facing=north,powered=true": {
+    "facing=north,lit=true": {
       "model": "ultraio:block/gem_cleaner_on"
     },
-    "facing=south,powered=false": {
+    "facing=south,lit=false": {
       "model": "ultraio:block/gem_cleaner",
       "y": 180
     },
-    "facing=south,powered=true": {
+    "facing=south,lit=true": {
       "model": "ultraio:block/gem_cleaner_on",
       "y": 180
     },
-    "facing=west,powered=false": {
+    "facing=west,lit=false": {
       "model": "ultraio:block/gem_cleaner",
       "y": 270
     },
-    "facing=west,powered=true": {
+    "facing=west,lit=true": {
       "model": "ultraio:block/gem_cleaner_on",
       "y": 270
     }
