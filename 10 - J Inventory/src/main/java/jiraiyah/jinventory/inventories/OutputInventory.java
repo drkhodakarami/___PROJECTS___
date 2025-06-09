@@ -25,11 +25,9 @@
 package jiraiyah.jinventory.inventories;
 
 import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.interfaces.ISync;
 import jiraiyah.jiralib.blockentity.UpdatableBE;
 import net.minecraft.item.ItemStack;
 
-import java.util.List;
 
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -38,48 +36,15 @@ import java.util.List;
 @Discord("https://discord.turtywurty.dev/")
 @Youtube("https://www.youtube.com/@TurtyWurty")
 
-public class SyncedSimpleInventory extends RecipeInventory implements ISync
+public class OutputInventory extends PredicateInventory
 {
-    private final UpdatableBE<?> blockEntity;
-    private boolean isDirty = false;
-
-    public SyncedSimpleInventory(UpdatableBE<?> blockEntity, int size)
+    public OutputInventory(UpdatableBE<?> blockEntity, int size)
     {
-        super(size);
-        this.blockEntity = blockEntity;
+        super(blockEntity, size, (slotIndex, stack) -> false);
     }
 
-    public SyncedSimpleInventory(UpdatableBE<?> blockEntity, ItemStack... items)
+    public OutputInventory(UpdatableBE<?> blockEntity, ItemStack... items)
     {
-        super(items);
-        this.blockEntity = blockEntity;
-    }
-
-    @Override
-    public void sync()
-    {
-        if(this.isDirty && this.blockEntity != null && this.blockEntity.hasWorld() && !this.blockEntity.getWorld().isClient)
-        {
-            this.isDirty = false;
-            this.blockEntity.update();
-        }
-    }
-
-    @Override
-    public void markDirty()
-    {
-        super.markDirty();
-        this.isDirty = true;
-    }
-
-    @Override
-    public List<ISync> getSyncables()
-    {
-        return List.of(this);
-    }
-
-    public UpdatableBE<?> getBlockEntity()
-    {
-        return this.blockEntity;
+        super(blockEntity, (slotIndex, stack) -> false, items);
     }
 }

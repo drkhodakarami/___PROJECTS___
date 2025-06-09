@@ -25,11 +25,10 @@
 package jiraiyah.jinventory.inventories;
 
 import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.interfaces.ISync;
 import jiraiyah.jiralib.blockentity.UpdatableBE;
 import net.minecraft.item.ItemStack;
 
-import java.util.List;
+import java.util.function.BiPredicate;
 
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -38,48 +37,32 @@ import java.util.List;
 @Discord("https://discord.turtywurty.dev/")
 @Youtube("https://www.youtube.com/@TurtyWurty")
 
-public class SyncedSimpleInventory extends RecipeInventory implements ISync
+public class PredicateInventory extends SyncedInventory
 {
-    private final UpdatableBE<?> blockEntity;
-    private boolean isDirty = false;
+    private final BiPredicate<ItemStack, Integer> predicate;
 
-    public SyncedSimpleInventory(UpdatableBE<?> blockEntity, int size)
+    public PredicateInventory(UpdatableBE<?> blockEntity, int size, BiPredicate<ItemStack, Integer> predicate)
     {
-        super(size);
-        this.blockEntity = blockEntity;
+        super(blockEntity, size);
+        this.predicate = predicate;
     }
 
-    public SyncedSimpleInventory(UpdatableBE<?> blockEntity, ItemStack... items)
+    public PredicateInventory(UpdatableBE<?> blockEntity, BiPredicate<ItemStack, Integer> predicate, ItemStack... items)
     {
-        super(items);
-        this.blockEntity = blockEntity;
-    }
-
-    @Override
-    public void sync()
-    {
-        if(this.isDirty && this.blockEntity != null && this.blockEntity.hasWorld() && !this.blockEntity.getWorld().isClient)
-        {
-            this.isDirty = false;
-            this.blockEntity.update();
-        }
+        super(blockEntity, items);
+        this.predicate = predicate;
     }
 
     @Override
-    public void markDirty()
+    public boolean isValid(int slotIndex, ItemStack stack)
     {
-        super.markDirty();
-        this.isDirty = true;
+        return this.predicate.test(stack, slotIndex);
     }
 
-    @Override
-    public List<ISync> getSyncables()
+    public BiPredicate<ItemStack, Integer> getPredicate()
     {
-        return List.of(this);
+        return this.predicate;
     }
 
-    public UpdatableBE<?> getBlockEntity()
-    {
-        return this.blockEntity;
-    }
+    //TODO: Check if we need the fluid and slurry code
 }
