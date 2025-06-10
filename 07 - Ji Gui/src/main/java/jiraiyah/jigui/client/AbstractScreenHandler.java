@@ -22,7 +22,7 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jiralib.client;
+package jiraiyah.jigui.client;
 
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jiralib.record.BlockPosPayload;

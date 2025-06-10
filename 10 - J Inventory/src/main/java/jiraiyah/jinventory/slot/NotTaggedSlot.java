@@ -41,4 +41,9 @@ public class NotTaggedSlot extends PredicateSlot
     {
         super(inventory, index, x, y, itemStack -> !itemStack.isIn(tagKey));
     }
+
+    public NotTaggedSlot(Inventory inventory, int index, int x, int y, int maxCount, TagKey<Item>tagKey)
+    {
+        super(inventory, index, x, y, maxCount, itemStack -> !itemStack.isIn(tagKey));
+    }
 }

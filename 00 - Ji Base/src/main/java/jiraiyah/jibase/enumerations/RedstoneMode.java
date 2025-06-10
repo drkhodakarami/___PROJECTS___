@@ -22,17 +22,22 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jibase.enumerations;
 
-import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.annotations.CreatedAt;
+import jiraiyah.jibase.annotations.Developer;
+import jiraiyah.jibase.annotations.Repository;
+import jiraiyah.jibase.annotations.Youtube;
+import jiraiyah.jibase.interfaces.ITraversableEnum;
 
-@Developer("TurtyWurty")
-@ModifiedBy("Jiraiyah")
+@Developer("Direwolf20")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/DaRealTurtyWurty/Industria")
-@Discord("https://discord.turtywurty.dev/")
-@Youtube("https://www.youtube.com/@TurtyWurty")
-public interface ISyncable
+@Repository("https://github.com/Direwolf20-MC/JustDireThings")
+@Youtube("https://www.youtube.com/@direwolf20")
+public enum RedstoneMode implements ITraversableEnum<RedstoneMode>
 {
-    void sync();
+    IGNORED,
+    LOW,
+    HIGH,
+    PULSE;
 }

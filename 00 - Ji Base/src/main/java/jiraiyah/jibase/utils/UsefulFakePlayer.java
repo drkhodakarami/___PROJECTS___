@@ -22,57 +22,79 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jinventory.inventories;
+package jiraiyah.jibase.utils;
 
-import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.interfaces.ISyncable;
-import jiraiyah.jiralib.blockentity.JiBlockEntity;
+import com.mojang.authlib.GameProfile;
+import jiraiyah.jibase.annotations.CreatedAt;
+import jiraiyah.jibase.annotations.Developer;
+import jiraiyah.jibase.annotations.Repository;
+import jiraiyah.jibase.annotations.Youtube;
+import net.fabricmc.fabric.api.entity.FakePlayer;
+import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.TeleportTarget;
+import org.jetbrains.annotations.Nullable;
 
-@Developer("TurtyWurty")
-@ModifiedBy("Jiraiyah")
+@Developer("Direwolf20")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/DaRealTurtyWurty/Industria")
-@Discord("https://discord.turtywurty.dev/")
-@Youtube("https://www.youtube.com/@TurtyWurty")
-
-public class SyncedSimpleInventory extends RecipeInventory implements ISyncable
+@Repository("https://github.com/Direwolf20-MC/JustDireThings")
+@Youtube("https://www.youtube.com/@direwolf20")
+public class UsefulFakePlayer extends FakePlayer
 {
-    private final JiBlockEntity<?> blockEntity;
-    private boolean isDirty = false;
+    private double reach;
 
-    public SyncedSimpleInventory(JiBlockEntity<?> blockEntity, int size)
+    protected UsefulFakePlayer(ServerWorld world, GameProfile profile)
     {
-        super(size);
-        this.blockEntity = blockEntity;
-    }
-
-    public SyncedSimpleInventory(JiBlockEntity<?> blockEntity, ItemStack... items)
-    {
-        super(items);
-        this.blockEntity = blockEntity;
+        super(world, profile);
     }
 
     @Override
-    public void sync()
+    public float getAttackCooldownProgress(float baseTime)
     {
-        //noinspection DataFlowIssue
-        if(this.isDirty && this.blockEntity != null && this.blockEntity.hasWorld() && !this.blockEntity.getWorld().isClient)
-        {
-            this.isDirty = false;
-            this.blockEntity.update();
-        }
+        return 1; // Prevent the attack strength from always being 0.03 due to not ticking.
     }
 
     @Override
-    public void markDirty()
+    public ItemCooldownManager getItemCooldownManager()
     {
-        super.markDirty();
-        this.isDirty = true;
+        return new ItemCooldownManager(); //Prevent item cool downs due to player not ticking
     }
 
-    public JiBlockEntity<?> getBlockEntity()
+    @Override
+    public boolean isPartOfGame()
     {
-        return this.blockEntity;
+        return false; //Prevent them being targeted by mobs?
+    }
+
+    public void fakeUpdateUsingItem(ItemStack stack)
+    {
+        this.tickItemStackUsage(stack);
+    }
+
+    @Override
+    public @Nullable ServerPlayerEntity teleportTo(TeleportTarget teleportTarget)
+    {
+        return createPlayer(teleportTarget.world(), this.getGameProfile());
+    }
+
+    public double getReach() {
+        return reach;
+    }
+
+    public void setReach(double reach)
+    {
+        this.reach = reach;
+    }
+
+    public static UsefulFakePlayer createPlayer(ServerWorld world, GameProfile profile)
+    {
+        return new UsefulFakePlayer(world, profile);
+    }
+
+    public static UsefulFakePlayer createPlayer(ServerWorld world)
+    {
+        return new UsefulFakePlayer(world, FakePlayer.get(world).getGameProfile());
     }
 }

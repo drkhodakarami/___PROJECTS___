@@ -67,10 +67,8 @@ public abstract class GooBase extends JiBlock implements BlockEntityProvider
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack)
     {
         if (this.properties.stateProperties().containsProperty(Properties.POWERED))
-        {
-            BlockState newState = state.with(Properties.POWERED, false);
-            world.setBlockState(pos, newState, Block.NOTIFY_ALL);
-        }
+            world.setBlockState(pos, state.with(Properties.POWERED, false), Block.NOTIFY_ALL);
+
         super.onPlaced(world, pos, state, placer, itemStack);
     }
 
@@ -85,17 +83,19 @@ public abstract class GooBase extends JiBlock implements BlockEntityProvider
     {
         if (!stack.isOf(ModItems.ROD_COPPER))
             return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+
         if (this.properties.stateProperties().containsProperty(Properties.POWERED))
-        {
-            BlockState newState = state.with(Properties.POWERED, true);
-            world.setBlockState(pos, newState, Block.NOTIFY_ALL);
-        }
+            world.setBlockState(pos, state.with(Properties.POWERED, true), Block.NOTIFY_ALL);
+
         player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
         world.playSound(player, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1.2F, world.getRandom().nextFloat() * 0.6F + 0.8F);
+
         if (!player.isCreative())
             stack.decrement(1);
+
         if(world.getBlockEntity(pos) instanceof GooBaseBE<?> be)
             be.setPlayerPos(player);
+
         return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
     }
 

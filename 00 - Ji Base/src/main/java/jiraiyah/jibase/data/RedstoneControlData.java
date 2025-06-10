@@ -22,17 +22,48 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jibase.data;
 
-import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.annotations.CreatedAt;
+import jiraiyah.jibase.annotations.Developer;
+import jiraiyah.jibase.annotations.Repository;
+import jiraiyah.jibase.annotations.Youtube;
+import jiraiyah.jibase.enumerations.RedstoneMode;
 
-@Developer("TurtyWurty")
-@ModifiedBy("Jiraiyah")
+import java.util.Objects;
+
+@Developer("Direwolf20")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/DaRealTurtyWurty/Industria")
-@Discord("https://discord.turtywurty.dev/")
-@Youtube("https://www.youtube.com/@TurtyWurty")
-public interface ISyncable
+@Repository("https://github.com/Direwolf20-MC/JustDireThings")
+@Youtube("https://www.youtube.com/@direwolf20")
+public class RedstoneControlData
 {
-    void sync();
+    public boolean receivingRedstone = false;
+    public boolean checkedRedstone = false;
+    public boolean pulsed = false;
+    public RedstoneMode redstoneMode = RedstoneMode.IGNORED;
+
+    public RedstoneControlData() {}
+
+    public RedstoneControlData(RedstoneMode redstoneMode)
+    {
+        this.redstoneMode = redstoneMode;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(receivingRedstone, pulsed, redstoneMode);
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        RedstoneControlData that = (RedstoneControlData) obj;
+        return receivingRedstone == that.receivingRedstone &&
+                pulsed == that.pulsed &&
+                redstoneMode == that.redstoneMode;
+    }
 }

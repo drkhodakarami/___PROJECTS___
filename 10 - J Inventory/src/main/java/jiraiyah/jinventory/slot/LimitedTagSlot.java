@@ -41,4 +41,9 @@ public class LimitedTagSlot extends PredicateSlot
     {
         super(inventory, index, x, y, itemStack -> itemStack.isIn(tagKey) && !itemStack.isIn(limitTagKey));
     }
+
+    public LimitedTagSlot(Inventory inventory, int index, int x, int y, int maxCount, TagKey<Item> tagKey, TagKey<Item> limitTagKey)
+    {
+        super(inventory, index, x, y, maxCount, itemStack -> itemStack.isIn(tagKey) && !itemStack.isIn(limitTagKey));
+    }
 }

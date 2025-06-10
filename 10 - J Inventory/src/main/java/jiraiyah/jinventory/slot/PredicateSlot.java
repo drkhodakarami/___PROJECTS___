@@ -42,6 +42,7 @@ import java.util.function.Predicate;
 public class PredicateSlot extends Slot
 {
     private final Predicate<ItemStack> predicate;
+    private int maxCount;
 
     public PredicateSlot(Inventory inventory, int index, int x, int y, Predicate<ItemStack> predicate)
     {
@@ -49,14 +50,28 @@ public class PredicateSlot extends Slot
         this.predicate = predicate;
     }
 
+    public PredicateSlot(Inventory inventory, int index, int x, int y, int maxCount, Predicate<ItemStack> predicate)
+    {
+        this(inventory, index, x, y, predicate);
+        this.maxCount = maxCount;
+    }
+
     public PredicateSlot(SimpleInventory inventory, int index, int x, int y)
     {
-        this(inventory, index, x, y, stack -> invetory.isValid(index, stack));
+        this(inventory, index, x, y, stack -> inventory.isValid(index, stack));
+    }
+
+    public PredicateSlot(SimpleInventory inventory, int index, int x, int y, int maxCount)
+    {
+        this(inventory, index, x, y);
+        this.maxCount = maxCount;
     }
 
     @Override
     public boolean canInsert(ItemStack stack)
     {
-        return this.predicate.test(stack);
+        if(maxCount == 0)
+            return this.predicate.test(stack);
+        return this.predicate.test(stack) && getStack().getCount() < maxCount;
     }
 }

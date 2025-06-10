@@ -25,7 +25,8 @@
 package jiraiyah.jinventory.inventories;
 
 import jiraiyah.jibase.annotations.*;
-import jiraiyah.jiralib.blockentity.UpdatableBE;
+import jiraiyah.jinventory.be.JInventoryBE;
+import jiraiyah.jiralib.blockentity.JiBlockEntity;
 import net.minecraft.item.ItemStack;
 
 
@@ -38,12 +39,12 @@ import net.minecraft.item.ItemStack;
 
 public class OutputInventory extends PredicateInventory
 {
-    public OutputInventory(UpdatableBE<?> blockEntity, int size)
+    public OutputInventory(JiBlockEntity<?> blockEntity, int size)
     {
         super(blockEntity, size, (slotIndex, stack) -> false);
     }
 
-    public OutputInventory(UpdatableBE<?> blockEntity, ItemStack... items)
+    public OutputInventory(JiBlockEntity<?> blockEntity, ItemStack... items)
     {
         super(blockEntity, (slotIndex, stack) -> false, items);
     }

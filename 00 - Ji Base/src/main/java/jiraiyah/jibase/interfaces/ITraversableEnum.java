@@ -26,13 +26,26 @@ package jiraiyah.jibase.interfaces;
 
 import jiraiyah.jibase.annotations.*;
 
-@Developer("TurtyWurty")
-@ModifiedBy("Jiraiyah")
+@Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/DaRealTurtyWurty/Industria")
-@Discord("https://discord.turtywurty.dev/")
-@Youtube("https://www.youtube.com/@TurtyWurty")
-public interface ISyncable
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+
+@SuppressWarnings("unchecked")
+public interface ITraversableEnum<T extends Enum<T>>
 {
-    void sync();
+    default T next()
+    {
+        T[] values = ((Class<T>) ((T) this).getClass()).getEnumConstants();
+        int nextOrdinal = (((T) this).ordinal() + 1) % values.length;
+        return values[nextOrdinal];
+    }
+
+    default T previous()
+    {
+        T[] values = ((Class<T>) ((T) this).getClass()).getEnumConstants();
+        int nextOrdinal = (((T) this).ordinal() - 1 + values.length) % values.length;
+        return values[nextOrdinal];
+    }
 }

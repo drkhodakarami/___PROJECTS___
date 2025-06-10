@@ -29,6 +29,8 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.registry.tag.TagKey;
 
+import java.util.List;
+
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -40,5 +42,10 @@ public class TaggedSlot extends PredicateSlot
     public TaggedSlot(Inventory inventory, int index, int x, int y, TagKey<Item> tagKey)
     {
         super(inventory, index, x, y, itemStack -> itemStack.isIn(tagKey));
+    }
+
+    public TaggedSlot(Inventory inventory, int index, int x, int y, int maxCount, TagKey<Item> tagKey)
+    {
+        super(inventory, index, x, y, maxCount, itemStack -> itemStack.isIn(tagKey));
     }
 }

@@ -104,6 +104,10 @@ repositories {
 	maven { url = 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
 }
 
+loom{
+	accessWidenerPath = file("src/main/resources/${modId}.accesswidener")
+}
+
 fabricApi {
 	configureDataGeneration {
 		client = true
@@ -118,6 +122,7 @@ dependencies {
 	
 	// Ji Lib Mods Dependency ========================================================================================================================
     modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
+	modImplementation "jiraiyah.jiralib:jiralib:${jiralibVersion}"
 }
 
 processResources {

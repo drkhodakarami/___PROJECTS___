@@ -25,6 +25,7 @@
 package jiraiyah.jibase.enumerations;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.interfaces.ITraversableEnum;
 
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -32,7 +33,7 @@ import jiraiyah.jibase.annotations.*;
 @Discord("https://discord.gg/pmM4emCbuH")
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
-public enum IOStatus
+public enum IOStatus implements ITraversableEnum<IOStatus>
 {
     NONE,
     INPUT,

@@ -22,17 +22,58 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jibase.utils;
 
 import jiraiyah.jibase.annotations.*;
 
-@Developer("TurtyWurty")
-@ModifiedBy("Jiraiyah")
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
+@Developer("Direwolf20")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/DaRealTurtyWurty/Industria")
-@Discord("https://discord.turtywurty.dev/")
-@Youtube("https://www.youtube.com/@TurtyWurty")
-public interface ISyncable
+@Repository("https://github.com/Direwolf20-MC/JustDireThings")
+@Youtube("https://www.youtube.com/@direwolf20")
+public class StringHelper
 {
-    void sync();
+    private static final BigDecimal TWENTY = new BigDecimal(20);
+
+    public static String formatted(int value)
+    {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(value);
+    }
+
+    public static String formatted(float value)
+    {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
+        return decimalFormat.format(value);
+    }
+
+    public static String withSuffix(int count)
+    {
+        if (count < 1000) return "" + count;
+        int exp = (int) (Math.log(count) / Math.log(1000));
+        return String.format("%.1f%c",
+                             count / Math.pow(1000, exp),
+                             "kMGTPE".charAt(exp - 1));
+    }
+
+    public static String withSuffix(float value)
+    {
+        if (value < 1000)
+            return String.valueOf(value);
+
+        int exp = (int) (Math.log(value) / Math.log(1000));
+        return String.format("%.1f%c",
+                             value / Math.pow(1000, exp),
+                             "kMGTPE_____".charAt(exp - 1));
+    }
+
+    public static String ticksInSeconds(int ticks)
+    {
+        BigDecimal value = new BigDecimal(ticks);
+        value = value.divide(TWENTY, 1, RoundingMode.HALF_UP);
+        return value.toString();
+    }
 }

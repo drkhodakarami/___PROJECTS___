@@ -46,10 +46,10 @@ public interface ISyncedTick extends ITick, ISync
     {
         onTick();
 
-        List<ISync> syncables = getSyncables();
+        List<ISyncable> syncables = getSyncables();
 
         if (shouldSync() && syncables != null && !syncables.isEmpty())
-            syncables.forEach(ISync::sync);
+            syncables.forEach(ISyncable::sync);
 
         if(this instanceof IUpdatable updatable)
             updatable.onTickEnd();

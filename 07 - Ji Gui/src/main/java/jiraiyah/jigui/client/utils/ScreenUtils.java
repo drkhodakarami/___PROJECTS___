@@ -95,6 +95,7 @@ public class ScreenUtils
                 int y2 = y1 + spriteHeight;
                 float maxU = sprite.getMaxU();
                 float maxV = sprite.getMaxV();
+
                 context.drawTexturedQuad(renderLayers, atlasId, x1, x2, y1, y2, minU, maxU, minV, maxV, color);
             }
 

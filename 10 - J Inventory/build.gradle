@@ -120,6 +120,7 @@ dependencies {
     modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
     modImplementation "jiraiyah.reference:jireference:${jireferenceVersion}"
     modImplementation "jiraiyah.jiralib:jiralib:${jiralibVersion}"
+	//modImplementation "jiraiyah.gui:jigui:${jiguiVersion}"
 }
 
 processResources {

@@ -37,11 +37,13 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -65,9 +67,9 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
 {
     public static MapCodec<? extends JiBlock> CODEC;
 
-    protected BlockProperties properties;
+    protected BlockProperties<?> properties;
 
-    public JiBlock(Settings settings, BlockProperties properties)
+    public JiBlock(Settings settings, BlockProperties<?> properties)
     {
         super(settings);
         this.properties = properties;
@@ -79,7 +81,7 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
         setDefaultState(this.stateManager.getDefaultState());
 
         BlockState state = this.stateManager.getDefaultState();
-        state = this.properties.stateProperties().applyDefaults(state);
+        state = this.properties.getStateProperties().applyDefaults(state);
         setDefaultState(state);
     }
 
@@ -88,8 +90,8 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     {
         super.appendProperties(builder);
 
-        if (this.properties != null && this.properties.stateProperties() != null)
-            this.properties.stateProperties().addToBuilder(builder);
+        if (this.properties != null && this.properties.getStateProperties() != null)
+            this.properties.getStateProperties().addToBuilder(builder);
     }
 
     @Override
@@ -99,22 +101,22 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
         if(state == null)
             return null;
 
-        if(this.properties.stateProperties().containsProperty(Properties.HORIZONTAL_FACING))
+        if(this.properties.getStateProperties().containsProperty(Properties.HORIZONTAL_FACING))
         {
             Direction facing = ctx.getHorizontalPlayerFacing();
-            if(this.properties.facingOpposite())
+            if(this.properties.isFacingOpposite())
                 facing = facing.getOpposite();
             state = state.with(Properties.HORIZONTAL_FACING, facing);
         }
-        else if(this.properties.stateProperties().containsProperty(Properties.FACING))
+        else if(this.properties.getStateProperties().containsProperty(Properties.FACING))
         {
             Direction facing = ctx.getPlayerLookDirection();
-            if(this.properties.facingOpposite())
+            if(this.properties.isFacingOpposite())
                 facing = facing.getOpposite();
             state = state.with(Properties.FACING, facing);
         }
 
-        if(this.properties.stateProperties().containsProperty(Properties.AXIS))
+        if(this.properties.getStateProperties().containsProperty(Properties.AXIS))
         {
             state = state.with(Properties.AXIS, ctx.getSide().getAxis());
         }
@@ -125,9 +127,9 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     @Override
     protected BlockState rotate(BlockState state, BlockRotation rotation)
     {
-        if(this.properties.stateProperties().containsProperty(Properties.HORIZONTAL_FACING))
+        if(this.properties.getStateProperties().containsProperty(Properties.HORIZONTAL_FACING))
             return state.with(Properties.HORIZONTAL_FACING, rotation.rotate(state.get(Properties.HORIZONTAL_FACING)));
-        else if(this.properties.stateProperties().containsProperty(Properties.FACING))
+        else if(this.properties.getStateProperties().containsProperty(Properties.FACING))
             return state.with(Properties.FACING, rotation.rotate(state.get(Properties.FACING)));
 
         return super.rotate(state, rotation);
@@ -136,9 +138,9 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     @Override
     protected BlockState mirror(BlockState state, BlockMirror mirror)
     {
-        if(this.properties.stateProperties().containsProperty(Properties.HORIZONTAL_FACING))
+        if(this.properties.getStateProperties().containsProperty(Properties.HORIZONTAL_FACING))
             return state.with(Properties.HORIZONTAL_FACING, mirror.apply(state.get(Properties.HORIZONTAL_FACING)));
-        else if(this.properties.stateProperties().containsProperty(Properties.FACING))
+        else if(this.properties.getStateProperties().containsProperty(Properties.FACING))
             return state.with(Properties.FACING, mirror.apply(state.get(Properties.FACING)));
 
         return super.mirror(state, mirror);
@@ -147,17 +149,17 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
     {
-        return (this.properties.blockEntityProperties() != null && this.properties.blockEntityProperties().getTypeSupplier() != null)
-                ? this.properties.blockEntityProperties().getBlockEntityFactory().create(pos, state)
+        return (this.properties.getBEFactory() != null)
+                ? this.properties.getBEFactory().create(pos, state)
                 : null;
     }
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type)
     {
-        if(this.properties.blockEntityProperties() != null && this.properties.blockEntityProperties().isTickable())
+        if(this.properties.getBEType() != null && this.properties.isTickable())
         {
-            if(this.properties.blockEntityProperties().getBlockEntityType() instanceof ITick)
+            if(this.properties.getBEType() instanceof ITick)
                 //noinspection ResultOfMethodCallIgnored
                 ITick.createTicker(world);
             else
@@ -193,42 +195,27 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     protected int getComparatorOutput(BlockState state, World world, BlockPos pos)
     {
         return this.properties.hasComparatorOutput()
-               ? this.properties.comparatorOutput().apply(state, world, pos)
+               ? this.properties.getComparatorOutput().apply(state, world, pos)
                : super.getComparatorOutput(state, world, pos);
     }
 
     @Override
     protected BlockRenderType getRenderType(BlockState state)
     {
-        return this.properties.renderType();
+        return this.properties.getRenderType();
     }
 
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
     {
-        return this.properties.shapeFactory().create(state, world, pos, context);
+        return this.properties.getShapeFactory().create(state, world, pos, context);
     }
 
-    //TODO: Rewrite the method
-    //@Override
-    //protected void onStateReplaced(BlockState newState, ServerWorld world, BlockPos pos, boolean moved)
-    //{
-        //if (this.properties.multiblockType != null) {
-        //    if (!state.isOf(newState.getBlock())) {
-        //        this.multiblockType.onMultiblockBreak(world, pos);
-        //    }
-        //} else if (this.dropContentsOnBreak) {
-        //if (this.properties.blockEntityProperties().shouldDropContentsOnBreak())
-        //{
-        //    if (!this.getDefaultState().isOf(newState.getBlock())) {
-        //        BlockEntity blockEntity = world.getBlockEntity(pos);
-        //        if (blockEntity instanceof BlockEntityContentsDropper blockEntityWithInventory) {
-        //            blockEntityWithInventory.dropContents(world, pos);
-        //        }
-        //    }
-        //}
-        //super.onStateReplaced(state, world, pos, moved);
-    //}
+    @Override
+    protected void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved)
+    {
+        ItemScatterer.onStateReplaced(state, world, pos);
+    }
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit)
@@ -241,7 +228,7 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
         //    return ActionResult.SUCCESS;
         //}
 
-        if (this.properties.blockEntityProperties() != null && this.properties.blockEntityProperties().hasGUI())
+        if (this.properties.hasGUI())
         {
             if (!world.isClient)
             {
@@ -284,5 +271,10 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
         return !state.canPlaceAt(world, pos)
                 ? Blocks.AIR.getDefaultState()
                 : super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
+    }
+
+    public boolean hasInventory()
+    {
+        return this.properties.hasInventory();
     }
 }

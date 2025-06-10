@@ -37,9 +37,7 @@ import java.util.List;
 
 public interface ISync
 {
-    void sync();
-
-    default List<ISync> getSyncables()
+    default List<ISyncable> getSyncables()
     {
         return List.of();
     }

@@ -22,17 +22,58 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jibase.data;
 
-import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.annotations.CreatedAt;
+import jiraiyah.jibase.annotations.Developer;
+import jiraiyah.jibase.annotations.Repository;
+import jiraiyah.jibase.annotations.Youtube;
+import net.minecraft.component.ComponentChanges;
+import net.minecraft.entity.ItemSteerable;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 
-@Developer("TurtyWurty")
-@ModifiedBy("Jiraiyah")
+import java.util.Objects;
+
+@Developer("Direwolf20")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/DaRealTurtyWurty/Industria")
-@Discord("https://discord.turtywurty.dev/")
-@Youtube("https://www.youtube.com/@TurtyWurty")
-public interface ISyncable
+@Repository("https://github.com/Direwolf20-MC/JustDireThings")
+@Youtube("https://www.youtube.com/@direwolf20")
+public class ItemStackKey
 {
-    void sync();
+    public final RegistryEntry<Item> item;
+    public final ComponentChanges dataComponents;
+    private final int hash;
+
+    public ItemStackKey(ItemStack stack, boolean compareNBT)
+    {
+        this.item = stack.getRegistryEntry();
+        this.dataComponents = compareNBT ? stack.getComponentChanges() : ComponentChanges.EMPTY;
+        this.hash = Objects.hash(item, dataComponents);
+    }
+
+    public ItemStack getStack()
+    {
+        return new ItemStack(item, 1, dataComponents);
+    }
+
+    public ItemStack getStack(int count)
+    {
+        return new ItemStack(item, count, dataComponents);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj instanceof ItemStackKey)
+            return (((ItemStackKey) obj).item == this.item) && Objects.equals(((ItemStackKey) obj).dataComponents, this.dataComponents);
+        return false;
+    }
 }

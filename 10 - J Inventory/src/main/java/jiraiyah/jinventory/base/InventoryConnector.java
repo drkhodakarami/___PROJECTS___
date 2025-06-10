@@ -26,9 +26,10 @@ package jiraiyah.jinventory.base;
 
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.enumerations.MappedDirection;
-import jiraiyah.jinventory.inventories.RecipeSimpleInventory;
+import jiraiyah.jinventory.inventories.OutputInventory;
+import jiraiyah.jinventory.inventories.RecipeInventory;
 import jiraiyah.jinventory.record.PredicateInventoryStorage;
-import jiraiyah.jiralib.blockentity.UpdatableBE;
+import jiraiyah.jiralib.blockentity.JiBlockEntity;
 import jiraiyah.jiralib.util.StorageConnector;
 import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
@@ -37,7 +38,6 @@ import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -93,12 +93,18 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
         addInventory(inventory, MappedDirection.NONE, canInsert, canExtract);
     }
 
-    public void addInventory(@NotNull T inventory, MappedDirection side, Supplier<Boolean> canInsert, Supplier<Boolean> canExtract) {
+    public void addInventory(@NotNull T inventory, MappedDirection side, Supplier<Boolean> canInsert, Supplier<Boolean> canExtract)
+    {
         this.inventories.add(inventory);
         this.sidedInventories.add(new Pair<>(side, inventory));
         var storage = PredicateInventoryStorage.of(InventoryStorage.of(inventory, MappedDirection.toDirection(side)), canInsert, canExtract);
         addStorage(storage, side);
-        InventoryConnector<RecipeSimpleInventory> test = new InventoryConnector<>();
+        InventoryConnector<RecipeInventory> test = new InventoryConnector<>();
+    }
+
+    public void addInventory(@NotNull T inventory, Direction side, Supplier<Boolean> canInsert, Supplier<Boolean> canExtract)
+    {
+        this.addInventory(inventory, MappedDirection.fromDirection(side), canInsert, canExtract);
     }
 
     public void addInventory(int size, Function<Integer, T> factory)
@@ -133,32 +139,32 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
     }
 
     //Used for synced, output, predicate
-    public void addInventory(UpdatableBE<?> blockEntity, int size, BiFunction<UpdatableBE<?>, Integer, T> factory)
+    public void addInventory(JiBlockEntity<?> blockEntity, int size, BiFunction<JiBlockEntity<?>, Integer, T> factory)
     {
         addInventory(factory.apply(blockEntity, size));
     }
 
-    public void addInventory(UpdatableBE<?> blockEntity, int size, MappedDirection side, BiFunction<UpdatableBE<?>, Integer, T> factory)
+    public void addInventory(JiBlockEntity<?> blockEntity, int size, MappedDirection side, BiFunction<JiBlockEntity<?>, Integer, T> factory)
     {
         addInventory(factory.apply(blockEntity, size), side);
     }
 
-    public void addInventory(UpdatableBE<?> blockEntity, int size, Direction side, BiFunction<UpdatableBE<?>, Integer, T> factory)
+    public void addInventory(JiBlockEntity<?> blockEntity, int size, Direction side, BiFunction<JiBlockEntity<?>, Integer, T> factory)
     {
         addInventory(factory.apply(blockEntity, size), side);
     }
 
-    public void addInventory(UpdatableBE<?> blockEntity, BiFunction<UpdatableBE<?>, ItemStack[], T> factory, ItemStack... items)
+    public void addInventory(JiBlockEntity<?> blockEntity, BiFunction<JiBlockEntity<?>, ItemStack[], T> factory, ItemStack... items)
     {
         addInventory(factory.apply(blockEntity, items));
     }
 
-    public void addInventory(UpdatableBE<?> blockEntity, MappedDirection side, BiFunction<UpdatableBE<?>, ItemStack[], T> factory, ItemStack... items)
+    public void addInventory(JiBlockEntity<?> blockEntity, MappedDirection side, BiFunction<JiBlockEntity<?>, ItemStack[], T> factory, ItemStack... items)
     {
         addInventory(factory.apply(blockEntity, items), side);
     }
 
-    public void addInventory(UpdatableBE<?> blockEntity, Direction side, BiFunction<UpdatableBE<?>, ItemStack[], T> factory, ItemStack... items)
+    public void addInventory(JiBlockEntity<?> blockEntity, Direction side, BiFunction<JiBlockEntity<?>, ItemStack[], T> factory, ItemStack... items)
     {
         addInventory(factory.apply(blockEntity, items), side);
     }
@@ -185,7 +191,6 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
         addInventory(inventory, side, () -> false, canExtract);
     }
 
-    //TODO: Add insert only and Extract only overloads using Direction
     public void addInsertOnlyInventory(@NotNull T inventory, Direction side)
     {
         addInsertOnlyInventory(inventory, side, () -> true);
@@ -297,9 +302,9 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
         this.inventories.forEach(inventory -> ItemScatterer.spawn(world, pos, inventory));
     }
 
-    public RecipeSimpleInventory getRecipeInventory()
+    public RecipeInventory getRecipeInventory()
     {
-        return new RecipeSimpleInventory(getStacks().toArray(new ItemStack[0]));
+        return new RecipeInventory(getStacks().toArray(new ItemStack[0]));
     }
 
     public List<Pair<MappedDirection, T>> getSidedInventories()
@@ -323,14 +328,11 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
     @Override
     public void readNbt(NbtList nbt, RegistryWrapper.WrapperLookup registryLookup)
     {
-        for (int i = 0; i < nbt.size(); i++)
-        {
-            NbtCompound inventoryNbt = nbt.getCompoundOrEmpty(i); //TODO: The change in 1.21.5 nbt.getCompound became getCompoundOrEmpty
-            if(inventoryNbt.isEmpty())//TODO: 1.21.5 Now we need to check to make sure nbtCompound is not empty!
-                continue;
-            SimpleInventory inventory = this.inventories.get(i);
-            Inventories.readNbt(inventoryNbt, inventory.getHeldStacks(), registryLookup);
-        }
+
+    }
+
+    public void addInventory(OutputInventory itemStacks, MappedDirection direction)
+    {
     }
     //endregion
 }

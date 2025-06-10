@@ -199,6 +199,8 @@ public class BlockProperties<T extends BlockEntity>
 
     public BlockEntityType<T> getBEType()
     {
+        if(this.blockEntityTypeSupplier == null || this.blockEntityTypeSupplier.get() == null)
+            return null;
         return this.blockEntityTypeSupplier.get();
     }
 

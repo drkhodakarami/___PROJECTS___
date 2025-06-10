@@ -22,17 +22,60 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jibase.data;
 
-import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.annotations.CreatedAt;
+import jiraiyah.jibase.annotations.Developer;
+import jiraiyah.jibase.annotations.Repository;
+import jiraiyah.jibase.annotations.Youtube;
+import net.minecraft.entity.Entity;
 
-@Developer("TurtyWurty")
-@ModifiedBy("Jiraiyah")
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.WeakHashMap;
+
+@Developer("Direwolf20")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/DaRealTurtyWurty/Industria")
-@Discord("https://discord.turtywurty.dev/")
-@Youtube("https://www.youtube.com/@TurtyWurty")
-public interface ISyncable
+@Repository("https://github.com/Direwolf20-MC/JustDireThings")
+@Youtube("https://www.youtube.com/@direwolf20")
+public class FilterData
 {
-    void sync();
+    public boolean allowList = false;
+    public boolean compareNBT = false;
+    public int blockItemFilter = -1;
+
+    // This is not saved in NBT, and is recreated as needed on demand
+    public final Map<ItemStackKey, Boolean> filterCache = new HashMap<>();
+    public final WeakHashMap<Entity, Boolean> entityCache = new WeakHashMap<>();
+
+    public FilterData() {}
+
+    public FilterData(boolean allowList, boolean compareNBT, int blockItemFilter)
+    {
+        this.allowList = allowList;
+        this.compareNBT = compareNBT;
+        this.blockItemFilter = blockItemFilter;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(allowList, compareNBT, blockItemFilter);
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(this == obj)
+            return true;
+
+        if(obj == null || getClass() != obj.getClass())
+            return false;
+
+        FilterData that = (FilterData) obj;
+        return allowList == that.allowList &&
+               compareNBT == that.compareNBT &&
+               blockItemFilter == that.blockItemFilter;
+    }
 }

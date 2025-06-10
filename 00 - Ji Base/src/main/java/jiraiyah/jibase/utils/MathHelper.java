@@ -28,6 +28,7 @@ import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.exceptions.Exceptions;
 import net.minecraft.world.World;
 
+import java.util.Random;
 import java.util.function.Predicate;
 
 @Developer("Jiraiyah")
@@ -38,9 +39,23 @@ import java.util.function.Predicate;
 
 public class MathHelper
 {
+    private static final Random rand = new Random();
+
     public MathHelper()
     {
         Exceptions.throwCtorAssertion();
+    }
+
+    public static double nextDouble(double min, double max) {
+        return min + (max - min) * rand.nextDouble();
+    }
+
+    public static int nextInt(int min, int max) {
+        return min + (max - min) * rand.nextInt();
+    }
+
+    public static float nextFloat(float min, float max) {
+        return min + (max - min) * rand.nextFloat();
     }
 
     public static Predicate<Integer> countEquals(int value)
@@ -115,13 +130,13 @@ public class MathHelper
         return count -> count >= value;
     }
 
-    public static float getChance(int value)
+    public static float getReverseChance(int value)
     {
         return (100 - value) / 100f;
     }
 
-    public static boolean getChance(World world, int value)
+    public static boolean getChance(int value)
     {
-        return world.getRandom().nextFloat() >= getChance(value);
+        return rand.nextFloat() >= getReverseChance(value);
     }
 }

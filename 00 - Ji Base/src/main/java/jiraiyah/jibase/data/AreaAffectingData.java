@@ -22,57 +22,76 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jinventory.inventories;
+package jiraiyah.jibase.data;
 
-import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.interfaces.ISyncable;
-import jiraiyah.jiralib.blockentity.JiBlockEntity;
-import net.minecraft.item.ItemStack;
+import jiraiyah.jibase.annotations.CreatedAt;
+import jiraiyah.jibase.annotations.Developer;
+import jiraiyah.jibase.annotations.Repository;
+import jiraiyah.jibase.annotations.Youtube;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Direction;
 
-@Developer("TurtyWurty")
-@ModifiedBy("Jiraiyah")
+import java.util.Objects;
+
+@SuppressWarnings("SameParameterValue")
+@Developer("Direwolf20")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/DaRealTurtyWurty/Industria")
-@Discord("https://discord.turtywurty.dev/")
-@Youtube("https://www.youtube.com/@TurtyWurty")
-
-public class SyncedSimpleInventory extends RecipeInventory implements ISyncable
+@Repository("https://github.com/Direwolf20-MC/JustDireThings")
+@Youtube("https://www.youtube.com/@direwolf20")
+public class AreaAffectingData
 {
-    private final JiBlockEntity<?> blockEntity;
-    private boolean isDirty = false;
+    public double xRadius = 0;
+    public double yRadius = 0;
+    public double zRadius = 0;
+    public int xOffset = 0;
+    public int yOffset = 1;
+    public int zOffset = 0;
+    public boolean renderArea = false;
+    public Box area;
 
-    public SyncedSimpleInventory(JiBlockEntity<?> blockEntity, int size)
-    {
-        super(size);
-        this.blockEntity = blockEntity;
+    public AreaAffectingData() {
+
     }
 
-    public SyncedSimpleInventory(JiBlockEntity<?> blockEntity, ItemStack... items)
+    public AreaAffectingData(Direction facing)
     {
-        super(items);
-        this.blockEntity = blockEntity;
+        xOffset = facing.getVector().getX();
+        yOffset = facing.getVector().getY();
+        zOffset = facing.getVector().getZ();
+    }
+
+    public AreaAffectingData(double xRadius, double yRadius, double zRadius, int xOffset, int yOffset, int zOffset)
+    {
+        this.xRadius = xRadius;
+        this.yRadius = yRadius;
+        this.zRadius = zRadius;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+        this.zOffset = zOffset;
     }
 
     @Override
-    public void sync()
+    public boolean equals(Object o)
     {
-        //noinspection DataFlowIssue
-        if(this.isDirty && this.blockEntity != null && this.blockEntity.hasWorld() && !this.blockEntity.getWorld().isClient)
-        {
-            this.isDirty = false;
-            this.blockEntity.update();
-        }
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        AreaAffectingData that = (AreaAffectingData) o;
+        return xRadius == that.xRadius &&
+               yRadius == that.yRadius &&
+               zRadius == that.zRadius &&
+               xOffset == that.xOffset &&
+               yOffset == that.yOffset &&
+               zOffset == that.zOffset &&
+               renderArea == that.renderArea;
     }
 
     @Override
-    public void markDirty()
+    public int hashCode()
     {
-        super.markDirty();
-        this.isDirty = true;
-    }
-
-    public JiBlockEntity<?> getBlockEntity()
-    {
-        return this.blockEntity;
+        return Objects.hash(xRadius, yRadius, zRadius, xOffset, yOffset, zOffset, renderArea);
     }
 }
