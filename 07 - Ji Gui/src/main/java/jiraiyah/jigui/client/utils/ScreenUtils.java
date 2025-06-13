@@ -25,6 +25,7 @@
 package jiraiyah.jigui.client.utils;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jigui.client.records.TextureData;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
@@ -41,6 +42,11 @@ import java.util.function.Function;
 
 public class ScreenUtils
 {
+    public static void drawTexture(DrawContext context, TextureData texture, int x, int y)
+    {
+        drawTexture(context, texture.id(), x + texture.x(), y + texture.y(), texture.u(), texture.v(), texture.textureWidth(), texture.height(), texture.textureWidth(), texture.textureHeight());
+    }
+
     public static void drawTexture(DrawContext context, Identifier texture, int x, int y, float u, float v, int width, int height)
     {
         drawTexture(context, texture, x, y, u, v, width, height, 256, 256);
