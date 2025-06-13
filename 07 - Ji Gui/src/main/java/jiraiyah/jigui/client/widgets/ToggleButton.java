@@ -25,7 +25,7 @@
 package jiraiyah.jigui.client.widgets;
 
 import jiraiyah.jibase.annotations.*;
-import jiraiyah.jigui.client.constants.WidgetTextures;
+import jiraiyah.jigui.client.constants.ToggleButtonTextures;
 import jiraiyah.jigui.client.utils.ScreenUtils;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -234,18 +234,18 @@ public class ToggleButton extends ButtonWidget
 
         public Builder setDefaultTextures()
         {
-            return this.setOnState(WidgetTextures.TOGGLE_ON)
-                       .setOffState(WidgetTextures.TOGGLE_OFF)
-                       .setOnSelected(WidgetTextures.TOGGLE_ON_SELECTED)
-                       .setOffSelected(WidgetTextures.TOGGLE_OFF_SELECTED);
+            return this.setOnState(ToggleButtonTextures.Normal.On.NORMAL.id())
+                       .setOffState(ToggleButtonTextures.Normal.Off.NORMAL.id())
+                       .setOnSelected(ToggleButtonTextures.Normal.On.HOVERED.id())
+                       .setOffSelected(ToggleButtonTextures.Normal.Off.HOVERED.id());
         }
 
         public Builder setColoredTextures()
         {
-            return this.setOnState(WidgetTextures.TOGGLE_GREEN)
-                       .setOffState(WidgetTextures.TOGGLE_RED)
-                       .setOnSelected(WidgetTextures.TOGGLE_GREEN_SELECTED)
-                       .setOffSelected(WidgetTextures.TOGGLE_RED_SELECTED);
+            return this.setOnState(ToggleButtonTextures.Colored.On.NORMAL.id())
+                       .setOffState(ToggleButtonTextures.Colored.Off.NORMAL.id())
+                       .setOnSelected(ToggleButtonTextures.Colored.On.HOVERED.id())
+                       .setOffSelected(ToggleButtonTextures.Colored.Off.HOVERED.id());
         }
 
         public ToggleButton build()

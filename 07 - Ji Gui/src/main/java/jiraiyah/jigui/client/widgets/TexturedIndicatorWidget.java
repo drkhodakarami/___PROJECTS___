@@ -304,8 +304,8 @@ public class TexturedIndicatorWidget implements Drawable, Widget
         public Builder isEnergy(boolean useSmallWidget)
         {
             if(useSmallWidget)
-                return this.textures(DigitalIndicatorTextures.Small.BACKGROUND, DigitalIndicatorTextures.Small.PROGRESS_RED);
-            return this.textures(DigitalIndicatorTextures.Normal.BACKGROUND_RED, DigitalIndicatorTextures.Normal.PROGRESS_RED);
+                return this.textures(DigitalIndicatorTextures.Small.BACKGROUND, DigitalIndicatorTextures.Small.Progress.RED);
+            return this.textures(DigitalIndicatorTextures.Normal.Background.RED, DigitalIndicatorTextures.Normal.Progress.RED);
         }
 
         public Builder isEnergy()
