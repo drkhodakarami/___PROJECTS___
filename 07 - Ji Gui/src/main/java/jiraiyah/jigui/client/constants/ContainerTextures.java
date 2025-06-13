@@ -37,36 +37,62 @@ import net.minecraft.util.Identifier;
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 public class ContainerTextures
 {
-    public static final TextureData CONNECTION_INPUT_3 = new TextureData(0, 0, 0, 0, 30, 25, 32, 32,
-                                                                         BaseHelper.identifier("jigui", "textures/gui/container/connection_three_input.png"));
-    public static final TextureData CONNECTION_OUTPUT_3 = new TextureData(0, 0, 0, 0, 30, 25, 32, 32,
-                                                                          BaseHelper.identifier("jigui", "textures/gui/container/connection_three_result.png"));
-    public static final TextureData CONNECTION_TUBE_TO_IO = new TextureData(0, 0, 0, 0, 25, 29, 32, 32,
-                                                                            BaseHelper.identifier("jigui", "textures/gui/container/connection_tube_to_io.png"));
+    public static class Connection
+    {
+        public static final TextureData INPUT_3 =
+                new TextureData(0, 0, 0, 0, 30, 25, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/connection_three_input.png"));
+        public static final TextureData OUTPUT_3 =
+                new TextureData(0, 0, 0, 0, 30, 25, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/connection_three_result.png"));
+        public static final TextureData TUBE_TO_IO =
+                new TextureData(0, 0, 0, 0, 25, 29, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/connection_tube_to_io.png"));
+    }
 
-    public static final TextureData CONTAINER_MOD_EXTRACT = new TextureData(0, 0, 0, 0, 16, 16, 16, 16,
-                                                                            BaseHelper.identifier("jigui", "textures/gui/container/container_mode_extract.png"));
-    public static final TextureData CONTAINER_MOD_FILL = new TextureData(0, 0, 0, 0, 16, 16, 16, 16,
-                                                                         BaseHelper.identifier("jigui", "textures/gui/container/container_mode_fill.png"));
-    public static final TextureData CONTAINER_MOD_LOCKED = new TextureData(0, 0, 0, 0, 16, 16, 16, 16,
-                                                                           BaseHelper.identifier("jigui", "textures/gui/container/container_mode_locked.png"));
+    public static class ContainerMode
+    {
+        public static final TextureData EXTRACT =
+                new TextureData(0, 0, 0, 0, 16, 16, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/container/container_mode_extract.png"));
+        public static final TextureData FILL =
+                new TextureData(0, 0, 0, 0, 16, 16, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/container/container_mode_fill.png"));
+        public static final TextureData LOCKED =
+                new TextureData(0, 0, 0, 0, 16, 16, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/container/container_mode_locked.png"));
+    }
 
-    public static final TextureData INPUT_1_OUTPUT_3 = new TextureData(0, 0, 0, 0, 64, 59, 64, 64,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/container/one_input_three_output.png"));
-    public static final TextureData INPUT_3_OUTPUT_1 = new TextureData(0, 0, 0, 0, 64, 59, 64, 64,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/container/three_input_one_output.png"));
-    public static final TextureData INPUT_3_OUTPUT_3 = new TextureData(0, 0, 0, 0, 64, 64, 64, 64,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/container/three_input_three_output.png"));
+    public static class IO
+    {
+        public static final TextureData INPUT_1_OUTPUT_3 =
+                new TextureData(0, 0, 0, 0, 64, 59, 64, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/one_input_three_output.png"));
+        public static final TextureData INPUT_3_OUTPUT_1 =
+                new TextureData(0, 0, 0, 0, 64, 59, 64, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/three_input_one_output.png"));
+        public static final TextureData INPUT_3_OUTPUT_3 =
+                new TextureData(0, 0, 0, 0, 64, 64, 64, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/three_input_three_output.png"));
 
-    public static final TextureData INPUT_1_OUTPUT_2 = new TextureData(0, 0, 0, 0, 64, 52, 64, 64,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/container/one_input_two_output.png"));
-    public static final TextureData INPUT_2_OUTPUT_1 = new TextureData(0, 0, 0, 0, 64, 52, 64, 64,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/container/two_input_one_output.png"));
-    public static final TextureData INPUT_2_OUTPUT_2 = new TextureData(0, 0, 0, 0, 64, 50, 64, 64,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/container/two_input_two_output.png"));
+        public static final TextureData INPUT_1_OUTPUT_2 =
+                new TextureData(0, 0, 0, 0, 64, 52, 64, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/one_input_two_output.png"));
+        public static final TextureData INPUT_2_OUTPUT_1 =
+                new TextureData(0, 0, 0, 0, 64, 52, 64, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/two_input_one_output.png"));
+        public static final TextureData INPUT_2_OUTPUT_2 =
+                new TextureData(0, 0, 0, 0, 64, 50, 64, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/two_input_two_output.png"));
+    }
 
-    public static final TextureData LOCK_CLOSE = new TextureData(0, 0, 0, 0, 10, 14, 16, 16,
-                                                                 BaseHelper.identifier("jigui", "textures/gui/container/locked.png"));
-    public static final TextureData LOCK_OPEN = new TextureData(0, 0, 0, 0, 15, 14, 16, 16,
-                                                                BaseHelper.identifier("jigui", "textures/gui/container/unlocked.png"));
+    public static class Lock
+    {
+        public static final TextureData CLOSE =
+                new TextureData(0, 0, 0, 0, 10, 14, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/container/locked.png"));
+        public static final TextureData OPEN =
+                new TextureData(0, 0, 0, 0, 15, 14, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/container/unlocked.png"));
+    }
 }

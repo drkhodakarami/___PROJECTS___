@@ -37,39 +37,63 @@ import net.minecraft.util.Identifier;
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 public class IndicatorBarTextures
 {
-    public static final TextureData PROGRESS_BLUE = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                    BaseHelper.identifier("jigui", "textures/gui/widget/bar_blue.png"));
-    public static final TextureData PROGRESS_CYAN = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                    BaseHelper.identifier("jigui", "textures/gui/widget/bar_cyan.png"));
-    public static final TextureData PROGRESS_GRAY = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                    BaseHelper.identifier("jigui", "textures/gui/widget/bar_gray.png"));
-    public static final TextureData PROGRESS_GREEN = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/bar_green.png"));
-    public static final TextureData PROGRESS_LIGHT_BLUE = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                          BaseHelper.identifier("jigui", "textures/gui/widget/bar_light_blue.png"));
-    public static final TextureData PROGRESS_LIGHT_GRAY = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                          BaseHelper.identifier("jigui", "textures/gui/widget/bar_light_gray.png"));
-    public static final TextureData PROGRESS_LIME = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                    BaseHelper.identifier("jigui", "textures/gui/widget/bar_lime.png"));
-    public static final TextureData PROGRESS_MAGENTA = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/widget/bar_magenta.png"));
-    public static final TextureData PROGRESS_ORANGE = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                      BaseHelper.identifier("jigui", "textures/gui/widget/bar_orange.png"));
-    public static final TextureData PROGRESS_PINK = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                    BaseHelper.identifier("jigui", "textures/gui/widget/bar_pink.png"));
-    public static final TextureData PROGRESS_PURPLE = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                      BaseHelper.identifier("jigui", "textures/gui/widget/bar_purple.png"));
-    public static final TextureData PROGRESS_RED = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/widget/bar_red.png"));
-    public static final TextureData PROGRESS_WHITE = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/bar_white.png"));
-    public static final TextureData PROGRESS_YELLOW = new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
-                                                                      BaseHelper.identifier("jigui", "textures/gui/widget/bar_yellow.png"));
+    public static final TextureData BACKGROUND =
+            new TextureData(0, 0, 0, 0, 16, 64, 16, 64,
+                            BaseHelper.identifier("jigui", "textures/gui/widget/bar_dark_background.png"));
 
-    public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 16, 64, 16, 64,
-                                                                 BaseHelper.identifier("jigui", "textures/gui/widget/bar_dark_background.png"));
-    public static final TextureData CENTRAL_BORDER = new TextureData(5, 0, 0, 0, 6, 64, 8, 64,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/bar_dark_central_border.png"));
-    public static final TextureData CENTRAL_LINE = new TextureData(7, 1, 0, 0, 2, 62, 2, 62,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/widget/bar_dark_central_line.png"));
+    public static class Foreground
+    {
+        public static final TextureData CENTRAL_BORDER =
+                new TextureData(5, 0, 0, 0, 6, 64, 8, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_dark_central_border.png"));
+        public static final TextureData CENTRAL_LINE =
+                new TextureData(7, 1, 0, 0, 2, 62, 2, 62,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_dark_central_line.png"));
+    }
+
+    public static class Progress
+    {
+        public static final TextureData BLUE =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_blue.png"));
+        public static final TextureData CYAN =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_cyan.png"));
+        public static final TextureData GRAY =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_gray.png"));
+        public static final TextureData GREEN =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_green.png"));
+        public static final TextureData LIGHT_BLUE =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_light_blue.png"));
+        public static final TextureData LIGHT_GRAY =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_light_gray.png"));
+        public static final TextureData LIME =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_lime.png"));
+        public static final TextureData MAGENTA =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_magenta.png"));
+        public static final TextureData ORANGE =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_orange.png"));
+        public static final TextureData PINK =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_pink.png"));
+        public static final TextureData PURPLE =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_purple.png"));
+        public static final TextureData RED =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_red.png"));
+        public static final TextureData WHITE =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_white.png"));
+        public static final TextureData YELLOW =
+                new TextureData(3, 1, 0, 0, 10, 62, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/bar_yellow.png"));
+    }
 }

@@ -39,25 +39,47 @@ public class ToggleButtonTextures
 {
     public static class Normal
     {
-        public static final TextureData OFF = new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
-                                                              BaseHelper.identifier("jigui", "textures/gui/widget/toggle_switch_off.png"));
-        public static final TextureData ON = new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
-                                                             BaseHelper.identifier("jigui", "textures/gui/widget/toggle_switch_on.png"));
-        public static final TextureData OFF_HOVERED = new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
-                                                                      BaseHelper.identifier("jigui", "textures/gui/widget/selected_toggle_switch_off.png"));
-        public static final TextureData ON_HOVERED = new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/selected_toggle_switch_on.png"));
+        public static class Off
+        {
+            public static final TextureData NORMAL =
+                    new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/toggle_switch_off.png"));
+            public static final TextureData HOVERED =
+                    new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/selected_toggle_switch_off.png"));
+        }
+
+        public static class On
+        {
+            public static final TextureData NORMAL =
+                    new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/toggle_switch_on.png"));
+            public static final TextureData HOVERED =
+                    new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/selected_toggle_switch_on.png"));
+        }
     }
 
     public static class Colored
     {
-        public static final TextureData OFF = new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
-                                                              BaseHelper.identifier("jigui", "textures/gui/widget/toggle_switch_green_on.png"));
-        public static final TextureData ON = new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
-                                                             BaseHelper.identifier("jigui", "textures/gui/widget/toggle_switch_red_off.png"));
-        public static final TextureData OFF_HOVERED = new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
-                                                                      BaseHelper.identifier("jigui", "textures/gui/widget/selected_toggle_switch_green_on.png"));
-        public static final TextureData ON_HOVERED = new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/selected_toggle_switch_red_off.png"));
+        public static class Off
+        {
+            public static final TextureData NORMAL =
+                    new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/toggle_switch_green_on.png"));
+            public static final TextureData HOVERED =
+                    new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/selected_toggle_switch_green_on.png"));
+        }
+
+        public static class On
+        {
+            public static final TextureData NORMAL =
+                    new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/toggle_switch_red_off.png"));
+            public static final TextureData HOVERED =
+                    new TextureData(0, 0, 0, 0, 32, 16, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/selected_toggle_switch_red_off.png"));
+        }
     }
 }

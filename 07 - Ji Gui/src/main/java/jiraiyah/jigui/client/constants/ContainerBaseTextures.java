@@ -37,8 +37,10 @@ import net.minecraft.util.Identifier;
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 public class ContainerBaseTextures
 {
-    public static final TextureData GENERIC_54 = new TextureData(0, 0, 0, 0, 174, 220, 256, 256,
-                                                                 BaseHelper.identifier("jigui", "textures/gui/container/generic_54_blank.png"));
-    public static final TextureData PLAYER_INVENTORY = new TextureData(0, 0, 0, 0, 162, 76, 256, 128,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/container/player_inventory_slots.png"));
+    public static final TextureData GENERIC_54 =
+            new TextureData(0, 0, 0, 0, 174, 220, 256, 256,
+                            BaseHelper.identifier("jigui", "textures/gui/container/generic_54_blank.png"));
+    public static final TextureData PLAYER_INVENTORY =
+            new TextureData(0, 0, 0, 0, 162, 76, 256, 128,
+                            BaseHelper.identifier("jigui", "textures/gui/container/player_inventory_slots.png"));
 }

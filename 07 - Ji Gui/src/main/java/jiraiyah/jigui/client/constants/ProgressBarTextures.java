@@ -39,53 +39,65 @@ public class ProgressBarTextures
 {
     public static class BlazeFuel
     {
-        public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 20, 6, 32, 8,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/blaze_fuel_background.png"));
-        public static final TextureData PROGRESS = new TextureData(1, 1, 0, 0, 18, 4, 32, 4,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/widget/blaze_fuel_progress.png"));
+        public static final TextureData BACKGROUND =
+                new TextureData(0, 0, 0, 0, 20, 6, 32, 8,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/blaze_fuel_background.png"));
+        public static final TextureData PROGRESS =
+                new TextureData(1, 1, 0, 0, 18, 4, 32, 4,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/blaze_fuel_progress.png"));
     }
 
     public static class Bubbles
     {
         public static class Up
         {
-            public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 10, 27, 16, 32,
-                                                                         BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_background_up.png"));
-            public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 11, 28, 16, 32,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_white_up.png"));
+            public static final TextureData BACKGROUND =
+                    new TextureData(0, 0, 0, 0, 10, 27, 16, 32,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_background_up.png"));
+            public static final TextureData PROGRESS =
+                    new TextureData(0, 0, 0, 0, 11, 28, 16, 32,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_white_up.png"));
         }
 
         public static class Down
         {
-            public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 10, 27, 16, 32,
-                                                                      BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_background_down.png"));
-            public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 11, 28, 16, 32,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_white_down.png"));
+            public static final TextureData BACKGROUND =
+                    new TextureData(0, 0, 0, 0, 10, 27, 16, 32,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_background_down.png"));
+            public static final TextureData PROGRESS =
+                    new TextureData(0, 0, 0, 0, 11, 28, 16, 32,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_white_down.png"));
         }
 
         public static class Left
         {
-            public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 27, 10, 32, 16,
-                                                                         BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_background_left.png"));
-            public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 28, 11, 32, 16,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_white_left.png"));
+            public static final TextureData BACKGROUND =
+                    new TextureData(0, 0, 0, 0, 27, 10, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_background_left.png"));
+            public static final TextureData PROGRESS =
+                    new TextureData(0, 0, 0, 0, 28, 11, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_white_left.png"));
         }
 
         public static class Right
         {
-            public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 27, 10, 32, 16,
-                                                                         BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_background_right.png"));
-            public static final TextureData PROGRESS = new TextureData(-1, 0, 0, 0, 28, 11, 32, 16,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_white_right.png"));
+            public static final TextureData BACKGROUND =
+                    new TextureData(0, 0, 0, 0, 27, 10, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_background_right.png"));
+            public static final TextureData PROGRESS =
+                    new TextureData(-1, 0, 0, 0, 28, 11, 32, 16,
+                                    BaseHelper.identifier("jigui", "textures/gui/widget/bubbles_progress_white_right.png"));
         }
     }
 
     public static class Fire
     {
-        public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/fire_progress_off.png"));
-        public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/widget/fire_progress_on.png"));
+        public static final TextureData BACKGROUND =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/fire_progress_off.png"));
+        public static final TextureData PROGRESS =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/fire_progress_on.png"));
     }
 
     public static class Arrow
@@ -94,34 +106,42 @@ public class ProgressBarTextures
         {
             public static class Up
             {
-                public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 15, 22, 16, 32,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_up_short_off.png"));
-                public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 16, 22, 16, 32,
-                                                                           BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_up_short_on.png"));
+                public static final TextureData BACKGROUND =
+                        new TextureData(0, 0, 0, 0, 15, 22, 16, 32,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_up_short_off.png"));
+                public static final TextureData PROGRESS =
+                        new TextureData(0, 0, 0, 0, 16, 22, 16, 32,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_up_short_on.png"));
             }
 
             public static class Down
             {
-                public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 15, 22, 16, 32,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_down_short_off.png"));
-                public static final TextureData PROGRESS = new TextureData(-1, 0, 0, 0, 16, 22, 16, 32,
-                                                                           BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_down_short_on.png"));
+                public static final TextureData BACKGROUND =
+                        new TextureData(0, 0, 0, 0, 15, 22, 16, 32,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_down_short_off.png"));
+                public static final TextureData PROGRESS =
+                        new TextureData(-1, 0, 0, 0, 16, 22, 16, 32,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_down_short_on.png"));
             }
 
             public static class Left
             {
-                public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 22, 15, 32, 16,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_left_short_off.png"));
-                public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 22, 16, 32, 16,
-                                                                           BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_left_short_on.png"));
+                public static final TextureData BACKGROUND =
+                        new TextureData(0, 0, 0, 0, 22, 15, 32, 16,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_left_short_off.png"));
+                public static final TextureData PROGRESS =
+                        new TextureData(0, 0, 0, 0, 22, 16, 32, 16,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_left_short_on.png"));
             }
 
             public static class Right
             {
-                public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 22, 16, 32, 16,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_right_short_off.png"));
-                public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 22, 15, 32, 16,
-                                                                           BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_right_short_on.png"));
+                public static final TextureData BACKGROUND =
+                        new TextureData(0, 0, 0, 0, 22, 16, 32, 16,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_right_short_off.png"));
+                public static final TextureData PROGRESS =
+                        new TextureData(0, 0, 0, 0, 22, 15, 32, 16,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_right_short_on.png"));
             }
         }
 
@@ -129,43 +149,53 @@ public class ProgressBarTextures
         {
             public static class Up
             {
-                public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 7, 26, 8, 32,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_up_long_off.png"));
-                public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 8, 26, 8, 32,
-                                                                           BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_up_long_on.png"));
+                public static final TextureData BACKGROUND =
+                        new TextureData(0, 0, 0, 0, 7, 26, 8, 32,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_up_long_off.png"));
+                public static final TextureData PROGRESS =
+                        new TextureData(0, 0, 0, 0, 8, 26, 8, 32,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_up_long_on.png"));
             }
 
             public static class Down
             {
-                public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 7, 26, 8, 32,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_down_long_off.png"));
-                public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 8, 26, 8, 32,
-                                                                           BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_down_long_on.png"));
+                public static final TextureData BACKGROUND =
+                        new TextureData(0, 0, 0, 0, 7, 26, 8, 32,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_down_long_off.png"));
+                public static final TextureData PROGRESS =
+                        new TextureData(0, 0, 0, 0, 8, 26, 8, 32,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_down_long_on.png"));
             }
 
             public static class Left
             {
-                public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 26, 7, 32, 8,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_left_long_off.png"));
-                public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 26, 8, 32, 8,
-                                                                           BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_left_long_on.png"));
+                public static final TextureData BACKGROUND =
+                        new TextureData(0, 0, 0, 0, 26, 7, 32, 8,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_left_long_off.png"));
+                public static final TextureData PROGRESS =
+                        new TextureData(0, 0, 0, 0, 26, 8, 32, 8,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_left_long_on.png"));
             }
 
             public static class Right
             {
-                public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 26, 7, 32, 8,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_right_long_off.png"));
-                public static final TextureData PROGRESS = new TextureData(0, 0, 0, 0, 26, 8, 32, 8,
-                                                                           BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_right_long_on.png"));
+                public static final TextureData BACKGROUND =
+                        new TextureData(0, 0, 0, 0, 26, 7, 32, 8,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_right_long_off.png"));
+                public static final TextureData PROGRESS =
+                        new TextureData(0, 0, 0, 0, 26, 8, 32, 8,
+                                        BaseHelper.identifier("jigui", "textures/gui/widget/progress_arrow_right_long_on.png"));
             }
         }
     }
 
     public static class Tube
     {
-        public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 27, 20, 32, 32,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/short_tube_background.png"));
-        public static final TextureData PROGRESS = new TextureData(1, 0, 0, 0, 25, 20, 32, 32,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/widget/short_tube_full.png"));
+        public static final TextureData BACKGROUND =
+                new TextureData(0, 0, 0, 0, 27, 20, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/short_tube_background.png"));
+        public static final TextureData PROGRESS =
+                new TextureData(1, 0, 0, 0, 25, 20, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/short_tube_full.png"));
     }
 }

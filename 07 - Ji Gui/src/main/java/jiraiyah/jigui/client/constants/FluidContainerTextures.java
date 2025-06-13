@@ -40,12 +40,16 @@ public class FluidContainerTextures
 {
     public static class Normal
     {
-        public static final TextureData BACKGROUND = new TextureData(0, 0, 0, 0, 18, 63, 16, 64,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/fluid_storage_background.png"));
-        public static final TextureData MARKER_BIG = new TextureData(1, 15, 0, 0, 16, 33, 16, 64,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/widget/fluid_storage_marker_big.png"));
-        public static final TextureData MARKER_SMALL = new TextureData(1, 6, 0, 0, 16, 51, 16, 64,
-                                                                       BaseHelper.identifier("jigui", "textures/gui/widget/fluid_storage_marker_small.png"));
+        public static final TextureData BACKGROUND =
+                new TextureData(0, 0, 0, 0, 18, 63, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/fluid_storage_background.png"));
+        public static final TextureData MARKER_BIG =
+                new TextureData(1, 15, 0, 0, 16, 33, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/fluid_storage_marker_big.png"));
+        public static final TextureData MARKER_SMALL =
+                new TextureData(1, 6, 0, 0, 16, 51, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/widget/fluid_storage_marker_small.png"));
+
         public static final Rect2i FLUID_RECT = new Rect2i(1, 1, 16, 61);
     }
 }

@@ -27,6 +27,7 @@ package jiraiyah.jigui.client.widgets;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.client.utils.MouseHelper;
 import jiraiyah.jibase.utils.StringHelper;
+import jiraiyah.jigui.client.constants.DigitalIndicatorTextures;
 import jiraiyah.jigui.client.records.TextureData;
 import jiraiyah.jigui.client.utils.ScreenUtils;
 import net.minecraft.client.MinecraftClient;
@@ -49,7 +50,7 @@ import java.util.function.Supplier;
 @Discord("https://discord.gg/pmM4emCbuH")
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
-public class IndicatorWidget implements Drawable, Widget
+public class TexturedIndicatorWidget implements Drawable, Widget
 {
     private final int backgroundX, backgroundY, backgroundWidth, backgroundHeight;
     private final int indicatorX, indicatorY, indicatorWidth, indicatorHeight;
@@ -67,15 +68,15 @@ public class IndicatorWidget implements Drawable, Widget
 
     private final String suffix;
 
-    public IndicatorWidget(String suffix,
-                            int x, int y,
-                            int backgroundX, int backgroundY, int backgroundWidth, int backgroundHeight,
-                           int indicatorX, int indicatorY, int indicatorWidth, int indicatorHeight,
-                           int backgroundU, int backgroundV, int indicatorU, int indicatorV,
-                           int backgroundSizeWidth, int backgroundSizeHeight,
-                            int indicatorSizeWidth, int indicatorSizeHeight,
-                           Identifier backgroundTexture, Identifier indicatorTexture,
-                           Supplier<Long> amountSupplier, Supplier<Long> capacitySupplier)
+    public TexturedIndicatorWidget(String suffix,
+                                   int x, int y,
+                                   int backgroundX, int backgroundY, int backgroundWidth, int backgroundHeight,
+                                   int indicatorX, int indicatorY, int indicatorWidth, int indicatorHeight,
+                                   int backgroundU, int backgroundV, int indicatorU, int indicatorV,
+                                   int backgroundSizeWidth, int backgroundSizeHeight,
+                                   int indicatorSizeWidth, int indicatorSizeHeight,
+                                   Identifier backgroundTexture, Identifier indicatorTexture,
+                                   Supplier<Long> amountSupplier, Supplier<Long> capacitySupplier)
     {
         this.suffix = suffix;
         this.backgroundX = backgroundX;
@@ -300,17 +301,29 @@ public class IndicatorWidget implements Drawable, Widget
             return this;
         }
 
-        public IndicatorWidget build()
+        public Builder isEnergy(boolean useSmallWidget)
         {
-            return new IndicatorWidget(this.suffix,
-                                       x, y,
-                                       this.backgroundX, this.backgroundY, this.backgroundWidth, this.backgroundHeight,
-                                       this.indicatorX, this.indicatorY, this.indicatorWidth, this.indicatorHeight,
-                                      this.indicatorU, this.indicatorV, this.backgroundU, this.backgroundV,
-                                       this.backgroundSizeWidth, this.backgroundSizeHeight,
-                                       this.indicatorSizeWidth, this.indicatorSizeHeight,
-                                       this.backgroundTexture, this.indicatorTexture,
-                                       this.amountSupplier, this.capacitySupplier);
+            if(useSmallWidget)
+                return this.textures(DigitalIndicatorTextures.Small.BACKGROUND, DigitalIndicatorTextures.Small.PROGRESS_RED);
+            return this.textures(DigitalIndicatorTextures.Normal.BACKGROUND_RED, DigitalIndicatorTextures.Normal.PROGRESS_RED);
+        }
+
+        public Builder isEnergy()
+        {
+            return this.isEnergy(false);
+        }
+
+        public TexturedIndicatorWidget build()
+        {
+            return new TexturedIndicatorWidget(this.suffix,
+                                               x, y,
+                                               this.backgroundX, this.backgroundY, this.backgroundWidth, this.backgroundHeight,
+                                               this.indicatorX, this.indicatorY, this.indicatorWidth, this.indicatorHeight,
+                                               this.indicatorU, this.indicatorV, this.backgroundU, this.backgroundV,
+                                               this.backgroundSizeWidth, this.backgroundSizeHeight,
+                                               this.indicatorSizeWidth, this.indicatorSizeHeight,
+                                               this.backgroundTexture, this.indicatorTexture,
+                                               this.amountSupplier, this.capacitySupplier);
         }
     }
 }

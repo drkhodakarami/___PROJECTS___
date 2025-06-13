@@ -37,26 +37,40 @@ import net.minecraft.util.Identifier;
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 public class IndicatorLightTextures
 {
-    public static final TextureData ALARM_BLACK = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                  BaseHelper.identifier("jigui", "textures/gui/icon/alarm_black.png"));
-    public static final TextureData ALARM_BLUE = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                 BaseHelper.identifier("jigui", "textures/gui/icon/alarm_blue.png"));
-    public static final TextureData ALARM_CYAN = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                 BaseHelper.identifier("jigui", "textures/gui/icon/alarm_cyan.png"));
-    public static final TextureData ALARM_GRAY = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                 BaseHelper.identifier("jigui", "textures/gui/icon/alarm_gray.png"));
-    public static final TextureData ALARM_GREEN = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                  BaseHelper.identifier("jigui", "textures/gui/icon/alarm_green.png"));
-    public static final TextureData ALARM_ORANGE = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/icon/alarm_orange.png"));
-    public static final TextureData ALARM_PINK = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                 BaseHelper.identifier("jigui", "textures/gui/icon/alarm_pink.png"));
-    public static final TextureData ALARM_PURPLE = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/icon/alarm_purple.png"));
-    public static final TextureData ALARM_RED = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_red.png"));
-    public static final TextureData ALARM_WHITE = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                  BaseHelper.identifier("jigui", "textures/gui/icon/alarm_white.png"));
-    public static final TextureData ALARM_YELLOW = new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/icon/alarm_yellow.png"));
+    public static class Alarm
+    {
+        public static final TextureData BLACK =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_black.png"));
+        public static final TextureData BLUE =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_blue.png"));
+        public static final TextureData CYAN =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_cyan.png"));
+        public static final TextureData GRAY =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_gray.png"));
+        public static final TextureData GREEN =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_green.png"));
+        public static final TextureData ORANGE =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_orange.png"));
+        public static final TextureData PINK =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_pink.png"));
+        public static final TextureData PURPLE =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_purple.png"));
+        public static final TextureData RED =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_red.png"));
+        public static final TextureData WHITE =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_white.png"));
+        public static final TextureData YELLOW =
+                new TextureData(0, 0, 0, 0, 13, 13, 16, 16,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/alarm_yellow.png"));
+    }
 }

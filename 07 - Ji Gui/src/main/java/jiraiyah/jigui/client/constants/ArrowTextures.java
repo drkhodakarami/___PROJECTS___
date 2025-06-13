@@ -38,27 +38,36 @@ public class ArrowTextures
 {
     public static class Small
     {
-        public static final TextureData ARROW_DOWN = new TextureData(0, 0, 0, 0, 9, 8, 16, 64,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/container/arrow_down.png"));
-        public static final TextureData ARROW_LEFT = new TextureData(0, 0, 0, 0, 8, 9, 16, 64,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/container/arrow_left.png"));
-        public static final TextureData ARROW_RIGHT = new TextureData(0, 0, 0, 0, 8, 9, 16, 64,
-                                                                      BaseHelper.identifier("jigui", "textures/gui/container/arrow_right.png"));
-        public static final TextureData ARROW_UP = new TextureData(0, 0, 0, 0, 9, 8, 16, 64,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/container/arrow_up.png"));
+        public static final TextureData ARROW_DOWN =
+                new TextureData(0, 0, 0, 0, 9, 8, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/arrow_down.png"));
+        public static final TextureData ARROW_LEFT =
+                new TextureData(0, 0, 0, 0, 8, 9, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/arrow_left.png"));
+        public static final TextureData ARROW_RIGHT =
+                new TextureData(0, 0, 0, 0, 8, 9, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/arrow_right.png"));
+        public static final TextureData ARROW_UP =
+                new TextureData(0, 0, 0, 0, 9, 8, 16, 64,
+                                BaseHelper.identifier("jigui", "textures/gui/container/arrow_up.png"));
     }
 
     public static class HUD
     {
-        public static final TextureData ARROW_DRAG = new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/icon/arrow_drag.png"));
-        public static final TextureData ARROW_RESIZE_TL_BR = new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/icon/arrow_resize_tlbr.png"));
-        public static final TextureData ARROW_RESIZE_TR_BL = new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
-                                                                             BaseHelper.identifier("jigui", "textures/gui/icon/arrow_resize_trbl.png"));
-        public static final TextureData ARROW_RESIZE_H = new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
-                                                                         BaseHelper.identifier("jigui", "textures/gui/icon/arrow_resize_h.png"));
-        public static final TextureData ARROW_RESIZE_V = new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
-                                                                         BaseHelper.identifier("jigui", "textures/gui/icon/arrow_resize_v.png"));
+        public static final TextureData ARROW_DRAG =
+                new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/arrow_drag.png"));
+        public static final TextureData ARROW_RESIZE_TL_BR =
+                new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/arrow_resize_tlbr.png"));
+        public static final TextureData ARROW_RESIZE_TR_BL =
+                new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/arrow_resize_trbl.png"));
+        public static final TextureData ARROW_RESIZE_H =
+                new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/arrow_resize_h.png"));
+        public static final TextureData ARROW_RESIZE_V =
+                new TextureData(0, 0, 0, 0, 32, 32, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/icon/arrow_resize_v.png"));
     }
 }

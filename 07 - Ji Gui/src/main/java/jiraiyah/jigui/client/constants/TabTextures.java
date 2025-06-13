@@ -37,20 +37,43 @@ import net.minecraft.util.Identifier;
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 public class TabTextures
 {
-    public static final TextureData TOP_NORMAL = new TextureData(0, 0, 0, 0, 23, 20, 32, 32,
-                                                                 BaseHelper.identifier("jigui", "textures/gui/container/tab_top_normal.png"));
-    public static final TextureData TOP_SELECTED = new TextureData(0, -5, 0, 0, 23, 27, 32, 32,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/container/tab_top_selected.png"));
-    public static final TextureData BOTTOM_NORMAL = new TextureData(0, 0, 0, 0, 23, 20, 32, 32,
-                                                                    BaseHelper.identifier("jigui", "textures/gui/container/tab_bottom_normal.png"));
-    public static final TextureData BOTTOM_SELECTED = new TextureData(0, -2, 0, 0, 23, 27, 32, 32,
-                                                                      BaseHelper.identifier("jigui", "textures/gui/container/tab_bottom_selected.png"));
-    public static final TextureData LEFT_NORMAL = new TextureData(0, 0, 0, 0, 20, 23, 32, 32,
-                                                                  BaseHelper.identifier("jigui", "textures/gui/container/tab_left_normal.png"));
-    public static final TextureData LEFT_SELECTED = new TextureData(-5, 0, 0, 0, 27, 23, 32, 32,
-                                                                    BaseHelper.identifier("jigui", "textures/gui/container/tab_left_selected.png"));
-    public static final TextureData RIGHT_NORMAL = new TextureData(0, 0, 0, 0, 20, 23, 32, 32,
-                                                                   BaseHelper.identifier("jigui", "textures/gui/container/tab_right_normal.png"));
-    public static final TextureData RIGHT_SELECTED = new TextureData(-2, 0, 0, 0, 27, 23, 32, 32,
-                                                                     BaseHelper.identifier("jigui", "textures/gui/container/tab_right_selected.png"));
+    public static class Top
+    {
+        public static final TextureData NORMAL =
+                new TextureData(0, 0, 0, 0, 23, 20, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/tab_top_normal.png"));
+        public static final TextureData SELECTED =
+                new TextureData(0, -5, 0, 0, 23, 27, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/tab_top_selected.png"));
+    }
+    
+    public static class Bottom
+    {
+        public static final TextureData NORMAL =
+                new TextureData(0, 0, 0, 0, 23, 20, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/tab_bottom_normal.png"));
+        public static final TextureData SELECTED =
+                new TextureData(0, -2, 0, 0, 23, 27, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/tab_bottom_selected.png"));
+    }
+    
+    public static class Left
+    {
+        public static final TextureData NORMAL =
+                new TextureData(0, 0, 0, 0, 20, 23, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/tab_left_normal.png"));
+        public static final TextureData SELECTED =
+                new TextureData(-5, 0, 0, 0, 27, 23, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/tab_left_selected.png"));
+    }
+    
+    public static class Right
+    {
+        public static final TextureData NORMAL =
+                new TextureData(0, 0, 0, 0, 20, 23, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/tab_right_normal.png"));
+        public static final TextureData SELECTED =
+                new TextureData(-2, 0, 0, 0, 27, 23, 32, 32,
+                                BaseHelper.identifier("jigui", "textures/gui/container/tab_right_selected.png"));
+    }
 }
