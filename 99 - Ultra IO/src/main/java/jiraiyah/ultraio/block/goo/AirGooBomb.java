@@ -25,21 +25,14 @@
 package jiraiyah.ultraio.block.goo;
 
 import jiraiyah.jibase.properties.BlockProperties;
-import jiraiyah.jibase.properties.BlockPropertiesBE;
-import jiraiyah.ultraio.be.goo.AirGooBombBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
 
 public class AirGooBomb extends GooBase
 {
     public AirGooBomb(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.AIR_GOO_BOMB)
-                                                                                        .shouldTick()));
+        super(settings, new BlockProperties<>(() -> ModBlockEntities.AIR_GOO_BOMB)
+                .tick());
         CODEC = createCodec(AirGooBomb::new);
     }
 }

@@ -30,6 +30,7 @@ import jiraiyah.jibase.annotations.Repository;
 import jiraiyah.jibase.annotations.Youtube;
 import jiraiyah.jibase.interfaces.ITraversableEnum;
 
+@SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/Direwolf20-MC/JustDireThings")
@@ -39,5 +40,5 @@ public enum RedstoneMode implements ITraversableEnum<RedstoneMode>
     IGNORED,
     LOW,
     HIGH,
-    PULSE;
+    PULSE
 }

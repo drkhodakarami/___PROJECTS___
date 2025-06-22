@@ -29,13 +29,13 @@ import jiraiyah.jibase.annotations.Developer;
 import jiraiyah.jibase.annotations.Repository;
 import jiraiyah.jibase.annotations.Youtube;
 import net.minecraft.component.ComponentChanges;
-import net.minecraft.entity.ItemSteerable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/Direwolf20-MC/JustDireThings")

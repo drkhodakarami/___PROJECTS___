@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.item;
 
-import jiraiyah.jiralib.record.CoordinateDataPayload;
+import jiraiyah.jibase.records.CoordinateDataPayload;
+import jiraiyah.jibase.utils.BaseHelper;
 import jiraiyah.ultraio.registry.ModDataComponentTypes;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.player.PlayerEntity;
@@ -84,15 +85,10 @@ public class PlayerTeleporter extends Item
                 if (!context.getWorld().isClient())
                 {
                     context.getStack().set(ModDataComponentTypes.COORDINATE,
-                                           new CoordinateDataPayload(context.getBlockPos(),
-                                                                     player.getWorld().getRegistryKey().getValue().toString()));
+                                           new CoordinateDataPayload(context.getBlockPos(), BaseHelper.getDimensionName(player.getWorld())));
                 }
                 else
-                {
-                    var dimension = player.getWorld().getRegistryKey().getValue().toString();
-                    dimension = dimension.substring(dimension.indexOf(':') + 1).replace('_', ' ');
-                    outputCoordinatesToChat(pos, dimension, player);
-                }
+                    outputCoordinatesToChat(pos, BaseHelper.getDimensionNameClean(player.getWorld()), player);
             }
         }
 
@@ -128,14 +124,6 @@ public class PlayerTeleporter extends Item
                                                            user.getYaw(),
                                                            user.getPitch(),
                                                            TeleportTarget.NO_OP);
-                //TODO: Check and test teleportTo for the same dimension teleportation!
-                if (user.getWorld().getRegistryKey().equals(storedKey))
-                    ((ServerPlayerEntity) user).networkHandler.requestTeleport(target.position().getX(),
-                                                                               target.position().getY(),
-                                                                               target.position().getZ(),
-                                                                               target.yaw(),
-                                                                               target.pitch());
-                else
                     user.teleportTo(target);
 
             }
@@ -151,6 +139,7 @@ public class PlayerTeleporter extends Item
         {
             BlockPos pos = data.pos();
             var dimension = data.dimension();
+            //TODO: Use BaseHleper
             var dimensionName = dimension.substring(dimension.indexOf(':') + 1).replace('_', ' ');
             textConsumer.accept(REFERENCE.translate(REFERENCE.TELEPORTER_TOOLTIP_ID_NAME,
                                                      pos.getX(), pos.getY(), pos.getZ(), dimensionName));

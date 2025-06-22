@@ -24,7 +24,8 @@
 
 package jiraiyah.ultraio.item;
 
-import jiraiyah.jiralib.record.CoordinateDataPayload;
+import jiraiyah.jibase.records.CoordinateDataPayload;
+import jiraiyah.jibase.utils.BaseHelper;
 import jiraiyah.ultraio.registry.ModDataComponentTypes;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.LivingEntity;
@@ -72,15 +73,10 @@ public class TunerItem extends Item
                 if (!context.getWorld().isClient())
                 {
                     context.getStack().set(ModDataComponentTypes.COORDINATE,
-                                           new CoordinateDataPayload(context.getBlockPos(),
-                                                                     player.getWorld().getRegistryKey().getValue().toString()));
+                                           new CoordinateDataPayload(context.getBlockPos(), BaseHelper.getDimensionName(player.getWorld())));
                 }
                 else
-                {
-                    var dimension = player.getWorld().getRegistryKey().getValue().toString();
-                    dimension = dimension.substring(dimension.indexOf(':') + 1).replace('_', ' ');
-                    outputCoordinatesToChat(pos, dimension, player);
-                }
+                    outputCoordinatesToChat(pos, BaseHelper.getDimensionName(player.getWorld()), player);
             }
         }
 
@@ -126,6 +122,7 @@ public class TunerItem extends Item
         {
             BlockPos pos = data.pos();
             var dimension = data.dimension();
+            //TODO: Use BaseHelepr
             var dimensionName = dimension.substring(dimension.indexOf(':') + 1).replace('_', ' ');
             textConsumer.accept(REFERENCE.translate(REFERENCE.TUNER_TOOLTIP_ID_NAME,
                                             pos.getX(), pos.getY(), pos.getZ(), dimensionName));

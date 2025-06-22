@@ -33,7 +33,7 @@ import net.minecraft.util.math.Direction;
 
 import java.util.Objects;
 
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/Direwolf20-MC/JustDireThings")

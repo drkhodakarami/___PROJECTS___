@@ -25,61 +25,39 @@
 package jiraiyah.ultraio.block.machine;
 
 import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import jiraiyah.jibase.properties.BlockProperties;
-import jiraiyah.jibase.properties.BlockPropertiesBE;
 import jiraiyah.jiralib.block.JiBlock;
-import jiraiyah.ultraio.be.machine.GemCleanerBE;
+import jiraiyah.ultraio.blockentity.machine.GemCleanerBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class GemCleaner extends JiBlock implements BlockEntityProvider
 {
     public GemCleaner(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .hasLitProperty()
-                .hasHorizontalFacing()
-                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.GEM_CLEANER)
-                                               .shouldTick()
-                                               .dropContentsOnBreak()
-                                               .rightClickToOpenGui()));
+        super(settings, new BlockProperties<>(() -> ModBlockEntities.GEM_CLEANER)
+                                .addLitProperty()
+                                .addHorizontalFacing()
+                                .tick()
+                                .addInventory()
+                                .addGui());
+
         CODEC = createCodec(GemCleaner::new);
     }
 
-    @Override
-    protected void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved)
-    {
-        ItemScatterer.onStateReplaced(state, world,pos);
-    }
-
+    //TODO: Fix this !
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player)
     {
         var be = world.getBlockEntity(pos);
         if(be instanceof GemCleanerBE blockEntity)
-            ItemScatterer.spawn(world, pos, blockEntity.getInventory());
+            blockEntity.getInventoryConnector().dropContent(world, pos);
 
         return super.onBreak(world, pos, state, player);
     }

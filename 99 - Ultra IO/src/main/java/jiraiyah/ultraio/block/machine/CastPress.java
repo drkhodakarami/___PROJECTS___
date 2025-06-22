@@ -54,28 +54,9 @@ public class CastPress extends JiBlock implements BlockEntityProvider
 
     public CastPress(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .hasPoweredProperty()
-                .hasHorizontalFacing());
+        super(settings, new BlockProperties<>()
+                .addPoweredProperty()
+                .addHorizontalFacing());
         CODEC = createCodec(CastPress::new);
-    }
-
-    @Override
-    protected MapCodec<? extends Block> getCodec()
-    {
-        return CODEC;
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        //TODO Return instance of BE
-        return null;
-    }
-
-    @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type)
-    {
-        return ITick.createTicker(world);
     }
 }

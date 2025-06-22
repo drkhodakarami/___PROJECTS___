@@ -394,8 +394,8 @@ public class ModEnLanguageProvider extends FabricLanguageProvider
         builder.add(ModBlocks.TUNNELING_GOO, "Tunneling Goo");
         builder.add(ModBlocks.BRIDGE_GOO, "Bridge Goo");
 
-        builder.add(ModBlocks.LAVA_PUMP_GOO, "Lava Pumping Goo");
-        builder.add(ModBlocks.WATER_PUMP_GOO, "Water Pumping Goo");
+        //builder.add(ModBlocks.LAVA_PUMP_GOO, "Lava Pumping Goo");
+        //builder.add(ModBlocks.WATER_PUMP_GOO, "Water Pumping Goo");
 
         builder.add(ModBlocks.AIR_BOMB_GOO, "Air Bomb Goo");
         builder.add(ModBlocks.CHUNK_BOMB_GOO, "Chunk Bomb Goo");

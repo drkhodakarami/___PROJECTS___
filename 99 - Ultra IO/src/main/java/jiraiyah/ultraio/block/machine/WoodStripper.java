@@ -45,15 +45,9 @@ public class WoodStripper extends JiBlock
 {
     public WoodStripper(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .hasPoweredProperty());
+        super(settings, new BlockProperties<>()
+                .addPoweredProperty());
         CODEC = createCodec(WoodStripper::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
     }
 
 }

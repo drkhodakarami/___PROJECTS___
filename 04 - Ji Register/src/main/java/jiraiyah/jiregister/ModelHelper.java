@@ -32,6 +32,7 @@ import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Identifier;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")

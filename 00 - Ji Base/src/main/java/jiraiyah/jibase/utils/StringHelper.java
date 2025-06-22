@@ -30,6 +30,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
+@SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/Direwolf20-MC/JustDireThings")

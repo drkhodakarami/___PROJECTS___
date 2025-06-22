@@ -25,7 +25,7 @@
 package jiraiyah.ultraio.registry;
 
 import jiraiyah.jibase.exceptions.Exceptions;
-import jiraiyah.jiralib.record.CoordinateDataPayload;
+import jiraiyah.jibase.records.CoordinateDataPayload;
 import net.minecraft.component.ComponentType;
 
 import static jiraiyah.ultraio.Main.JCOMPONENT_TYPE;

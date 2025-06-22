@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "jiraiyah.jigui.mixin",
+  "compatibilityLevel": "JAVA_${java_ver}",
+  "mixins": [
+    "DrawContextMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

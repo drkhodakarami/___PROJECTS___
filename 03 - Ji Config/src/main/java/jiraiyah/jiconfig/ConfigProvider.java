@@ -36,6 +36,7 @@ import java.util.List;
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
 
+@SuppressWarnings("unused")
 public class ConfigProvider implements IConfigProvider
 {
     private String configContent;

@@ -57,7 +57,7 @@ public class DataGen implements DataGeneratorEntrypoint
 	@Override
 	public void buildRegistry(RegistryBuilder registryBuilder)
 	{
-        LOGGER.logDatageFeatures();
+        LOGGER.logDatagenFeatures();
 
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);

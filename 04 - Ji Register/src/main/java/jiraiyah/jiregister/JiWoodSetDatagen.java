@@ -26,6 +26,7 @@ package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @CreatedAt("2025-04-15")
 @ModifiedAt("2025-04-19")

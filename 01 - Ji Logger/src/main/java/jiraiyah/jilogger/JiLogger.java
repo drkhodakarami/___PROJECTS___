@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import static jiraiyah.jibase.constants.LoggerConstants.*;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -242,7 +243,7 @@ public class JiLogger
         this.logger.info("\u001B[38;2;" + 255 + ";" + 255 + ";" + 0 + ";48;2;" + 0 + ";" + 155 + ";" + 55 + "m>>> Generating Data {}", RESET);
     }
 
-    public void logDatageFeatures()
+    public void logDatagenFeatures()
     {
         this.logG("Registering Data Generation Features");
     }

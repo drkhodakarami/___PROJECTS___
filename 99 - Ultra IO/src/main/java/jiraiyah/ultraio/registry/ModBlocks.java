@@ -76,8 +76,8 @@ public class ModBlocks
     public static ToweringGoo TOWERING_GOO;
     public static TunnelingGoo TUNNELING_GOO;
     public static BridgeGoo BRIDGE_GOO;
-    public static LavaPumpGoo LAVA_PUMP_GOO;
-    public static WaterPumpGoo WATER_PUMP_GOO;
+    //public static LavaPumpGoo LAVA_PUMP_GOO;
+    //public static WaterPumpGoo WATER_PUMP_GOO;
     public static AirGooBomb AIR_BOMB_GOO;
     public static ChunkGooBomb CHUNK_BOMB_GOO;
     public static StoneGooBomb STONE_BOMB_GOO;
@@ -231,8 +231,8 @@ public class ModBlocks
         AIR_BOMB_GOO = JBLOCK.register("air_goo_bomb", gooSettings, AirGooBomb::new);
         CHUNK_BOMB_GOO = JBLOCK.register("chunk_goo_bomb", gooSettings, ChunkGooBomb::new);
         STONE_BOMB_GOO = JBLOCK.register("stone_goo_bomb", gooSettings, StoneGooBomb::new);
-        LAVA_PUMP_GOO = JBLOCK.register("lava_pump_goo", gooSettings, LavaPumpGoo::new);
-        WATER_PUMP_GOO = JBLOCK.register("water_pump_goo", gooSettings, WaterPumpGoo::new);
+        //LAVA_PUMP_GOO = JBLOCK.register("lava_pump_goo", gooSettings, LavaPumpGoo::new);
+        //WATER_PUMP_GOO = JBLOCK.register("water_pump_goo", gooSettings, WaterPumpGoo::new);
         //endregion
         //region MACHINE
         REDSTONE_CLOCK = JBLOCK.register("redstone_clock", Blocks.GRAY_WOOL, RedstoneClock::new);

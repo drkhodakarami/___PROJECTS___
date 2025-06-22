@@ -32,6 +32,7 @@ import net.minecraft.block.entity.BlockEntity;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")

@@ -155,11 +155,11 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.CHUNK_GOO);
         addDrop(ModBlocks.LAVA_EATING_GOO);
         addDrop(ModBlocks.LAVA_GENERATING_GOO);
-        addDrop(ModBlocks.LAVA_PUMP_GOO);
+        //addDrop(ModBlocks.LAVA_PUMP_GOO);
         addDrop(ModBlocks.TOWERING_GOO);
         addDrop(ModBlocks.TUNNELING_GOO);
         addDrop(ModBlocks.WATER_GENERATING_GOO);
-        addDrop(ModBlocks.WATER_PUMP_GOO);
+        //addDrop(ModBlocks.WATER_PUMP_GOO);
         //endregion
         //region MACHINE
         addDrop(ModBlocks.REDSTONE_CLOCK);

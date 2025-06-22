@@ -50,14 +50,8 @@ public class BatteryBank extends JiBlock
 
     public BatteryBank(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .hasPoweredProperty());
+        super(settings, new BlockProperties<>()
+                .addPoweredProperty());
         CODEC = createCodec(BatteryBank::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
     }
 }

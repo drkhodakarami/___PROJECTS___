@@ -25,11 +25,10 @@
 package jiraiyah.jinventory.inventories;
 
 import jiraiyah.jibase.annotations.*;
-import jiraiyah.jinventory.be.JInventoryBE;
 import jiraiyah.jiralib.blockentity.JiBlockEntity;
 import net.minecraft.item.ItemStack;
 
-
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")

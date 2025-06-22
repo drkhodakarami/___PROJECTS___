@@ -28,7 +28,7 @@ import com.mojang.serialization.MapCodec;
 import jiraiyah.jibase.interfaces.ITick;
 import jiraiyah.jibase.properties.BlockProperties;
 import jiraiyah.jiralib.block.JiBlock;
-import jiraiyah.ultraio.be.goo.GooBaseBE;
+import jiraiyah.ultraio.blockentity.goo.GooBaseBE;
 import jiraiyah.ultraio.registry.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -52,9 +52,9 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class GooBase extends JiBlock implements BlockEntityProvider
 {
-    public GooBase(Settings settings, BlockProperties properties)
+    public GooBase(Settings settings, BlockProperties<?> properties)
     {
-        super(settings, properties.hasPoweredProperty());
+        super(settings, properties.addPoweredProperty());
     }
 
     @Override
@@ -66,7 +66,7 @@ public abstract class GooBase extends JiBlock implements BlockEntityProvider
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack)
     {
-        if (this.properties.stateProperties().containsProperty(Properties.POWERED))
+        if (this.properties.getStateProperties().containsProperty(Properties.POWERED))
             world.setBlockState(pos, state.with(Properties.POWERED, false), Block.NOTIFY_ALL);
 
         super.onPlaced(world, pos, state, placer, itemStack);
@@ -84,7 +84,7 @@ public abstract class GooBase extends JiBlock implements BlockEntityProvider
         if (!stack.isOf(ModItems.ROD_COPPER))
             return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
 
-        if (this.properties.stateProperties().containsProperty(Properties.POWERED))
+        if (this.properties.getStateProperties().containsProperty(Properties.POWERED))
             world.setBlockState(pos, state.with(Properties.POWERED, true), Block.NOTIFY_ALL);
 
         player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
@@ -97,14 +97,6 @@ public abstract class GooBase extends JiBlock implements BlockEntityProvider
             be.setPlayerPos(player);
 
         return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
-    }
-
-    @Override
-    protected boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data)
-    {
-        super.onSyncedBlockEvent(state, world, pos, type, data);
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        return blockEntity != null && blockEntity.onSyncedBlockEvent(type, data);
     }
 
     @Override

@@ -30,6 +30,7 @@ import jiraiyah.jinventory.base.InventoryConnector;
 import net.minecraft.inventory.SimpleInventory;
 import oshi.util.tuples.Pair;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @ThanksTo(discordUsers = "TheWhyEvenHow")

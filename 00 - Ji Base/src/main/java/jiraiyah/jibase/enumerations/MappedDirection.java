@@ -30,6 +30,7 @@ import jiraiyah.jibase.annotations.*;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.Direction;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")

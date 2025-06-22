@@ -26,11 +26,11 @@ package jiraiyah.jibase.utils;
 
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.exceptions.Exceptions;
-import net.minecraft.world.World;
 
 import java.util.Random;
 import java.util.function.Predicate;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")

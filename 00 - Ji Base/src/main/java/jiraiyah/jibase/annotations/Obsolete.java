@@ -29,6 +29,7 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-25")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")

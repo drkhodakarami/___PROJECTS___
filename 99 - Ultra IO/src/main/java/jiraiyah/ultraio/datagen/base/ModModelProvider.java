@@ -172,10 +172,10 @@ public class ModModelProvider extends FabricModelProvider
         generator.registerSimpleCubeAll(ModBlocks.CHUNK_GOO);
         generator.registerSimpleCubeAll(ModBlocks.LAVA_EATING_GOO);
         generator.registerSimpleCubeAll(ModBlocks.LAVA_GENERATING_GOO);
-        generator.registerSimpleCubeAll(ModBlocks.LAVA_PUMP_GOO);
+        //generator.registerSimpleCubeAll(ModBlocks.LAVA_PUMP_GOO);
         generator.registerSimpleCubeAll(ModBlocks.WATER_EATING_GOO);
         generator.registerSimpleCubeAll(ModBlocks.WATER_GENERATING_GOO);
-        generator.registerSimpleCubeAll(ModBlocks.WATER_PUMP_GOO);
+        //generator.registerSimpleCubeAll(ModBlocks.WATER_PUMP_GOO);
 
         generator.registerSimpleCubeAll(ModBlocks.AIR_BOMB_GOO);
         generator.registerSimpleCubeAll(ModBlocks.CHUNK_BOMB_GOO);
@@ -445,38 +445,31 @@ public class ModModelProvider extends FabricModelProvider
         //region ARMOR
         ArmorHelper.generateAllArmorModels(ModID, generator,
                                new Item[]{ModItems.ARMOR_AMETHYST_HELMET, ModItems.ARMOR_AMETHYST_CHESTPLATE,
-                                          ModItems.ARMOR_AMETHYST_LEGGINGS, ModItems.ARMOR_AMETHYST_BOOTS},
-                               ModArmorMaterials.AMETHYST);
+                                          ModItems.ARMOR_AMETHYST_LEGGINGS, ModItems.ARMOR_AMETHYST_BOOTS});
 
         ArmorHelper.generateAllArmorModels(ModID, generator,
                                new Item[]{ModItems.ARMOR_CITRINE_HELMET, ModItems.ARMOR_CITRINE_CHESTPLATE,
-                                          ModItems.ARMOR_CITRINE_LEGGINGS, ModItems.ARMOR_CITRINE_BOOTS},
-                               ModArmorMaterials.CITRINE);
+                                          ModItems.ARMOR_CITRINE_LEGGINGS, ModItems.ARMOR_CITRINE_BOOTS});
 
         ArmorHelper.generateAllArmorModels(ModID, generator,
                                new Item[]{ModItems.ARMOR_COPPER_HELMET, ModItems.ARMOR_COPPER_CHESTPLATE,
-                                          ModItems.ARMOR_COPPER_LEGGINGS, ModItems.ARMOR_COPPER_BOOTS},
-                               ModArmorMaterials.COPPER);
+                                          ModItems.ARMOR_COPPER_LEGGINGS, ModItems.ARMOR_COPPER_BOOTS});
 
         ArmorHelper.generateAllArmorModels(ModID, generator,
                                new Item[]{ModItems.ARMOR_EMERALD_HELMET, ModItems.ARMOR_EMERALD_CHESTPLATE,
-                                          ModItems.ARMOR_EMERALD_LEGGINGS, ModItems.ARMOR_EMERALD_BOOTS},
-                               ModArmorMaterials.EMERALD);
+                                          ModItems.ARMOR_EMERALD_LEGGINGS, ModItems.ARMOR_EMERALD_BOOTS});
 
         ArmorHelper.generateAllArmorModels(ModID, generator,
                                new Item[]{ModItems.ARMOR_ENDERITE_HELMET, ModItems.ARMOR_ENDERITE_CHESTPLATE,
-                                          ModItems.ARMOR_ENDERITE_LEGGINGS, ModItems.ARMOR_ENDERITE_BOOTS},
-                               ModArmorMaterials.ENDERITE);
+                                          ModItems.ARMOR_ENDERITE_LEGGINGS, ModItems.ARMOR_ENDERITE_BOOTS});
 
         ArmorHelper.generateAllArmorModels(ModID, generator,
                                new Item[]{ModItems.ARMOR_RUBY_HELMET, ModItems.ARMOR_RUBY_CHESTPLATE,
-                                          ModItems.ARMOR_RUBY_LEGGINGS, ModItems.ARMOR_RUBY_BOOTS},
-                               ModArmorMaterials.RUBY);
+                                          ModItems.ARMOR_RUBY_LEGGINGS, ModItems.ARMOR_RUBY_BOOTS});
 
         ArmorHelper.generateAllArmorModels(ModID, generator,
                                new Item[]{ModItems.ARMOR_SAPPHIRE_HELMET, ModItems.ARMOR_SAPPHIRE_CHESTPLATE,
-                                          ModItems.ARMOR_SAPPHIRE_LEGGINGS, ModItems.ARMOR_SAPPHIRE_BOOTS},
-                               ModArmorMaterials.SAPPHIRE);
+                                          ModItems.ARMOR_SAPPHIRE_LEGGINGS, ModItems.ARMOR_SAPPHIRE_BOOTS});
         //endregion
 
         //region TOOLS

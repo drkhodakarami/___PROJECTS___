@@ -25,20 +25,14 @@
 package jiraiyah.ultraio.block.goo;
 
 import jiraiyah.jibase.properties.BlockProperties;
-import jiraiyah.jibase.properties.BlockPropertiesBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
 
 public class StoneGooBomb extends GooBase
 {
     public StoneGooBomb(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.STONE_GOO_BOMB)
-                                                                                        .shouldTick()));
+        super(settings, new BlockProperties<>(() -> ModBlockEntities.STONE_GOO_BOMB)
+                .tick());
         CODEC = createCodec(StoneGooBomb::new);
     }
 }

@@ -57,6 +57,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -99,7 +100,6 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
         this.sidedInventories.add(new Pair<>(side, inventory));
         var storage = PredicateInventoryStorage.of(InventoryStorage.of(inventory, MappedDirection.toDirection(side)), canInsert, canExtract);
         addStorage(storage, side);
-        InventoryConnector<RecipeInventory> test = new InventoryConnector<>();
     }
 
     public void addInventory(@NotNull T inventory, Direction side, Supplier<Boolean> canInsert, Supplier<Boolean> canExtract)

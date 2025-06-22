@@ -54,20 +54,8 @@ public class BuilderBlock extends JiBlock
     public BuilderBlock(Settings settings)
     {
         super(settings, new BlockProperties()
-                .hasPoweredProperty()
-                .hasHorizontalFacing());
+                .addPoweredProperty()
+                .addHorizontalFacing());
         CODEC = createCodec(BuilderBlock::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
-    }
-
-    @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type)
-    {
-        return super.getTicker(world, state, type);
     }
 }

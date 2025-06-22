@@ -28,6 +28,7 @@ import jiraiyah.jibase.annotations.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @ThanksTo(discordUsers = "TheWhyEvenHow")

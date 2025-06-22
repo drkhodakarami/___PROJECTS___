@@ -37,6 +37,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.TeleportTarget;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/Direwolf20-MC/JustDireThings")

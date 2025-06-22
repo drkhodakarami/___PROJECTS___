@@ -45,15 +45,9 @@ public class ProjectTable extends JiBlock
 {
     public ProjectTable(Settings settings)
     {
-        super(settings.nonOpaque(), new BlockProperties()
-                .hasPoweredProperty()
-                .hasHorizontalFacing());
+        super(settings.nonOpaque(), new BlockProperties<>()
+                .addPoweredProperty()
+                .addHorizontalFacing());
         CODEC = createCodec(ProjectTable::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
     }
 }

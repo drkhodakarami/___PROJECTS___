@@ -25,16 +25,14 @@
 package jiraiyah.ultraio.block.goo;
 
 import jiraiyah.jibase.properties.BlockProperties;
-import jiraiyah.jibase.properties.BlockPropertiesBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
 
 public class ChunkGooBomb extends GooBase
 {
     public ChunkGooBomb(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.CHUNK_GOO_BOMB)
-                                                                                        .shouldTick()));
+        super(settings, new BlockProperties<>(() -> ModBlockEntities.CHUNK_GOO_BOMB)
+                .tick());
         CODEC = createCodec(ChunkGooBomb::new);
     }
 }

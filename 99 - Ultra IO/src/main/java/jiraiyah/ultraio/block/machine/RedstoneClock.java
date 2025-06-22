@@ -44,14 +44,8 @@ public class RedstoneClock extends JiBlock
 
     public RedstoneClock(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .hasPoweredProperty());
+        super(settings, new BlockProperties<>()
+                .addPoweredProperty());
         CODEC = createCodec(RedstoneClock::new);
-    }
-
-    @Override
-    protected MapCodec<? extends Block> getCodec()
-    {
-        return CODEC;
     }
 }

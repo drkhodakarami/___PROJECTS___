@@ -49,29 +49,9 @@ public class EnderChanter extends JiBlock
 {
     public EnderChanter(Settings settings)
     {
-        super(settings.nonOpaque(), new BlockProperties()
-                .hasPoweredProperty()
-                .hasHorizontalFacing());
+        super(settings.nonOpaque(), new BlockProperties<>()
+                .addPoweredProperty()
+                .addHorizontalFacing());
         CODEC = createCodec(EnderChanter::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
-    }
-
-    @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type)
-    {
-        return super.getTicker(world, state, type);
-    }
-
-    @Override
-    protected boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data)
-    {
-        super.onSyncedBlockEvent(state, world, pos, type, data);
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        return blockEntity != null && blockEntity.onSyncedBlockEvent(type, data);
     }
 }

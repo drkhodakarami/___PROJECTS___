@@ -48,14 +48,8 @@ public class CreativeEnergyBank extends JiBlock
 
     public CreativeEnergyBank(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .hasPoweredProperty());
+        super(settings, new BlockProperties<>()
+                .addPoweredProperty());
         CODEC = createCodec(CreativeEnergyBank::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
     }
 }

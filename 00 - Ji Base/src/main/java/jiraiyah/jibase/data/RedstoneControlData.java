@@ -32,6 +32,7 @@ import jiraiyah.jibase.enumerations.RedstoneMode;
 
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/Direwolf20-MC/JustDireThings")

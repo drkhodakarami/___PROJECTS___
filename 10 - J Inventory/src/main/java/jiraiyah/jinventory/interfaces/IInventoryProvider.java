@@ -26,9 +26,11 @@ package jiraiyah.jinventory.interfaces;
 
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.enumerations.MappedDirection;
+import jiraiyah.jinventory.base.InventoryConnector;
 import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.minecraft.util.math.Direction;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -38,4 +40,6 @@ public interface IInventoryProvider
 {
     InventoryStorage getInventoryStorage(Direction direction);
     InventoryStorage getInventoryStorage(MappedDirection direction);
+
+    InventoryConnector<?> getInventoryConnector();
 }

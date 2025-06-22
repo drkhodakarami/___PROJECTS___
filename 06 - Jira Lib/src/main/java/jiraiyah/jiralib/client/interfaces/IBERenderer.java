@@ -24,6 +24,7 @@
 
 package jiraiyah.jiralib.client.interfaces;
 
+import jiraiyah.jibase.annotations.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -35,6 +36,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
 import net.minecraft.util.math.Vec3d;
 import org.joml.Matrix4f;
+
+@SuppressWarnings("unused")
+@Developer("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
 public interface IBERenderer<T extends BlockEntity>
 {

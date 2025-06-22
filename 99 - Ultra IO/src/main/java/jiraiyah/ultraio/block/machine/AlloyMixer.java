@@ -47,21 +47,9 @@ public class AlloyMixer extends JiBlock
 {
     public AlloyMixer(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .hasPoweredProperty()
-                .hasHorizontalFacing());
+        super(settings, new BlockProperties<>()
+                .addPoweredProperty()
+                .addHorizontalFacing());
         CODEC = createCodec(AlloyMixer::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
-    }
-
-    @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type)
-    {
-        return super.getTicker(world, state, type);
     }
 }

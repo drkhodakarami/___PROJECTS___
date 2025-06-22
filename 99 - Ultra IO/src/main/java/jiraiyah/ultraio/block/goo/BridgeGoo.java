@@ -25,21 +25,15 @@
 package jiraiyah.ultraio.block.goo;
 
 import jiraiyah.jibase.properties.BlockProperties;
-import jiraiyah.jibase.properties.BlockPropertiesBE;
 import jiraiyah.ultraio.registry.ModBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
 
 //idea: This will create a closed wall, safe tunnel to walk inside it.
 public class BridgeGoo extends GooBase
 {
     public BridgeGoo(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .blockEntityProperties(new BlockPropertiesBE<>(() -> ModBlockEntities.BRIDGE_GOO)
-                                                                                        .shouldTick()));
+        super(settings, new BlockProperties<>(() -> ModBlockEntities.BRIDGE_GOO)
+                .tick());
         CODEC = createCodec(BridgeGoo::new);
     }
 }

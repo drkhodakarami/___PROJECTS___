@@ -2,8 +2,10 @@
 	"schemaVersion": 1,
 	"id": "jigui",
 	"version": "${version}",
+
 	"name": "Ji GUI",
 	"description": "A library mod that helps with handling GUI related materials.",
+
 	"authors": [
 		"Jiraiyah"
 	],
@@ -12,15 +14,22 @@
 		"sources": "",
 		"issues": ""
 	},
+
 	"license": "MIT",
 	"icon": "assets/jigui/icon.png",
+
 	"environment": "*",
+	"mixins": [
+		"jigui.mixins.json"
+	],
+
 	"depends": {
 		"fabricloader": ">=${loader_ver}",
 		"minecraft": "~${game_ver}",
 		"java": ">=${java_ver}",
 		"fabric-api": "*"
 	},
+
 	"custom": {
 		"modmenu": {
 			"links": {

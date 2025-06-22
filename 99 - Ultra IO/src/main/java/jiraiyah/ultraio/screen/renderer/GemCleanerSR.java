@@ -1,121 +1,102 @@
 package jiraiyah.ultraio.screen.renderer;
 
-import jiraiyah.jibase.client.utils.MouseHelper;
-import jiraiyah.jibase.client.utils.ScreenUtils;
-import jiraiyah.ultraio.screen.handler.GemCleanerScreenHandler;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import jiraiyah.jigui.constants.*;
+import jiraiyah.jigui.enumerations.WidgetDirection;
+import jiraiyah.jigui.enumerations.WidgetOrientation;
+import jiraiyah.jigui.utils.ScreenHelper;
+import jiraiyah.jigui.widgets.FluidWidget;
+import jiraiyah.jigui.widgets.ProgressbarWidget;
+import jiraiyah.jigui.widgets.TexturedIndicatorWidget;
+import jiraiyah.jigui.screen.AbstractScreenRenderer;
+import jiraiyah.ultraio.blockentity.machine.GemCleanerBE;
+import jiraiyah.ultraio.screen.handler.GemCleanerSH;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
-import net.minecraft.client.MinecraftClient;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.texture.Sprite;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ColorHelper;
-import net.minecraft.world.World;
 
-import java.util.List;
-
-import static jiraiyah.ultraio.Main.REFERENCE;
-
-public class GemCleanerScreenRenderer extends HandledScreen<GemCleanerScreenHandler>
+public class GemCleanerSR extends AbstractScreenRenderer<GemCleanerBE, GemCleanerSH>
 {
-    private static final Identifier TEXTURE = REFERENCE.identifier("textures/gui/container/gem_cleaner.png");
-    private static final int BACKGROUND_WIDTH = 176;
-    private static final int BACKGROUND_HEIGHT = 189;
-
-    public GemCleanerScreenRenderer(GemCleanerScreenHandler handler, PlayerInventory inventory, Text title)
+    public GemCleanerSR(GemCleanerSH handler, PlayerInventory inventory, Text title)
     {
         super(handler, inventory, title);
     }
+
+    long energyCapacity = 10_000;
+    long energyAmount = 3_000;
+    long maxProgress = 200;
+    long progress = 40;
 
     @Override
     protected void init()
     {
         super.init();
-        this.playerInventoryTitleY = 10_000;
 
-        this.backgroundWidth = BACKGROUND_WIDTH;
-        this.backgroundHeight = BACKGROUND_HEIGHT;
+        try(Transaction transaction = Transaction.openOuter())
+        {
+            handler.getBlockEntity().getFluidStorage(null).insert(FluidVariant.of(Fluids.WATER), FluidConstants.BUCKET, transaction);
+            transaction.commit();
+        }
 
-        this.titleX = (this.backgroundWidth - this.textRenderer.getWidth(title)) / 2;
+        addDrawable(new FluidWidget.Builder(this.x + 82 , this.y + 28)
+                            .useDefaultValues(handler.getBlockEntity().getFluidStorage(null), () -> handler.getBlockEntity().getPos()).build());
+
+        addDrawable(new TexturedIndicatorWidget.Builder(this.x + 153, this.y + 28)
+                            .isEnergy()
+                            .capacitySupplier(() -> energyCapacity)
+                            .amountSupplier(() -> energyAmount)
+                            .build());
+
+        addDrawable(new ProgressbarWidget.Builder(this.x + 131, this.y + 46)
+                            .amountSupplier(() -> progress)
+                            .capacitySupplier(() -> maxProgress)
+                            .orientation(WidgetOrientation.VERTICAL)
+                            .direction(WidgetDirection.TOP_TO_BOTTOM)
+                            .useArrowProgress(true)
+                            .build());
+    }
+
+    @Override
+    protected int getBackgroundHeight()
+    {
+        return 189;
+    }
+
+    @Override
+    protected int getBackgroundWidth()
+    {
+        return 176;
     }
 
     @Override
     protected void drawBackground(DrawContext context, float deltaTicks, int mouseX, int mouseY)
     {
-        ScreenUtils.drawTexture(context, TEXTURE, this.x, this.y, 0, 0, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
+        super.drawBackground(context, deltaTicks, mouseX, mouseY);
+
+        ScreenHelper.drawTexture(context, SlotIconTextures.SlotType.ENERGY_UPGRADE, this.x + 7, this.y + 27);
+        ScreenHelper.drawTexture(context, SlotIconTextures.SlotType.SPEED_UPGRADE, this.x + 7, this.y + 53);
+        ScreenHelper.drawTexture(context, SlotIconTextures.SlotType.FLUID_UPGRADE, this.x + 7, this.y + 79);
+        ScreenHelper.drawTexture(context,SlotIconTextures.SlotType.BUCKET, this.x + 39, this.y + 17);
+        ScreenHelper.drawTexture(context, SlotIconTextures.Slot.EMPTY_NORMAL, this.x + 39, this.y + 85);
+        ScreenHelper.drawTexture(context, SlotIconTextures.Slot.EMPTY_NORMAL,this.x + 112, this.y + 28);
+        ScreenHelper.drawTexture(context, SlotIconTextures.Slot.EMPTY_NORMAL, this.x + 112, this.y + 73);
+        ScreenHelper.drawTexture(context, ContainerTextures.Connection.TUBE_TO_IO, this.x + 97, this.y + 44);
+        ScreenHelper.drawTexture(context, ProgressBarTextures.Tube.Short.BACKGROUND, this.x + 56, this.y + 30);
+        ScreenHelper.drawTexture(context, ArrowTextures.Small.ARROW_DOWN, this.x + 43, this.y + 58);
     }
 
     @Override
     protected void drawForeground(DrawContext context, int mouseX, int mouseY)
     {
         super.drawForeground(context, mouseX, mouseY);
-
-        //TODO: Handle the progress
-        ScreenUtils.drawTexture(context, TEXTURE, 131, 46, 176, 0, 8, 26); // DRAWING PROGRESS ARROW
-        //TODO: Handle the energy
-        ScreenUtils.drawTexture(context, TEXTURE, 154, 29, 200, 0, 14, 62); // DRAWING ENERGY BAR
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks)
     {
         super.render(context, mouseX, mouseY, deltaTicks);
-
-        /*addDrawable(new FluidWidget.Builder(this.handler.getBlockEntity().getFluidTank())
-                            .bound(this.x + 83, this.y + 29, 16, 62)
-                            .posSupplier(() -> this.handler.getBlockEntity().getPos())
-                            .build());*/
-
-        //TODO: Handle the fluid
-        Fluid fluid = Fluids.WATER;
-        long amount = FluidConstants.BUCKET * 5;
-        long capacity = FluidConstants.BUCKET * 10;
-        int barHeight = 62;
-        int fluidHeight = Math.round((float)amount / capacity * barHeight);
-
-        FluidRenderHandler fluidRenderHandler = FluidRenderHandlerRegistry.INSTANCE.get(fluid);
-
-        if(fluidRenderHandler != null && amount > 0)
-        {
-            BlockPos pos = this.handler.getBlockEntity().getPos();
-            FluidState fluidState = fluid.getDefaultState();
-            World world = MinecraftClient.getInstance().world;
-
-            Sprite stillTexture = fluidRenderHandler.getFluidSprites(world, pos, fluidState)[0];
-            int tintColor = fluidRenderHandler.getFluidColor(world, pos, fluidState);
-
-            float red = (tintColor >> 16 & 0xFF) / 255.0f;
-            float green = (tintColor >> 8 & 0xFF) / 255.0f;
-            float blue = (tintColor & 0xFF) / 255.0f;
-
-            ScreenUtils.renderTiledSprite(context, RenderLayer::getGuiTextured, stillTexture, this.x + 83, this.y + 29 + 62 - fluidHeight, 16, fluidHeight,
-                                          ColorHelper.fromFloats(1.0F, red, green, blue));
-        }
-
-        ScreenUtils.drawTexture(context, TEXTURE, this.x + 83, this.y + 34, 184, 0, 16, 51); // DRAWING FLUID MARKERS
-
-        //TODO: Handle the fluid tooltip
-        drawToolTip(context, this.x + 83, this.y + 29, 16, 62, mouseX, mouseY, amount, capacity);
-    }
-
-    private void drawToolTip(DrawContext context, int x, int y, int width , int height, int mouseX, int mouseY, long amount, long capacity)
-    {
-        if(!MouseHelper.isMouseOver(mouseX, mouseY, x, y, width, height))
-            return;
-
-        List<Text> texts = List.of(
-                Text.literal(((int) (((float) amount / FluidConstants.BUCKET) * 1000)) + " / " + ((int) (((float) capacity / FluidConstants.BUCKET) * 1000)) + " mB")
-        );
-
-        context.drawTooltip(textRenderer, texts, mouseX, mouseY);
     }
 }

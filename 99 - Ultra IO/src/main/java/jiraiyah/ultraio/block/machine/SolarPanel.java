@@ -52,22 +52,10 @@ public class SolarPanel extends JiBlock
 
     public SolarPanel(Settings settings)
     {
-        super(settings.nonOpaque(), new BlockProperties()
-                .hasPoweredProperty()
-                .hasHorizontalFacing()
-                .constantShape(SHAPE));
+        super(settings.nonOpaque(), new BlockProperties<>()
+                .addPoweredProperty()
+                .addHorizontalFacing()
+                .setConstantShape(SHAPE));
         CODEC = createCodec(SolarPanel::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
-    }
-
-    @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
-        return SHAPE;
     }
 }

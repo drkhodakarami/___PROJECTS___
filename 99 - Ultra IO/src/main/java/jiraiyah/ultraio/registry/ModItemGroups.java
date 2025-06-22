@@ -95,12 +95,12 @@ public class ModItemGroups
                                                                                          entries.add(ModBlocks.CHUNK_GOO);
                                                                                          entries.add(ModBlocks.LAVA_EATING_GOO);
                                                                                          entries.add(ModBlocks.LAVA_GENERATING_GOO);
-                                                                                         entries.add(ModBlocks.LAVA_PUMP_GOO);
+                                                                                         //entries.add(ModBlocks.LAVA_PUMP_GOO);
                                                                                          entries.add(ModBlocks.TOWERING_GOO);
                                                                                          entries.add(ModBlocks.TUNNELING_GOO);
                                                                                          entries.add(ModBlocks.WATER_EATING_GOO);
                                                                                          entries.add(ModBlocks.WATER_GENERATING_GOO);
-                                                                                         entries.add(ModBlocks.WATER_PUMP_GOO);
+                                                                                         //entries.add(ModBlocks.WATER_PUMP_GOO);
                                                                                      }).build());
     
     public static final ItemGroup INGREDIENTS = Registry.register(Registries.ITEM_GROUP,

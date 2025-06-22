@@ -81,21 +81,9 @@ public class AnimalFeed extends JiBlock
 
     public AnimalFeed(Settings settings)
     {
-        super(settings.nonOpaque(), new BlockProperties()
-                .hasPoweredProperty()
-                .constantShape(SHAPE));
+        super(settings.nonOpaque(), new BlockProperties<>()
+                .addPoweredProperty()
+                .setConstantShape(SHAPE));
         CODEC = createCodec(AnimalFeed::new);
-    }
-
-    @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
-        return SHAPE;
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
     }
 }

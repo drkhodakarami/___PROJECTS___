@@ -24,7 +24,7 @@
 
 package jiraiyah.ultraio.item;
 
-import jiraiyah.jiralib.record.CoordinateDataPayload;
+import jiraiyah.jibase.records.CoordinateDataPayload;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.RegistryKey;

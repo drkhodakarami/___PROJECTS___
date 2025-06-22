@@ -49,6 +49,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")

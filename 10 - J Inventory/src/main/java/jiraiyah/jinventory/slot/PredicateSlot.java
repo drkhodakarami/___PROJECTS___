@@ -32,6 +32,7 @@ import net.minecraft.screen.slot.Slot;
 
 import java.util.function.Predicate;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")

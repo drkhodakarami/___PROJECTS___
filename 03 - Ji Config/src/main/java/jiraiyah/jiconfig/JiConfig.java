@@ -27,6 +27,7 @@ package jiraiyah.jiconfig;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jilogger.JiLogger;
 
+@SuppressWarnings("unused")
 @Developer("Magistermaks")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")

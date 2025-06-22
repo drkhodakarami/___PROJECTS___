@@ -57,27 +57,9 @@ public class Tesseract extends JiBlock
 
     public Tesseract(Settings settings)
     {
-        super(settings.nonOpaque(), new BlockProperties()
-                .hasPoweredProperty()
-                .constantShape(SHAPE));
+        super(settings.nonOpaque(), new BlockProperties<>()
+                .addPoweredProperty()
+                .setConstantShape(SHAPE));
         CODEC = createCodec(Tesseract::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
-    }
-
-    @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type)
-    {
-        return super.getTicker(world, state, type);
-    }
-
-    @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
-        return SHAPE;
     }
 }

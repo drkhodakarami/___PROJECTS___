@@ -25,14 +25,9 @@
 package jiraiyah.ultraio.registry;
 
 import jiraiyah.jibase.exceptions.Exceptions;
-import jiraiyah.jiralib.record.BlockPosPayload;
-import jiraiyah.ultraio.screen.handler.GemCleanerScreenHandler;
-import jiraiyah.ultraio.screen.renderer.GemCleanerScreenRenderer;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import jiraiyah.ultraio.screen.renderer.GemCleanerSR;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.screen.ScreenHandlerType;
 
-import static jiraiyah.ultraio.Main.JSCREEN;
 import static jiraiyah.ultraio.Main.LOGGER;
 
 public class ModScreenRenderers
@@ -45,6 +40,6 @@ public class ModScreenRenderers
     public static void init()
     {
         LOGGER.logScreenRendererInit();
-        HandledScreens.register(ModScreenHandlers.GEM_CLEANER, GemCleanerScreenRenderer::new);
+        HandledScreens.register(ModScreenHandlers.GEM_CLEANER, GemCleanerSR::new);
     }
 }

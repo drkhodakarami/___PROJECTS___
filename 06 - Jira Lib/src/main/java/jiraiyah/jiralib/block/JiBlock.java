@@ -55,6 +55,7 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @ThanksTo(discordUsers = "TheWhyEvenHow")
@@ -157,6 +158,8 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type)
     {
+        if(this.properties.getBEType() == null && this.properties.isTickable())
+            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a ticking block entity! Check your constructor's properties. Either remove the .tick method call or add a block entity supplier!");
         if(this.properties.getBEType() != null && this.properties.isTickable())
         {
             if(this.properties.getBEType() instanceof ITick)
@@ -220,16 +223,10 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit)
     {
-        //if (this.multiblockType != null) {
-        //    if (!world.isClient) {
-        //        this.multiblockType.onPrimaryBlockUse(world, player, hit, pos);
-        //    }
-
-        //    return ActionResult.SUCCESS;
-        //}
-
         if (this.properties.hasGUI())
         {
+            if(this.properties.getBEType() == null)
+                throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a gui on block entity! Check your constructor's properties. Either remove the .addGui method call or add a block entity supplier!");
             if (!world.isClient)
             {
                 BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -245,20 +242,6 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
         return ActionResult.SUCCESS;
     }
 
-    /*@Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack)
-    {
-        if (this.multiblockType != null) {
-            if (!world.isClient) {
-                BlockEntity blockEntity = world.getBlockEntity(pos);
-                if (blockEntity instanceof Multiblockable multiblockable) {
-                    multiblockable.buildMultiblock(world, pos, state, placer, itemStack, blockEntity::markDirty);
-                }
-            }
-        }
-        super.onPlaced(world, pos, state, placer, itemStack);
-    }*/
-
     @Override
     protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos)
     {
@@ -273,8 +256,16 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
                 : super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
     }
 
+    @Override
+    protected MapCodec<? extends Block> getCodec()
+    {
+        return CODEC;
+    }
+
     public boolean hasInventory()
     {
+        if(this.properties.getBEType() == null && this.properties.hasInventory())
+            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want an inventory on block entity! Check your constructor's properties. Either remove the .addInventory method call or add a block entity supplier!");
         return this.properties.hasInventory();
     }
 }

@@ -26,6 +26,7 @@ package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @CreatedAt("2025-04-15")
 @ModifiedAt("2025-04-19")
@@ -33,6 +34,7 @@ import jiraiyah.jibase.annotations.*;
 @Discord("https://discord.turtywurty.dev/")
 @Youtube("https://www.youtube.com/@TurtyWurty")
 
+//TODO: Add the woodset
 public class JiWoodSet
 {
 }

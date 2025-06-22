@@ -28,11 +28,12 @@
 // The changes in plugins section and settings.gradle is to mimic this behvaior for reading the loom version from this top level file.
 
 plugins {
-    id 'fabric-loom' //version "${loom_version}"
+	id 'fabric-loom'
 	id 'maven-publish'
 }
 
 //======================================================================================== Read Top Level Property Values
+
 import java.util.Properties
 
 def sharedProperties = new Properties()
@@ -50,7 +51,6 @@ ext.minecraftVersion = sharedProperties.getProperty("minecraft_version")
 ext.yarnVersion = sharedProperties.getProperty("yarn_mappings")
 ext.loaderVersion = sharedProperties.getProperty("loader_version")
 ext.fabricVersion = sharedProperties.getProperty("fabric_version")
-//ext.loomVersion = sharedProperties.getProperty("loom_version")
 
 ext.jibaseVersion = sharedProperties.getProperty("jibase_version")
 ext.jiloggerVersion = sharedProperties.getProperty("jilogger_version")
@@ -91,7 +91,7 @@ ext.mavenArtifact = localProperties.getProperty("maven_artifact")
 ext.archiveName = localProperties.getProperty("archives_base_name")
 ext.modId = localProperties.getProperty("mod_id")
 
-//========================================================================================
+//======================================================================================== MAIN CONTENT
 
 version = jipressureVersion
 
@@ -101,6 +101,7 @@ base {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 	maven { url = 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
 }
 
@@ -109,6 +110,8 @@ fabricApi {
 		client = true
 	}
 }
+
+//======================================================================================== DEPENDENCIES
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraftVersion}"
@@ -121,6 +124,8 @@ dependencies {
     modImplementation "jiraiyah.reference:jireference:${jireferenceVersion}"
     modImplementation "jiraiyah.jiralib:jiralib:${jiralibVersion}"
 }
+
+//======================================================================================== PROCESS RESOURCES
 
 processResources {
 	inputs.property "version", version
@@ -143,6 +148,8 @@ processResources {
 	}
 }
 
+//======================================================================================== MAIN TASKS
+
 tasks.withType(JavaCompile).configureEach {
 	options.release = 21
 }
@@ -161,6 +168,8 @@ jar {
 		rename { "${it}_${inputs.properties.archivesName}"}
 	}
 }
+
+//======================================================================================== PUBLISHING
 
 def ENV = System.getenv()
 def systemRepsyURL = ENV.REPSY_URL
@@ -202,4 +211,90 @@ publishing {
 			}
 		}
 	}
+}
+
+//======================================================================================== CUSTOM TASKS
+
+def destinationDir = layout.buildDirectory.dir("output-sources").get().asFile
+
+clean.doFirst {
+	def versionPattern = version
+	def projectSrcDir = file("${project.rootProject.file("../")}/BUILD_SRC")
+	def projectModDir = file("${project.rootProject.file("../")}/BUILD_MOD")
+
+	println ">>> Starting clean task"
+	println ">>> Version To Clean: ${versionPattern}"
+
+	projectSrcDir.eachFileRecurse { file ->
+		if (file.isFile()) {
+			if (file.name.contains(versionPattern) && file.name.contains(project.base.archivesName.get())) {
+				file.delete()
+				println ">>> Deleted file: ${file.name}"
+			}
+		}
+	}
+
+	projectModDir.eachFileRecurse { file ->
+		if (file.isFile()) {
+			if (file.name.contains(versionPattern)  && file.name.contains(project.base.archivesName.get())) {
+				file.delete()
+				println ">>> Deleted file: ${file.name}"
+			}
+		}
+	}
+}
+
+tasks.register('copySourceJars', Copy) {
+	description = "Copies source JARs from libs to a top-level directory."
+
+	dependsOn remapSourcesJar  // Explicit dependency declaration
+
+	def buildSrcDir = file("${project.rootProject.file("../")}/BUILD_SRC")
+
+	doFirst {
+		// Create the destination directory if it doesn't exist
+		if (!buildSrcDir.exists()) {
+			buildSrcDir.mkdirs()
+		}
+
+		println("${project.name} >>> Moving source jar")
+	}
+
+	from(layout.buildDirectory.dir("libs").get().asFile){
+		include '*-sources.jar'
+	}
+	into(buildSrcDir)
+}
+
+tasks.register('copyModJars', Copy) {
+	description = "Copies main JARs from libs to a top-level directory."
+
+	dependsOn remapJar  // Explicit dependency declaration
+
+	def buildModDir = file("${project.rootProject.file("../")}/BUILD_MOD")
+
+	doFirst {
+		// Create the destination directory if it doesn't exist
+		if (!buildModDir.exists()) {
+			buildModDir.mkdirs()
+		}
+
+		println("${project.name} >>> Moving mod jar")
+	}
+
+	from(layout.buildDirectory.dir("libs").get().asFile) {
+		include '*.jar'
+		exclude '*-sources.jar'
+	}
+	into(buildModDir)
+}
+
+tasks.register('deleteBuildDir', Delete) {
+	description = "Deletes the build directory of the current project."
+
+	delete(layout.buildDirectory)
+}
+
+tasks.named('jar').configure {
+	finalizedBy(copySourceJars, copyModJars)//, deleteBuildDir)
 }

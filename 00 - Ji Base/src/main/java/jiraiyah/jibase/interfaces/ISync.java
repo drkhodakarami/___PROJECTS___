@@ -28,6 +28,7 @@ import jiraiyah.jibase.annotations.*;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")

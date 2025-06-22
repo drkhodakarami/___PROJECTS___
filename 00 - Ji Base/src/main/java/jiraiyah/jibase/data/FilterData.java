@@ -35,6 +35,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.WeakHashMap;
 
+@SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/Direwolf20-MC/JustDireThings")

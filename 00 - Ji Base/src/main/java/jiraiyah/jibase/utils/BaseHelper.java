@@ -29,7 +29,6 @@ import jiraiyah.jibase.exceptions.Exceptions;
 import net.minecraft.advancement.criterion.Criterion;
 import net.minecraft.block.Block;
 import net.minecraft.block.DecoratedPotPattern;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.component.ComponentType;
 import net.minecraft.entity.EntityType;
@@ -46,7 +45,6 @@ import net.minecraft.recipe.book.RecipeBookCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.math.floatprovider.FloatProviderType;
@@ -59,8 +57,9 @@ import org.jetbrains.annotations.NotNull;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @ModifiedAt("2025-04-23")
@@ -117,17 +116,17 @@ public class BaseHelper
 
     public static String getRegistryName(Potion potion)
     {
-        return Registries.POTION.getId(potion).getPath();
+        return Objects.requireNonNull(Registries.POTION.getId(potion)).getPath();
     }
 
     public static String getRegistryName(BlockEntityType<?> blockEntityType)
     {
-        return Registries.BLOCK_ENTITY_TYPE.getId(blockEntityType).getPath();
+        return Objects.requireNonNull(Registries.BLOCK_ENTITY_TYPE.getId(blockEntityType)).getPath();
     }
 
     public static String getRegistryName(Identifier identifier)
     {
-        return Registries.CUSTOM_STAT.getId(identifier).getPath();
+        return Objects.requireNonNull(Registries.CUSTOM_STAT.getId(identifier)).getPath();
     }
 
     public static String getRegistryName(ChunkStatus chunkStatus)
@@ -137,22 +136,22 @@ public class BaseHelper
 
     public static String getRegistryName(EntityAttribute entityAttribute)
     {
-        return Registries.ATTRIBUTE.getId(entityAttribute).getPath();
+        return Objects.requireNonNull(Registries.ATTRIBUTE.getId(entityAttribute)).getPath();
     }
 
     public static String getRegistryName(ScreenHandlerType<?> screenHandlerType)
     {
-        return Registries.SCREEN_HANDLER.getId(screenHandlerType).getPath();
+        return Objects.requireNonNull(Registries.SCREEN_HANDLER.getId(screenHandlerType)).getPath();
     }
 
     public static String getRegistryName(RecipeType<?> recipeType)
     {
-        return Registries.RECIPE_TYPE.getId(recipeType).getPath();
+        return Objects.requireNonNull(Registries.RECIPE_TYPE.getId(recipeType)).getPath();
     }
 
     public static String getRegistryName(RecipeSerializer<?> recipeSerializer)
     {
-        return Registries.RECIPE_SERIALIZER.getId(recipeSerializer).getPath();
+        return Objects.requireNonNull(Registries.RECIPE_SERIALIZER.getId(recipeSerializer)).getPath();
     }
 
     public static String getRegistryName(VillagerType villagerType)
@@ -167,44 +166,44 @@ public class BaseHelper
 
     public static String getRegistryName(FloatProviderType<?> floatProviderType)
     {
-        return Registries.FLOAT_PROVIDER_TYPE.getId(floatProviderType).getPath();
+        return Objects.requireNonNull(Registries.FLOAT_PROVIDER_TYPE.getId(floatProviderType)).getPath();
     }
 
     public static String getRegistryName(IntProviderType<?> intProviderType)
     {
-        return Registries.INT_PROVIDER_TYPE.getId(intProviderType).getPath();
+        return Objects.requireNonNull(Registries.INT_PROVIDER_TYPE.getId(intProviderType)).getPath();
     }
 
     public static String getRegistryName(DecoratedPotPattern decoratedPotPattern)
     {
-        return Registries.DECORATED_POT_PATTERN.getId(decoratedPotPattern).getPath();
+        return Objects.requireNonNull(Registries.DECORATED_POT_PATTERN.getId(decoratedPotPattern)).getPath();
     }
 
     public static String getRegistryName(ItemGroup itemGroup)
     {
-        return Registries.ITEM_GROUP.getId(itemGroup).getPath();
+        return Objects.requireNonNull(Registries.ITEM_GROUP.getId(itemGroup)).getPath();
     }
 
     public static String getRegistryName(Criterion<?> criterion)
     {
-        return Registries.CRITERION.getId(criterion).getPath();
+        return Objects.requireNonNull(Registries.CRITERION.getId(criterion)).getPath();
     }
 
     public static String getRegistryName(ComponentType<?> componentType, boolean isEnchantment)
     {
         return isEnchantment
-               ? Registries.ENCHANTMENT_EFFECT_COMPONENT_TYPE.getId(componentType).getPath()
-               : Registries.DATA_COMPONENT_TYPE.getId(componentType).getPath();
+               ? Objects.requireNonNull(Registries.ENCHANTMENT_EFFECT_COMPONENT_TYPE.getId(componentType)).getPath()
+               : Objects.requireNonNull(Registries.DATA_COMPONENT_TYPE.getId(componentType)).getPath();
     }
 
     public static String getRegistryName(MapDecorationType mapDecorationType)
     {
-        return Registries.MAP_DECORATION_TYPE.getId(mapDecorationType).getPath();
+        return Objects.requireNonNull(Registries.MAP_DECORATION_TYPE.getId(mapDecorationType)).getPath();
     }
 
     public static String getRegistryName(RecipeBookCategory recipeBookCategory)
     {
-        return Registries.RECIPE_BOOK_CATEGORY.getId(recipeBookCategory).getPath();
+        return Objects.requireNonNull(Registries.RECIPE_BOOK_CATEGORY.getId(recipeBookCategory)).getPath();
     }
 
     public static List<Item> getItemsWithTag(TagKey<Item> tagKey)
@@ -240,15 +239,18 @@ public class BaseHelper
         return world.getRegistryKey().getValue();
     }
 
-    public String getDimensionName(World world)
+    public static String getDimensionName(World world)
     {
         return getDimensionId(world).toString();
     }
 
-    public String getDimensionNameClean(World world)
+    public static String getDimensionNameClean(World world)
     {
-        String dimension = getDimensionName(world);
-        dimension = dimension.substring(dimension.indexOf(':') + 1).replace('_', ' ');
-        return dimension;
+        return getDimensionNameClean(getDimensionName(world));
+    }
+
+    public static String getDimensionNameClean(String dimensionName)
+    {
+        return dimensionName.substring(dimensionName.indexOf(':') + 1).replace('_', ' ');
     }
 }

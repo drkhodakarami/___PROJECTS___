@@ -38,6 +38,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Scanner;
 
+@SuppressWarnings("unused")
 @Developer("Magistermaks")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/magistermaks/fabric-simplelibs/blob/master/simple-config/SimpleConfig.java")

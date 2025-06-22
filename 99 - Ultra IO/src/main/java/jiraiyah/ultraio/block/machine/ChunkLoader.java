@@ -57,28 +57,10 @@ public class ChunkLoader extends JiBlock
 
     public ChunkLoader(Settings settings)
     {
-        super(settings.nonOpaque(), new BlockProperties()
-                .hasPoweredProperty()
-                .hasHorizontalFacing()
-                .constantShape(SHAPE));
+        super(settings.nonOpaque(), new BlockProperties<>()
+                .addPoweredProperty()
+                .addHorizontalFacing()
+                .setConstantShape(SHAPE));
         CODEC = createCodec(ChunkLoader::new);
-    }
-
-    @Override
-    protected MapCodec<? extends Block> getCodec()
-    {
-        return CODEC;
-    }
-
-    @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
-        return SHAPE;
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
     }
 }

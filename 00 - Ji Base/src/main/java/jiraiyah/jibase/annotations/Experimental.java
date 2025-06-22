@@ -31,6 +31,7 @@ import static java.lang.annotation.ElementType.TYPE;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Target;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")

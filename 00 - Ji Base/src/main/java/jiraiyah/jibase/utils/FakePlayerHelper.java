@@ -53,7 +53,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings({"unused", "SameParameterValue"})
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/Direwolf20-MC/JustDireThings")
@@ -344,13 +344,6 @@ public class FakePlayerHelper
             }
         }
 
-
-        //if (toUse != null && toUse.getType() == HitResult.Type.MISS) //When might I want this to happen?
-        //{
-            //InteractionResult type = player.gameMode.useItemOn(player, world, itemstack, InteractionHand.MAIN_HAND, (BlockHitResult) toUse);
-            //if (type == InteractionResult.SUCCESS || type == InteractionResult.CONSUME) return player.getMainHandItem();
-        //}
-
         if (!itemstack.isEmpty())
         {
             ActionResult type = player.interactionManager.interactItem(player, world, itemstack, Hand.MAIN_HAND); //Uses the item by itself
@@ -500,11 +493,7 @@ public class FakePlayerHelper
                     return player.interact(entity, Hand.MAIN_HAND) == ActionResult.SUCCESS;
 
                 if (action == InteractionType.INTERACT_AT && result != null)
-                {
-                    /*if (CommonHooks.onInteractEntityAt(player, entity, result.getLocation(), InteractionHand.MAIN_HAND) != null)
-                        return false;*/
                     return entity.interactAt(player, result.getPos(), Hand.MAIN_HAND) == ActionResult.SUCCESS;
-                }
 
                 if (action == InteractionType.ATTACK)
                 {
@@ -561,9 +550,9 @@ public class FakePlayerHelper
         return traceEntities(player, base, target, world);
     }
 
-    public static enum InteractionType {
+    public enum InteractionType {
         INTERACT,
         INTERACT_AT,
-        ATTACK;
+        ATTACK
     }
 }

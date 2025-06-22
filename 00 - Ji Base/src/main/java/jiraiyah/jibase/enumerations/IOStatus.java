@@ -27,6 +27,7 @@ package jiraiyah.jibase.enumerations;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.interfaces.ITraversableEnum;
 
+@SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")

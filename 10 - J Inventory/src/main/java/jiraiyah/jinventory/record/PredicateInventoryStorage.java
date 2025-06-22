@@ -49,15 +49,15 @@ import java.util.function.Supplier;
 
 @Experimental
 @SuppressWarnings("NonExtendableApiUsage")
-public record PredicateInventoryStorage(InventoryStorage storage, Supplier<Boolean> canInser, Supplier<Boolean> canExtract) implements InventoryStorage
+public record PredicateInventoryStorage(InventoryStorage storage, Supplier<Boolean> canInsert, Supplier<Boolean> canExtract) implements InventoryStorage
 {
     private static final ConcurrentMap<InventoryStorage, ConcurrentMap<PredicateKey, PredicateInventoryStorage>> CACHE = new MapMaker().weakKeys().makeMap();
 
-    public static PredicateInventoryStorage of(InventoryStorage storage, Supplier<Boolean> canInser, Supplier<Boolean> canExtract)
+    public static PredicateInventoryStorage of(InventoryStorage storage, Supplier<Boolean> canInsert, Supplier<Boolean> canExtract)
     {
         ConcurrentMap<PredicateKey, PredicateInventoryStorage> inventoryCache = CACHE.computeIfAbsent(storage, k -> new MapMaker().makeMap());
-        PredicateKey key = new PredicateKey(canInser, canExtract);
-        return inventoryCache.computeIfAbsent(key, k -> new PredicateInventoryStorage(storage, canInser, canExtract));
+        PredicateKey key = new PredicateKey(canInsert, canExtract);
+        return inventoryCache.computeIfAbsent(key, k -> new PredicateInventoryStorage(storage, canInsert, canExtract));
     }
 
     @Override
@@ -69,7 +69,7 @@ public record PredicateInventoryStorage(InventoryStorage storage, Supplier<Boole
     @Override
     public boolean supportsInsertion()
     {
-        return this.storage.supportsInsertion() && this.canInser.get();
+        return this.storage.supportsInsertion() && this.canInsert.get();
     }
 
     @Override
@@ -108,6 +108,7 @@ public record PredicateInventoryStorage(InventoryStorage storage, Supplier<Boole
         return storage.getSlot(slotIndex);
     }
 
+    @SuppressWarnings("EqualsDoesntCheckParameterClass")
     @Override
     public boolean equals(Object obj)
     {
@@ -121,7 +122,7 @@ public record PredicateInventoryStorage(InventoryStorage storage, Supplier<Boole
     }
 
     @Override
-    public String toString()
+    public @NotNull String toString()
     {
         return "PredicateInventoryStorage[%s]".formatted(storage.toString());
     }

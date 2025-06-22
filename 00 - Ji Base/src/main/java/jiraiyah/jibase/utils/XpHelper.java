@@ -27,6 +27,7 @@ package jiraiyah.jibase.utils;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.entity.player.PlayerEntity;
 
+@SuppressWarnings("unused")
 @Developer("Direwolf20")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")

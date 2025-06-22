@@ -1,0 +1,24 @@
+pluginManagement {
+	def loomVersion = new Properties()
+	file("${rootDir.parent}/dependencies.properties").withReader { reader ->
+		loomVersion.load(reader)
+	}
+
+	repositories {
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		mavenCentral()
+		gradlePluginPortal()
+	}
+	resolutionStrategy {
+		eachPlugin {
+			if (requested.id.id == "fabric-loom") {
+				useModule("net.fabricmc:fabric-loom:${loomVersion.getProperty('loom_version')}")
+			}
+		}
+	}
+}
+
+rootProject.name = '___testmod___'

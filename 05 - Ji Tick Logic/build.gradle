@@ -28,11 +28,12 @@
 // The changes in plugins section and settings.gradle is to mimic this behvaior for reading the loom version from this top level file.
 
 plugins {
-    id 'fabric-loom' //version "${loom_version}"
+    id 'fabric-loom'
     id 'maven-publish'
 }
 
 //======================================================================================== Read Top Level Property Values
+
 import java.util.Properties
 
 def sharedProperties = new Properties()
@@ -50,7 +51,6 @@ ext.minecraftVersion = sharedProperties.getProperty("minecraft_version")
 ext.yarnVersion = sharedProperties.getProperty("yarn_mappings")
 ext.loaderVersion = sharedProperties.getProperty("loader_version")
 ext.fabricVersion = sharedProperties.getProperty("fabric_version")
-//ext.loomVersion = sharedProperties.getProperty("loom_version")
 
 ext.jibaseVersion = sharedProperties.getProperty("jibase_version")
 ext.jiloggerVersion = sharedProperties.getProperty("jilogger_version")
@@ -63,7 +63,7 @@ ext.mavenArtifact = localProperties.getProperty("maven_artifact")
 ext.archiveName = localProperties.getProperty("archives_base_name")
 ext.modId = localProperties.getProperty("mod_id")
 
-//========================================================================================
+//======================================================================================== MAIN CONTENT
 
 version = jiticlogicVersion
 
@@ -73,6 +73,7 @@ base {
 
 repositories {
 	mavenCentral()
+    mavenLocal()
     maven { url = 'https://maven.fabricmc.net/' }
     maven {
         url = "https://cursemaven.com"
@@ -89,6 +90,8 @@ fabricApi {
 	}
 }
 
+//======================================================================================== DEPENDENCIES
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraftVersion}"
     mappings "net.fabricmc:yarn:${yarnVersion}:v2"
@@ -98,16 +101,13 @@ dependencies {
     // Sub Project Dependency ========================================================================================================================
 	
 	// Ji Lib Mods Dependency ========================================================================================================================
-    //modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
-    //modImplementation "jiraiyah.logger:jilogger:${jiloggerVersion}"
-    modImplementation files("${project.rootProject.file("../")}/BUILD_MOD/Ji Base-${jibaseVersion}.jar")
-    modImplementation files("${project.rootProject.file("../")}/BUILD_MOD/Ji Logger-${jiloggerVersion}.jar")
-
-    // Energy API Handling Dependency ================================================================================================================
-    //include modApi("teamreborn:energy:${rootProject.energyVSersion}") {
-	//	exclude(group: "net.fabricmc.fabric-api")
-	//}
+    modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
+    modImplementation "jiraiyah.logger:jilogger:${jiloggerVersion}"
+    //modImplementation files("${project.rootProject.file("../")}/BUILD_MOD/Ji Base-${jibaseVersion}.jar")
+    //modImplementation files("${project.rootProject.file("../")}/BUILD_MOD/Ji Logger-${jiloggerVersion}.jar")
 }
+
+//======================================================================================== PROCESS RESOURCES
 
 processResources {
 	inputs.property "version", version
@@ -130,6 +130,8 @@ processResources {
 	}
 }
 
+//======================================================================================== MAIN TASKS
+
 tasks.withType(JavaCompile).configureEach {
 	options.release = 21
 }
@@ -148,6 +150,8 @@ jar {
 		rename { "${it}_${inputs.properties.archivesName}"}
 	}
 }
+
+//======================================================================================== PUBLISHING
 
 def ENV = System.getenv()
 def systemRepsyURL = ENV.REPSY_URL
@@ -191,7 +195,8 @@ publishing {
     }
 }
 
-// Custom Tasks ======================================================================================================================================
+//======================================================================================== CUSTOM TASKS
+
 def destinationDir = layout.buildDirectory.dir("output-sources").get().asFile
 
 clean.doFirst {

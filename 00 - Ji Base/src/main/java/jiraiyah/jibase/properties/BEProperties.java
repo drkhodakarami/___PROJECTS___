@@ -29,6 +29,7 @@ import jiraiyah.jibase.interfaces.ITickLogic;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.world.World;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -130,7 +131,7 @@ public class BEProperties<T extends BlockEntity>
 
     public BEProperties<T> sync()
     {
-        return setSync(true);
+        return setSync(true).setWaitEndTick(true);
     }
 
     public BEProperties<T> setSync(boolean flag)
@@ -171,18 +172,6 @@ public class BEProperties<T extends BlockEntity>
         this.shouldUpdate = flag;
         return this;
     }
-
-    /*public BEProperties<T> waitEndTick()
-    {
-        this.shouldWaitEndTick = true;
-        return this;
-    }
-
-    public BEProperties<T> waitEndTick(boolean flag)
-    {
-        this.shouldWaitEndTick = flag;
-        return this;
-    }*/
 
     //endregion
 

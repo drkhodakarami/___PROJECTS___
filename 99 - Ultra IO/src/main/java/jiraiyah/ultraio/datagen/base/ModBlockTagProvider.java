@@ -689,9 +689,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SMELTER)
                 .add(ModBlocks.SOLAR_PANEL)
                 .add(ModBlocks.TESSERACT)
-                .add(ModBlocks.WOOD_STRIPPER)
-                .add(ModBlocks.LAVA_PUMP_GOO)
-                .add(ModBlocks.WATER_PUMP_GOO);
+                .add(ModBlocks.WOOD_STRIPPER);
+                //.add(ModBlocks.LAVA_PUMP_GOO)
+                //.add(ModBlocks.WATER_PUMP_GOO);
         //endregion
     }
 }

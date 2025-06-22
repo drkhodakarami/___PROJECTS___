@@ -25,8 +25,8 @@
 package jiraiyah.ultraio.registry;
 
 import jiraiyah.jibase.exceptions.Exceptions;
-import jiraiyah.jiralib.record.BlockPosPayload;
-import jiraiyah.ultraio.screen.handler.GemCleanerScreenHandler;
+import jiraiyah.jibase.records.BlockPosPayload;
+import jiraiyah.ultraio.screen.handler.GemCleanerSH;
 import net.minecraft.screen.ScreenHandlerType;
 
 import static jiraiyah.ultraio.Main.JSCREEN;
@@ -34,7 +34,8 @@ import static jiraiyah.ultraio.Main.LOGGER;
 
 public class ModScreenHandlers
 {
-    public static ScreenHandlerType<GemCleanerScreenHandler> GEM_CLEANER;
+    public static ScreenHandlerType<GemCleanerSH> GEM_CLEANER;
+
     public ModScreenHandlers()
     {
         Exceptions.throwCtorAssertion();
@@ -43,6 +44,6 @@ public class ModScreenHandlers
     public static void init()
     {
         LOGGER.logScreenHandlerInit();
-        GEM_CLEANER = JSCREEN.register("gem_cleaner_screen_handler", GemCleanerScreenHandler::new, BlockPosPayload.PACKET_CODEC);
+        GEM_CLEANER = JSCREEN.register("gem_cleaner_screen_handler", GemCleanerSH::new, BlockPosPayload.PACKET_CODEC);
     }
 }

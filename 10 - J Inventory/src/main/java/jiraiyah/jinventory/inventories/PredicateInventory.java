@@ -30,6 +30,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.function.BiPredicate;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -37,7 +38,7 @@ import java.util.function.BiPredicate;
 @Discord("https://discord.turtywurty.dev/")
 @Youtube("https://www.youtube.com/@TurtyWurty")
 
-public class PredicateInventory extends SyncedSimpleInventory
+public class PredicateInventory extends SyncedInventory
 {
     private final BiPredicate<ItemStack, Integer> predicate;
 

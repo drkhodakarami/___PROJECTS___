@@ -1,0 +1,305 @@
+/*
+ * Copyright (c) 2025 Alireza Khodakarami (Jiraiyah)
+ * -------------------------------------------------------------------------------
+ * MIT License
+ * ===============================================================================
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * -------------------------------------------------------------------------------
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * -------------------------------------------------------------------------------
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+// The loom version is being set in settings.gradle. This solution is tailored specifically for my use case that each sub folder
+// under "___ PROJECT ___" folder is a separate mod / library. Now We have a single dependencies.properties on the top level
+// (the "___ PROJECT ___" folder itself) and every build.gradle will read the needed values from this single file.
+// The changes in plugins section and settings.gradle is to mimic this behavior for reading the loom version from this top level file.
+
+plugins {
+	id 'fabric-loom'
+	id 'maven-publish'
+}
+
+//======================================================================================== Read Top Level Property Values
+
+import java.util.Properties
+
+def sharedProperties = new Properties()
+file("${rootDir.parent}/dependencies.properties").withReader { reader ->
+	sharedProperties.load(reader)
+}
+
+def localProperties = new Properties()
+file("${rootDir}/gradle.properties").withReader { reader ->
+	localProperties.load(reader)
+}
+
+ext.javaVersion = sharedProperties.getProperty("java_version")
+ext.minecraftVersion = sharedProperties.getProperty("minecraft_version")
+ext.yarnVersion = sharedProperties.getProperty("yarn_mappings")
+ext.loaderVersion = sharedProperties.getProperty("loader_version")
+ext.fabricVersion = sharedProperties.getProperty("fabric_version")
+
+ext.jibaseVersion = sharedProperties.getProperty("jibase_version")
+ext.jiloggerVersion = sharedProperties.getProperty("jilogger_version")
+ext.jiconfigVersion = sharedProperties.getProperty("jiconfig_version")
+ext.jireferenceVersion = sharedProperties.getProperty("jireference_version")
+ext.jiregisterVersion = sharedProperties.getProperty("jiregister_version")
+ext.jiticlogicVersion = sharedProperties.getProperty("jiticlogic_version")
+ext.jiralibVersion = sharedProperties.getProperty("jiralib_version")
+ext.jiguiVersion = sharedProperties.getProperty("jigui_version")
+ext.jinventoryVersion = sharedProperties.getProperty("jinventory_version")
+ext.jifluidVersion = sharedProperties.getProperty("jifluid_version")
+ext.jienergyVersion = sharedProperties.getProperty("jienergy_version")
+ext.jigasVersion = sharedProperties.getProperty("jigas_version")
+ext.jiheatVersion = sharedProperties.getProperty("jiheat_version")
+ext.jipressureVersion = sharedProperties.getProperty("jipressure_version")
+ext.jimoltenVersion = sharedProperties.getProperty("jimolten_version")
+ext.jipipenetworkVersion = sharedProperties.getProperty("jipipenetwork_version")
+ext.jimachinaVersion = sharedProperties.getProperty("jimachina_version")
+
+ext.ultraioVersion = sharedProperties.getProperty("ultraio_version")
+
+ext.energyVersion = sharedProperties.getProperty("energy_version")
+//ext.palVersion = sharedProperties.getProperty("pal_version")
+//ext.libguiVersion = sharedProperties.getProperty("libgui_version")
+//ext.emiVersion = sharedProperties.getProperty("emi_version")
+//ext.reiVersion = sharedProperties.getProperty("rei_version")
+//ext.jeiVersion = sharedProperties.getProperty("jei_version")
+//ext.clothVersion = sharedProperties.getProperty("cloth_version")
+//ext.architecturyVersion = sharedProperties.getProperty("architectury_version")
+//ext.terraformVersion = sharedProperties.getProperty("terraform_version")
+//ext.kyrptonaughtVersion = sharedProperties.getProperty("kyrptonaught_version")
+//ext.jadeVersion = sharedProperties.getProperty("jade_version")
+ext.modmenuVersion = sharedProperties.getProperty("modmenu_version")
+ext.badgesVersion = sharedProperties.getProperty("badges_lib_version")
+//ext.terrablenderVersion = sharedProperties.getProperty("terrablender_version")
+//ext.rebornCurseVersion = sharedProperties.getProperty("reborn_curse_version")
+//ext.techRebornVersion = sharedProperties.getProperty("tech_reborn_version")
+//ext.jeiMcVersion = sharedProperties.getProperty("jei_mc_version")
+
+ext.mavenGroup = localProperties.getProperty("maven_group")
+ext.mavenArtifact = localProperties.getProperty("maven_artifact")
+ext.archiveName = localProperties.getProperty("archives_base_name")
+ext.modId = localProperties.getProperty("mod_id")
+ext.modVersion = localProperties.getProperty("mod_version")
+
+//========================================================================================
+version = modVersion
+
+base {
+	archivesName = "${archiveName}"
+}
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	maven { url = 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
+	maven { url = 'https://maven.fabricmc.net/' }
+	maven { url = "https://maven.shedaniel.me" }
+	maven {
+		url = "https://cursemaven.com"
+		content {
+			includeGroup "curse.maven"
+		}
+	}
+	maven { url = "https://api.modrinth.com/maven" }
+	maven {
+		name = "CottonMC"
+		url = "https://server.bbkr.space/artifactory/libs-release"
+	}
+	maven {
+		name = 'Ladysnake Mods'
+		url = 'https://maven.ladysnake.org/releases'
+		content {
+			includeGroup 'io.github.ladysnake'
+			includeGroupByRegex 'io\\.github\\.onyxstudios.*'
+		}
+	}
+	maven {
+		name = 'TerraformersMC'
+		url = 'https://maven.terraformersmc.com/'
+	}
+	maven { url = 'https://maven.minecraftforge.net/' }
+	maven { url = "https://maven.kyrptonaught.dev" }
+	maven {
+		// location of the maven that hosts JEI files since January 2023
+		name = "Jared's maven"
+		url = "https://maven.blamejared.com/"
+	}
+	maven {
+		// location of a maven mirror for JEI files, as a fallback
+		name = "ModMaven"
+		url = "https://modmaven.dev"
+	}
+}
+
+loom{
+	//accessWidenerPath = file("src/main/resources/${modId}.accesswidener")
+}
+
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
+}
+
+//======================================================================================== DEPENDENCIES
+
+dependencies {
+	minecraft "com.mojang:minecraft:${minecraftVersion}"
+	mappings "net.fabricmc:yarn:${yarnVersion}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${loaderVersion}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricVersion}"
+
+	// Sub Project Dependency ========================================================================================================================
+
+	// Ji Lib Mods Dependency ========================================================================================================================
+	modImplementation include("jiraiyah.base:jibase:${jibaseVersion}")
+	modImplementation include("jiraiyah.logger:jilogger:${jiloggerVersion}")
+	modImplementation include("jiraiyah.reference:jireference:${jireferenceVersion}")
+	modImplementation include("jiraiyah.config:jiconfig:${jiconfigVersion}")
+	modImplementation include("jiraiyah.register:jiregister:${jiregisterVersion}")
+	modImplementation include("jiraiyah.jiralib:jiralib:${jiralibVersion}")
+	modImplementation include("jiraiyah.gui:jigui:${jiguiVersion}")
+	modImplementation include("jiraiyah.inventory:jinventory:${jinventoryVersion}")
+
+	//modImplementation include("jiraiyah.fluid:jifluid:${jifluidVersion}")
+	//modImplementation include("jiraiyah.energy:jienergy:${jienergyVersion}")
+	//modImplementation include("jiraiyah.gas:jigas:${jigasVersion}")
+	//modImplementation include("jiraiyah.heat:jiheat:${jiheatVersion}")
+	//modImplementation include("jiraiyah.pressure:jipressure:${jipressureVersion}")
+	//modImplementation include("jiraiyah.molten:jimolten:${jimoltenVersion}")
+	//modImplementation include("jiraiyah.pipenetwork:jipipenetwork:${jipipenetworkVersion}")
+	//modImplementation include("jiraiyah.machina:jimachina:${jimachinaVersion}")
+
+	//modImplementation include(files("${project.rootProject.file("../")}/BUILD_MOD/Ji Base-${jibaseVersion}.jar"))
+	//modImplementation include(files("${project.rootProject.file("../")}/BUILD_MOD/Ji Logger-${jiloggerVersion}.jar"))
+	//modImplementation include(files("${project.rootProject.file("../")}/BUILD_MOD/Ji Reference-${jireferenceVersion}.jar"))
+	//modImplementation include(files("${project.rootProject.file("../")}/BUILD_MOD/Ji Config-${jiconfigVersion}.jar"))
+	//modImplementation include(files("${project.rootProject.file("../")}/BUILD_MOD/Ji Register-${jiregisterVersion}.jar"))
+	//modImplementation include(files("${project.rootProject.file("../")}/BUILD_MOD/Jira Lib-${jiralibVersion}.jar"))
+	//modImplementation include(files("${project.rootProject.file("../")}/BUILD_MOD/Ji GUI-${jiguiVersion}.jar"))
+	//modImplementation include(files("${project.rootProject.file("../")}/BUILD_MOD/J Inventory-${jinventoryVersion}.jar"))
+
+	// Mod Menu ======================================================================================================================================
+	modImplementation("com.terraformersmc:modmenu:${modmenuVersion}")
+
+	// Mod Menu Badges Lib ===========================================================================================================================
+	include(modImplementation("maven.modrinth:modmenu-badges-lib:${badgesVersion}"))
+
+	// PAL ===========================================================================================================================================
+	//modImplementation "io.github.ladysnake:PlayerAbilityLib:${palVersion}"
+	//include "io.github.ladysnake:PlayerAbilityLib:${palVersion}"
+
+	// Energy API Handling Dependency ================================================================================================================
+	include modApi("teamreborn:energy:${energyVersion}") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+
+	// Terra Former Wood: Needed for Sign and Boat ===================================================================================================
+	//modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraformVersion}"
+	//include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${terraformVersion}"
+
+	// Jade ==========================================================================================================================================
+	//modImplementation "curse.maven:jade-324717:${jadeVersion}"
+
+	// Kyrptonaught ==================================================================================================================================
+	//modImplementation "net.kyrptonaught:customportalapi:${kyrptonaughtVersion}"
+	//include "net.kyrptonaught:customportalapi:${kyrptonaughtVersion}"
+
+	// TerraBlender ==================================================================================================================================
+	//modImplementation "com.github.glitchfiend:TerraBlender-fabric:${minecraftVersion}-${terrablenderVersion}"
+
+	// LibGUI ========================================================================================================================================
+	//modImplementation include("io.github.cottonmc:LibGui:${libguiVersion}")
+
+	// EMI Compatibility =============================================================================================================================
+	//modCompileOnly "dev.emi:emi-fabric:${emiVersion}:api"
+
+	// REI Compatibility =============================================================================================================================
+	//modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${reiVersion}"
+	//modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${reiVersion}"
+	//modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${reiVersion}"
+
+	// JEI Compatibility =============================================================================================================================
+	//modCompileOnlyApi("mezz.jei:jei-${project.jeiMcVersion}-fabric-api:${jeiVersion}")
+	//modRuntimeOnly("mezz.jei:jei-${project.minecraftVersion}-fabric:${jeiVersion}")
+
+	// Cloth Config ==================================================================================================================================
+	//modApi("me.shedaniel.cloth:cloth-config-fabric:${clothVersion}") {
+	//	exclude(group: "net.fabricmc.fabric-api")
+	//}
+
+	// Architectury ==================================================================================================================================
+	//modApi "dev.architectury:architectury-fabric:${architecturyVersion}"
+
+	// Tech Reborn Runtime Only ======================================================================================================================
+	//modRuntimeOnly("curse.maven:reborncore-237903:${rebornCurseVersion}")
+	//modRuntimeOnly("curse.maven:techreborn-233564:${techRebornVersion}")
+
+	// EMI Runtime Only ==============================================================================================================================
+	//modLocalRuntime "dev.emi:emi-fabric:${emiVersion}"
+
+	// REI Runtime Only ==============================================================================================================================
+	//modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${reiVersion}"
+
+	// JEI Runtime Only ==============================================================================================================================
+	//modRuntimeOnly("mezz.jei:jei-${jeiMcVersion}-fabric:${jeiVersion}")
+}
+
+//======================================================================================== PROCESS RESOURCES
+
+processResources {
+	inputs.property "version", version
+	inputs.property "loader_ver", loaderVersion
+	inputs.property "game_ver", minecraftVersion
+	inputs.property "java_ver", javaVersion
+	//inputs.property "mod_id", modId
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version,
+				"loader_ver": loaderVersion,
+				"game_ver": minecraftVersion,
+				"java_ver": javaVersion//,
+		//"mod_id": modId
+	}
+
+	filesMatching("${modId}.mixins.json") {
+		expand "java_ver": javaVersion//,
+		//"mod_id": modId
+	}
+}
+
+//======================================================================================== MAIN TASKS
+
+tasks.withType(JavaCompile).configureEach {
+	options.release = 21
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	inputs.property "archivesName", project.base.archivesName
+
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+}

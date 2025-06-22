@@ -749,6 +749,7 @@ public class ModRecipeProvider extends FabricRecipeProvider
                         .criterion(hasItem(ModItems.UNSTABLE_GOO), conditionsFromItem(ModItems.UNSTABLE_GOO))
                         .criterion(hasItem(Items.BLUE_DYE), conditionsFromItem(Items.BLUE_DYE))
                         .offerTo(exporter, getRecipeName(ModBlocks.WATER_GENERATING_GOO));
+                //TODO: PUMP GOO MAYBE?
                 //endregion
                 //region MACHINE
                 createShaped(RecipeCategory.TOOLS, ModItems.WRENCH, 1)

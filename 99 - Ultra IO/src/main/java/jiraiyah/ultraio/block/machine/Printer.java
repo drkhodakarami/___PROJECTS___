@@ -46,15 +46,9 @@ public class Printer extends JiBlock
 {
     public Printer(Settings settings)
     {
-        super(settings.nonOpaque(), new BlockProperties()
-                .hasPoweredProperty()
-                .hasHorizontalFacing());
+        super(settings.nonOpaque(), new BlockProperties<>()
+                .addPoweredProperty()
+                .addHorizontalFacing());
         CODEC = createCodec(Printer::new);
-    }
-
-    @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
-    {
-        return null;
     }
 }

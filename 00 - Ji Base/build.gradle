@@ -28,11 +28,12 @@
 // The changes in plugins section and settings.gradle is to mimic this behavior for reading the loom version from this top level file.
 
 plugins {
-    id 'fabric-loom' //version "${loom_version}"
+    id 'fabric-loom'
 	id 'maven-publish'
 }
 
 //======================================================================================== Read Top Level Property Values
+
 import java.util.Properties
 
 def sharedProperties = new Properties()
@@ -50,7 +51,6 @@ ext.minecraftVersion = sharedProperties.getProperty("minecraft_version")
 ext.yarnVersion = sharedProperties.getProperty("yarn_mappings")
 ext.loaderVersion = sharedProperties.getProperty("loader_version")
 ext.fabricVersion = sharedProperties.getProperty("fabric_version")
-//ext.loomVersion = sharedProperties.getProperty("loom_version")
 
 ext.jibaseVersion = sharedProperties.getProperty("jibase_version")
 
@@ -59,7 +59,7 @@ ext.mavenArtifact = localProperties.getProperty("maven_artifact")
 ext.archiveName = localProperties.getProperty("archives_base_name")
 ext.modId = localProperties.getProperty("mod_id")
 
-//========================================================================================
+//======================================================================================== MAIN CONTENT
 
 version = jibaseVersion
 
@@ -69,6 +69,7 @@ base {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 loom {
@@ -81,12 +82,16 @@ fabricApi {
 	}
 }
 
+//======================================================================================== DEPENDENCIES
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraftVersion}"
     mappings "net.fabricmc:yarn:${yarnVersion}:v2"
     modImplementation "net.fabricmc:fabric-loader:${loaderVersion}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricVersion}"
 }
+
+//======================================================================================== PROCESS RESOURCES
 
 processResources {
 	inputs.property "version", version
@@ -109,6 +114,8 @@ processResources {
 	}
 }
 
+//======================================================================================== MAIN TASKS
+
 tasks.withType(JavaCompile).configureEach {
 	options.release = 21
 }
@@ -127,6 +134,8 @@ jar {
 		rename { "${it}_${inputs.properties.archivesName}"}
 	}
 }
+
+//======================================================================================== PUBLISHING
 
 def ENV = System.getenv()
 def systemRepsyURL = ENV.REPSY_URL
@@ -171,7 +180,8 @@ publishing {
 	}
 }
 
-// Custom Tasks ======================================================================================================================================
+//======================================================================================== CUSTOM TASKS
+
 def destinationDir = layout.buildDirectory.dir("output-sources").get().asFile
 
 clean.doFirst {

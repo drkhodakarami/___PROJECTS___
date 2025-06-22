@@ -24,13 +24,21 @@
 
 package jiraiyah.jiralib.mixin;
 
+import jiraiyah.jibase.annotations.*;
 import jiraiyah.jiralib.interfaces.BlockStateManagerAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateManager;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
+
+@Developer("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/drkhodakarami/___PROJECTS___")
+@Discord("https://discord.gg/pmM4emCbuH")
+@Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
 @Mixin(Block.class)
 public class BlockMixin implements BlockStateManagerAccessor

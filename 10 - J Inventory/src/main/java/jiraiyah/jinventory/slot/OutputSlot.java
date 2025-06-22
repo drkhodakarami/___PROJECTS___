@@ -27,6 +27,7 @@ package jiraiyah.jinventory.slot;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.inventory.Inventory;
 
+@SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")

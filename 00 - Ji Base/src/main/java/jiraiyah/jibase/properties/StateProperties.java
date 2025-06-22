@@ -43,11 +43,12 @@ import java.util.concurrent.ConcurrentHashMap;
 @Discord("https://discord.turtywurty.dev/")
 @Youtube("https://www.youtube.com/@TurtyWurty")
 
+@SuppressWarnings("unused")
 public class StateProperties
 {
     private final Map<String, StateProperty<?>> properties = new ConcurrentHashMap<>();
 
-    //region FACINS AND AXIS
+    //region FACING AND AXIS
     public void addHorizontalFacing()
     {
         addProperty(new StateProperty<>(Properties.HORIZONTAL_FACING, Direction.NORTH));

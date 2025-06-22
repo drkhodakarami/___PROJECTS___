@@ -24,6 +24,7 @@
 
 package jiraiyah.jibase.properties;
 
+import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.interfaces.IBEFactory;
 import jiraiyah.jibase.interfaces.IBETickerFactory;
 import jiraiyah.jibase.interfaces.IShapeFactory;
@@ -45,12 +46,23 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import org.apache.commons.lang3.function.TriFunction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
+
+@SuppressWarnings({"unused", "UnusedReturnValue"})
+@Developer("TurtyWurty")
+@ModifiedBy("Jiraiyah")
+@CreatedAt("2025-04-18")
+@Repository("https://github.com/DaRealTurtyWurty/Industria")
+@Discord("https://discord.turtywurty.dev/")
+@Youtube("https://www.youtube.com/@TurtyWurty")
 
 public class BlockProperties<T extends BlockEntity>
 {
@@ -67,9 +79,13 @@ public class BlockProperties<T extends BlockEntity>
     private boolean shouldTick;
     private final IBEFactory<T> blockEntityFactory;
     private final IBETickerFactory<T> blockEntityTicker;
-    //private MultiblockProperties<T> multiblockProperties;
-    private boolean rightClickToOpenGui = false;
-    private boolean dropContentsOnBreak = false;
+    private boolean rightClickToOpenGui;
+    private boolean dropContentsOnBreak;
+
+    public BlockProperties()
+    {
+        this(null);
+    }
 
     public BlockProperties(Supplier<BlockEntityType<T>> blockEntityTypeSupplier)
     {
@@ -87,16 +103,8 @@ public class BlockProperties<T extends BlockEntity>
         rightClickToOpenGui = false;
         dropContentsOnBreak = false;
 
-        if(blockEntityTypeSupplier != null && blockEntityTypeSupplier.get() == null)
-        {
-            this.blockEntityFactory = (pos, state) -> this.blockEntityTypeSupplier.get().instantiate(pos, state);
-            this.blockEntityTicker = (world, state, type) -> ITick.createTicker(world);
-        }
-        else
-        {
-            this.blockEntityFactory = null;
-            this.blockEntityTicker = null;
-        }
+        this.blockEntityFactory = (pos, state) -> this.getBEType().instantiate(pos, state);
+        this.blockEntityTicker = (world, state, type) -> ITick.createTicker(world);
     }
 
     //region GETTERS
@@ -492,45 +500,33 @@ public class BlockProperties<T extends BlockEntity>
 
     public BlockProperties<T> tick()
     {
-        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
-            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a ticking block entity!");
         return tick(true);
     }
 
     public BlockProperties<T> tick(boolean flag)
     {
-        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
-            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a ticking block entity!");
         this.shouldTick = flag;
         return this;
     }
 
     public BlockProperties<T> addGui()
     {
-        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
-            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a gui on block entity!");
         return addGui(true);
     }
 
     public BlockProperties<T> addGui(boolean flag)
     {
-        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
-            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want a gui on block entity!");
         this.rightClickToOpenGui = flag;
         return this;
     }
 
     public BlockProperties<T> addInventory()
     {
-        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
-            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want an inventory on block entity!");
         return addInventory(true);
     }
 
     public BlockProperties<T> addInventory(boolean flag)
     {
-        if(blockEntityTypeSupplier == null || blockEntityTypeSupplier.get() == null)
-            throw new IllegalArgumentException("BlockEntityType supplier cannot be null or return null when you want an inventory on block entity!");
         this.dropContentsOnBreak = flag;
         return this;
     }

@@ -28,11 +28,12 @@
 // The changes in plugins section and settings.gradle is to mimic this behavior for reading the loom version from this top level file.
 
 plugins {
-    id 'fabric-loom' //version "${loom_version}"
+    id 'fabric-loom'
     id 'maven-publish'
 }
 
 //======================================================================================== Read Top Level Property Values
+
 import java.util.Properties
 
 def sharedProperties = new Properties()
@@ -50,7 +51,6 @@ ext.minecraftVersion = sharedProperties.getProperty("minecraft_version")
 ext.yarnVersion = sharedProperties.getProperty("yarn_mappings")
 ext.loaderVersion = sharedProperties.getProperty("loader_version")
 ext.fabricVersion = sharedProperties.getProperty("fabric_version")
-//ext.loomVersion = sharedProperties.getProperty("loom_version")
 
 ext.jibaseVersion = sharedProperties.getProperty("jibase_version")
 ext.jiloggerVersion = sharedProperties.getProperty("jilogger_version")
@@ -59,6 +59,7 @@ ext.jireferenceVersion = sharedProperties.getProperty("jireference_version")
 ext.jiregisterVersion = sharedProperties.getProperty("jiregister_version")
 ext.jiticlogicVersion = sharedProperties.getProperty("jiticlogic_version")
 ext.jiralibVersion = sharedProperties.getProperty("jiralib_version")
+ext.jiguiVersion = sharedProperties.getProperty("jigui_version")
 ext.jinventoryVersion = sharedProperties.getProperty("jinventory_version")
 ext.jifluidVersion = sharedProperties.getProperty("jifluid_version")
 ext.jienergyVersion = sharedProperties.getProperty("jienergy_version")
@@ -67,7 +68,6 @@ ext.jiheatVersion = sharedProperties.getProperty("jiheat_version")
 ext.jipressureVersion = sharedProperties.getProperty("jipressure_version")
 ext.jimoltenVersion = sharedProperties.getProperty("jimolten_version")
 ext.jipipenetworkVersion = sharedProperties.getProperty("jipipenetwork_version")
-ext.jiguiVersion = sharedProperties.getProperty("jigui_version")
 ext.jimachinaVersion = sharedProperties.getProperty("jimachina_version")
 
 ext.ultraioVersion = sharedProperties.getProperty("ultraio_version")
@@ -95,7 +95,7 @@ ext.mavenArtifact = localProperties.getProperty("maven_artifact")
 ext.archiveName = localProperties.getProperty("archives_base_name")
 ext.modId = localProperties.getProperty("mod_id")
 
-//========================================================================================
+//======================================================================================== MAIN CONTENT
 
 version = ultraioVersion
 
@@ -104,7 +104,8 @@ base {
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
+    mavenLocal()
     maven { url = 'https://maven.fabricmc.net/' }
     maven { url = "https://maven.shedaniel.me" }
     maven {
@@ -151,6 +152,8 @@ fabricApi {
 	}
 }
 
+//======================================================================================== DEPENDENCIES
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraftVersion}"
     mappings "net.fabricmc:yarn:${yarnVersion}:v2"
@@ -166,16 +169,16 @@ dependencies {
     modImplementation include("jiraiyah.config:jiconfig:${jiconfigVersion}")
     modImplementation include("jiraiyah.register:jiregister:${jiregisterVersion}")
     modImplementation include("jiraiyah.jiralib:jiralib:${jiralibVersion}")
-	//modImplementation include("jiraiyah.inventory:jinventory:${jinventory_version}")
-	//modImplementation include("jiraiyah.fluid:jifluid:${jifluid_version}")
-	//modImplementation include("jiraiyah.energy:jienergy:${jienergy_version}")
+    modImplementation include("jiraiyah.gui:jigui:${jiguiVersion}")
+	modImplementation include("jiraiyah.inventory:jinventory:${jinventoryVersion}")
+	//modImplementation include("jiraiyah.fluid:jifluid:${jifluidVersion}")
+	//modImplementation include("jiraiyah.energy:jienergy:${jienergyVersion}")
     //modImplementation include("jiraiyah.gas:jigas:${jigasVersion}")
     //modImplementation include("jiraiyah.heat:jiheat:${jiheatVersion}")
     //modImplementation include("jiraiyah.pressure:jipressure:${jipressureVersion}")
     //modImplementation include("jiraiyah.molten:jimolten:${jimoltenVersion}")
     //modImplementation include("jiraiyah.pipenetwork:jipipenetwork:${jipipenetworkVersion}")
-	//modImplementation include("jiraiyah.gui:jigui:${jigui_version}")
-	//modImplementation include("jiraiyah.machina:jimachina:${jimachina_version}")
+	//modImplementation include("jiraiyah.machina:jimachina:${jimachinaVersion}")
 
     // Mod Menu ======================================================================================================================================
     modImplementation("com.terraformersmc:modmenu:${modmenuVersion}")
@@ -243,6 +246,8 @@ dependencies {
     //modRuntimeOnly("mezz.jei:jei-${jeiMcVersion}-fabric:${jeiVersion}")
 }
 
+//======================================================================================== PROCESS RESOURCES
+
 processResources {
     inputs.property "version", version
     inputs.property "loader_ver", loaderVersion
@@ -264,6 +269,8 @@ processResources {
     }
 }
 
+//======================================================================================== MAIN TASKS
+
 tasks.withType(JavaCompile).configureEach {
 	options.release = 21
 }
@@ -282,6 +289,8 @@ jar {
 		rename { "${it}_${inputs.properties.archivesName}"}
 	}
 }
+
+//======================================================================================== PUBLISHING
 
 def ENV = System.getenv()
 def systemRepsyURL = ENV.REPSY_URL
@@ -323,4 +332,90 @@ publishing {
             }
         }
     }
+}
+
+//======================================================================================== CUSTOM TASKS
+
+def destinationDir = layout.buildDirectory.dir("output-sources").get().asFile
+
+clean.doFirst {
+    def versionPattern = version
+    def projectSrcDir = file("${project.rootProject.file("../")}/BUILD_SRC")
+    def projectModDir = file("${project.rootProject.file("../")}/BUILD_MOD")
+
+    println ">>> Starting clean task"
+    println ">>> Version To Clean: ${versionPattern}"
+
+    projectSrcDir.eachFileRecurse { file ->
+        if (file.isFile()) {
+            if (file.name.contains(versionPattern) && file.name.contains(project.base.archivesName.get())) {
+                file.delete()
+                println ">>> Deleted file: ${file.name}"
+            }
+        }
+    }
+
+    projectModDir.eachFileRecurse { file ->
+        if (file.isFile()) {
+            if (file.name.contains(versionPattern)  && file.name.contains(project.base.archivesName.get())) {
+                file.delete()
+                println ">>> Deleted file: ${file.name}"
+            }
+        }
+    }
+}
+
+tasks.register('copySourceJars', Copy) {
+    description = "Copies source JARs from libs to a top-level directory."
+
+    dependsOn remapSourcesJar  // Explicit dependency declaration
+
+    def buildSrcDir = file("${project.rootProject.file("../")}/BUILD_SRC")
+
+    doFirst {
+        // Create the destination directory if it doesn't exist
+        if (!buildSrcDir.exists()) {
+            buildSrcDir.mkdirs()
+        }
+
+        println("${project.name} >>> Moving source jar")
+    }
+
+    from(layout.buildDirectory.dir("libs").get().asFile){
+        include '*-sources.jar'
+    }
+    into(buildSrcDir)
+}
+
+tasks.register('copyModJars', Copy) {
+    description = "Copies main JARs from libs to a top-level directory."
+
+    dependsOn remapJar  // Explicit dependency declaration
+
+    def buildModDir = file("${project.rootProject.file("../")}/BUILD_MOD")
+
+    doFirst {
+        // Create the destination directory if it doesn't exist
+        if (!buildModDir.exists()) {
+            buildModDir.mkdirs()
+        }
+
+        println("${project.name} >>> Moving mod jar")
+    }
+
+    from(layout.buildDirectory.dir("libs").get().asFile) {
+        include '*.jar'
+        exclude '*-sources.jar'
+    }
+    into(buildModDir)
+}
+
+tasks.register('deleteBuildDir', Delete) {
+    description = "Deletes the build directory of the current project."
+
+    delete(layout.buildDirectory)
+}
+
+tasks.named('jar').configure {
+    finalizedBy(copySourceJars, copyModJars)//, deleteBuildDir)
 }
