@@ -59,8 +59,8 @@ public class Miner extends JiBlock
 {
     public Miner(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .addPoweredProperty()
+        super(settings, new BlockProperties<>()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(Miner::new);
     }

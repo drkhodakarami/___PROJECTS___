@@ -45,7 +45,7 @@ public class RedstoneClock extends JiBlock
     public RedstoneClock(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty());
+                .addLitProperty());
         CODEC = createCodec(RedstoneClock::new);
     }
 }

@@ -1,19 +1,7 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "ultraio:block/solar_panel",
-      "y": 90
-    },
-    "facing=north": {
+    "": {
       "model": "ultraio:block/solar_panel"
-    },
-    "facing=south": {
-      "model": "ultraio:block/solar_panel",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "ultraio:block/solar_panel",
-      "y": 270
     }
   }
 }

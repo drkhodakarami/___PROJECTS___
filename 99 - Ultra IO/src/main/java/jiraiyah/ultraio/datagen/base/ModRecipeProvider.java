@@ -203,6 +203,7 @@ public class ModRecipeProvider extends FabricRecipeProvider
                 //endregion
 
                 //region SHAPED
+                //TODO Fluid Tanks
                 createShaped(RecipeCategory.MISC, ModItems.HOT_COAL, 8)
                         .pattern("CCC")
                         .pattern("CBC")

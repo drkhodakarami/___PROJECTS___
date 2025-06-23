@@ -46,7 +46,7 @@ public class WoodStripper extends JiBlock
     public WoodStripper(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty());
+                .addLitProperty());
         CODEC = createCodec(WoodStripper::new);
     }
 

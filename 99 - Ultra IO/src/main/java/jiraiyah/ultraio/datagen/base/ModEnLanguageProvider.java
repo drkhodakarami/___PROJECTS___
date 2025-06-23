@@ -496,6 +496,7 @@ public class ModEnLanguageProvider extends FabricLanguageProvider
         builder.add(REFERENCE.EXCAVATOR_BLACKLIST, "Excavator Blacklist");
         builder.add(REFERENCE.INCORRECT_FOR_ENDERITE_TOOL, "Incorrect For Enderite Tool");
         builder.add(REFERENCE.GOO_BLACKLIST, "Goo Blacklist");
+        builder.add(REFERENCE.FLUID_TANKS, "Fluid Tanks");
 
         builder.add(REFERENCE.FLUID_BUCKET, "Fluid Buckets");
         builder.add(REFERENCE.CAST, "Casts");
@@ -562,6 +563,20 @@ public class ModEnLanguageProvider extends FabricLanguageProvider
         builder.add("gamerule.water.pump.goo.active", "Should Water Pump Goo Work");
 
         builder.add(ModID + ".container.gem.cleaner", "Gem Cleaner");
+
+        //region FLUID TANKS
+        builder.add(ModBlocks.FLUID_TANK_COPPER, "Copper Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_DIAMOND, "Diamond Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_EMERALD, "Emerald Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_ENDERITE, "Enderite Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_GOLD, "Gold Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_IRON, " Iron Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_NETHERITE, "Netherite Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_OBSIDIAN, "Obsidian Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_STAR, "Nether star Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_STONE, "Stone Fluid Tank");
+        builder.add(ModBlocks.FLUID_TANK_WOOD, "Wooden Fluid Tank");
+        //endregion
 
         //region TITLES
         addText(builder, REFERENCE.BLOCKS_TITLE, "Blocks");

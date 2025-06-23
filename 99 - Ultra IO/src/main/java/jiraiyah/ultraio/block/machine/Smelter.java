@@ -53,7 +53,7 @@ public class Smelter extends JiBlock
     public Smelter(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(Smelter::new);
     }

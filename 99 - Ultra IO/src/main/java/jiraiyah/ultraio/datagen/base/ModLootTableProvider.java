@@ -31,10 +31,13 @@ import jiraiyah.ultraio.registry.ModBlocks;
 import jiraiyah.ultraio.registry.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
+
+import static jiraiyah.ultraio.Main.JBLOCK;
 
 public class ModLootTableProvider extends FabricBlockLootTableProvider
 {
@@ -186,6 +189,19 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider
 
         addDrop(ModBlocks.CREATIVE_BANK);
         addDrop(ModBlocks.BATTERY_BANK);
+        //endregion
+        //region FLUID TANK
+        addDrop(ModBlocks.FLUID_TANK_COPPER);
+        addDrop(ModBlocks.FLUID_TANK_DIAMOND);
+        addDrop(ModBlocks.FLUID_TANK_EMERALD);
+        addDrop(ModBlocks.FLUID_TANK_ENDERITE);
+        addDrop(ModBlocks.FLUID_TANK_GOLD);
+        addDrop(ModBlocks.FLUID_TANK_IRON);
+        addDrop(ModBlocks.FLUID_TANK_NETHERITE);
+        addDrop(ModBlocks.FLUID_TANK_OBSIDIAN);
+        addDrop(ModBlocks.FLUID_TANK_STAR);
+        addDrop(ModBlocks.FLUID_TANK_STONE);
+        addDrop(ModBlocks.FLUID_TANK_WOOD);
         //endregion
     }
 }

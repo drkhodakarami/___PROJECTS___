@@ -150,7 +150,7 @@ public abstract class JiBlock extends Block implements BlockEntityProvider
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state)
     {
-        return (this.properties.getBEFactory() != null)
+        return (this.properties.getBEType() != null && this.properties.getBEFactory() != null)
                 ? this.properties.getBEFactory().create(pos, state)
                 : null;
     }

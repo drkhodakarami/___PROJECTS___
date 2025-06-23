@@ -47,7 +47,7 @@ public class BlockPlacer extends JiBlock
     public BlockPlacer(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(BlockPlacer::new);
     }

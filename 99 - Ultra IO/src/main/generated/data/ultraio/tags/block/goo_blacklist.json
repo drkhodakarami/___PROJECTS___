@@ -169,8 +169,6 @@
     "ultraio:smelter",
     "ultraio:solar_panel",
     "ultraio:tesseract",
-    "ultraio:wood_stripper",
-    "ultraio:lava_pump_goo",
-    "ultraio:water_pump_goo"
+    "ultraio:wood_stripper"
   ]
 }

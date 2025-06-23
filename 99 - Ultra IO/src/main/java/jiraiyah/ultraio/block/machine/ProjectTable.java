@@ -46,7 +46,7 @@ public class ProjectTable extends JiBlock
     public ProjectTable(Settings settings)
     {
         super(settings.nonOpaque(), new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(ProjectTable::new);
     }

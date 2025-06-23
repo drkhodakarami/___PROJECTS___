@@ -1,9 +1,9 @@
 {
   "variants": {
-    "powered=false": {
+    "lit=false": {
       "model": "ultraio:block/redstone_clock"
     },
-    "powered=true": {
+    "lit=true": {
       "model": "ultraio:block/redstone_clock_on"
     }
   }

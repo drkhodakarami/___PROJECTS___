@@ -82,7 +82,6 @@ public class AnimalFeed extends JiBlock
     public AnimalFeed(Settings settings)
     {
         super(settings.nonOpaque(), new BlockProperties<>()
-                .addPoweredProperty()
                 .setConstantShape(SHAPE));
         CODEC = createCodec(AnimalFeed::new);
     }

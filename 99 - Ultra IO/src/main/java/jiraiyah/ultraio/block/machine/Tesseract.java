@@ -58,7 +58,7 @@ public class Tesseract extends JiBlock
     public Tesseract(Settings settings)
     {
         super(settings.nonOpaque(), new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .setConstantShape(SHAPE));
         CODEC = createCodec(Tesseract::new);
     }

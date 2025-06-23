@@ -51,7 +51,7 @@ public class Pulverizer extends JiBlock
     public Pulverizer(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(Pulverizer::new);
     }

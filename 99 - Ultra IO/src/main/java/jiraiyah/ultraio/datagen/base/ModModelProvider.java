@@ -180,7 +180,7 @@ public class ModModelProvider extends FabricModelProvider
         generator.registerSimpleCubeAll(ModBlocks.AIR_BOMB_GOO);
         generator.registerSimpleCubeAll(ModBlocks.CHUNK_BOMB_GOO);
         generator.registerSimpleCubeAll(ModBlocks.STONE_BOMB_GOO);
-        //region
+        //endregion
         //region MACHINE
         generator.registerSimpleCubeAll(ModBlocks.CREATIVE_BANK);
         generator.registerSimpleCubeAll(ModBlocks.BATTERY_BANK);
@@ -205,7 +205,7 @@ public class ModModelProvider extends FabricModelProvider
         generator.registerNorthDefaultHorizontalRotated(ModBlocks.BLOCK_PLACER, TexturedModel.ORIENTABLE);
         generator.registerNorthDefaultHorizontalRotated(ModBlocks.FLUID_PUMP, TexturedModel.ORIENTABLE);
 
-        generator.registerNorthDefaultHorizontalRotation(ModBlocks.SOLAR_PANEL);
+        generator.registerSimpleState(ModBlocks.SOLAR_PANEL);
 
         ModelHelper.registerCubeVariantBlock(generator, ModBlocks.REDSTONE_CLOCK, Properties.LIT);
 
@@ -216,6 +216,20 @@ public class ModModelProvider extends FabricModelProvider
         ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.SMELTER, Properties.LIT);
         ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.GENERATOR, Properties.LIT);
         ModelHelper.registerOrientableVariantBlock(generator, ModBlocks.BUILDER, Properties.LIT);
+        //endregion
+
+        //region Fluid TANKS
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_COPPER);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_DIAMOND);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_EMERALD);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_ENDERITE);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_GOLD);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_IRON);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_NETHERITE);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_OBSIDIAN);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_STAR);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_STONE);
+        generator.registerSimpleState(ModBlocks.FLUID_TANK_WOOD);
         //endregion
     }
 

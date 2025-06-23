@@ -49,7 +49,7 @@ public class CreativeEnergyBank extends JiBlock
     public CreativeEnergyBank(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty());
+                .addLitProperty());
         CODEC = createCodec(CreativeEnergyBank::new);
     }
 }

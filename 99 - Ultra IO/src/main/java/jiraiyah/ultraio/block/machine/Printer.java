@@ -47,7 +47,7 @@ public class Printer extends JiBlock
     public Printer(Settings settings)
     {
         super(settings.nonOpaque(), new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(Printer::new);
     }

@@ -54,7 +54,7 @@ public class FluidPump extends JiBlock
     public FluidPump(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(FluidPump::new);
     }

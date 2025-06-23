@@ -53,7 +53,7 @@ public class BlockBreaker extends JiBlock
     public BlockBreaker(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(BlockBreaker::new);
     }

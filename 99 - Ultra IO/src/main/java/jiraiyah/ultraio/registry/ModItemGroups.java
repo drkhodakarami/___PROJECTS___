@@ -428,6 +428,18 @@ public class ModItemGroups
                                                                         .icon(ModBlocks.CHUNK_LOADER.asItem()::getDefaultStack)
                                                                         .entries((displayContext, entries) ->
                                                                                  {
+                                                                                     entries.add(ModBlocks.FLUID_TANK_COPPER);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_DIAMOND);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_EMERALD);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_ENDERITE);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_GOLD);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_IRON);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_NETHERITE);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_OBSIDIAN);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_STAR);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_STONE);
+                                                                                     entries.add(ModBlocks.FLUID_TANK_WOOD);
+
                                                                                      entries.add(ModBlocks.WOOD_STRIPPER);
                                                                                      entries.add(ModBlocks.CAST_PRESS);
                                                                                      entries.add(ModBlocks.SMELTER);

@@ -160,6 +160,7 @@ public class ModReference extends JiReference
     public final TagKey<Block> EXCAVATOR_BLACKLIST = createBlockTag("excavator_blacklist");
     public final TagKey<Block> INCORRECT_FOR_ENDERITE_TOOL = createBlockTag("incorrect_for_enderite_tool");
     public final TagKey<Block> GOO_BLACKLIST = createBlockTag("goo_blacklist");
+    public final TagKey<Block> FLUID_TANKS = createBlockTag("fluid_tank");
     //endregion
 
     //region INGREDIENT TAGS

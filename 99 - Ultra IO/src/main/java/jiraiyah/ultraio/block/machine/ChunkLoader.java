@@ -58,7 +58,7 @@ public class ChunkLoader extends JiBlock
     public ChunkLoader(Settings settings)
     {
         super(settings.nonOpaque(), new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing()
                 .setConstantShape(SHAPE));
         CODEC = createCodec(ChunkLoader::new);

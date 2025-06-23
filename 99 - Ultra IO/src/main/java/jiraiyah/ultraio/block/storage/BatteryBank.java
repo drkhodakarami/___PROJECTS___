@@ -51,7 +51,7 @@ public class BatteryBank extends JiBlock
     public BatteryBank(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty());
+                .addLitProperty());
         CODEC = createCodec(BatteryBank::new);
     }
 }

@@ -48,7 +48,7 @@ public class AlloyMixer extends JiBlock
     public AlloyMixer(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(AlloyMixer::new);
     }

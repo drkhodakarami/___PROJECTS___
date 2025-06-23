@@ -52,7 +52,10 @@ public class ModBlocks
             RAW_CITRINE, RAW_ENDERITE, RAW_QUARTZ, RAW_RUBY, RAW_SAPPHIRE, ORE_DEEP_CITRINE, ORE_DEEP_RUBY, ORE_DEEP_SAPPHIRE,
             ORE_END_CITRINE, ORE_END_ENDERITE_CRACKED, ORE_END_RUBY, ORE_END_SAPPHIRE,
             ORE_NETHER_CITRINE, ORE_NETHER_RUBY, ORE_NETHER_SAPPHIRE, ORE_NETHER_COAL, ORE_NETHER_COPPER, ORE_NETHER_DIAMOND,
-            ORE_NETHER_IRON, ORE_NETHER_LAPIS, ORE_NETHER_REDSTONE, ORE_WORLD_CITRINE, ORE_WORLD_RUBY, ORE_WORLD_SAPPHIRE;
+            ORE_NETHER_IRON, ORE_NETHER_LAPIS, ORE_NETHER_REDSTONE, ORE_WORLD_CITRINE, ORE_WORLD_RUBY, ORE_WORLD_SAPPHIRE,
+            FLUID_TANK_COPPER, FLUID_TANK_DIAMOND, FLUID_TANK_EMERALD, FLUID_TANK_ENDERITE, FLUID_TANK_GOLD,
+            FLUID_TANK_IRON, FLUID_TANK_NETHERITE, FLUID_TANK_OBSIDIAN, FLUID_TANK_STAR, FLUID_TANK_STONE,
+            FLUID_TANK_WOOD;
 
     public static FenceBlock CITRINE_FENCE, ENDERITE_FENCE, RUBY_FENCE, SAPPHIRE_FENCE;
     public static StairsBlock CITRINE_STAIRS, ENDERITE_STAIRS, RUBY_STAIRS, SAPPHIRE_STAIRS;
@@ -159,6 +162,20 @@ public class ModBlocks
         ORE_WORLD_SAPPHIRE = JBLOCK.register("ore_world_sapphire", Blocks.IRON_ORE);
 
         ORE_ENDERITE = JBLOCK.register("ore_enderite", Blocks.ANCIENT_DEBRIS);
+        //endregion
+
+        //region FLUID TANK
+        FLUID_TANK_COPPER = JBLOCK.register("copper_fluid_tank", Blocks.COPPER_BLOCK);
+        FLUID_TANK_DIAMOND = JBLOCK.register("diamond_fluid_tank", Blocks.DIAMOND_BLOCK);
+        FLUID_TANK_EMERALD = JBLOCK.register("emerald_fluid_tank", Blocks.EMERALD_BLOCK);
+        FLUID_TANK_ENDERITE = JBLOCK.register("enderite_fluid_tank", ENDERITE);
+        FLUID_TANK_GOLD = JBLOCK.register("gold_fluid_tank", Blocks.GOLD_BLOCK);
+        FLUID_TANK_IRON = JBLOCK.register("iron_fluid_tank", Blocks.IRON_BLOCK);
+        FLUID_TANK_NETHERITE = JBLOCK.register("netherite_fluid_tank", Blocks.NETHERITE_BLOCK);
+        FLUID_TANK_OBSIDIAN = JBLOCK.register("obsidian_fluid_tank", Blocks.OBSIDIAN);
+        FLUID_TANK_STAR = JBLOCK.register("star_fluid_tank", Blocks.DIAMOND_BLOCK);
+        FLUID_TANK_STONE = JBLOCK.register("stone_fluid_tank", Blocks.STONE);
+        FLUID_TANK_WOOD = JBLOCK.register("wood_fluid_tank", Blocks.OAK_PLANKS);
         //endregion
 
         ELEVATOR = JBLOCK.register("elevator", Blocks.GRAY_WOOL, Elevator::new);

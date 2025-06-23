@@ -1,0 +1,15 @@
+{
+  "values": [
+    "ultraio:copper_fluid_tank",
+    "ultraio:diamond_fluid_tank",
+    "ultraio:emerald_fluid_tank",
+    "ultraio:enderite_fluid_tank",
+    "ultraio:gold_fluid_tank",
+    "ultraio:iron_fluid_tank",
+    "ultraio:netherite_fluid_tank",
+    "ultraio:obsidian_fluid_tank",
+    "ultraio:star_fluid_tank",
+    "ultraio:stone_fluid_tank",
+    "ultraio:wood_fluid_tank"
+  ]
+}

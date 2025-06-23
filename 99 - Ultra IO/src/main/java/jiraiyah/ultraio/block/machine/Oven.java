@@ -50,7 +50,7 @@ public class Oven extends JiBlock
     public Oven(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(Oven::new);
     }

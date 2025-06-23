@@ -50,12 +50,10 @@ import org.jetbrains.annotations.Nullable;
 // - one output slot for cast item
 public class CastPress extends JiBlock implements BlockEntityProvider
 {
-    private static MapCodec<CastPress> CODEC;
-
     public CastPress(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(CastPress::new);
     }

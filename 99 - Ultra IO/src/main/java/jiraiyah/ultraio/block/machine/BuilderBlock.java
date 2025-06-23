@@ -53,8 +53,8 @@ public class BuilderBlock extends JiBlock
 {
     public BuilderBlock(Settings settings)
     {
-        super(settings, new BlockProperties()
-                .addPoweredProperty()
+        super(settings, new BlockProperties<>()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(BuilderBlock::new);
     }

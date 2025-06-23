@@ -107,7 +107,18 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.WOOD_STRIPPER)
                 .add(ModBlocks.MINER)
                 .add(ModBlocks.CREATIVE_BANK)
-                .add(ModBlocks.BATTERY_BANK);
+                .add(ModBlocks.BATTERY_BANK)
+                .add(ModBlocks.FLUID_TANK_COPPER)
+                .add(ModBlocks.FLUID_TANK_DIAMOND)
+                .add(ModBlocks.FLUID_TANK_EMERALD)
+                .add(ModBlocks.FLUID_TANK_ENDERITE)
+                .add(ModBlocks.FLUID_TANK_GOLD)
+                .add(ModBlocks.FLUID_TANK_IRON)
+                .add(ModBlocks.FLUID_TANK_NETHERITE)
+                .add(ModBlocks.FLUID_TANK_OBSIDIAN)
+                .add(ModBlocks.FLUID_TANK_STAR)
+                .add(ModBlocks.FLUID_TANK_STONE)
+                .add(ModBlocks.FLUID_TANK_WOOD);
         //endregion
 
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
@@ -692,6 +703,21 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.WOOD_STRIPPER);
                 //.add(ModBlocks.LAVA_PUMP_GOO)
                 //.add(ModBlocks.WATER_PUMP_GOO);
+        //endregion
+
+        //region Fluid Tanks
+        getOrCreateTagBuilder(REFERENCE.FLUID_TANKS)
+                .add(ModBlocks.FLUID_TANK_COPPER)
+                .add(ModBlocks.FLUID_TANK_DIAMOND)
+                .add(ModBlocks.FLUID_TANK_EMERALD)
+                .add(ModBlocks.FLUID_TANK_ENDERITE)
+                .add(ModBlocks.FLUID_TANK_GOLD)
+                .add(ModBlocks.FLUID_TANK_IRON)
+                .add(ModBlocks.FLUID_TANK_NETHERITE)
+                .add(ModBlocks.FLUID_TANK_OBSIDIAN)
+                .add(ModBlocks.FLUID_TANK_STAR)
+                .add(ModBlocks.FLUID_TANK_STONE)
+                .add(ModBlocks.FLUID_TANK_WOOD);
         //endregion
     }
 }

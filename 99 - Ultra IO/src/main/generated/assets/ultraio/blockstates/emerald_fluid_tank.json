@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "ultraio:block/emerald_fluid_tank"
+    }
+  }
+}

@@ -56,7 +56,7 @@ public class Generator extends JiBlock
     public Generator(Settings settings)
     {
         super(settings, new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(Generator::new);
     }

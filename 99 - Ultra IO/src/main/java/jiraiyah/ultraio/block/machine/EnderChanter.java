@@ -50,7 +50,7 @@ public class EnderChanter extends JiBlock
     public EnderChanter(Settings settings)
     {
         super(settings.nonOpaque(), new BlockProperties<>()
-                .addPoweredProperty()
+                .addLitProperty()
                 .addHorizontalFacing());
         CODEC = createCodec(EnderChanter::new);
     }
