@@ -22,25 +22,35 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jinventory.storage;
 
 import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.enumerations.MappedDirection;
-import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.input.RecipeInput;
 
-@SuppressWarnings("unused")
-@Developer("Jiraiyah")
+@Developer("TurtyWurty")
+@ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+@Repository("https://github.com/DaRealTurtyWurty/Industria")
+@Discord("https://discord.turtywurty.dev/")
+@Youtube("https://www.youtube.com/@TurtyWurty")
 
-public interface IStorageProvider<T>
+public class RecipeInventory extends SimpleInventory implements RecipeInput
 {
-    @Nullable
-    T getStorageProvider(MappedDirection direction, Direction facing);
+    public RecipeInventory(int size)
+    {
+        super(size);
+    }
 
-    @Nullable
-    T getStorageProvider(Direction direction, Direction facing);
+    public RecipeInventory(ItemStack... items)
+    {
+        super(items);
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int slotIndex)
+    {
+        return getStack(slotIndex);
+    }
 }

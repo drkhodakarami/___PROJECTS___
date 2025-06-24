@@ -22,25 +22,47 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jienergy.storage;
 
-import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.enumerations.MappedDirection;
-import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
+import jiraiyah.jibase.interfaces.ISyncable;
+import jiraiyah.jiralib.blockentity.JiBlockEntity;
+import net.minecraft.block.entity.BlockEntity;
+import team.reborn.energy.api.base.SimpleEnergyStorage;
 
-@SuppressWarnings("unused")
-@Developer("Jiraiyah")
-@CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
-
-public interface IStorageProvider<T>
+public class SyncedEnergyStorage extends SimpleEnergyStorage implements ISyncable
 {
-    @Nullable
-    T getStorageProvider(MappedDirection direction, Direction facing);
+    private final BlockEntity blockEntity;
+    private boolean isDirty = false;
 
-    @Nullable
-    T getStorageProvider(Direction direction, Direction facing);
+    public SyncedEnergyStorage(BlockEntity blockEntity, long capacity, long maxInsert, long maxExtract)
+    {
+        super(capacity, maxInsert, maxExtract);
+        this.blockEntity = blockEntity;
+    }
+
+    @Override
+    protected void onFinalCommit()
+    {
+        super.onFinalCommit();
+        this.isDirty = true;
+    }
+
+    @Override
+    public void sync()
+    {
+        //noinspection DataFlowIssue
+        if(this.isDirty && blockEntity != null && this.blockEntity.hasWorld() && !this.blockEntity.getWorld().isClient)
+        {
+            this.isDirty = false;
+            if(blockEntity instanceof JiBlockEntity<?> be)
+                be.update();
+            else
+                blockEntity.markDirty();
+        }
+    }
+
+    public BlockEntity getBlockEntity()
+    {
+        return blockEntity;
+    }
 }

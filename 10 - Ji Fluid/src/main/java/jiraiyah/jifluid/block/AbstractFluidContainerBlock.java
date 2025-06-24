@@ -22,25 +22,31 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jifluid.block;
 
-import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.enumerations.MappedDirection;
-import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
+import jiraiyah.jibase.properties.BlockProperties;
+import jiraiyah.jifluid.utils.FluidHelper;
+import jiraiyah.jiralib.block.JiBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-@SuppressWarnings("unused")
-@Developer("Jiraiyah")
-@CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
-
-public interface IStorageProvider<T>
+public class AbstractFluidContainerBlock extends JiBlock
 {
-    @Nullable
-    T getStorageProvider(MappedDirection direction, Direction facing);
+    public AbstractFluidContainerBlock(Settings settings, BlockProperties<?> properties)
+    {
+        super(settings, properties);
+    }
 
-    @Nullable
-    T getStorageProvider(Direction direction, Direction facing);
+    @Override
+    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
+    {
+        FluidHelper.interactWithBlock(world, pos, player, hand);
+        return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+    }
 }

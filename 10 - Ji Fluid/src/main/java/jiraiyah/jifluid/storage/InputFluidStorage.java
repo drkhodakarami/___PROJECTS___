@@ -22,25 +22,22 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jifluid.storage;
 
-import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.enumerations.MappedDirection;
-import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.minecraft.block.entity.BlockEntity;
 
-@SuppressWarnings("unused")
-@Developer("Jiraiyah")
-@CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+import java.util.function.Predicate;
 
-public interface IStorageProvider<T>
+public class InputFluidStorage extends PredicateFluidStorage
 {
-    @Nullable
-    T getStorageProvider(MappedDirection direction, Direction facing);
+    public InputFluidStorage(BlockEntity blockEntity, long capacity)
+    {
+        super(blockEntity, capacity, $ -> true, $ -> false);
+    }
 
-    @Nullable
-    T getStorageProvider(Direction direction, Direction facing);
+    public InputFluidStorage(BlockEntity blockEntity, long capacity, Predicate<FluidVariant> canInsert)
+    {
+        super(blockEntity, capacity, canInsert, $ -> false);
+    }
 }

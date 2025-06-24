@@ -22,25 +22,29 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jinventory.storage;
 
 import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.enumerations.MappedDirection;
-import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
+import jiraiyah.jiralib.blockentity.JiBlockEntity;
+import net.minecraft.item.ItemStack;
 
 @SuppressWarnings("unused")
-@Developer("Jiraiyah")
+@Developer("TurtyWurty")
+@ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+@Repository("https://github.com/DaRealTurtyWurty/Industria")
+@Discord("https://discord.turtywurty.dev/")
+@Youtube("https://www.youtube.com/@TurtyWurty")
 
-public interface IStorageProvider<T>
+public class OutputInventory extends PredicateInventory
 {
-    @Nullable
-    T getStorageProvider(MappedDirection direction, Direction facing);
+    public OutputInventory(JiBlockEntity<?> blockEntity, int size)
+    {
+        super(blockEntity, size, (slotIndex, stack) -> false);
+    }
 
-    @Nullable
-    T getStorageProvider(Direction direction, Direction facing);
+    public OutputInventory(JiBlockEntity<?> blockEntity, ItemStack... items)
+    {
+        super(blockEntity, (slotIndex, stack) -> false, items);
+    }
 }

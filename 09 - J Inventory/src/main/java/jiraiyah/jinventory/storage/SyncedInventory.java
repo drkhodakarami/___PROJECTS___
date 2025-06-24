@@ -22,25 +22,71 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jinventory.storage;
 
 import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.enumerations.MappedDirection;
-import net.minecraft.util.math.Direction;
+import jiraiyah.jibase.interfaces.ISyncable;
+import jiraiyah.jiralib.blockentity.JiBlockEntity;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("unused")
-@Developer("Jiraiyah")
+@Developer("TurtyWurty")
+@ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+@Repository("https://github.com/DaRealTurtyWurty/Industria")
+@Discord("https://discord.turtywurty.dev/")
+@Youtube("https://www.youtube.com/@TurtyWurty")
 
-public interface IStorageProvider<T>
+public class SyncedInventory extends RecipeInventory implements ISyncable
 {
-    @Nullable
-    T getStorageProvider(MappedDirection direction, Direction facing);
+    private final BlockEntity blockEntity;
+    private boolean isDirty = false;
+
+    public SyncedInventory(BlockEntity blockEntity, int size)
+    {
+        super(size);
+        this.blockEntity = blockEntity;
+    }
+
+    public SyncedInventory(BlockEntity blockEntity, ItemStack... items)
+    {
+        super(items);
+        this.blockEntity = blockEntity;
+    }
+
+    @Override
+    public void sync()
+    {
+        //noinspection DataFlowIssue
+        if(this.isDirty && this.blockEntity != null && this.blockEntity.hasWorld() && !this.blockEntity.getWorld().isClient)
+        {
+            this.isDirty = false;
+            if(this.blockEntity instanceof JiBlockEntity<?> be)
+                be.update();
+            else
+                this.blockEntity.markDirty();
+        }
+    }
+
+    @Override
+    public void markDirty()
+    {
+        super.markDirty();
+        this.isDirty = true;
+    }
+
+    public BlockEntity getBlockEntity()
+    {
+        return this.blockEntity;
+    }
 
     @Nullable
-    T getStorageProvider(Direction direction, Direction facing);
+    public JiBlockEntity<?> getJiBlockEntity()
+    {
+        if(this.blockEntity instanceof JiBlockEntity<?> be)
+            return be;
+        return  null;
+    }
 }

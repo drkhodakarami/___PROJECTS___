@@ -22,25 +22,29 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jinventory.client;
 
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.enumerations.MappedDirection;
-import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
+import jiraiyah.jinventory.base.InventoryConnector;
+import net.minecraft.inventory.SimpleInventory;
+import oshi.util.tuples.Pair;
 
 @SuppressWarnings("unused")
-@Developer("Jiraiyah")
+@Developer("TurtyWurty")
+@ModifiedBy("Jiraiyah")
+@ThanksTo(discordUsers = "TheWhyEvenHow")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
-
-public interface IStorageProvider<T>
+@Repository("https://github.com/DaRealTurtyWurty/Industria")
+@Discord("https://discord.turtywurty.dev/")
+@Youtube("https://www.youtube.com/@TurtyWurty")
+public class ClientInventoryConnector<T extends SimpleInventory> extends InventoryConnector<T>
 {
-    @Nullable
-    T getStorageProvider(MappedDirection direction, Direction facing);
-
-    @Nullable
-    T getStorageProvider(Direction direction, Direction facing);
+    public static ClientInventoryConnector<SimpleInventory> copyOf(InventoryConnector<?> inventory)
+    {
+        var storage = new ClientInventoryConnector<>();
+        for(Pair<MappedDirection, ? extends SimpleInventory> entry : inventory.getSidedInventories())
+            storage.addStorage(new SimpleInventory(entry.getB().size()), entry.getA());
+        return storage;
+    }
 }

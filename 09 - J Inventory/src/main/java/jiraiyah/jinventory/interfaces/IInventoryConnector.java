@@ -22,25 +22,13 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jinventory.interfaces;
 
-import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.enumerations.MappedDirection;
-import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
+import jiraiyah.jibase.interfaces.IStorageConnector;
+import jiraiyah.jinventory.base.InventoryConnector;
+import net.minecraft.inventory.SimpleInventory;
 
-@SuppressWarnings("unused")
-@Developer("Jiraiyah")
-@CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
-
-public interface IStorageProvider<T>
+public interface IInventoryConnector<T>
 {
-    @Nullable
-    T getStorageProvider(MappedDirection direction, Direction facing);
-
-    @Nullable
-    T getStorageProvider(Direction direction, Direction facing);
+    T getInventoryConnector();
 }

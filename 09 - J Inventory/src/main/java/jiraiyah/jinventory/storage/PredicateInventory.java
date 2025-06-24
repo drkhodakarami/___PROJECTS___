@@ -22,25 +22,48 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
-package jiraiyah.jibase.interfaces;
+package jiraiyah.jinventory.storage;
 
 import jiraiyah.jibase.annotations.*;
-import jiraiyah.jibase.enumerations.MappedDirection;
-import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
+import jiraiyah.jiralib.blockentity.JiBlockEntity;
+import net.minecraft.item.ItemStack;
+
+import java.util.function.BiPredicate;
 
 @SuppressWarnings("unused")
-@Developer("Jiraiyah")
+@Developer("TurtyWurty")
+@ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
-@Repository("https://github.com/drkhodakarami/___PROJECTS___")
-@Discord("https://discord.gg/pmM4emCbuH")
-@Youtube("https://www.youtube.com/@TheMentorCodeLab")
+@Repository("https://github.com/DaRealTurtyWurty/Industria")
+@Discord("https://discord.turtywurty.dev/")
+@Youtube("https://www.youtube.com/@TurtyWurty")
 
-public interface IStorageProvider<T>
+public class PredicateInventory extends SyncedInventory
 {
-    @Nullable
-    T getStorageProvider(MappedDirection direction, Direction facing);
+    private final BiPredicate<ItemStack, Integer> predicate;
 
-    @Nullable
-    T getStorageProvider(Direction direction, Direction facing);
+    public PredicateInventory(JiBlockEntity<?> blockEntity, int size, BiPredicate<ItemStack, Integer> predicate)
+    {
+        super(blockEntity, size);
+        this.predicate = predicate;
+    }
+
+    public PredicateInventory(JiBlockEntity<?> blockEntity, BiPredicate<ItemStack, Integer> predicate, ItemStack... items)
+    {
+        super(blockEntity, items);
+        this.predicate = predicate;
+    }
+
+    @Override
+    public boolean isValid(int slotIndex, ItemStack stack)
+    {
+        return this.predicate.test(stack, slotIndex);
+    }
+
+    public BiPredicate<ItemStack, Integer> getPredicate()
+    {
+        return this.predicate;
+    }
+
+    //TODO: Check if we need the fluid and slurry code
 }
