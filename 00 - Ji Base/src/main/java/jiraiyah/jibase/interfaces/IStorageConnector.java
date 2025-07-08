@@ -26,6 +26,11 @@ package jiraiyah.jibase.interfaces;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Represents an interface for retrieving a storage connector.
+ *
+ * @param <T> the type of the storage connector
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -35,5 +40,10 @@ import jiraiyah.jibase.annotations.*;
 
 public interface IStorageConnector<T>
 {
+    /**
+     * Retrieves the storage connector.
+     *
+     * @return the storage connector
+     */
     T getConnector();
 }

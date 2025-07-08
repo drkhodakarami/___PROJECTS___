@@ -29,6 +29,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 
+
+/**
+ * Represents a factory for creating block entity instances.
+ *
+ * @param <T> the type of the block entity
+ */
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -39,5 +45,12 @@ import net.minecraft.util.math.BlockPos;
 @FunctionalInterface
 public interface IBEFactory<T extends BlockEntity>
 {
+    /**
+     * Creates a new block entity instance at the given position and with the specified block state.
+     *
+     * @param pos  the position where the block entity should be created
+     * @param state the block state of the block
+     * @return a new block entity instance
+     */
     T create(BlockPos pos, BlockState state);
 }

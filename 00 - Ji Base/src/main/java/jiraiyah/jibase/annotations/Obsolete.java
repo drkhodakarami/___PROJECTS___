@@ -29,6 +29,12 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
 
+/**
+ * Annotation to mark a class, method, field, or constructor as obsolete.
+ *
+ * <p>This annotation is intended for use in documentation and version control systems
+ * to indicate that the annotated component is no longer recommended for use and may be removed in future versions.</p>
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-25")

@@ -1,0 +1,302 @@
+/*
+ * Copyright (c) 2025 Alireza Khodakarami (Jiraiyah)
+ * -------------------------------------------------------------------------------
+ * MIT License
+ * ===============================================================================
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * -------------------------------------------------------------------------------
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * -------------------------------------------------------------------------------
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+// The loom version is being set in settings.gradle. This solution is tailored specifically for my use case that each sub folder
+// under "___ PROJECT ___" folder is a separate mod / library. Now We have a single dependencies.properties on the top level
+// (the "___ PROJECT ___" folder itself) and every build.gradle will read the needed values from this single file.
+// The changes in plugins section and settings.gradle is to mimic this behvaior for reading the loom version from this top level file.
+
+plugins {
+	id 'fabric-loom'
+	id 'maven-publish'
+}
+
+//======================================================================================== Read Top Level Property Values
+
+import java.util.Properties
+
+def sharedProperties = new Properties()
+file("${rootDir.parent}/dependencies.properties").withReader { reader ->
+    sharedProperties.load(reader)
+}
+
+def localProperties = new Properties()
+file("${rootDir}/gradle.properties").withReader { reader ->
+    localProperties.load(reader)
+}
+
+ext.javaVersion = sharedProperties.getProperty("java_version")
+ext.minecraftVersion = sharedProperties.getProperty("minecraft_version")
+ext.yarnVersion = sharedProperties.getProperty("yarn_mappings")
+ext.loaderVersion = sharedProperties.getProperty("loader_version")
+ext.fabricVersion = sharedProperties.getProperty("fabric_version")
+
+ext.jibaseVersion = sharedProperties.getProperty("jibase_version")
+ext.jiloggerVersion = sharedProperties.getProperty("jilogger_version")
+ext.jiconfigVersion = sharedProperties.getProperty("jiconfig_version")
+ext.jireferenceVersion = sharedProperties.getProperty("jireference_version")
+ext.jiregisterVersion = sharedProperties.getProperty("jiregister_version")
+ext.jiticlogicVersion = sharedProperties.getProperty("jiticlogic_version")
+ext.jiralibVersion = sharedProperties.getProperty("jiralib_version")
+ext.jinventoryVersion = sharedProperties.getProperty("jinventory_version")
+ext.jifluidVersion = sharedProperties.getProperty("jifluid_version")
+ext.jienergyVersion = sharedProperties.getProperty("jienergy_version")
+ext.jigasVersion = sharedProperties.getProperty("jigas_version")
+ext.jiheatVersion = sharedProperties.getProperty("jiheat_version")
+ext.jipressureVersion = sharedProperties.getProperty("jipressure_version")
+ext.jimoltenVersion = sharedProperties.getProperty("jimolten_version")
+ext.jisuspensionVersion = sharedProperties.getProperty("jisuspension_version")
+ext.jiemulsionVersion = sharedProperties.getProperty("jiemulsion_version")
+ext.jipipenetworkVersion = sharedProperties.getProperty("jipipenetwork_version")
+ext.jiguiVersion = sharedProperties.getProperty("jigui_version")
+ext.jimachinaVersion = sharedProperties.getProperty("jimachina_version")
+
+ext.ultraioVersion = sharedProperties.getProperty("ultraio_version")
+
+ext.energyVersion = sharedProperties.getProperty("energy_version")
+ext.palVersion = sharedProperties.getProperty("pal_version")
+ext.libguiVersion = sharedProperties.getProperty("libgui_version")
+ext.emiVersion = sharedProperties.getProperty("emi_version")
+ext.reiVersion = sharedProperties.getProperty("rei_version")
+ext.jeiVersion = sharedProperties.getProperty("jei_version")
+ext.clothVersion = sharedProperties.getProperty("cloth_version")
+ext.architecturyVersion = sharedProperties.getProperty("architectury_version")
+ext.terraformVersion = sharedProperties.getProperty("terraform_version")
+ext.kyrptonaughtVersion = sharedProperties.getProperty("kyrptonaught_version")
+ext.jadeVersion = sharedProperties.getProperty("jade_version")
+ext.modmenuVersion = sharedProperties.getProperty("modmenu_version")
+ext.badgesVersion = sharedProperties.getProperty("badges_lib_version")
+
+ext.mavenGroup = localProperties.getProperty("maven_group")
+ext.mavenArtifact = localProperties.getProperty("maven_artifact")
+ext.archiveName = localProperties.getProperty("archives_base_name")
+ext.modId = localProperties.getProperty("mod_id")
+
+//======================================================================================== MAIN CONTENT
+
+version = jiemulsionVersion
+
+base {
+    archivesName = "${archiveName}"
+}
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	maven { url = 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
+}
+
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
+}
+
+//======================================================================================== DEPENDENCIES
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraftVersion}"
+    mappings "net.fabricmc:yarn:${yarnVersion}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${loaderVersion}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricVersion}"
+	
+	// Ji Lib Mods Dependency ========================================================================================================================
+    modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
+    modImplementation "jiraiyah.reference:jireference:${jireferenceVersion}"
+    modImplementation "jiraiyah.jiralib:jiralib:${jiralibVersion}"
+}
+
+//======================================================================================== PROCESS RESOURCES
+
+processResources {
+	inputs.property "version", version
+	inputs.property "loader_ver", loaderVersion
+	inputs.property "game_ver", minecraftVersion
+	inputs.property "java_ver", javaVersion
+	//inputs.property "mod_id", modId
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version,
+				"loader_ver": loaderVersion,
+				"game_ver": minecraftVersion,
+				"java_ver": javaVersion//,
+		//"mod_id": modId
+	}
+
+	filesMatching("${modId}.mixins.json") {
+		expand "java_ver": javaVersion//,
+		//"mod_id": modId
+	}
+}
+
+//======================================================================================== MAIN TASKS
+
+tasks.withType(JavaCompile).configureEach {
+	options.release = 21
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	inputs.property "archivesName", project.base.archivesName
+
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+}
+
+//======================================================================================== PUBLISHING
+
+def ENV = System.getenv()
+def systemRepsyURL = ENV.REPSY_URL
+def systemRepsyUsername = ENV.REPSY_USERNAME
+def systemRepsyPassword = ENV.REPSY_PASSWORD
+
+Properties properties = new Properties()
+def propertiesFile = project.rootProject.file('local.properties')
+if (propertiesFile.exists())
+	properties.load(propertiesFile.newDataInputStream())
+
+def localRepsyUrl = properties.getProperty('REPSY_URL')
+def localRepsyUsername = properties.getProperty('REPSY_USERNAME')
+def localRepsyPassword = properties.getProperty('REPSY_PASSWORD')
+
+def repsyUrl = localRepsyUrl != null ? localRepsyUrl : systemRepsyURL
+def repsyUsername = localRepsyUsername != null ? localRepsyUsername : systemRepsyUsername
+def repsyPassword = localRepsyPassword != null ? localRepsyPassword : systemRepsyPassword
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			from components.java
+
+            groupId = mavenGroup
+            artifactId = mavenArtifact
+            version = version
+		}
+	}
+
+	repositories {
+		if (repsyUrl) {
+			maven {
+				url = repsyUrl
+				credentials {
+					username = repsyUsername
+					password = repsyPassword
+				}
+			}
+		}
+	}
+}
+
+//======================================================================================== CUSTOM TASKS
+
+def destinationDir = layout.buildDirectory.dir("output-sources").get().asFile
+
+clean.doFirst {
+	def versionPattern = version
+	def projectSrcDir = file("${project.rootProject.file("../")}/BUILD_SRC")
+	def projectModDir = file("${project.rootProject.file("../")}/BUILD_MOD")
+
+	println ">>> Starting clean task"
+	println ">>> Version To Clean: ${versionPattern}"
+
+	projectSrcDir.eachFileRecurse { file ->
+		if (file.isFile()) {
+			if (file.name.contains(versionPattern) && file.name.contains(project.base.archivesName.get())) {
+				file.delete()
+				println ">>> Deleted file: ${file.name}"
+			}
+		}
+	}
+
+	projectModDir.eachFileRecurse { file ->
+		if (file.isFile()) {
+			if (file.name.contains(versionPattern)  && file.name.contains(project.base.archivesName.get())) {
+				file.delete()
+				println ">>> Deleted file: ${file.name}"
+			}
+		}
+	}
+}
+
+tasks.register('copySourceJars', Copy) {
+	description = "Copies source JARs from libs to a top-level directory."
+
+	dependsOn remapSourcesJar  // Explicit dependency declaration
+
+	def buildSrcDir = file("${project.rootProject.file("../")}/BUILD_SRC")
+
+	doFirst {
+		// Create the destination directory if it doesn't exist
+		if (!buildSrcDir.exists()) {
+			buildSrcDir.mkdirs()
+		}
+
+		println("${project.name} >>> Moving source jar")
+	}
+
+	from(layout.buildDirectory.dir("libs").get().asFile){
+		include '*-sources.jar'
+	}
+	into(buildSrcDir)
+}
+
+tasks.register('copyModJars', Copy) {
+	description = "Copies main JARs from libs to a top-level directory."
+
+	dependsOn remapJar  // Explicit dependency declaration
+
+	def buildModDir = file("${project.rootProject.file("../")}/BUILD_MOD")
+
+	doFirst {
+		// Create the destination directory if it doesn't exist
+		if (!buildModDir.exists()) {
+			buildModDir.mkdirs()
+		}
+
+		println("${project.name} >>> Moving mod jar")
+	}
+
+	from(layout.buildDirectory.dir("libs").get().asFile) {
+		include '*.jar'
+		exclude '*-sources.jar'
+	}
+	into(buildModDir)
+}
+
+tasks.register('deleteBuildDir', Delete) {
+	description = "Deletes the build directory of the current project."
+
+	delete(layout.buildDirectory)
+}
+
+tasks.named('jar').configure {
+	finalizedBy(copySourceJars, copyModJars)//, deleteBuildDir)
+}

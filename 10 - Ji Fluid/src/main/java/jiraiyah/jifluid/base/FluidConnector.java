@@ -25,6 +25,8 @@
 package jiraiyah.jifluid.base;
 
 import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.DataResult;
+import jiraiyah.jibase.constants.BEKeys;
 import jiraiyah.jibase.enumerations.MappedDirection;
 import jiraiyah.jibase.interfaces.IStorageConnector;
 import jiraiyah.jibase.interfaces.IStorageProvider;
@@ -38,59 +40,24 @@ import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiFunction;
 
 public class FluidConnector<T extends SingleFluidStorage> extends StorageConnector<T>
         implements IStorageConnector<FluidConnector<T>>, IStorageProvider<T>
 {
     private final CombinedStorage<FluidVariant, T> combinedStorage = new CombinedStorage<>(this.storages);
-
-    @Override
-    public NbtList writeNbt(RegistryWrapper.WrapperLookup wrapperLookup)
-    {
-        var list = new NbtList();
-        this.storages.forEach(storage -> {
-            if(storage instanceof SingleFluidStorage singleFluidStorage)
-            {
-                NbtCompound nbt = new NbtCompound();
-                nbt.putLong("Amount", singleFluidStorage.getAmount());
-                nbt.put("Fluid", FluidVariant.CODEC.encode(singleFluidStorage.getResource(), NbtOps.INSTANCE, new NbtCompound()).getOrThrow());
-                list.add(nbt);
-            }
-        });
-
-        return list;
-    }
-
-    @Override
-    public void readNbt(NbtList nbt, RegistryWrapper.WrapperLookup wrapperLookup)
-    {
-        for (int index = 0; index < nbt.size(); index++)
-        {
-            NbtCompound compound = nbt.getCompoundOrEmpty(index);
-            T storage = this.storages.get(index);
-
-            if(storage == null)
-                continue;
-
-            if(storage instanceof SingleFluidStorage singleFluidStorage)
-            {
-                singleFluidStorage.amount = compound.getLong("Amount", 0L);
-                singleFluidStorage.variant = FluidVariant.CODEC.decode(NbtOps.INSTANCE, compound.get("Fluid"))
-                        .map(Pair::getFirst)
-                        .getOrThrow();
-            }
-            else
-                throw new UnsupportedOperationException("Unsupported storage type: " + storage.getClass().getName());
-        }
-    }
 
     public CombinedStorage<FluidVariant, T> getCombinedStorage()
     {
@@ -176,5 +143,67 @@ public class FluidConnector<T extends SingleFluidStorage> extends StorageConnect
         if(this.getSidedMap().containsKey(MappedDirection.fromDirection(side)))
             return getStorage(side);
         return null;
+    }
+
+    @Override
+    public void writeData(WriteView writeView)
+    {
+        WriteView.ListView list = writeView.getList("fluid" + BEKeys.HAS_FLUID);
+        for (T storage : storages)
+        {
+            if(storage instanceof SingleFluidStorage singleFluidStorage)
+            {
+                /*WriteView fluidView = list.add();
+                fluidView.putLong("Amount", singleFluidStorage.getAmount());
+                DataResult<NbtElement> encoded = FluidVariant.CODEC.encode(singleFluidStorage.getResource(), NbtOps.INSTANCE, new NbtCompound());
+
+                if(encoded.result().isPresent())
+                {
+                    NbtElement element = encoded.result().get();
+
+                    if(element instanceof NbtCompound compound)
+                        fluidView.put("fluid", NbtCompound.CODEC, compound);
+                    else
+                        throw new IllegalArgumentException("Encoded Fluid Variant is not an NbtCompound");
+                }
+                else
+                    throw new IllegalArgumentException("Fluid Variant encoding failed : " + encoded.error());*/
+
+                WriteView compoundView = list.add();
+                singleFluidStorage.writeData(compoundView);
+            }
+        }
+    }
+
+    @Override
+    public void readData(ReadView readView)
+    {
+        int index = 0;
+        for (ReadView view : readView.getListReadView("fluid" + BEKeys.HAS_FLUID))
+        {
+            if(index >= storages.size())
+                break;
+
+            T storage = this.storages.get(index);
+
+            if(storage instanceof SingleFluidStorage singleFluidStorage)
+            {
+                /*singleFluidStorage.amount = view.getLong("Amount", 0L);
+
+                Optional<NbtCompound> optionalVariantCompound = view.read("Fluid", NbtCompound.CODEC);
+
+                optionalVariantCompound.ifPresent(nbt ->
+                                                          singleFluidStorage.variant =
+                                                                  FluidVariant.CODEC.decode(NbtOps.INSTANCE, nbt)
+                                                                                    .map(Pair::getFirst)
+                                                                                    .getOrThrow());*/
+                singleFluidStorage.readData(view);
+            }
+            else
+                //noinspection DataFlowIssue
+                throw new UnsupportedOperationException("Unsupported storage type: " + storage.getClass().getName());
+
+            index++;
+        }
     }
 }

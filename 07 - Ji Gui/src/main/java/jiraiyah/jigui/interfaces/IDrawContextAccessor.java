@@ -24,6 +24,7 @@
 
 package jiraiyah.jigui.interfaces;
 
+import com.mojang.blaze3d.pipeline.RenderPipeline;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
@@ -38,5 +39,5 @@ import java.util.function.Function;
 
 public interface IDrawContextAccessor
 {
-    void drawQuad(Function<Identifier, RenderLayer> renderLayers, Identifier sprite, int x1, int x2, int y1, int y2, float u1, float u2, float v1, float v2, int color);
+    void drawQuad(RenderPipeline pipeline, Identifier sprite, int x1, int x2, int y1, int y2, float u1, float u2, float v1, float v2, int color);
 }

@@ -26,6 +26,17 @@ package jiraiyah.jibase.functions;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Represents a predicate (boolean-valued function) of seven arguments.
+ *
+ * @param <T> the type of the first argument
+ * @param <U> the type of the second argument
+ * @param <V> the type of the third argument
+ * @param <W> the type of the fourth argument
+ * @param <X> the type of the fifth argument
+ * @param <Y> the type of the sixth argument
+ * @param <Z> the type of the seventh argument
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -36,18 +47,55 @@ import jiraiyah.jibase.annotations.*;
 @FunctionalInterface
 public interface HeptaPredicate<T, U, V, W, X, Y, Z>
 {
+    /**
+     * Evaluates this predicate on the given arguments.
+     *
+     * @param t the first argument
+     * @param u the second argument
+     * @param v the third argument
+     * @param w the fourth argument
+     * @param x the fifth argument
+     * @param y the sixth argument
+     * @param z the seventh argument
+     * @return {@code true} if the arguments match this predicate, otherwise {@code false}
+     */
     boolean test(T t, U u, V v, W w, X x, Y y, Z z);
 
+    /**
+     * Returns a composed predicate that represents a logical AND of this
+     * predicate and another.
+     *
+     * @param other a predicate that will be logically-ANDed with this predicate
+     * @return a composed predicate that represents the logical AND of this
+     * predicate and the other predicate
+     * @throws NullPointerException if other is null
+     */
     default HeptaPredicate<T, U, V, W, X, Y, Z> and(HeptaPredicate<? super T, ? super U, ? super V, ? super W, ? super X, ? super Y, ? super Z> other)
     {
         return (t, u, v, w, x, y, z) -> test(t, u, v, w, x, y, z) && other.test(t, u, v, w, x, y, z);
     }
 
+    /**
+     * Returns a composed predicate that represents a logical OR of this
+     * predicate and another.
+     *
+     * @param other a predicate that will be logically-ORed with this predicate
+     * @return a composed predicate that represents the logical OR of this
+     * predicate and the other predicate
+     * @throws NullPointerException if other is null
+     */
     default HeptaPredicate<T, U, V, W, X, Y, Z> or(HeptaPredicate<? super T, ? super U, ? super V, ? super W, ? super X, ? super Y, ? super Z> other)
     {
         return (t, u, v, w, x, y, z) -> test(t, u, v, w, x, y, z) || other.test(t, u, v, w, x, y, z);
     }
 
+    /**
+     * Returns a predicate that represents the logical negation of this
+     * predicate.
+     *
+     * @return a predicate that represents the logical negation of this
+     * predicate
+     */
     default HeptaPredicate<T, U, V, W, X, Y, Z> negate()
     {
         return (t, u, v, w, x, y, z) -> !test(t, u, v, w, x, y, z);

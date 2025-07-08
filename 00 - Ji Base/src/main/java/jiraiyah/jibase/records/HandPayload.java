@@ -35,7 +35,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 
 import java.util.Objects;
-
+/**
+ * Represents a custom payload containing a player hand (e.g., main hand, off hand).
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -46,18 +48,32 @@ import java.util.Objects;
 
 public record HandPayload(Hand hand) implements CustomPayload
 {
+    /**
+     * The unique identifier for this custom payload.
+     */
     public static final Id<HandPayload> ID = new Id<>(Identifier.of("jiralib", "hand_payload"));
 
+    /**
+     * The codec used to serialize and deserialize the HandPayload.
+     */
     public static final Codec<HandPayload> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             Codec.STRING.xmap(str -> Objects.requireNonNull(Hand.valueOf(str)), Hand::name)
                         .fieldOf("hand").forGetter(HandPayload::hand)
     ).apply(inst, HandPayload::new));
 
+    /**
+     * The packet codec used to send and receive the HandPayload.
+     */
     public static final PacketCodec<RegistryByteBuf, HandPayload> PACKET_CODEC =
             PacketCodec.tuple(PacketCodecs.STRING,
                               payload -> payload.hand().name(),
                               handStr -> new HandPayload(Hand.valueOf(handStr)));
 
+    /**
+     * Retrieves the unique identifier for this custom payload.
+     *
+     * @return the unique identifier
+     */
     @Override
     public Id<? extends CustomPayload> getId()
     {

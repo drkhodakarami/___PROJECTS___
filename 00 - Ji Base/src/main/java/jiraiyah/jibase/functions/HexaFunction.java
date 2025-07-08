@@ -29,6 +29,17 @@ import jiraiyah.jibase.annotations.*;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Represents a function that accepts six arguments and produces a result.
+ *
+ * @param <A> the type of the first argument
+ * @param <B> the type of the second argument
+ * @param <T> the type of the third argument
+ * @param <U> the type of the fourth argument
+ * @param <V> the type of the fifth argument
+ * @param <W> the type of the sixth argument
+ * @param <R> the type of the result
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -39,10 +50,30 @@ import java.util.function.Function;
 @FunctionalInterface
 public interface HexaFunction<A, B, T, U, V, W, R>
 {
+    /**
+     * Returns a composed {@code HexaFunction} that first applies this function to its input, and then
+     * applies the {@code after} function to the result.
+     *
+     * @param <X> the type of output of the {@code after} function, and of the new composed function
+     * @param after the function to apply after this function is applied
+     * @return a composed function that first applies this function and then applies the {@code after} function
+     * @throws NullPointerException if after is null
+     */
     default <X> HexaFunction<A, B, T, U, V, W, X> andThen(final Function<? super R, ? extends X> after) {
         Objects.requireNonNull(after);
         return (final A a, final B b, final T t, final U u, final V v, final W w) -> after.apply(apply(a, b, t, u, v, w));
     }
 
+    /**
+     * Applies this function to the given arguments.
+     *
+     * @param a the first argument
+     * @param b the second argument
+     * @param t the third argument
+     * @param u the fourth argument
+     * @param v the fifth argument
+     * @param w the sixth argument
+     * @return the result of applying this function to the given arguments
+     */
     R apply(A a, B b, T t, U u, V v, W w);
 }

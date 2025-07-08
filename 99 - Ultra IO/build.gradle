@@ -67,6 +67,8 @@ ext.jigasVersion = sharedProperties.getProperty("jigas_version")
 ext.jiheatVersion = sharedProperties.getProperty("jiheat_version")
 ext.jipressureVersion = sharedProperties.getProperty("jipressure_version")
 ext.jimoltenVersion = sharedProperties.getProperty("jimolten_version")
+ext.jisuspensionVersion = sharedProperties.getProperty("jisuspension_version")
+ext.jiemulsionVersion = sharedProperties.getProperty("jiemulsion_version")
 ext.jipipenetworkVersion = sharedProperties.getProperty("jipipenetwork_version")
 ext.jimachinaVersion = sharedProperties.getProperty("jimachina_version")
 
@@ -171,14 +173,14 @@ dependencies {
     modImplementation include("jiraiyah.jiralib:jiralib:${jiralibVersion}")
     modImplementation include("jiraiyah.gui:jigui:${jiguiVersion}")
 	modImplementation include("jiraiyah.inventory:jinventory:${jinventoryVersion}")
-	//modImplementation include("jiraiyah.fluid:jifluid:${jifluidVersion}")
-	//modImplementation include("jiraiyah.energy:jienergy:${jienergyVersion}")
+	modImplementation include("jiraiyah.fluid:jifluid:${jifluidVersion}")
+	modImplementation include("jiraiyah.energy:jienergy:${jienergyVersion}")
     //modImplementation include("jiraiyah.gas:jigas:${jigasVersion}")
     //modImplementation include("jiraiyah.heat:jiheat:${jiheatVersion}")
     //modImplementation include("jiraiyah.pressure:jipressure:${jipressureVersion}")
     //modImplementation include("jiraiyah.molten:jimolten:${jimoltenVersion}")
     //modImplementation include("jiraiyah.pipenetwork:jipipenetwork:${jipipenetworkVersion}")
-	//modImplementation include("jiraiyah.machina:jimachina:${jimachinaVersion}")
+	modImplementation include("jiraiyah.machina:jimachina:${jimachinaVersion}")
 
     // Mod Menu ======================================================================================================================================
     modImplementation("com.terraformersmc:modmenu:${modmenuVersion}")
@@ -203,8 +205,8 @@ dependencies {
     modImplementation "curse.maven:jade-324717:${jadeVersion}"
 
 	// Kyrptonaught ==================================================================================================================================
-    modImplementation "net.kyrptonaught:customportalapi:${kyrptonaughtVersion}"
-    include "net.kyrptonaught:customportalapi:${kyrptonaughtVersion}"
+   // modImplementation "net.kyrptonaught:customportalapi:${kyrptonaughtVersion}"
+    //include "net.kyrptonaught:customportalapi:${kyrptonaughtVersion}"
 
     // TerraBlender ==================================================================================================================================
     //modImplementation "com.github.glitchfiend:TerraBlender-fabric:${minecraftVersion}-${terrablenderVersion}"
@@ -216,9 +218,9 @@ dependencies {
     //modCompileOnly "dev.emi:emi-fabric:${emiVersion}:api"
 
 	// REI Compatibility =============================================================================================================================
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${reiVersion}"
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${reiVersion}"
-    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${reiVersion}"
+    //modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${reiVersion}"
+    //modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${reiVersion}"
+    //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${reiVersion}"
 
 	// JEI Compatibility =============================================================================================================================
     //modCompileOnlyApi("mezz.jei:jei-${project.jeiMcVersion}-fabric-api:${jeiVersion}")

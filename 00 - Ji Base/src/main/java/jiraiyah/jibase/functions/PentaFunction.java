@@ -29,6 +29,16 @@ import jiraiyah.jibase.annotations.*;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Represents a function that accepts five arguments and produces a result.
+ *
+ * @param <A> the type of the first argument
+ * @param <T> the type of the second argument
+ * @param <U> the type of the third argument
+ * @param <V> the type of the fourth argument
+ * @param <W> the type of the fifth argument
+ * @param <R> the type of the result produced by this function
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -39,10 +49,29 @@ import java.util.function.Function;
 @FunctionalInterface
 public interface PentaFunction<A, T, U, V, W, R>
 {
+    /**
+     * Returns a composed {@code PentaFunction} that first applies this function to
+     * its input, and then applies the {@code after} function to the result.
+     *
+     * @param <X> the type of output of the {@code after} function, and of the new {@code PentaFunction}
+     * @param after the function to apply after this function is applied
+     * @return a composed {@code PentaFunction} that first applies this function to its input, and then applies the {@code after} function to the result
+     * @throws NullPointerException if {@code after} is null
+     */
     default <X> PentaFunction<A, T, U, V, W, X> andThen(final Function<? super R, ? extends X> after) {
         Objects.requireNonNull(after);
         return (final A a, final T t, final U u, final V v, final W w) -> after.apply(apply(a, t, u, v, w));
     }
 
+    /**
+     * Applies this function to the given arguments.
+     *
+     * @param a the first argument
+     * @param t the second argument
+     * @param u the third argument
+     * @param v the fourth argument
+     * @param w the fifth argument
+     * @return the result of applying this function to the given arguments
+     */
     R apply(A a, T t, U u, V v, W w);
 }

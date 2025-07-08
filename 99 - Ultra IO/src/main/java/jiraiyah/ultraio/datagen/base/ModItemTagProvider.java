@@ -49,45 +49,45 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
     {
         Main.LOGGER.logItemTagDatagen();
 
-        getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS);
-        getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS);
+        valueLookupBuilder(ItemTags.STONE_CRAFTING_MATERIALS);
+        valueLookupBuilder(ItemTags.STONE_TOOL_MATERIALS);
 
-        getOrCreateTagBuilder(ItemTags.AXES)
+        valueLookupBuilder(ItemTags.AXES)
                 .add(ModItems.TOOL_CITRINE_AXE)
                 .add(ModItems.TOOL_COPPER_AXE)
                 .add(ModItems.TOOL_ENDERITE_AXE)
                 .add(ModItems.TOOL_RUBY_AXE)
                 .add(ModItems.TOOL_SAPPHIRE_AXE);
 
-        getOrCreateTagBuilder(ItemTags.HOES)
+        valueLookupBuilder(ItemTags.HOES)
                 .add(ModItems.TOOL_CITRINE_HOE)
                 .add(ModItems.TOOL_COPPER_HOE)
                 .add(ModItems.TOOL_ENDERITE_HOE)
                 .add(ModItems.TOOL_RUBY_HOE)
                 .add(ModItems.TOOL_SAPPHIRE_HOE);
 
-        getOrCreateTagBuilder(ItemTags.PICKAXES)
+        valueLookupBuilder(ItemTags.PICKAXES)
                 .add(ModItems.TOOL_CITRINE_PICKAXE)
                 .add(ModItems.TOOL_COPPER_PICKAXE)
                 .add(ModItems.TOOL_ENDERITE_PICKAXE)
                 .add(ModItems.TOOL_RUBY_PICKAXE)
                 .add(ModItems.TOOL_SAPPHIRE_PICKAXE);
 
-        getOrCreateTagBuilder(ItemTags.SHOVELS)
+        valueLookupBuilder(ItemTags.SHOVELS)
                 .add(ModItems.TOOL_CITRINE_SHOVEL)
                 .add(ModItems.TOOL_COPPER_SHOVEL)
                 .add(ModItems.TOOL_ENDERITE_SHOVEL)
                 .add(ModItems.TOOL_RUBY_SHOVEL)
                 .add(ModItems.TOOL_SAPPHIRE_SHOVEL);
 
-        getOrCreateTagBuilder(ItemTags.SWORDS)
+        valueLookupBuilder(ItemTags.SWORDS)
                 .add(ModItems.TOOL_CITRINE_SWORD)
                 .add(ModItems.TOOL_COPPER_SWORD)
                 .add(ModItems.TOOL_ENDERITE_SWORD)
                 .add(ModItems.TOOL_RUBY_SWORD)
                 .add(ModItems.TOOL_SAPPHIRE_SWORD);
 
-        getOrCreateTagBuilder(REFERENCE.HAMMERS)
+        valueLookupBuilder(REFERENCE.HAMMERS)
                 .add(ModItems.TOOL_CITRINE_HAMMER)
                 .add(ModItems.TOOL_COPPER_HAMMER)
                 .add(ModItems.TOOL_ENDERITE_HAMMER)
@@ -100,7 +100,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.TOOL_STONE_HAMMER)
                 .add(ModItems.TOOL_WOOD_HAMMER);
         
-        getOrCreateTagBuilder(REFERENCE.EXCAVATORS)
+        valueLookupBuilder(REFERENCE.EXCAVATORS)
                 .add(ModItems.TOOL_CITRINE_EXCAVATOR)
                 .add(ModItems.TOOL_COPPER_EXCAVATOR)
                 .add(ModItems.TOOL_ENDERITE_EXCAVATOR)
@@ -113,7 +113,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.TOOL_STONE_EXCAVATOR)
                 .add(ModItems.TOOL_WOOD_EXCAVATOR);
         
-        getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
+        valueLookupBuilder(ItemTags.TRIMMABLE_ARMOR)
                 .add(ModItems.ARMOR_AMETHYST_BOOTS)
                 .add(ModItems.ARMOR_AMETHYST_LEGGINGS)
                 .add(ModItems.ARMOR_AMETHYST_CHESTPLATE)
@@ -149,7 +149,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.ARMOR_SAPPHIRE_CHESTPLATE)
                 .add(ModItems.ARMOR_SAPPHIRE_HELMET);
 
-        getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
+        valueLookupBuilder(ItemTags.HEAD_ARMOR)
                 .add(ModItems.ARMOR_AMETHYST_HELMET)
                 .add(ModItems.ARMOR_CITRINE_HELMET)
                 .add(ModItems.ARMOR_COPPER_HELMET)
@@ -158,7 +158,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.ARMOR_RUBY_HELMET)
                 .add(ModItems.ARMOR_SAPPHIRE_HELMET);
 
-        getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
+        valueLookupBuilder(ItemTags.CHEST_ARMOR)
                 .add(ModItems.ARMOR_AMETHYST_CHESTPLATE)
                 .add(ModItems.ARMOR_CITRINE_CHESTPLATE)
                 .add(ModItems.ARMOR_COPPER_CHESTPLATE)
@@ -167,7 +167,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.ARMOR_RUBY_CHESTPLATE)
                 .add(ModItems.ARMOR_SAPPHIRE_CHESTPLATE);
 
-        getOrCreateTagBuilder(ItemTags.LEG_ARMOR)
+        valueLookupBuilder(ItemTags.LEG_ARMOR)
                 .add(ModItems.ARMOR_AMETHYST_LEGGINGS)
                 .add(ModItems.ARMOR_CITRINE_LEGGINGS)
                 .add(ModItems.ARMOR_COPPER_LEGGINGS)
@@ -176,7 +176,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.ARMOR_RUBY_LEGGINGS)
                 .add(ModItems.ARMOR_SAPPHIRE_LEGGINGS);
 
-        getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
+        valueLookupBuilder(ItemTags.FOOT_ARMOR)
                 .add(ModItems.ARMOR_AMETHYST_BOOTS)
                 .add(ModItems.ARMOR_CITRINE_BOOTS)
                 .add(ModItems.ARMOR_COPPER_BOOTS)
@@ -185,101 +185,101 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.ARMOR_RUBY_BOOTS)
                 .add(ModItems.ARMOR_SAPPHIRE_BOOTS);
         
-        getOrCreateTagBuilder(REFERENCE.AMETHYST_ARMOR_TYPE)
+        valueLookupBuilder(REFERENCE.AMETHYST_ARMOR_TYPE)
                 .add(ModItems.ARMOR_AMETHYST_HELMET)
                 .add(ModItems.ARMOR_AMETHYST_CHESTPLATE)
                 .add(ModItems.ARMOR_AMETHYST_LEGGINGS)
                 .add(ModItems.ARMOR_AMETHYST_BOOTS);
         
-        getOrCreateTagBuilder(REFERENCE.CITRINE_ARMOR_TYPE)
+        valueLookupBuilder(REFERENCE.CITRINE_ARMOR_TYPE)
                 .add(ModItems.ARMOR_CITRINE_HELMET)
                 .add(ModItems.ARMOR_CITRINE_CHESTPLATE)
                 .add(ModItems.ARMOR_CITRINE_LEGGINGS)
                 .add(ModItems.ARMOR_CITRINE_BOOTS);
         
-        getOrCreateTagBuilder(REFERENCE.COPPER_ARMOR_TYPE)
+        valueLookupBuilder(REFERENCE.COPPER_ARMOR_TYPE)
                 .add(ModItems.ARMOR_COPPER_HELMET)
                 .add(ModItems.ARMOR_COPPER_CHESTPLATE)
                 .add(ModItems.ARMOR_COPPER_LEGGINGS)
                 .add(ModItems.ARMOR_COPPER_BOOTS);
         
-        getOrCreateTagBuilder(REFERENCE.EMERALD_ARMOR_TYPE)
+        valueLookupBuilder(REFERENCE.EMERALD_ARMOR_TYPE)
                 .add(ModItems.ARMOR_EMERALD_HELMET)
                 .add(ModItems.ARMOR_EMERALD_CHESTPLATE)
                 .add(ModItems.ARMOR_EMERALD_LEGGINGS)
                 .add(ModItems.ARMOR_EMERALD_BOOTS);
         
-        getOrCreateTagBuilder(REFERENCE.ENDERITE_ARMOR_TYPE)
+        valueLookupBuilder(REFERENCE.ENDERITE_ARMOR_TYPE)
                 .add(ModItems.ARMOR_ENDERITE_HELMET)
                 .add(ModItems.ARMOR_ENDERITE_CHESTPLATE)
                 .add(ModItems.ARMOR_ENDERITE_LEGGINGS)
                 .add(ModItems.ARMOR_ENDERITE_BOOTS);
         
-        getOrCreateTagBuilder(REFERENCE.RUBY_ARMOR_TYPE)
+        valueLookupBuilder(REFERENCE.RUBY_ARMOR_TYPE)
                 .add(ModItems.ARMOR_RUBY_HELMET)
                 .add(ModItems.ARMOR_RUBY_CHESTPLATE)
                 .add(ModItems.ARMOR_RUBY_LEGGINGS)
                 .add(ModItems.ARMOR_RUBY_BOOTS);
         
-        getOrCreateTagBuilder(REFERENCE.SAPPHIRE_ARMOR_TYPE)
+        valueLookupBuilder(REFERENCE.SAPPHIRE_ARMOR_TYPE)
                 .add(ModItems.ARMOR_SAPPHIRE_HELMET)
                 .add(ModItems.ARMOR_SAPPHIRE_CHESTPLATE)
                 .add(ModItems.ARMOR_SAPPHIRE_LEGGINGS)
                 .add(ModItems.ARMOR_SAPPHIRE_BOOTS);
 
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_AMETHYST_ARMOR)
+        valueLookupBuilder(REFERENCE.REPAIRS_AMETHYST_ARMOR)
                 .add(ModItems.REINFORCED_AMETHYST);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_CITRINE_ARMOR)
+        valueLookupBuilder(REFERENCE.REPAIRS_CITRINE_ARMOR)
                 .add(ModItems.REINFORCED_CITRINE);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_COPPER_ARMOR)
+        valueLookupBuilder(REFERENCE.REPAIRS_COPPER_ARMOR)
                 .add(ModItems.REINFORCED_COPPER);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_EMERALD_ARMOR)
+        valueLookupBuilder(REFERENCE.REPAIRS_EMERALD_ARMOR)
                 .add(ModItems.REINFORCED_EMERALD);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_ENDERITE_ARMOR)
+        valueLookupBuilder(REFERENCE.REPAIRS_ENDERITE_ARMOR)
                 .add(ModItems.REINFORCED_ENDERITE);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_RUBY_ARMOR)
+        valueLookupBuilder(REFERENCE.REPAIRS_RUBY_ARMOR)
                 .add(ModItems.REINFORCED_RUBY);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_SAPPHIRE_ARMOR)
+        valueLookupBuilder(REFERENCE.REPAIRS_SAPPHIRE_ARMOR)
                 .add(ModItems.REINFORCED_SAPPHIRE);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_CITRINE_TOOL)
+        valueLookupBuilder(REFERENCE.REPAIRS_CITRINE_TOOL)
                 .add(ModItems.PLATE_CITRINE);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_COPPER_TOOL)
+        valueLookupBuilder(REFERENCE.REPAIRS_COPPER_TOOL)
                 .add(ModItems.PLATE_COPPER);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_ENDERITE_TOOL)
+        valueLookupBuilder(REFERENCE.REPAIRS_ENDERITE_TOOL)
                 .add(ModItems.PLATE_ENDERITE);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_RUBY_TOOL)
+        valueLookupBuilder(REFERENCE.REPAIRS_RUBY_TOOL)
                 .add(ModItems.PLATE_RUBY);
-        getOrCreateTagBuilder(REFERENCE.REPAIRS_SAPPHIRE_TOOL)
+        valueLookupBuilder(REFERENCE.REPAIRS_SAPPHIRE_TOOL)
                 .add(ModItems.PLATE_SAPPHIRE);
 
-        getOrCreateTagBuilder(REFERENCE.CITRINE_GEM)
+        valueLookupBuilder(REFERENCE.CITRINE_GEM)
                 .add(ModItems.GEM_CITRINE);
 
-        getOrCreateTagBuilder(REFERENCE.RUBY_GEM)
+        valueLookupBuilder(REFERENCE.RUBY_GEM)
                 .add(ModItems.GEM_RUBY);
 
-        getOrCreateTagBuilder(REFERENCE.SAPPHIRE_GEM)
+        valueLookupBuilder(REFERENCE.SAPPHIRE_GEM)
                 .add(ModItems.GEM_SAPPHIRE);
 
-        getOrCreateTagBuilder(ItemTags.COPPER_ORES)
+        valueLookupBuilder(ItemTags.COPPER_ORES)
                 .add(ModBlocks.ORE_NETHER_COPPER.asItem());
 
-        getOrCreateTagBuilder(ItemTags.REDSTONE_ORES)
+        valueLookupBuilder(ItemTags.REDSTONE_ORES)
                 .add(ModBlocks.ORE_NETHER_REDSTONE.asItem());
 
-        getOrCreateTagBuilder(ItemTags.LAPIS_ORES)
+        valueLookupBuilder(ItemTags.LAPIS_ORES)
                 .add(ModBlocks.ORE_NETHER_LAPIS.asItem());
 
-        getOrCreateTagBuilder(ItemTags.IRON_ORES)
+        valueLookupBuilder(ItemTags.IRON_ORES)
                 .add(ModBlocks.ORE_NETHER_IRON.asItem());
 
-        getOrCreateTagBuilder(ItemTags.DIAMOND_ORES)
+        valueLookupBuilder(ItemTags.DIAMOND_ORES)
                 .add(ModBlocks.ORE_NETHER_DIAMOND.asItem());
 
-        getOrCreateTagBuilder(ItemTags.COAL_ORES)
+        valueLookupBuilder(ItemTags.COAL_ORES)
                 .add(ModBlocks.ORE_NETHER_COAL.asItem());
 
-        getOrCreateTagBuilder(REFERENCE.CAST)
+        valueLookupBuilder(REFERENCE.CAST)
                 .add(ModItems.CAST_AXE)
                 .add(ModItems.CAST_BINDING)
                 .add(ModItems.CAST_EXCAVATOR)
@@ -297,18 +297,18 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.CAST_SWORD)
                 .add(ModItems.CAST_WIRE);
 
-        getOrCreateTagBuilder(REFERENCE.RAW)
+        valueLookupBuilder(REFERENCE.RAW)
                 .add(ModItems.RAW_CITRINE)
                 .add(ModItems.RAW_ENDERITE)
                 .add(ModItems.RAW_QUARTZ)
                 .add(ModItems.RAW_RUBY)
                 .add(ModItems.RAW_SAPPHIRE);
 
-        getOrCreateTagBuilder(REFERENCE.WOOD_CAST)
+        valueLookupBuilder(REFERENCE.WOOD_CAST)
                 .add(ModItems.CAST_WOOD_INGOT)
                 .add(ModItems.CAST_WOOD_PICKAXE);
 
-        getOrCreateTagBuilder(REFERENCE.GEAR)
+        valueLookupBuilder(REFERENCE.GEAR)
                 .add(ModItems.GEAR_COPPER)
                 .add(ModItems.GEAR_DIAMOND)
                 .add(ModItems.GEAR_EMERALD)
@@ -328,14 +328,14 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.GEAR_VIBRANT)
                 .add(ModItems.GEAR_WOOD);
 
-        getOrCreateTagBuilder(REFERENCE.GEM)
+        valueLookupBuilder(REFERENCE.GEM)
                 .add(ModItems.GEM_CITRINE)
                 .add(ModItems.GEM_RUBY)
                 .add(ModItems.GEM_SAPPHIRE)
                 .add(Items.DIAMOND)
                 .add(Items.EMERALD);
 
-        getOrCreateTagBuilder(REFERENCE.DUST)
+        valueLookupBuilder(REFERENCE.DUST)
                 .add(ModItems.CRUSHED_SHULKER)
                 .add(ModItems.DUST_CONDUCTIVE)
                 .add(ModItems.DUST_COPPER)
@@ -350,7 +350,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.DUST_VIBRANT)
                 .add(ModItems.DUST_WITHERING);
 
-        getOrCreateTagBuilder(REFERENCE.INGOT)
+        valueLookupBuilder(REFERENCE.INGOT)
                 .add(ModItems.INGOT_ALLOY_CONDUCTIVE)
                 .add(ModItems.INGOT_ALLOY_ENERGETIC)
                 .add(ModItems.INGOT_ALLOY_PULSATING)
@@ -360,14 +360,14 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.INGOT_ALLOY_ENDERITE)
                 .add(ModItems.INGOT_ENDERITE);
 
-        getOrCreateTagBuilder(REFERENCE.ALLOY)
+        valueLookupBuilder(REFERENCE.ALLOY)
                 .add(ModItems.INGOT_ALLOY_CONDUCTIVE)
                 .add(ModItems.INGOT_ALLOY_ENERGETIC)
                 .add(ModItems.INGOT_ALLOY_PULSATING)
                 .add(ModItems.INGOT_ALLOY_RED)
                 .add(ModItems.INGOT_ALLOY_VIBRANT);
 
-        getOrCreateTagBuilder(REFERENCE.PLATE)
+        valueLookupBuilder(REFERENCE.PLATE)
                 .add(ModItems.PLATE_AMETHYST)
                 .add(ModItems.PLATE_CITRINE)
                 .add(ModItems.PLATE_COPPER)
@@ -382,7 +382,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.PLATE_SHULKER)
                 .add(ModItems.PLATE_STONE);
 
-        getOrCreateTagBuilder(REFERENCE.REINFORCED)
+        valueLookupBuilder(REFERENCE.REINFORCED)
                 .add(ModItems.REINFORCED_AMETHYST)
                 .add(ModItems.REINFORCED_CITRINE)
                 .add(ModItems.REINFORCED_COPPER)
@@ -396,7 +396,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.REINFORCED_SAPPHIRE)
                 .add(ModItems.REINFORCED_SHULKER);
 
-        getOrCreateTagBuilder(REFERENCE.ROD)
+        valueLookupBuilder(REFERENCE.ROD)
                 .add(ModItems.ROD_COPPER)
                 .add(ModItems.ROD_ENDERITE)
                 .add(ModItems.ROD_GLOWSTONE)
@@ -406,7 +406,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.ROD_REDSTONE)
                 .add(ModItems.ROD_SHULKER);
 
-        getOrCreateTagBuilder(REFERENCE.TOOL_HEAD)
+        valueLookupBuilder(REFERENCE.TOOL_HEAD)
                 .add(ModItems.HEAD_CITRINE_AXE)
                 .add(ModItems.HEAD_CITRINE_HAMMER)
                 .add(ModItems.HEAD_CITRINE_HOE)
@@ -464,7 +464,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.HEAD_STONE_HAMMER)
                 .add(ModItems.HEAD_WOOD_HAMMER);
 
-        getOrCreateTagBuilder(REFERENCE.SMELTABLE)
+        valueLookupBuilder(REFERENCE.SMELTABLE)
                 .add(ModItems.GEM_CITRINE)
                 .add(ModItems.GEM_RUBY)
                 .add(ModItems.GEM_SAPPHIRE)
@@ -491,13 +491,13 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.RAW_IRON)
                 .add(Items.RAW_GOLD);
 
-        getOrCreateTagBuilder(REFERENCE.FLUID_BUCKET)
+        valueLookupBuilder(REFERENCE.FLUID_BUCKET)
                 .add(Items.LAVA_BUCKET)
                 .add(Items.WATER_BUCKET)
                 .add(Items.MILK_BUCKET)
                 .add(Items.BUCKET);
 
-        getOrCreateTagBuilder(REFERENCE.MENDING_ONLY)
+        valueLookupBuilder(REFERENCE.MENDING_ONLY)
                 .add(ModItems.ARMOR_AMETHYST_HELMET)
                 .add(ModItems.ARMOR_AMETHYST_CHESTPLATE)
                 .add(ModItems.ARMOR_AMETHYST_LEGGINGS)
@@ -563,7 +563,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.TOOL_RUBY_SWORD)
                 .add(ModItems.TOOL_SAPPHIRE_SWORD);
 
-        getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE)
+        valueLookupBuilder(ItemTags.DURABILITY_ENCHANTABLE)
                 .add(ModItems.ARMOR_AMETHYST_HELMET)
                 .add(ModItems.ARMOR_AMETHYST_CHESTPLATE)
                 .add(ModItems.ARMOR_AMETHYST_LEGGINGS)
@@ -640,7 +640,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.TOOL_WOOD_EXCAVATOR)
                 .add(ModItems.TOOL_WOOD_HAMMER);
 
-        getOrCreateTagBuilder(ItemTags.MINING_LOOT_ENCHANTABLE)
+        valueLookupBuilder(ItemTags.MINING_LOOT_ENCHANTABLE)
                 .add(ModItems.TOOL_CITRINE_EXCAVATOR)
                 .add(ModItems.TOOL_CITRINE_HAMMER)
                 .add(ModItems.TOOL_CITRINE_PICKAXE)

@@ -53,6 +53,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Provides utility methods for interacting with fake players in Minecraft.
+ */
 @SuppressWarnings({"unused", "SameParameterValue"})
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
@@ -60,8 +63,18 @@ import java.util.Optional;
 @Youtube("https://www.youtube.com/@direwolf20")
 public class FakePlayerHelper
 {
+    /**
+     * Represents the result of an interaction with a fake player.
+     */
     public record FakePlayerResult(ActionResult actionResult, ItemStack returnStack) {}
 
+    /**
+     * Adds attributes to a fake player based on the item they are holding.
+     *
+     * @param player    The fake player.
+     * @param itemStack The item stack the player is holding.
+     * @param equipmentSlot The equipment slot of the item stack.
+     */
     protected static void addAttributes(UsefulFakePlayer player, ItemStack itemStack, EquipmentSlot equipmentSlot)
     {
         AttributeContainer container = player.getAttributes();
@@ -79,6 +92,13 @@ public class FakePlayerHelper
         }
     }
 
+    /**
+     * Removes attributes from a fake player based on the item they were holding.
+     *
+     * @param player    The fake player.
+     * @param itemStack The item stack the player was holding.
+     * @param equipmentSlot The equipment slot of the item stack.
+     */
     protected static void removeAttributes(UsefulFakePlayer player, ItemStack itemStack, EquipmentSlot equipmentSlot)
     {
         AttributeContainer container = player.getAttributes();
@@ -94,12 +114,13 @@ public class FakePlayerHelper
     }
 
     /**
-     * Sets up for a fake player to be usable to right click things. This player will be put at the center of the using side.
+     * Sets up a fake player for use, placing them at the center of the specified direction and setting their equipment.
      *
-     * @param player    The player.
-     * @param pos       The position of the using tile entity.
-     * @param direction The direction to use in.
-     * @param toHold    The stack the player will be using. Should probably come from an ItemStackHandler or similar.
+     * @param player    The fake player to set up.
+     * @param pos       The position of the tile entity being interacted with.
+     * @param direction The direction from which the interaction is happening.
+     * @param toHold    The item stack the player will be holding during the interaction.
+     * @param sneaking  Whether the player should be sneaking.
      */
     public static void setupFakePlayerForUse(UsefulFakePlayer player, Vec3d pos, Direction direction, ItemStack toHold, boolean sneaking)
     {
@@ -120,12 +141,13 @@ public class FakePlayerHelper
     }
 
     /**
-     * Sets up for a fake player to be usable to right click things. This player will be put at the center of the using side.
+     * Sets up a fake player for use, placing them at the center of the specified direction and setting their equipment.
      *
-     * @param player    The player.
-     * @param pos       The position of the using tile entity.
-     * @param direction The direction to use in.
-     * @param toHold    The stack the player will be using. Should probably come from an ItemStackHandler or similar.
+     * @param player    The fake player to set up.
+     * @param pos       The position of the tile entity being interacted with.
+     * @param direction The direction from which the interaction is happening.
+     * @param toHold    The item stack the player will be holding during the interaction.
+     * @param sneaking  Whether the player should be sneaking.
      */
     public static void setupFakePlayerForUse(UsefulFakePlayer player, BlockPos pos, Direction direction, ItemStack toHold, boolean sneaking)
     {
@@ -146,12 +168,13 @@ public class FakePlayerHelper
     }
 
     /**
-     * Sets up for a fake player to be usable to right click things. This player will be put at the center of the using side.
+     * Sets up a fake player for use, placing them at the center of the specified direction and setting their equipment.
      *
-     * @param player    The player.
-     * @param pos       The position of the using tile entity.
-     * @param direction The direction to use in.
-     * @param toHold    The stack the player will be using. Should probably come from an ItemStackHandler or similar.
+     * @param player    The fake player to set up.
+     * @param pos       The position of the tile entity being interacted with.
+     * @param direction The direction from which the interaction is happening.
+     * @param toHold    The item stack the player will be holding during the interaction.
+     * @param sneaking  Whether the player should be sneaking.
      */
     public static void setupFakePlayerForUse(UsefulFakePlayer player, BlockPos pos, Direction direction, Vec3d entityPosition, ItemStack toHold, boolean sneaking)
     {
@@ -182,10 +205,10 @@ public class FakePlayerHelper
     }
 
     /**
-     * Cleans up the fake player after use.
+     * Cleans up a fake player after it has been used.
      *
-     * @param player   The player.
-     * @param oldStack The previous stack, from before use.
+     * @param player   The fake player.
+     * @param oldStack The previous item stack held by the player.
      */
     public static void cleanupFakePlayerFromUse(UsefulFakePlayer player, ItemStack oldStack)
     {
@@ -197,6 +220,16 @@ public class FakePlayerHelper
         player.setReach(player.getAttributeValue(EntityAttributes.BLOCK_INTERACTION_RANGE));
     }
 
+    /**
+     * Simulates a right click interaction with an entity in the given direction.
+     *
+     * @param player    The fake player.
+     * @param world     The world where the interaction occurs.
+     * @param entity    The entity to interact with.
+     * @param clickType The type of interaction (right-click or left-click).
+     * @param maxHold   The maximum time in ticks the item should be held before stopping.
+     * @return The result of the interaction and the remaining item stack.
+     */
     public static FakePlayerResult clickEntityInDirection(UsefulFakePlayer player, World world, LivingEntity entity, int clickType, int maxHold)
     {
         HitResult toUse = rayTraceEntity(player, world, player.getReach());
@@ -235,12 +268,13 @@ public class FakePlayerHelper
     }
 
     /**
-     * Uses whatever the player happens to be holding in the given direction.
+     * Simulates a right or left click interaction with a block in the given direction.
      *
-     * @param player    The player.
-     * @param world     The world of the calling tile entity. It may be a bad idea to use {FakePlayer#getEntityWorld()}.
-     * @param clickType Right or Left click.  0 = right. 1 = left.
-     * @return The remainder of whatever the player was holding. This should be set back into the tile's stack handler or similar.
+     * @param player    The fake player.
+     * @param world     The world where the interaction occurs.
+     * @param clickType The type of interaction (right-click or left-click).
+     * @param maxHold   The maximum time in ticks the item should be held before stopping.
+     * @return The result of the interaction and the remaining item stack.
      */
     public static FakePlayerResult clickBlockInDirection(UsefulFakePlayer player, World world, int clickType, int maxHold)
     {
@@ -307,6 +341,15 @@ public class FakePlayerHelper
         return new FakePlayerResult(ActionResult.FAIL, player.getMainHandStack());
     }
 
+    /**
+     * Simulates a right click interaction with air in the given direction.
+     *
+     * @param player    The fake player.
+     * @param world     The world where the interaction occurs.
+     * @param clickType The type of interaction (right-click or left-click).
+     * @param maxHold   The maximum time in ticks the item should be held before stopping.
+     * @return The result of the interaction and the remaining item stack.
+     */
     public static FakePlayerResult rightClickAirInDirection(UsefulFakePlayer player, World world, int clickType, int maxHold)
     {
         HitResult toUse = rayTraceBlock(player, world, player.getReach()); //Longer reach so it can connect with adjacent blocks to interact with them
@@ -354,14 +397,14 @@ public class FakePlayerHelper
     }
 
     /**
-     * Attacks with whatever the player happens to be holding in the given direction.
+     * Simulates an attack with whatever the fake player is holding in the given direction.
      *
-     * @param player      The player.
-     * @param world       The world of the calling tile entity. It may be a bad idea to use {FakePlayer#getEntityWorld()}.
-     * @param pos         The pos of the calling tile entity.
+     * @param player      The fake player.
+     * @param world       The world where the interaction occurs.
+     * @param pos         The position of the tile entity.
      * @param side        The direction to attack in.
-     * @param sourceState The state of the calling tile entity, so we don't click ourselves.
-     * @return The remainder of whatever the player was holding. This should be set back into the tile's stack handler or similar.
+     * @param sourceState The state of the tile entity, so we don't click ourselves.
+     * @return The remaining item stack after the attack.
      */
     public static ItemStack leftClickInDirection(UsefulFakePlayer player, World world, BlockPos pos, Direction side, BlockState sourceState)
     {
@@ -409,8 +452,8 @@ public class FakePlayerHelper
     /**
      * Traces for an entity.
      *
-     * @param player The player.
-     * @param world  The world of the calling tile entity.
+     * @param player The fake player.
+     * @param world  The world where the interaction occurs.
      * @return A ray trace result that will likely be of type entity, but may be type block, or null.
      */
     public static HitResult traceEntities(UsefulFakePlayer player, Vec3d base, Vec3d target, World world)
@@ -474,12 +517,12 @@ public class FakePlayerHelper
     }
 
     /**
-     * Processes the using of an entity from the server side.
+     * Processes the use of an entity from the server side.
      *
-     * @param player The player.
-     * @param world  The world of the calling tile entity.
+     * @param player The fake player.
+     * @param world  The world where the interaction occurs.
      * @param entity The entity to interact with.
-     * @param result The actual ray trace result, only necessary if using {CUseEntityPacket.Action#INTERACT_AT}
+     * @param result The actual ray trace result, only necessary if using {@link InteractionType#INTERACT_AT}
      * @param action The type of interaction to perform.
      * @return If the entity was used.
      */
@@ -508,7 +551,11 @@ public class FakePlayerHelper
     }
 
     /**
-     * Util to perform a raytrace for what the fake player is looking at.
+     * Performs a raytrace for what the fake player is looking at.
+     *
+     * @param player The fake player.
+     * @param world  The world where the interaction occurs.
+     * @return A ray trace result that could be of type block, entity, or miss.
      */
     public static HitResult rayTrace(UsefulFakePlayer player, World world, double reachDist)
     {
@@ -530,6 +577,13 @@ public class FakePlayerHelper
         return toUse;
     }
 
+    /**
+     * Performs a block raytrace for what the fake player is looking at.
+     *
+     * @param player The fake player.
+     * @param world  The world where the interaction occurs.
+     * @return A ray trace result that will be of type block or miss.
+     */
     public static HitResult rayTraceBlock(UsefulFakePlayer player, World world, double reachDist)
     {
         Vec3d base = new Vec3d(player.getX(), player.getEyeY(), player.getZ());
@@ -541,6 +595,13 @@ public class FakePlayerHelper
                                                 RaycastContext.FluidHandling.SOURCE_ONLY, player));
     }
 
+    /**
+     * Performs an entity raytrace for what the fake player is looking at.
+     *
+     * @param player The fake player.
+     * @param world  The world where the interaction occurs.
+     * @return A ray trace result that will be of type entity or miss.
+     */
     public static HitResult rayTraceEntity(UsefulFakePlayer player, World world, double reachDist)
     {
         Vec3d base = new Vec3d(player.getX(), player.getEyeY(), player.getZ());
@@ -550,6 +611,9 @@ public class FakePlayerHelper
         return traceEntities(player, base, target, world);
     }
 
+    /**
+     * Enumeration of interaction types.
+     */
     public enum InteractionType {
         INTERACT,
         INTERACT_AT,

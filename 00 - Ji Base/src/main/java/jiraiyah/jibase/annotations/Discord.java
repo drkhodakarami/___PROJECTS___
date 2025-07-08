@@ -28,7 +28,12 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
-
+/**
+ * Annotation to mark the Discord server or channel of a class, method, field, or constructor.
+ *
+ * <p>This annotation is intended for use in documentation and version control systems
+ * to indicate where developers can find support or discussion about the component.</p>
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -39,5 +44,10 @@ import static java.lang.annotation.ElementType.*;
 @Target(value = {TYPE, METHOD, FIELD, CONSTRUCTOR})
 public @interface Discord
 {
+    /**
+     * The URL of the Discord server or channel.
+     *
+     * @return The Discord URL as a String.
+     */
     String value();
 }

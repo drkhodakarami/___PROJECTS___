@@ -31,6 +31,9 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * Represents an interface for entities that can be ticked.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -41,9 +44,23 @@ import net.minecraft.world.World;
 
 public interface ITick
 {
+    /**
+     * Called on the server side to perform the entity's tick logic.
+     */
     void tick();
+
+    /**
+     * Called on the client side to perform any client-specific tick logic (default implementation does nothing).
+     */
     default void tickClient(){}
 
+    /**
+     * Creates a ticker for a given world that will call the appropriate tick method based on whether it is the server or client.
+     *
+     * @param <T> the type of the block entity
+     * @param world the world containing the block entity
+     * @return a BlockEntityTicker that will handle ticking the entity
+     */
     static <T extends BlockEntity> BlockEntityTicker<T> createTicker(World world)
     {
         return !world.isClient
@@ -51,6 +68,13 @@ public interface ITick
                : (pworld, pos, state, entity) -> ((ITick) entity).tickClient();
     }
 
+    /**
+     * Retrieves the block state of the entity's position in the world.
+     *
+     * @param world the world containing the entity
+     * @param pos   the position of the entity
+     * @return the block state at the given position, or null if the world is null
+     */
     default BlockState getState(World world, BlockPos pos)
     {
         return world != null ? world.getBlockState(pos) : null;

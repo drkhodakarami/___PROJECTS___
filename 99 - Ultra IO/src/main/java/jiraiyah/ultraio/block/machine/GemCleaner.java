@@ -51,7 +51,7 @@ public class GemCleaner extends JiBlock implements BlockEntityProvider
         CODEC = createCodec(GemCleaner::new);
     }
 
-    //TODO: Fix this !
+    //FIXME: the onbreak is not the correct method to be called here!
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player)
     {

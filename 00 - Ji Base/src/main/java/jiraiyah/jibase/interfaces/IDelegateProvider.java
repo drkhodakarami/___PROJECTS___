@@ -27,6 +27,9 @@ package jiraiyah.jibase.interfaces;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.screen.PropertyDelegate;
 
+/**
+ * Represents an interface for providing property delegate information.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -36,6 +39,17 @@ import net.minecraft.screen.PropertyDelegate;
 
 public interface IDelegateProvider
 {
+    /**
+     * Retrieves the property delegate associated with this provider.
+     *
+     * @return the property delegate
+     */
     PropertyDelegate getDelegate();
+
+    /**
+     * Retrieves the size of the property delegate.
+     *
+     * @return the size of the property delegate
+     */
     int getDelegateSize();
 }

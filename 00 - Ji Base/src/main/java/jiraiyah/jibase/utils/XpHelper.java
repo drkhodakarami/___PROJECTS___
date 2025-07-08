@@ -27,6 +27,9 @@ package jiraiyah.jibase.utils;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.entity.player.PlayerEntity;
 
+/**
+ * Provides utility methods for experience (XP) calculations and management in Minecraft.
+ */
 @SuppressWarnings("unused")
 @Developer("Direwolf20")
 @ModifiedBy("Jiraiyah")
@@ -35,7 +38,12 @@ import net.minecraft.entity.player.PlayerEntity;
 @Youtube("https://www.youtube.com/@direwolf20")
 public class XpHelper
 {
-    // Calculate experience required to go from level 0 to target level
+    /**
+     * Calculates the total experience required to reach a given level.
+     *
+     * @param level The target level for which to calculate the experience requirement.
+     * @return The total experience required to reach the specified level.
+     */
     public static int totalXpForLevel(int level)
     {
         if(level <= 16)
@@ -46,6 +54,12 @@ public class XpHelper
         return (int) Math.min(totalXp, Integer.MAX_VALUE);
     }
 
+    /**
+     * Calculates the player's level based on their total experience.
+     *
+     * @param totalXp The total experience points of the player.
+     * @return The calculated player level.
+     */
     public static int levelFromTotalXp(int totalXp)
     {
         // Check in the level ranges where experience requirements change
@@ -59,7 +73,13 @@ public class XpHelper
         return (int) Math.floor((162.5 + Math.sqrt(26_406.25 - 18.0 * (2220 - totalXp))) / 9.0);
     }
 
-    // Remove levels from a player, ensuring they don't lose more than available
+    /**
+     * Removes a specified number of levels from the player, ensuring they don't lose more than available.
+     *
+     * @param player The player entity to remove levels from.
+     * @param levelsToRemove The number of levels to remove.
+     * @return The total experience points removed.
+     */
     public static int removeLevels(PlayerEntity player, int levelsToRemove)
     {
         int currentTotalExp = playerTotalXp(player);
@@ -73,7 +93,12 @@ public class XpHelper
         return expToRemove;
     }
 
-    // Calculate experience required to go from one level to the next
+    /**
+     * Calculates the experience required to go from one level to the next.
+     *
+     * @param level The current level.
+     * @return The experience required for the next level.
+     */
     public static int xpForNextLevel(int level)
     {
         if (level >= 30)
@@ -81,7 +106,12 @@ public class XpHelper
         return level >= 15 ? 37 + (level - 15) * 5 : 7 + level * 2;
     }
 
-    // Calculate total experience points player currently has (given level and progress)
+    /**
+     * Calculates the total experience points a player currently has, considering their current level and progress.
+     *
+     * @param player The player entity to calculate experience for.
+     * @return The total experience points of the player.
+     */
     public static int playerTotalXp(PlayerEntity player)
     {
         int exp = totalXpForLevel(player.experienceLevel);
@@ -89,12 +119,23 @@ public class XpHelper
         return (int) Math.min(totalXp, Integer.MAX_VALUE);
     }
 
+    /**
+     * Calculates the experience needed to reach the next level.
+     *
+     * @param player The player entity to calculate for.
+     * @return The experience needed to reach the next level.
+     */
     public static int xpNeededForNextLevel(PlayerEntity player)
     {
         return player.getNextLevelExperience() - (int) (player.experienceProgress * player.getNextLevelExperience());
     }
 
-    // Get the progress to the next level as a fraction (float) from total experience points
+    /**
+     * Calculates the progress towards the next level as a fraction (float) based on total experience points.
+     *
+     * @param totalExp The total experience points of the player.
+     * @return The fractional progress to the next level.
+     */
     public static float progressToNextLevel(int totalExp)
     {
         int level = levelFromTotalXp(totalExp);  // Get the number of full levels
@@ -108,7 +149,13 @@ public class XpHelper
         return (float) expAfterFullLevels / (float) expForNextLevel;
     }
 
-    // Remove points from a player, ensuring they don't lose more than available
+    /**
+     * Removes experience points from the player, ensuring they don't lose more than available.
+     *
+     * @param player The player entity to remove experience from.
+     * @param pointsToRemove The number of experience points to remove.
+     * @return The total experience points removed.
+     */
     public static int removePoints(PlayerEntity player, int pointsToRemove)
     {
         int currentTotalExp = playerTotalXp(player);

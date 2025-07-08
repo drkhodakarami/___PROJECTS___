@@ -33,6 +33,12 @@ import net.minecraft.text.Text;
 
 import java.util.List;
 
+/**
+ * Interface for rendering ingredients in a Minecraft mod.
+ *
+ * @author TurtyWurty, Jiraiyah
+ * @since 2025-04-18
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -43,26 +49,65 @@ import java.util.List;
 
 public interface IIngredientRenderer<T>
 {
+    /**
+     * Default render method that calls the main render method at position (0, 0).
+     *
+     * @param stack      The matrix stack to use for rendering.
+     * @param ingredient The ingredient to render.
+     */
     default void render(MatrixStack stack, T ingredient)
     {
         render(stack, 0, 0, ingredient);
     }
 
+    /**
+     * Main render method that can be overridden to customize rendering logic.
+     *
+     * @param stack      The matrix stack to use for rendering.
+     * @param x          The x-coordinate to render the ingredient at.
+     * @param y          The y-coordinate to render the ingredient at.
+     * @param ingredient The ingredient to render.
+     */
     default void render(MatrixStack stack, int x, int y, T ingredient)
     {}
 
+    /**
+     * Generates a tooltip for the given ingredient.
+     *
+     * @param ingredient        The ingredient to generate a tooltip for.
+     * @param tooltipContext    The context for generating the tooltip.
+     * @param modID             The ID of the mod that contains the ingredient.
+     * @return A list of text elements representing the tooltip.
+     */
     List<Text> tooltip(T ingredient, Item.TooltipContext tooltipContext, String modID);
 
+    /**
+     * Provides a default text renderer based on the current Minecraft client.
+     *
+     * @param client  The Minecraft client instance.
+     * @param ingredient The ingredient to get the text renderer for.
+     * @return The text renderer from the Minecraft client.
+     */
     default TextRenderer fontRenderer(MinecraftClient client, T ingredient)
     {
         return client.textRenderer;
     }
 
+    /**
+     * Provides a default width for rendering ingredients.
+     *
+     * @return The default width of an ingredient.
+     */
     default int width()
     {
         return 16;
     }
 
+    /**
+     * Provides a default height for rendering ingredients.
+     *
+     * @return The default height of an ingredient.
+     */
     default int height()
     {
         return 16;

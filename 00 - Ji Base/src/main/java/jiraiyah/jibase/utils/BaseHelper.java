@@ -59,6 +59,9 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Provides utility methods for working with various Minecraft registries and identifiers.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -69,126 +72,278 @@ import java.util.Objects;
 
 public class BaseHelper
 {
+    /**
+     * Private constructor to prevent instantiation.
+     */
     public BaseHelper()
     {
         Exceptions.throwCtorAssertion();
     }
 
+    /**
+     * Creates a new Minecraft identifier with the given mod ID and path.
+     *
+     * @param modID The mod ID.
+     * @param path  The path for the identifier.
+     * @return The created Identifier.
+     */
     public static Identifier identifier(String modID, @NotNull String path)
     {
         return Identifier.of(modID, path);
     }
 
+    /**
+     * Creates a new registry key with the given name and registry type.
+     *
+     * @param <T>          The type of the registry.
+     * @param modID        The mod ID.
+     * @param name         The name for the registry key.
+     * @param registryKey  The registry key for the target registry.
+     * @return The created RegistryKey.
+     */
     public static <T> RegistryKey<T> getKey(String modID, String name, RegistryKey<? extends Registry<T>> registryKey)
     {
         return RegistryKey.of(registryKey, identifier(modID, name));
     }
 
+    /**
+     * Generates a tag check string for the given item tag.
+     *
+     * @param tag The item tag key.
+     * @return A tag check string.
+     */
     public static @NotNull String hasTag(@NotNull TagKey<Item> tag)
     {
         return "has_" + tag.id().toString();
     }
 
+    /**
+     * Retrieves the registry name for a given fluid.
+     *
+     * @param fluid The fluid to get the registry name for.
+     * @return The registry name of the fluid.
+     */
     public static String getRegistryName(Fluid fluid)
     {
         return Registries.FLUID.getId(fluid).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given item.
+     *
+     * @param item The item to get the registry name for.
+     * @return The registry name of the item.
+     */
     public static String getRegistryName(Item item)
     {
         return Registries.ITEM.getId(item).getPath();
     }
 
-    public static String getRegistryName(ItemStack item)
+    /**
+     * Retrieves the registry name for a given item stack.
+     *
+     * @param stack The item stack to get the registry name for.
+     * @return The registry name of the item in the stack.
+     */
+    public static String getRegistryName(ItemStack stack)
     {
-        return Registries.ITEM.getId(item.getItem()).getPath();
+        return Registries.ITEM.getId(stack.getItem()).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given block.
+     *
+     * @param block The block to get the registry name for.
+     * @return The registry name of the block.
+     */
     public static String getRegistryName(Block block)
     {
         return Registries.BLOCK.getId(block).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given entity type.
+     *
+     * @param entityType The entity type to get the registry name for.
+     * @return The registry name of the entity type.
+     */
     public static String getRegistryName(EntityType<?> entityType)
     {
         return Registries.ENTITY_TYPE.getId(entityType).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given potion.
+     *
+     * @param potion The potion to get the registry name for.
+     * @return The registry name of the potion.
+     */
     public static String getRegistryName(Potion potion)
     {
         return Objects.requireNonNull(Registries.POTION.getId(potion)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given block entity type.
+     *
+     * @param blockEntityType The block entity type to get the registry name for.
+     * @return The registry name of the block entity type.
+     */
     public static String getRegistryName(BlockEntityType<?> blockEntityType)
     {
         return Objects.requireNonNull(Registries.BLOCK_ENTITY_TYPE.getId(blockEntityType)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given custom stat identifier.
+     *
+     * @param identifier The custom stat identifier to get the registry name for.
+     * @return The registry name of the custom stat.
+     */
     public static String getRegistryName(Identifier identifier)
     {
         return Objects.requireNonNull(Registries.CUSTOM_STAT.getId(identifier)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given chunk status.
+     *
+     * @param chunkStatus The chunk status to get the registry name for.
+     * @return The registry name of the chunk status.
+     */
     public static String getRegistryName(ChunkStatus chunkStatus)
     {
         return Registries.CHUNK_STATUS.getId(chunkStatus).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given entity attribute.
+     *
+     * @param entityAttribute The entity attribute to get the registry name for.
+     * @return The registry name of the entity attribute.
+     */
     public static String getRegistryName(EntityAttribute entityAttribute)
     {
         return Objects.requireNonNull(Registries.ATTRIBUTE.getId(entityAttribute)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given screen handler type.
+     *
+     * @param screenHandlerType The screen handler type to get the registry name for.
+     * @return The registry name of the screen handler type.
+     */
     public static String getRegistryName(ScreenHandlerType<?> screenHandlerType)
     {
         return Objects.requireNonNull(Registries.SCREEN_HANDLER.getId(screenHandlerType)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given recipe type.
+     *
+     * @param recipeType The recipe type to get the registry name for.
+     * @return The registry name of the recipe type.
+     */
     public static String getRegistryName(RecipeType<?> recipeType)
     {
         return Objects.requireNonNull(Registries.RECIPE_TYPE.getId(recipeType)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given recipe serializer.
+     *
+     * @param recipeSerializer The recipe serializer to get the registry name for.
+     * @return The registry name of the recipe serializer.
+     */
     public static String getRegistryName(RecipeSerializer<?> recipeSerializer)
     {
         return Objects.requireNonNull(Registries.RECIPE_SERIALIZER.getId(recipeSerializer)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given villager type.
+     *
+     * @param villagerType The villager type to get the registry name for.
+     * @return The registry name of the villager type.
+     */
     public static String getRegistryName(VillagerType villagerType)
     {
         return Registries.VILLAGER_TYPE.getId(villagerType).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given villager profession.
+     *
+     * @param villagerProfession The villager profession to get the registry name for.
+     * @return The registry name of the villager profession.
+     */
     public static String getRegistryName(VillagerProfession villagerProfession)
     {
         return Registries.VILLAGER_PROFESSION.getId(villagerProfession).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given float provider type.
+     *
+     * @param floatProviderType The float provider type to get the registry name for.
+     * @return The registry name of the float provider type.
+     */
     public static String getRegistryName(FloatProviderType<?> floatProviderType)
     {
         return Objects.requireNonNull(Registries.FLOAT_PROVIDER_TYPE.getId(floatProviderType)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given int provider type.
+     *
+     * @param intProviderType The int provider type to get the registry name for.
+     * @return The registry name of the int provider type.
+     */
     public static String getRegistryName(IntProviderType<?> intProviderType)
     {
         return Objects.requireNonNull(Registries.INT_PROVIDER_TYPE.getId(intProviderType)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given decorated pot pattern.
+     *
+     * @param decoratedPotPattern The decorated pot pattern to get the registry name for.
+     * @return The registry name of the decorated pot pattern.
+     */
     public static String getRegistryName(DecoratedPotPattern decoratedPotPattern)
     {
         return Objects.requireNonNull(Registries.DECORATED_POT_PATTERN.getId(decoratedPotPattern)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given item group.
+     *
+     * @param itemGroup The item group to get the registry name for.
+     * @return The registry name of the item group.
+     */
     public static String getRegistryName(ItemGroup itemGroup)
     {
         return Objects.requireNonNull(Registries.ITEM_GROUP.getId(itemGroup)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given criterion.
+     *
+     * @param criterion The criterion to get the registry name for.
+     * @return The registry name of the criterion.
+     */
     public static String getRegistryName(Criterion<?> criterion)
     {
         return Objects.requireNonNull(Registries.CRITERION.getId(criterion)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given data component type or enchantment effect component type.
+     *
+     * @param componentType The component type to get the registry name for.
+     * @param isEnchantment Whether this is an enchantment effect component type.
+     * @return The registry name of the component type.
+     */
     public static String getRegistryName(ComponentType<?> componentType, boolean isEnchantment)
     {
         return isEnchantment
@@ -196,16 +351,34 @@ public class BaseHelper
                : Objects.requireNonNull(Registries.DATA_COMPONENT_TYPE.getId(componentType)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given map decoration type.
+     *
+     * @param mapDecorationType The map decoration type to get the registry name for.
+     * @return The registry name of the map decoration type.
+     */
     public static String getRegistryName(MapDecorationType mapDecorationType)
     {
         return Objects.requireNonNull(Registries.MAP_DECORATION_TYPE.getId(mapDecorationType)).getPath();
     }
 
+    /**
+     * Retrieves the registry name for a given recipe book category.
+     *
+     * @param recipeBookCategory The recipe book category to get the registry name for.
+     * @return The registry name of the recipe book category.
+     */
     public static String getRegistryName(RecipeBookCategory recipeBookCategory)
     {
         return Objects.requireNonNull(Registries.RECIPE_BOOK_CATEGORY.getId(recipeBookCategory)).getPath();
     }
 
+    /**
+     * Retrieves a list of items that are in the given item tag.
+     *
+     * @param tagKey The item tag key to get the items for.
+     * @return A list of items in the tag.
+     */
     public static List<Item> getItemsWithTag(TagKey<Item> tagKey)
     {
         return Registries.ITEM.stream()
@@ -213,6 +386,12 @@ public class BaseHelper
                               .toList();
     }
 
+    /**
+     * Retrieves a list of blocks that are in the given block tag.
+     *
+     * @param tagKey The block tag key to get the blocks for.
+     * @return A list of blocks in the tag.
+     */
     public static List<Block> getBlocksWithTag(TagKey<Block> tagKey)
     {
         return Registries.BLOCK.stream()
@@ -220,6 +399,12 @@ public class BaseHelper
                                .toList();
     }
 
+    /**
+     * Retrieves a list of block entity types that are in the given block entity type tag.
+     *
+     * @param tagKey The block entity type tag key to get the block entity types for.
+     * @return A list of block entity types in the tag.
+     */
     public static List<BlockEntityType<?>> getBlockEntitiesWithTag(TagKey<BlockEntityType<?>> tagKey)
     {
         return Registries.BLOCK_ENTITY_TYPE.stream()
@@ -227,6 +412,12 @@ public class BaseHelper
                                            .toList();
     }
 
+    /**
+     * Retrieves a list of entity types that are in the given entity type tag.
+     *
+     * @param tagKey The entity type tag key to get the entity types for.
+     * @return A list of entity types in the tag.
+     */
     public static List<EntityType<?>> getEntitiesWithTag(TagKey<EntityType<?>> tagKey)
     {
         return Registries.ENTITY_TYPE.stream()
@@ -234,21 +425,45 @@ public class BaseHelper
                                      .toList();
     }
 
+    /**
+     * Retrieves the dimension identifier for the given world.
+     *
+     * @param world The world to get the dimension identifier for.
+     * @return The dimension identifier.
+     */
     public static Identifier getDimensionId(World world)
     {
         return world.getRegistryKey().getValue();
     }
 
+    /**
+     * Retrieves the dimension name for the given world.
+     *
+     * @param world The world to get the dimension name for.
+     * @return The dimension name.
+     */
     public static String getDimensionName(World world)
     {
         return getDimensionId(world).toString();
     }
 
+    /**
+     * Retrieves a cleaned, readable version of the dimension name.
+     *
+     * @param world The world to get the clean dimension name for.
+     * @return A cleaned dimension name.
+     */
     public static String getDimensionNameClean(World world)
     {
         return getDimensionNameClean(getDimensionName(world));
     }
 
+    /**
+     * Retrieves a cleaned, readable version of the dimension name from a string.
+     *
+     * @param dimensionName The dimension name as a string.
+     * @return A cleaned dimension name.
+     */
     public static String getDimensionNameClean(String dimensionName)
     {
         return dimensionName.substring(dimensionName.indexOf(':') + 1).replace('_', ' ');

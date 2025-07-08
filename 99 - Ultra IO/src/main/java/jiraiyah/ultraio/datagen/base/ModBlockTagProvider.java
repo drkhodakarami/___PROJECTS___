@@ -48,19 +48,19 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
     {
         Main.LOGGER.logBlockTagDatagen();
 
-        getOrCreateTagBuilder(REFERENCE.INCORRECT_FOR_ENDERITE_TOOL);
+        valueLookupBuilder(REFERENCE.INCORRECT_FOR_ENDERITE_TOOL);
 
-        getOrCreateTagBuilder(REFERENCE.CITRINE_BLOCKS)
+        valueLookupBuilder(REFERENCE.CITRINE_BLOCKS)
                 .add(ModBlocks.CITRINE);
 
-        getOrCreateTagBuilder(REFERENCE.RUBY_BLOCKS)
+        valueLookupBuilder(REFERENCE.RUBY_BLOCKS)
                 .add(ModBlocks.RUBY);
 
-        getOrCreateTagBuilder(REFERENCE.SAPPHIRE_BLOCKS)
+        valueLookupBuilder(REFERENCE.SAPPHIRE_BLOCKS)
                 .add(ModBlocks.SAPPHIRE);
 
         //region PICKAXE MINABLE
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+        valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.CITRINE)
                 .add(ModBlocks.ENDERITE)
                 .add(ModBlocks.RUBY)
@@ -121,13 +121,13 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.FLUID_TANK_WOOD);
         //endregion
 
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+        valueLookupBuilder(BlockTags.AXE_MINEABLE)
                 .add(ModBlocks.ANIMAL_FEED)
                 .add(ModBlocks.PRINTER)
                 .add(ModBlocks.PROJECT_TABLE);
 
         //region NEED IRON TOOL
-        getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
+        valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.CITRINE)
                 .add(ModBlocks.ENDERITE)
                 .add(ModBlocks.RUBY)
@@ -154,34 +154,34 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.ORE_WORLD_SAPPHIRE);
         //endregion
 
-        getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
+        valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.ORE_END_ENDERITE_CRACKED)
                 .add(ModBlocks.ORE_ENDERITE);
 
         //region ORE
-        getOrCreateTagBuilder(BlockTags.COPPER_ORES)
+        valueLookupBuilder(BlockTags.COPPER_ORES)
                 .add(ModBlocks.ORE_NETHER_COPPER);
 
-        getOrCreateTagBuilder(BlockTags.REDSTONE_ORES)
+        valueLookupBuilder(BlockTags.REDSTONE_ORES)
                 .add(ModBlocks.ORE_NETHER_REDSTONE);
 
-        getOrCreateTagBuilder(BlockTags.LAPIS_ORES)
+        valueLookupBuilder(BlockTags.LAPIS_ORES)
                 .add(ModBlocks.ORE_NETHER_LAPIS);
 
-        getOrCreateTagBuilder(BlockTags.IRON_ORES)
+        valueLookupBuilder(BlockTags.IRON_ORES)
                 .add(ModBlocks.ORE_NETHER_IRON);
 
-        getOrCreateTagBuilder(BlockTags.DIAMOND_ORES)
+        valueLookupBuilder(BlockTags.DIAMOND_ORES)
                 .add(ModBlocks.ORE_NETHER_DIAMOND);
 
-        getOrCreateTagBuilder(BlockTags.GOLD_ORES);
+        valueLookupBuilder(BlockTags.GOLD_ORES);
 
-        getOrCreateTagBuilder(BlockTags.COAL_ORES)
+        valueLookupBuilder(BlockTags.COAL_ORES)
                 .add(ModBlocks.ORE_NETHER_COAL);
         //endregion
 
         //region HAMMER BLACK LIST
-        getOrCreateTagBuilder(REFERENCE.HAMMER_BLACKLIST)
+        valueLookupBuilder(REFERENCE.HAMMER_BLACKLIST)
                 .add(ModBlocks.ELEVATOR)
                 .add(ModBlocks.ANGEL)
                 .add(ModBlocks.REDSTONE_CLOCK)
@@ -209,18 +209,18 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BATTERY_BANK);
         //endregion
 
-        getOrCreateTagBuilder(REFERENCE.EXCAVATOR_BLACKLIST)
+        valueLookupBuilder(REFERENCE.EXCAVATOR_BLACKLIST)
                 .add(ModBlocks.ELEVATOR)
                 .add(ModBlocks.ANGEL);
 
-        getOrCreateTagBuilder(REFERENCE.GEM_BLOCKS)
+        valueLookupBuilder(REFERENCE.GEM_BLOCKS)
                 .add(ModBlocks.RUBY)
                 .add(ModBlocks.CITRINE)
                 .add(ModBlocks.SAPPHIRE)
                 .add(ModBlocks.ENDERITE);
 
         //region IS MACHINE
-        getOrCreateTagBuilder(REFERENCE.IS_MACHINE)
+        valueLookupBuilder(REFERENCE.IS_MACHINE)
                 .add(ModBlocks.ELEVATOR)
                 .add(ModBlocks.ANGEL)
                 .add(ModBlocks.REDSTONE_CLOCK)
@@ -249,7 +249,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
         //endregion
 
         //region DCLR
-        getOrCreateTagBuilder(REFERENCE.DCLR_ORE_WHITELIST)
+        valueLookupBuilder(REFERENCE.DCLR_ORE_WHITELIST)
                 .add(Blocks.GOLD_ORE)
                 .add(Blocks.DEEPSLATE_GOLD_ORE)
                 .add(Blocks.IRON_ORE)
@@ -290,7 +290,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.DARK_PRISMARINE)
                 .add(Blocks.SEA_LANTERN);
 
-        getOrCreateTagBuilder(REFERENCE.DCLR_BLOCK_WHITELIST)
+        valueLookupBuilder(REFERENCE.DCLR_BLOCK_WHITELIST)
                 .add(Blocks.OAK_LOG)
                 .add(Blocks.BIRCH_LOG)
                 .add(Blocks.SPRUCE_LOG)
@@ -499,7 +499,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.CRACKED_STONE_BRICKS)
                 .add(Blocks.MOSSY_STONE_BRICKS);
 
-        getOrCreateTagBuilder(REFERENCE.DCLR_FLUID_WHITELIST)
+        valueLookupBuilder(REFERENCE.DCLR_FLUID_WHITELIST)
                 .add(Blocks.WATER)
                 .add(Blocks.LAVA)
                 .add(Blocks.KELP)
@@ -512,17 +512,17 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
         //endregion
 
         //region DECORATION
-        getOrCreateTagBuilder(BlockTags.FENCES)
+        valueLookupBuilder(BlockTags.FENCES)
                 .add(ModBlocks.CITRINE_FENCE)
                 .add(ModBlocks.ENDERITE_FENCE)
                 .add(ModBlocks.RUBY_FENCE)
                 .add(ModBlocks.SAPPHIRE_FENCE);
-        getOrCreateTagBuilder(BlockTags.FENCE_GATES)
+        valueLookupBuilder(BlockTags.FENCE_GATES)
                 .add(ModBlocks.CITRINE_FENCE_GATE)
                 .add(ModBlocks.ENDERITE_FENCE_GATE)
                 .add(ModBlocks.RUBY_FENCE_GATE)
                 .add(ModBlocks.SAPPHIRE_FENCE_GATE);
-        getOrCreateTagBuilder(BlockTags.WALLS)
+        valueLookupBuilder(BlockTags.WALLS)
                 .add(ModBlocks.CITRINE_WALL)
                 .add(ModBlocks.ENDERITE_WALL)
                 .add(ModBlocks.RUBY_WALL)
@@ -530,7 +530,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
         //endregion
 
         //region GOO BLACKLIST
-        getOrCreateTagBuilder(REFERENCE.GOO_BLACKLIST)
+        valueLookupBuilder(REFERENCE.GOO_BLACKLIST)
                 .add(Blocks.AMETHYST_BLOCK)
                 .add(Blocks.AMETHYST_CLUSTER)
                 .add(Blocks.ANCIENT_DEBRIS)
@@ -706,7 +706,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider
         //endregion
 
         //region Fluid Tanks
-        getOrCreateTagBuilder(REFERENCE.FLUID_TANKS)
+        valueLookupBuilder(REFERENCE.FLUID_TANKS)
                 .add(ModBlocks.FLUID_TANK_COPPER)
                 .add(ModBlocks.FLUID_TANK_DIAMOND)
                 .add(ModBlocks.FLUID_TANK_EMERALD)

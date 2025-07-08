@@ -38,6 +38,9 @@ import net.minecraft.util.collection.Pool;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Provides packet codecs for various integer and float providers used in the game.
+ */
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -48,58 +51,119 @@ import java.util.Map;
 @SuppressWarnings("unchecked")
 public class ExtraPacketCodecs
 {
+    /**
+     * A map of integer provider types to their corresponding packet codecs.
+     */
     private static final Map<IntProviderType<?>, PacketCodec<RegistryByteBuf, ? extends IntProvider>> INT_PROVIDER_CODECS = new HashMap<>();
+
+    /**
+     * A map of float provider types to their corresponding packet codecs.
+     */
     private static final Map<FloatProviderType<?>, PacketCodec<RegistryByteBuf, ? extends FloatProvider>> FLOAT_PROVIDER_CODECS = new HashMap<>();
 
+    // Static block to register default packet codecs for integer and float providers.
     static
     {
         registerDefaults();
     }
 
+    /**
+     * Registers a packet codec for an integer provider type.
+     *
+     * @param providerType the integer provider type
+     * @param codec        the packet codec to register
+     */
     public static <T extends IntProvider> void registerIntProvider(IntProviderType<T> providerType, PacketCodec<RegistryByteBuf, T> codec)
     {
         INT_PROVIDER_CODECS.put(providerType, codec);
     }
 
+    /**
+     * Registers a packet codec for a float provider type.
+     *
+     * @param providerType the float provider type
+     * @param codec        the packet codec to register
+     */
     public static <T extends FloatProvider> void registerFloatProvider(FloatProviderType<T> providerType, PacketCodec<RegistryByteBuf, T> codec)
     {
         FLOAT_PROVIDER_CODECS.put(providerType, codec);
     }
 
+    /**
+     * Retrieves the packet codec for a given integer provider type.
+     *
+     * @param providerType the integer provider type
+     * @return the corresponding packet codec
+     */
     public static PacketCodec<RegistryByteBuf, ? extends IntProvider> getIntProviderCodec(IntProviderType<?> providerType)
     {
         return INT_PROVIDER_CODECS.get(providerType);
     }
 
+    /**
+     * Retrieves the packet codec for a given float provider type.
+     *
+     * @param providerType the float provider type
+     * @return the corresponding packet codec
+     */
     public static PacketCodec<RegistryByteBuf, ? extends FloatProvider> getFloatProviderCodec(FloatProviderType<?> providerType)
     {
         return FLOAT_PROVIDER_CODECS.get(providerType);
     }
 
+    /**
+     * Encodes an integer provider to a byte buffer.
+     *
+     * @param buf      the byte buffer to encode into
+     * @param intProvider the integer provider to encode
+     */
     public static <T extends IntProvider> void encode(ByteBuf buf, T intProvider)
     {
         PacketCodec<RegistryByteBuf, T> codec = (PacketCodec<RegistryByteBuf, T>) getIntProviderCodec(intProvider.getType());
         codec.encode((RegistryByteBuf) buf, intProvider);
     }
 
+    /**
+     * Decodes an integer provider from a byte buffer.
+     *
+     * @param buf       the byte buffer to decode from
+     * @param providerType the type of the integer provider
+     * @return the decoded integer provider
+     */
     public static  <T extends IntProvider> T decode(ByteBuf buf, IntProviderType<T> providerType)
     {
         PacketCodec<RegistryByteBuf, T> codec = (PacketCodec<RegistryByteBuf, T>) getIntProviderCodec(providerType);
         return codec.decode((RegistryByteBuf) buf);
     }
 
+    /**
+     * Encodes a float provider to a byte buffer.
+     *
+     * @param buf      the byte buffer to encode into
+     * @param floatProvider the float provider to encode
+     */
     public static <T extends FloatProvider> void encode(ByteBuf buf, T floatProvider)
     {
         PacketCodec<RegistryByteBuf, T> codec = (PacketCodec<RegistryByteBuf, T>) getFloatProviderCodec(floatProvider.getType());
         codec.encode((RegistryByteBuf) buf, floatProvider);
     }
 
+    /**
+     * Decodes a float provider from a byte buffer.
+     *
+     * @param buf       the byte buffer to decode from
+     * @param providerType the type of the float provider
+     * @return the decoded float provider
+     */
     public static  <T extends FloatProvider> T decode(ByteBuf buf, FloatProviderType<T> providerType)
     {
         PacketCodec<RegistryByteBuf, T> codec = (PacketCodec<RegistryByteBuf, T>) getFloatProviderCodec(providerType);
         return codec.decode((RegistryByteBuf) buf);
     }
 
+    /**
+     * Registers default packet codecs for integer and float providers.
+     */
     public static void registerDefaults()
     {
         registerIntProvider(IntProviderType.CONSTANT,
@@ -215,6 +279,14 @@ public class ExtraPacketCodecs
                               ));
     }
 
+    /**
+     * Creates a packet codec for encoding and decoding weight lists.
+     *
+     * @param elementCodec the codec for encoding and decoding individual elements in the weight list
+     * @param <B>          the type of byte buffer being used
+     * @param <E>          the type of elements in the weight list
+     * @return a packet codec for encoding and decoding weight lists
+     */
     public static <B extends ByteBuf, E> PacketCodec<B, Pool<E>> weightedListCodec(PacketCodec<B, E> elementCodec) {
         return PacketCodec.<B, Weighted<E>, E, Integer>tuple(
                 elementCodec, Weighted::value,

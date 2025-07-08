@@ -36,11 +36,11 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.Widget;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -81,8 +81,6 @@ public class FluidWidget implements Drawable, Widget
 
     private final Identifier backgroundTexture, markerTexture;
 
-    private final boolean drawBackground;
-
     public FluidWidget(SingleFluidStorage fluidStorage,
                        int x, int y, boolean drawBackground,
                        int backgroundX, int backgroundY, int backgroundWidth, int backgroundHeight,
@@ -120,7 +118,6 @@ public class FluidWidget implements Drawable, Widget
         this.markerSizeHeight = markerSizeHeight;
         this.x = x;
         this.y = y;
-        this.drawBackground = drawBackground;
     }
 
 
@@ -169,7 +166,7 @@ public class FluidWidget implements Drawable, Widget
         //endregion
 
         // Render the fluid widget fluid
-        ScreenHelper.renderTiledSprite(context, RenderLayer::getGuiTextured, stillTexture,
+        ScreenHelper.renderTiledSprite(context, RenderPipelines.GUI_TEXTURED, stillTexture,
                                       x + fluidX, y + fluidY + fluidHeight - barHeight, fluidWidth, barHeight,
                                        ColorHelper.fromFloats(1.0F, red, green, blue));
         // Render the fluid widget marker
@@ -272,7 +269,7 @@ public class FluidWidget implements Drawable, Widget
 
         private Identifier backgroundTexture, markerTexture;
 
-        private boolean drawBackground;
+        private final boolean drawBackground;
 
         public Builder(int x, int y)
         {

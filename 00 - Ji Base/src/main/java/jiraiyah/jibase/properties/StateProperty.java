@@ -27,6 +27,11 @@ package jiraiyah.jibase.properties;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.state.property.Property;
 
+/**
+ * Represents a state property of a block, including its delegate Property and default value.
+ *
+ * @param <T> the type of the value stored in the state property
+ */
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -36,25 +41,53 @@ import net.minecraft.state.property.Property;
 
 public class StateProperty<T extends Comparable<T>>
 {
+    /**
+     * The delegate Property of the state property.
+     */
     private final Property<T> delegate;
+
+    /**
+     * The default value for the state property.
+     */
     private T defaultValue;
 
+    /**
+     * Constructs a new instance of StateProperty with the specified delegate Property and default value.
+     *
+     * @param delegate  the delegate Property
+     * @param defaultValue the default value for the state property
+     */
     public StateProperty(Property<T> delegate, T defaultValue)
     {
         this.delegate = delegate;
         this.defaultValue = defaultValue;
     }
 
+    /**
+     * Retrieves the delegate Property of the state property.
+     *
+     * @return the delegate Property
+     */
     public Property<T> delegate()
     {
         return this.delegate;
     }
 
+    /**
+     * Retrieves the default value for the state property.
+     *
+     * @return the default value
+     */
     public T defaultValue()
     {
         return this.defaultValue;
     }
 
+    /**
+     * Sets a new default value for the state property.
+     *
+     * @param defaultValue the new default value
+     */
     public void setDefaultValue(T defaultValue)
     {
         this.defaultValue = defaultValue;

@@ -6,30 +6,22 @@ package jiraiyah.ultraio.blockentity.machine;
 //TODO: Add Custom Recipe Datagen
 
 import jiraiyah.jibase.enumerations.MappedDirection;
-import jiraiyah.jibase.records.BlockPosPayload;
 import jiraiyah.jinventory.be.JInventoryBE;
-import jiraiyah.jinventory.inventories.OutputInventory;
-import jiraiyah.jinventory.inventories.PredicateInventory;
-import jiraiyah.jinventory.inventories.SyncedInventory;
-import jiraiyah.jiralib.blockentity.JiScreenBE;
+import jiraiyah.jinventory.storage.OutputInventory;
+import jiraiyah.jinventory.storage.SyncedInventory;
 import jiraiyah.ultraio.blockentity.machine.ticklogic.GemCleanerTL;
 import jiraiyah.ultraio.registry.ModBlockEntities;
-import jiraiyah.ultraio.registry.ModItems;
 import jiraiyah.ultraio.screen.handler.GemCleanerSH;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
-import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -70,7 +62,7 @@ public class GemCleanerBE extends JInventoryBE<GemCleanerBE, SimpleInventory>
         @Override
         protected long getCapacity(FluidVariant variant)
         {
-            return FluidConstants.BUCKET * 10 + FluidConstants.BUCKET * GemCleanerBE.this.getFluidUpgrdeCount();
+            return FluidConstants.BUCKET * 10 + FluidConstants.BUCKET * GemCleanerBE.this.getFluidUpgradeCount();
         }
 
         @Override
@@ -85,9 +77,9 @@ public class GemCleanerBE extends JInventoryBE<GemCleanerBE, SimpleInventory>
         super(ModBlockEntities.GEM_CLEANER, pos, state);
         this.properties.setTickLogic(new GemCleanerTL());
 
-        this.inventory.addInventory(this, 2, MappedDirection.DOWN, OutputInventory::new);
-        this.inventory.addInventory(this, 2, MappedDirection.UP, SyncedInventory::new);
-        this.inventory.addInventory(this, 3, MappedDirection.EAST, SyncedInventory::new);
+        this.inventory.addStorage(this, 2, MappedDirection.DOWN, OutputInventory::new);
+        this.inventory.addStorage(this, 2, MappedDirection.UP, SyncedInventory::new);
+        this.inventory.addStorage(this, 3, MappedDirection.EAST, SyncedInventory::new);
     }
 
     @Override
@@ -108,20 +100,20 @@ public class GemCleanerBE extends JInventoryBE<GemCleanerBE, SimpleInventory>
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    protected void writeData(WriteView view)
     {
-        super.writeNbt(nbt, registries);
-        this.fluidStorage.writeNbt(nbt, registries);
+        super.writeData(view);
+        this.fluidStorage.writeData(view);
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    protected void readData(ReadView view)
     {
-        super.readNbt(nbt, registries);
-        this.fluidStorage.readNbt(nbt, registries);
+        super.readData(view);
+        this.fluidStorage.readData(view);
     }
 
-    private int getFluidUpgrdeCount()
+    private int getFluidUpgradeCount()
     {
         return 2;
     }

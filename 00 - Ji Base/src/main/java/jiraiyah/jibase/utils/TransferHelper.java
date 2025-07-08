@@ -35,6 +35,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
+/**
+ * Provides utility methods for handling item and fluid transfers in Minecraft using Fabric API.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -45,11 +48,24 @@ import java.util.Optional;
 
 public class TransferHelper
 {
+    /**
+     * Private constructor to prevent instantiation.
+     */
     public TransferHelper()
     {
         Exceptions.throwCtorAssertion();
     }
 
+    /**
+     * Finds the first non-blank transfer variant in a storage that matches or is compatible with the given variant, attempting to extract the specified amount.
+     *
+     * @param <V> The type of values transferred by the storage.
+     * @param <T> The type of transfer variants used by the storage.
+     * @param storage The storage to search within.
+     * @param variant The desired transfer variant, or null if any non-blank variant is acceptable.
+     * @param transferAmount The amount of the variant to attempt extracting.
+     * @return An Optional containing the found transfer variant if one is available and extractable; otherwise, an empty Optional.
+     */
     public static <V, T extends TransferVariant<V>>Optional<T> findFirstVariant(Storage<T> storage, @Nullable T variant, long transferAmount)
     {
         if(storage instanceof SingleVariantStorage<T> singleVariantStorage)

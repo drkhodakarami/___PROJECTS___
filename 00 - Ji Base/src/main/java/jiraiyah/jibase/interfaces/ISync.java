@@ -28,6 +28,9 @@ import jiraiyah.jibase.annotations.*;
 
 import java.util.List;
 
+/**
+ * Represents an interface for managing syncable components.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -38,6 +41,11 @@ import java.util.List;
 
 public interface ISync
 {
+    /**
+     * Retrieves a list of syncable components associated with this entity.
+     *
+     * @return a list of syncable components
+     */
     default List<ISyncable> getSyncables()
     {
         return List.of();

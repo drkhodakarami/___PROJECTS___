@@ -35,6 +35,9 @@ import net.minecraft.registry.entry.RegistryEntry;
 
 import java.util.Objects;
 
+/**
+ * Represents a key for an {@link ItemStack} that considers both the item and its data components.
+ */
 @SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
@@ -42,10 +45,27 @@ import java.util.Objects;
 @Youtube("https://www.youtube.com/@direwolf20")
 public class ItemStackKey
 {
+    /**
+     * The registry entry for the item.
+     */
     public final RegistryEntry<Item> item;
+
+    /**
+     * The component changes associated with the item's data.
+     */
     public final ComponentChanges dataComponents;
+
+    /**
+     * The hash code of this key.
+     */
     private final int hash;
 
+    /**
+     * Creates a new ItemStackKey for an ItemStack, optionally considering its NBT data components.
+     *
+     * @param stack      The ItemStack to create the key from.
+     * @param compareNBT If true, consider the NBT data components; otherwise, ignore them.
+     */
     public ItemStackKey(ItemStack stack, boolean compareNBT)
     {
         this.item = stack.getRegistryEntry();
@@ -53,22 +73,44 @@ public class ItemStackKey
         this.hash = Objects.hash(item, dataComponents);
     }
 
+    /**
+     * Gets a new ItemStack with the same item and data components as this key.
+     *
+     * @return A new ItemStack.
+     */
     public ItemStack getStack()
     {
         return new ItemStack(item, 1, dataComponents);
     }
 
+    /**
+     * Gets a new ItemStack with the specified count and the same item and data components as this key.
+     *
+     * @param count The number of items in the stack.
+     * @return A new ItemStack.
+     */
     public ItemStack getStack(int count)
     {
         return new ItemStack(item, count, dataComponents);
     }
 
+    /**
+     * Generates a hash code for this key.
+     *
+     * @return The hash code value.
+     */
     @Override
     public int hashCode()
     {
         return hash;
     }
 
+    /**
+     * Checks if this key is equal to another object.
+     *
+     * @param obj The object to compare with.
+     * @return true if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj)
     {

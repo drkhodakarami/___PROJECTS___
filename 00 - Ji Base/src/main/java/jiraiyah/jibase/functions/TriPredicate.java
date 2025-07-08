@@ -26,6 +26,13 @@ package jiraiyah.jibase.functions;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Represents a predicate that accepts three arguments and produces a boolean result.
+ *
+ * @param <T> the type of the first argument
+ * @param <U> the type of the second argument
+ * @param <V> the type of the third argument
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -36,18 +43,45 @@ import jiraiyah.jibase.annotations.*;
 @FunctionalInterface
 public interface TriPredicate<T, U, V>
 {
+    /**
+     * Evaluates this predicate on the given arguments.
+     *
+     * @param t the first argument
+     * @param u the second argument
+     * @param v the third argument
+     * @return {@code true} if the predicate evaluates to true for the given arguments, otherwise {@code false}
+     */
     boolean test(T t, U u, V v);
 
+    /**
+     * Returns a composed {@code TriPredicate} that represents a logical AND of this predicate and another.
+     *
+     * @param other the predicate to combine with this predicate
+     * @return a composed {@code TriPredicate} that represents a logical AND of this predicate and another
+     * @throws NullPointerException if {@code other} is null
+     */
     default TriPredicate<T, U, V> and(TriPredicate<? super T, ? super U, ? super V> other)
     {
         return (t, u, v) -> test(t, u, v) && other.test(t, u, v);
     }
 
+    /**
+     * Returns a composed {@code TriPredicate} that represents a logical OR of this predicate and another.
+     *
+     * @param other the predicate to combine with this predicate
+     * @return a composed {@code TriPredicate} that represents a logical OR of this predicate and another
+     * @throws NullPointerException if {@code other} is null
+     */
     default TriPredicate<T, U, V> or(TriPredicate<? super T, ? super U, ? super V> other)
     {
         return (t, u, v) -> test(t, u, v) || other.test(t, u, v);
     }
 
+    /**
+     * Returns a composed {@code TriPredicate} that represents the logical negation of this predicate.
+     *
+     * @return a composed {@code TriPredicate} that represents the logical negation of this predicate
+     */
     default TriPredicate<T, U, V> negate()
     {
         return (t, u, v) -> !test(t, u, v);

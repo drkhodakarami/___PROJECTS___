@@ -31,6 +31,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
+/**
+ * Represents a factory for creating voxel shapes.
+ */
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -40,5 +43,14 @@ import net.minecraft.world.BlockView;
 
 public interface IShapeFactory
 {
+    /**
+     * Creates a new voxel shape based on the given block state, world context, position, and shape context.
+     *
+     * @param state  the block state of the block
+     * @param world  the block view containing the block
+     * @param pos    the position of the block in the world
+     * @param context the shape context for determining visibility
+     * @return the created voxel shape
+     */
     VoxelShape create(BlockState state, BlockView world, BlockPos pos, ShapeContext context);
 }

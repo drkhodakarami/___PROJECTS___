@@ -26,6 +26,9 @@ package jiraiyah.jibase.interfaces;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Represents a generic component interface.
+ */
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")

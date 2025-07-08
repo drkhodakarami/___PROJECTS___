@@ -24,6 +24,7 @@
 
 package jiraiyah.jienergy.base;
 
+import jiraiyah.jibase.constants.BEKeys;
 import jiraiyah.jibase.enumerations.MappedDirection;
 import jiraiyah.jibase.interfaces.IStorageConnector;
 import jiraiyah.jibase.interfaces.IStorageProvider;
@@ -33,53 +34,19 @@ import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 import team.reborn.energy.api.EnergyStorage;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 
+import java.util.Iterator;
+
 public class EnergyConnector<T extends EnergyStorage> extends StorageConnector<EnergyStorage>
         implements IStorageConnector<EnergyConnector<T>>, IStorageProvider<T>
 {
-    @Override
-    public NbtList writeNbt(RegistryWrapper.WrapperLookup wrapperLookup)
-    {
-        NbtList list = new NbtList();
-        for(EnergyStorage storage : storages)
-        {
-            NbtCompound nbt = new NbtCompound();
-            nbt.putLong("Amount", storage.getAmount());
-            list.add(nbt);
-        }
-        return list;
-    }
-
-    @Override
-    public void readNbt(NbtList nbt, RegistryWrapper.WrapperLookup wrapperLookup)
-    {
-        for (int index = 0; index < nbt.size(); index++)
-        {
-            NbtCompound compound = nbt.getCompoundOrEmpty(index);
-            EnergyStorage storage = this.storages.get(index);
-            long amount = compound.getLong("Amount", 0L);
-            long capacity = compound.getLong("Capacity", 0L);
-            if(storage instanceof SimpleEnergyStorage simpleEnergyStorage)
-                simpleEnergyStorage.amount = amount;
-            else
-            {
-                try(Transaction transaction = Transaction.openOuter())
-                {
-                    long current = storage.getAmount();
-                    if(current < amount)
-                        storage.insert(amount - current, transaction);
-                    else
-                        storage.extract(current - amount, transaction);
-                    transaction.commit();
-                }
-            }
-        }
-    }
-
     @Override
     public EnergyConnector<T> getConnector()
     {
@@ -133,5 +100,47 @@ public class EnergyConnector<T extends EnergyStorage> extends StorageConnector<E
     public long getCapacity(int index)
     {
         return getStorage(index).getCapacity();
+    }
+
+    @Override
+    public void writeData(WriteView writeView)
+    {
+        WriteView.ListView list = writeView.getList("energy" + BEKeys.HAS_ENERGY);
+        for(EnergyStorage storage : storages)
+        {
+            WriteView energyView = list.add();
+            energyView.putLong("Amount", storage.getAmount());
+        }
+    }
+
+    @Override
+    public void readData(ReadView readView)
+    {
+        int index = 0;
+        for (ReadView view : readView.getListReadView("energy" + BEKeys.HAS_ENERGY))
+        {
+            if(index >= storages.size())
+                break;
+
+            EnergyStorage storage = this.storages.get(index);
+
+            if(storage instanceof SimpleEnergyStorage simpleEnergyStorage)
+                simpleEnergyStorage.amount = view.getLong("Amount", 0L);
+            else
+            {
+                try(Transaction transaction = Transaction.openOuter())
+                {
+                    long amount = view.getLong("Amount", 0L);
+                    long current = storage.getAmount();
+                    if(current < amount)
+                        storage.insert(amount - current, transaction);
+                    else
+                        storage.extract(current - amount, transaction);
+                    transaction.commit();
+                }
+            }
+
+            index++;
+        }
     }
 }

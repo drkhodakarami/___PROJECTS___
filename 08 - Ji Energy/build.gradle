@@ -127,7 +127,6 @@ dependencies {
 	
 	// Ji Lib Mods Dependency ========================================================================================================================
     modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
-    modImplementation "jiraiyah.reference:jireference:${jireferenceVersion}"
     modImplementation "jiraiyah.jiralib:jiralib:${jiralibVersion}"
 	
 	// Energy API Handling Dependency ================================================================================================================

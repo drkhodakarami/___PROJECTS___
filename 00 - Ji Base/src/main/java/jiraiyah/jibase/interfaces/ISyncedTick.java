@@ -28,6 +28,9 @@ import jiraiyah.jibase.annotations.*;
 
 import java.util.List;
 
+/**
+ * Represents an interface for entities that require synchronized ticks and can be synced.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -38,10 +41,26 @@ import java.util.List;
 
 public interface ISyncedTick extends ITick, ISync
 {
+    /**
+     * Called when the entity is ticked on the server.
+     */
     void onTick();
+
+    /**
+     * Called when the entity is ticked on the client.
+     */
     void onTickClient();
+
+    /**
+     * Determines whether the entity should be synced with other entities.
+     *
+     * @return true if the entity should be synced, false otherwise
+     */
     boolean shouldSync();
 
+    /**
+     * Default implementation of the server-side tick method.
+     */
     @Override
     default void tick()
     {
@@ -56,6 +75,9 @@ public interface ISyncedTick extends ITick, ISync
             updatable.onTickEnd();
     }
 
+    /**
+     * Default implementation of the client-side tick method.
+     */
     @Override
     default void tickClient()
     {

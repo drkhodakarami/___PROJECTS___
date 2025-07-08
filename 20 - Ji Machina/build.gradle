@@ -53,11 +53,6 @@ ext.loaderVersion = sharedProperties.getProperty("loader_version")
 ext.fabricVersion = sharedProperties.getProperty("fabric_version")
 
 ext.jibaseVersion = sharedProperties.getProperty("jibase_version")
-ext.jiloggerVersion = sharedProperties.getProperty("jilogger_version")
-ext.jiconfigVersion = sharedProperties.getProperty("jiconfig_version")
-ext.jireferenceVersion = sharedProperties.getProperty("jireference_version")
-ext.jiregisterVersion = sharedProperties.getProperty("jiregister_version")
-ext.jiticlogicVersion = sharedProperties.getProperty("jiticlogic_version")
 ext.jiralibVersion = sharedProperties.getProperty("jiralib_version")
 ext.jinventoryVersion = sharedProperties.getProperty("jinventory_version")
 ext.jifluidVersion = sharedProperties.getProperty("jifluid_version")
@@ -66,6 +61,8 @@ ext.jigasVersion = sharedProperties.getProperty("jigas_version")
 ext.jiheatVersion = sharedProperties.getProperty("jiheat_version")
 ext.jipressureVersion = sharedProperties.getProperty("jipressure_version")
 ext.jimoltenVersion = sharedProperties.getProperty("jimolten_version")
+ext.jisuspensionVersion = sharedProperties.getProperty("jisuspension_version")
+ext.jiemulsionVersion = sharedProperties.getProperty("jiemulsion_version")
 ext.jipipenetworkVersion = sharedProperties.getProperty("jipipenetwork_version")
 ext.jiguiVersion = sharedProperties.getProperty("jigui_version")
 ext.jimachinaVersion = sharedProperties.getProperty("jimachina_version")
@@ -126,16 +123,21 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricVersion}"
 	
 	// Ji Lib Mods Dependency ========================================================================================================================
-    modImplementation "jiraiyah.base:jibase:${jibaseVersion}")
+    modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
+    //modImplementation "jiraiyah.logger:jilogger:${jiloggerVersion}"
+    //modImplementation "jiraiyah.reference:jireference:${jireferenceVersion}"
+    //modImplementation "jiraiyah.config:jiconfig:${jiconfigVersion}"
+    //modImplementation "jiraiyah.register:jiregister:${jiregisterVersion}"
     modImplementation "jiraiyah.jiralib:jiralib:${jiralibVersion}"
-    //modImplementation "jiraiyah.inventory:jinventory:${jinventoryVersion}"
-    //modImplementation "jiraiyah.fluid:jifluid:${jifluidVersion}"
-    //modImplementation "jiraiyah.energy:jienergy:${jienergyVersion}"
-    //modImplementation "jiraiyah.gas:jigas:${jigasVersion}"
-    //modImplementation "jiraiyah.heat:jiheat:${jiheatVersion}"
-    //modImplementation "jiraiyah.pressure:jipressure:${jipressureVersion}"
-    //modImplementation "jiraiyah.molten:jimolten:${jimoltenVersion}"
-    //modImplementation "jiraiyah.pipenetwork:jipipenetwork:${jipipenetworkVersion}"
+    modImplementation "jiraiyah.gui:jigui:${jiguiVersion}"
+    modImplementation "jiraiyah.inventory:jinventory:${jinventoryVersion}"
+    modImplementation "jiraiyah.fluid:jifluid:${jifluidVersion}"
+    modImplementation "jiraiyah.energy:jienergy:${jienergyVersion}"
+    //modImplementation include("jiraiyah.gas:jigas:${jigasVersion}")
+    //modImplementation include("jiraiyah.heat:jiheat:${jiheatVersion}")
+    //modImplementation include("jiraiyah.pressure:jipressure:${jipressureVersion}")
+    //modImplementation include("jiraiyah.molten:jimolten:${jimoltenVersion}")
+    //modImplementation include("jiraiyah.pipenetwork:jipipenetwork:${jipipenetworkVersion}")
 	
 	// Energy API Handling Dependency ================================================================================================================
     include modApi("teamreborn:energy:${energyVersion}") {

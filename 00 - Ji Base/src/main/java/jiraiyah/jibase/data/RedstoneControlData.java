@@ -32,6 +32,14 @@ import jiraiyah.jibase.enumerations.RedstoneMode;
 
 import java.util.Objects;
 
+/**
+ * Represents the data related to redstone control in the JustDireThings mod.
+ *
+ * @author Direwolf20
+ * @created_at 2025-04-18
+ * @repository https://github.com/Direwolf20-MC/JustDireThings
+ * @youtube https://www.youtube.com/@direwolf20
+ */
 @SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
@@ -39,24 +47,61 @@ import java.util.Objects;
 @Youtube("https://www.youtube.com/@direwolf20")
 public class RedstoneControlData
 {
+    /**
+     * Indicates whether the block is currently receiving redstone power.
+     */
     public boolean receivingRedstone = false;
+
+    /**
+     * Indicates whether the redstone signal has been checked.
+     */
     public boolean checkedRedstone = false;
+
+    /**
+     * Indicates whether a pulse has occurred.
+     */
     public boolean pulsed = false;
+
+    /**
+     * The current mode of redstone handling.
+     *
+     * @see RedstoneMode
+     */
     public RedstoneMode redstoneMode = RedstoneMode.IGNORED;
 
+    /**
+     * Default constructor for the RedstoneControlData class.
+     */
     public RedstoneControlData() {}
 
+    /**
+     * Constructor for the RedstoneControlData class that initializes the redstone mode.
+     *
+     * @param redstoneMode The initial mode of redstone handling.
+     * @see RedstoneMode
+     */
     public RedstoneControlData(RedstoneMode redstoneMode)
     {
         this.redstoneMode = redstoneMode;
     }
 
+    /**
+     * Generates a hash code based on the object's state.
+     *
+     * @return The computed hash code.
+     */
     @Override
     public int hashCode()
     {
         return Objects.hash(receivingRedstone, pulsed, redstoneMode);
     }
 
+    /**
+     * Compares this object with another for equality.
+     *
+     * @param obj The object to compare with.
+     * @return true if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj)
     {

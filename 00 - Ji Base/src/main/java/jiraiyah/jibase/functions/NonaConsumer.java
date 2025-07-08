@@ -28,6 +28,19 @@ import jiraiyah.jibase.annotations.*;
 
 import java.util.Objects;
 
+/**
+ * Represents a functional interface that accepts nine arguments and returns no result.
+ *
+ * @param <T> the type of the first argument
+ * @param <U> the type of the second argument
+ * @param <V> the type of the third argument
+ * @param <W> the type of the fourth argument
+ * @param <R> the type of the fifth argument
+ * @param <E> the type of the sixth argument
+ * @param <A> the type of the seventh argument
+ * @param <Z> the type of the eighth argument
+ * @param <X> the type of the ninth argument
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -38,8 +51,30 @@ import java.util.Objects;
 @FunctionalInterface
 public interface NonaConsumer<T, U, V, W, R, E, A, Z, X>
 {
+    /**
+     * Performs this operation on the given arguments.
+     *
+     * @param t the first argument
+     * @param u the second argument
+     * @param v the third argument
+     * @param w the fourth argument
+     * @param r the fifth argument
+     * @param e the sixth argument
+     * @param a the seventh argument
+     * @param z the eighth argument
+     * @param x the ninth argument
+     */
     void accept(T t, U u, V v, W w, R r, E e, A a, Z z, X x);
 
+    /**
+     * Returns a composed {@code NonaConsumer} that performs, in sequence, this
+     * operation followed by the {@code after} operation.
+     *
+     * @param after the operation to perform after this operation
+     * @return a composed {@code NonaConsumer} that performs in sequence this
+     * operation followed by the {@code after} operation
+     * @throws NullPointerException if {@code after} is null
+     */
     default NonaConsumer<T, U, V, W, R, E, A, Z, X> andThen(NonaConsumer<? super T, ? super U, ? super V, ? super W, ? super R, ? super E, ? super A, ? super Z, ? super X> after) {
         Objects.requireNonNull(after);
 

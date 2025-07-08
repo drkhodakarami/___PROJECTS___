@@ -31,6 +31,11 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.world.World;
 
+/**
+ * Represents a factory for creating block entity tickers.
+ *
+ * @param <T> the type of the block entity
+ */
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -41,5 +46,13 @@ import net.minecraft.world.World;
 @FunctionalInterface
 public interface IBETickerFactory<T extends BlockEntity>
 {
+    /**
+     * Creates a new block entity ticker for the specified world, block state, and block entity type.
+     *
+     * @param world the world where the block entity is located
+     * @param state the block state of the block
+     * @param type  the type of the block entity
+     * @return a new block entity ticker
+     */
     BlockEntityTicker<T> create(World world, BlockState state, BlockEntityType<?> type);
 }

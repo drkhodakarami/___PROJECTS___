@@ -33,6 +33,9 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 
+/**
+ * Represents a custom payload containing a string value.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -42,15 +45,29 @@ import net.minecraft.util.Identifier;
 
 public record StringPayload(String value) implements CustomPayload
 {
+    /**
+     * The unique identifier for this custom payload.
+     */
     public static final Id<StringPayload> ID = new Id<>(Identifier.of("jiralib", "string_payload"));
 
+    /**
+     * The codec used to serialize and deserialize the StringPayload.
+     */
     public static final Codec<StringPayload> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             Codec.STRING.fieldOf("value").forGetter(StringPayload::value)
     ).apply(inst, StringPayload::new));
 
+    /**
+     * The packet codec used to send and receive the StringPayload.
+     */
     public static final PacketCodec<RegistryByteBuf, StringPayload> PACKET_CODEC =
             PacketCodec.tuple(PacketCodecs.STRING, StringPayload::value, StringPayload::new);
 
+    /**
+     * Retrieves the unique identifier for this custom payload.
+     *
+     * @return the unique identifier
+     */
     @Override
     public Id<? extends CustomPayload> getId()
     {

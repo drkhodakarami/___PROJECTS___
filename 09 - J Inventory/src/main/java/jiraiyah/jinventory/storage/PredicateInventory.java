@@ -26,6 +26,7 @@ package jiraiyah.jinventory.storage;
 
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jiralib.blockentity.JiBlockEntity;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
 
 import java.util.function.BiPredicate;
@@ -42,13 +43,13 @@ public class PredicateInventory extends SyncedInventory
 {
     private final BiPredicate<ItemStack, Integer> predicate;
 
-    public PredicateInventory(JiBlockEntity<?> blockEntity, int size, BiPredicate<ItemStack, Integer> predicate)
+    public PredicateInventory(BlockEntity blockEntity, int size, BiPredicate<ItemStack, Integer> predicate)
     {
         super(blockEntity, size);
         this.predicate = predicate;
     }
 
-    public PredicateInventory(JiBlockEntity<?> blockEntity, BiPredicate<ItemStack, Integer> predicate, ItemStack... items)
+    public PredicateInventory(BlockEntity blockEntity, BiPredicate<ItemStack, Integer> predicate, ItemStack... items)
     {
         super(blockEntity, items);
         this.predicate = predicate;

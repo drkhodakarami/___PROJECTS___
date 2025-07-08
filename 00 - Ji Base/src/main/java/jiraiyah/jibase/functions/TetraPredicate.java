@@ -26,6 +26,14 @@ package jiraiyah.jibase.functions;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Represents a predicate that accepts four arguments and produces a boolean result.
+ *
+ * @param <T> the type of the first argument
+ * @param <U> the type of the second argument
+ * @param <V> the type of the third argument
+ * @param <W> the type of the fourth argument
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -36,18 +44,46 @@ import jiraiyah.jibase.annotations.*;
 @FunctionalInterface
 public interface TetraPredicate<T, U, V, W>
 {
+    /**
+     * Evaluates this predicate on the given arguments.
+     *
+     * @param t the first argument
+     * @param u the second argument
+     * @param v the third argument
+     * @param w the fourth argument
+     * @return {@code true} if the predicate evaluates to true for the given arguments, otherwise {@code false}
+     */
     boolean test(T t, U u, V v, W w);
 
+    /**
+     * Returns a composed {@code TetraPredicate} that represents a logical AND of this predicate and another.
+     *
+     * @param other the predicate to combine with this predicate
+     * @return a composed {@code TetraPredicate} that represents a logical AND of this predicate and another
+     * @throws NullPointerException if {@code other} is null
+     */
     default TetraPredicate<T, U, V, W> and(TetraPredicate<? super T, ? super U, ? super V, ? super W> other)
     {
         return (t, u, v, w) -> test(t, u, v, w) && other.test(t, u, v, w);
     }
 
+    /**
+     * Returns a composed {@code TetraPredicate} that represents a logical OR of this predicate and another.
+     *
+     * @param other the predicate to combine with this predicate
+     * @return a composed {@code TetraPredicate} that represents a logical OR of this predicate and another
+     * @throws NullPointerException if {@code other} is null
+     */
     default TetraPredicate<T, U, V, W> or(TetraPredicate<? super T, ? super U, ? super V, ? super W> other)
     {
         return (t, u, v, w) -> test(t, u, v, w) || other.test(t, u, v, w);
     }
 
+    /**
+     * Returns a composed {@code TetraPredicate} that represents the logical negation of this predicate.
+     *
+     * @return a composed {@code TetraPredicate} that represents the logical negation of this predicate
+     */
     default TetraPredicate<T, U, V, W> negate()
     {
         return (t, u, v, w) -> !test(t, u, v, w);

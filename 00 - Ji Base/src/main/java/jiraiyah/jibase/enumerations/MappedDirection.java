@@ -30,6 +30,9 @@ import jiraiyah.jibase.annotations.*;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.Direction;
 
+/**
+ * Enum representing mapped directions.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -39,29 +42,74 @@ import net.minecraft.util.math.Direction;
 
 public enum MappedDirection
 {
-    DOWN, UP, NORTH, SOUTH, WEST, EAST, NONE;
+    /**
+     * Represents the direction down.
+     */
+    DOWN,
 
-    static final BiMap<Direction, MappedDirection> biMap;
+    /**
+     * Represents the direction up.
+     */
+    UP,
 
-    static
-    {
-        biMap = Util.make(HashBiMap.create(), map ->
-        {
-            map.put(null, MappedDirection.NONE);
-            map.put(Direction.DOWN, MappedDirection.DOWN);
-            map.put(Direction.UP, MappedDirection.UP);
-            map.put(Direction.NORTH, MappedDirection.NORTH);
-            map.put(Direction.SOUTH, MappedDirection.SOUTH);
-            map.put(Direction.EAST, MappedDirection.EAST);
-            map.put(Direction.WEST, MappedDirection.WEST);
-        });
-    }
+    /**
+     * Represents the direction north.
+     */
+    NORTH,
 
+    /**
+     * Represents the direction south.
+     */
+    SOUTH,
+
+    /**
+     * Represents the direction west.
+     */
+    WEST,
+
+    /**
+     * Represents the direction east.
+     */
+    EAST,
+
+    /**
+     * Represents no specific direction.
+     */
+    NONE;
+
+    /**
+     * A bi-directional map between Minecraft Direction and MappedDirection for easy conversion.
+     */
+    static final BiMap<Direction, MappedDirection> biMap =
+            Util.make(HashBiMap.create(),
+                      map ->
+                      {
+                          map.put(null, MappedDirection.NONE);
+                          map.put(Direction.DOWN, MappedDirection.DOWN);
+                          map.put(Direction.UP, MappedDirection.UP);
+                          map.put(Direction.NORTH, MappedDirection.NORTH);
+                          map.put(Direction.SOUTH, MappedDirection.SOUTH);
+                          map.put(Direction.EAST, MappedDirection.EAST);
+                          map.put(Direction.WEST, MappedDirection.WEST);
+                      });
+
+    /**
+     * Converts a Minecraft Direction to its corresponding MappedDirection.
+     *
+     * @param direction The Minecraft Direction to convert.
+     * @return The corresponding MappedDirection.
+     */
     public static MappedDirection fromDirection(Direction direction)
     {
         return biMap.get(direction);
     }
 
+    /**
+     * Converts an MappedDirection to its corresponding Minecraft Direction.
+     *
+     * @param direction The MappedDirection to convert.
+     * @return The corresponding Minecraft Direction.
+     */
     public static Direction toDirection(MappedDirection direction)
     {
         return biMap.inverse().get(direction);

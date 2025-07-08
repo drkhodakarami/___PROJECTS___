@@ -26,6 +26,9 @@ package jiraiyah.jibase.enumerations;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Enum representing different statuses of a tick operation.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -35,10 +38,38 @@ import jiraiyah.jibase.annotations.*;
 
 public enum TickStatus
 {
+    /**
+     * Indicates that the tick operation was successful.
+     */
     SUCCESS,
+
+    /**
+     * Indicates that the tick operation failed.
+     */
     FAILURE,
+
+    /**
+     * Indicates that the tick operation should continue to the next step.
+     */
     CONTINUE,
+
+    /**
+     * Indicates that the tick operation should stop.
+     */
     STOP,
+
+    /**
+     * Indicates that the tick operation is currently running.
+     */
     RUNNING,
+
+    /**
+     * Indicates that an error occurred during the tick operation.
+     */
+    ERROR,
+
+    /**
+     * Indicates that there is no specific status to report.
+     */
     NONE
 }

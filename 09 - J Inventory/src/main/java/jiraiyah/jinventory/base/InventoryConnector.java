@@ -25,6 +25,7 @@
 package jiraiyah.jinventory.base;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.constants.BEKeys;
 import jiraiyah.jibase.enumerations.MappedDirection;
 import jiraiyah.jibase.interfaces.IStorageConnector;
 import jiraiyah.jibase.interfaces.IStorageProvider;
@@ -44,9 +45,14 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtIo;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.storage.NbtWriteView;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -316,31 +322,6 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
         return this.sidedInventories;
     }
 
-    //region NBT
-    @Override
-    public NbtList writeNbt(RegistryWrapper.WrapperLookup registryLookup)
-    {
-        var nbt = new NbtList();
-        this.inventories.forEach(inventory ->
-                                 {
-                                     NbtCompound inventoryNbt = new NbtCompound();
-                                     nbt.add(Inventories.writeNbt(inventoryNbt, inventory.getHeldStacks(), registryLookup));
-                                 });
-        return nbt;
-    }
-
-    @Override
-    public void readNbt(NbtList nbt, RegistryWrapper.WrapperLookup registryLookup)
-    {
-        for (int index = 0; index < nbt.size(); index++)
-        {
-            NbtCompound nbtCompound = nbt.getCompoundOrEmpty(index);
-            SimpleInventory inventory = this.inventories.get(index);
-            Inventories.readNbt(nbtCompound, inventory.getHeldStacks(), registryLookup);
-        }
-    }
-    //endregion
-
     @Override
     public InventoryConnector<T> getConnector()
     {
@@ -364,5 +345,29 @@ public class InventoryConnector<T extends SimpleInventory> extends StorageConnec
         if(this.getSidedMap().containsKey(MappedDirection.fromDirection(side)))
             return getStorage(side);
         return null;
+    }
+
+    @Override
+    public void writeData(WriteView writeView)
+    {
+        WriteView.ListView listView = writeView.getList("inventory" + BEKeys.HAS_INVENTORY);
+        for (T inventory : inventories)
+        {
+            WriteView compoundView = listView.add();
+            Inventories.writeData(compoundView, inventory.getHeldStacks());
+        }
+    }
+
+    @Override
+    public void readData(ReadView readView)
+    {
+        int index = 0;
+        for (ReadView view : readView.getListReadView("inventory" + BEKeys.HAS_INVENTORY))
+        {
+            if(index >= inventories.size())
+                break;
+            Inventories.readData(view, inventories.get(index).getHeldStacks());
+            index++;
+        }
     }
 }

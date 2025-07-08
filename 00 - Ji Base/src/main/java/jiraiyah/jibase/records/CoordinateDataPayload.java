@@ -34,6 +34,12 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
+/**
+ * Represents a custom payload containing a Minecraft BlockPos and dimension information.
+ *
+ * @param pos       the BlockPos contained in this payload
+ * @param dimension the dimension identifier of the world containing the BlockPos
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -43,18 +49,32 @@ import net.minecraft.util.math.BlockPos;
 
 public record CoordinateDataPayload(BlockPos pos, String dimension) implements CustomPayload
 {
+    /**
+     * The unique identifier for this custom payload.
+     */
     public static final Id<CoordinateDataPayload> ID = new Id<>(Identifier.of("jiralib", "coordinate_data_payload"));
 
+    /**
+     * The codec used to serialize and deserialize the CoordinateDataPayload.
+     */
     public static final Codec<CoordinateDataPayload> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             BlockPos.CODEC.fieldOf("pos").forGetter(CoordinateDataPayload::pos),
             Codec.STRING.fieldOf("dimension").forGetter(CoordinateDataPayload::dimension)
     ).apply(inst, CoordinateDataPayload::new));
 
+    /**
+     * The packet codec used to send and receive the CoordinateDataPayload.
+     */
     public static final PacketCodec<RegistryByteBuf, CoordinateDataPayload> PACKET_CODEC =
             PacketCodec.tuple(BlockPos.PACKET_CODEC, CoordinateDataPayload::pos,
                               PacketCodecs.STRING, CoordinateDataPayload::dimension,
                               CoordinateDataPayload::new);
 
+    /**
+     * Retrieves the unique identifier for this custom payload.
+     *
+     * @return the unique identifier
+     */
     @Override
     public Id<? extends CustomPayload> getId()
     {

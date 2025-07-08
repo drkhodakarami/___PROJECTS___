@@ -38,6 +38,8 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.state.property.Properties;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
@@ -59,19 +61,17 @@ public abstract class JiFluidBE<T extends JiFluidBE<T, B, C>, B extends SimpleIn
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    protected void readData(ReadView view)
     {
-        super.readNbt(nbt, registries);
-        if(nbt.contains("fluid" + BEKeys.HAS_FLUID))
-            nbt.getList("fluid" + BEKeys.HAS_FLUID)
-                    .ifPresent(nbtElements -> fluidStorage.readNbt(nbtElements, registries));
+        super.readData(view);
+        fluidStorage.readData(view);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    protected void writeData(WriteView view)
     {
-        super.writeNbt(nbt, registries);
-        nbt.put("fluid" + BEKeys.HAS_FLUID, fluidStorage.writeNbt(registries));
+        super.writeData(view);
+        fluidStorage.writeData(view);
     }
 
     public Storage<FluidVariant> getFluidStorage(Direction direction)

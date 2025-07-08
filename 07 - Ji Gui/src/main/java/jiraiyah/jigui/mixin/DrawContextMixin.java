@@ -24,6 +24,7 @@
 
 package jiraiyah.jigui.mixin;
 
+import com.mojang.blaze3d.pipeline.RenderPipeline;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jigui.interfaces.IDrawContextAccessor;
 import net.minecraft.client.gui.DrawContext;
@@ -44,10 +45,10 @@ import java.util.function.Function;
 public abstract class DrawContextMixin implements IDrawContextAccessor
 {
     @Shadow
-    protected abstract void drawTexturedQuad(Function<Identifier, RenderLayer> renderLayers, Identifier sprite, int x1, int x2, int y1, int y2, float u1, float u2, float v1, float v2, int color);
+    protected abstract void drawTexturedQuad(RenderPipeline pipeline, Identifier sprite, int x1, int x2, int y1, int y2, float u1, float u2, float v1, float v2, int color);
 
-    public void drawQuad(Function<Identifier, RenderLayer> renderLayers, Identifier sprite, int x1, int x2, int y1, int y2, float u1, float u2, float v1, float v2, int color)
+    public void drawQuad(RenderPipeline pipeline, Identifier sprite, int x1, int x2, int y1, int y2, float u1, float u2, float v1, float v2, int color)
     {
-        this.drawTexturedQuad(renderLayers, sprite, x1, x2, y1, y2, u1, u2, v1, v2, color);
+        this.drawTexturedQuad(pipeline, sprite, x1, x2, y1, y2, u1, u2, v1, v2, color);
     }
 }

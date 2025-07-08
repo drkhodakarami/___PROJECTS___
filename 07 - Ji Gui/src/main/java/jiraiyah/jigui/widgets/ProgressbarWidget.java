@@ -38,6 +38,7 @@ import net.minecraft.util.Identifier;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unused")
 public class ProgressbarWidget implements Drawable, Widget
 {
     private final int backgroundX, backgroundY, backgroundWidth, backgroundHeight;
@@ -93,6 +94,7 @@ public class ProgressbarWidget implements Drawable, Widget
         this.indicatorTexture = indicatorTexture;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks)
     {
@@ -176,6 +178,7 @@ public class ProgressbarWidget implements Drawable, Widget
     @Override
     public void forEachChild(Consumer<ClickableWidget> consumer){}
 
+    @SuppressWarnings("unused")
     public static class Builder
     {
         private int backgroundX, backgroundY, backgroundWidth, backgroundHeight;

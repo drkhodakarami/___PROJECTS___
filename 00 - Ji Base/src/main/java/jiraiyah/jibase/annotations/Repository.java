@@ -29,6 +29,12 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
 
+/**
+ * Annotation to specify the source repository for a class, method, field, or constructor.
+ *
+ * <p>This annotation is intended for use in documentation and version control systems
+ * to indicate the location of the source code in a repository.</p>
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -39,5 +45,10 @@ import static java.lang.annotation.ElementType.*;
 @Target(value = {TYPE, METHOD, FIELD, CONSTRUCTOR})
 public @interface Repository
 {
+    /**
+     * The URL of the source repository.
+     *
+     * @return The repository URL as a String.
+     */
     String value();
 }

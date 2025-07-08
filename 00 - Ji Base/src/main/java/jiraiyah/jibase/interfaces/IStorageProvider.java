@@ -29,6 +29,11 @@ import jiraiyah.jibase.enumerations.MappedDirection;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Represents an interface for providing storage entities based on direction and facing.
+ *
+ * @param <T> the type of the storage entity
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -38,9 +43,23 @@ import org.jetbrains.annotations.Nullable;
 
 public interface IStorageProvider<T>
 {
+    /**
+     * Retrieves a storage provider based on the specified {@link MappedDirection} and facing direction.
+     *
+     * @param direction  the mapped direction
+     * @param facing   the facing direction
+     * @return the storage provider, or null if none is found
+     */
     @Nullable
     T getStorageProvider(MappedDirection direction, Direction facing);
 
+    /**
+     * Retrieves a storage provider based on the specified facing direction.
+     *
+     * @param direction  the facing direction
+     * @param facing   the facing direction
+     * @return the storage provider, or null if none is found
+     */
     @Nullable
     T getStorageProvider(Direction direction, Direction facing);
 }

@@ -27,9 +27,16 @@ package jiraiyah.jibase.client.utils;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.render.state.GuiRenderState;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.Rect2i;
 
+/**
+ * Class representing an information area in the Minecraft client GUI.
+ *
+ * @author Jiraiyah
+ * @since 2025-04-18
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -39,23 +46,51 @@ import net.minecraft.client.util.math.Rect2i;
 
 public class InfoArea extends DrawContext
 {
+    /**
+     * The area of the information region.
+     */
     protected final Rect2i area;
 
-    public InfoArea(MinecraftClient client, VertexConsumerProvider.Immediate vertexConsumers)
+    /**
+     * Constructs an InfoArea with default coordinates (0, 0, 0, 0).
+     *
+     * @param client The MinecraftClient instance.
+     * @param state  The GuiRenderState for rendering.
+     */
+    public InfoArea(MinecraftClient client, GuiRenderState state)
     {
-        super(client, vertexConsumers);
+        super(client, state);
         this.area = new Rect2i(0, 0, 0, 0);
     }
 
-    public InfoArea(MinecraftClient client, VertexConsumerProvider.Immediate vertexConsumers, Rect2i area)
+    /**
+     * Constructs an InfoArea with the specified coordinates.
+     *
+     * @param client The MinecraftClient instance.
+     * @param state  The GuiRenderState for rendering.
+     * @param area   The rectangle representing the area of the information region.
+     */
+    public InfoArea(MinecraftClient client, GuiRenderState state, Rect2i area)
     {
-        super(client, vertexConsumers);
+        super(client, state);
         this.area = area;
     }
 
+    /**
+     * Draws the content of the information area.
+     *
+     * @param context The DrawContext for drawing operations.
+     */
     public void draw(DrawContext context)
     {}
 
+    /**
+     * Checks if the mouse is over the specified area.
+     *
+     * @param mouseX The x-coordinate of the mouse.
+     * @param mouseY The y-coordinate of the mouse.
+     * @return true if the mouse is within the bounds of the area; false otherwise.
+     */
     public boolean isMouseOver(double mouseX, double mouseY)
     {
         return MouseHelper.isMouseOver(mouseX, mouseY, this.area);

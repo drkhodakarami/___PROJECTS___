@@ -29,6 +29,12 @@ import jiraiyah.jibase.properties.BEProperties;
 import jiraiyah.jibase.properties.BlockEntityFields;
 import net.minecraft.block.entity.BlockEntity;
 
+/**
+ * Represents an interface for tick logic that can be executed on a block entity.
+ *
+ * @param <T> the type of the block entity
+ * @param <U> the type of the block entity fields
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -39,7 +45,17 @@ import net.minecraft.block.entity.BlockEntity;
 
 public interface ITickLogic<T extends BlockEntity, U extends BlockEntityFields<T>>
 {
+    /**
+     * Executes the tick logic for the given block entity properties on the server side.
+     *
+     * @param properties the block entity properties
+     */
     void tick(BEProperties<T> properties);
 
+    /**
+     * Executes any client-specific tick logic for the given block entity properties (default implementation does nothing).
+     *
+     * @param properties the block entity properties
+     */
     default void tickClient(BEProperties<T> properties){}
 }

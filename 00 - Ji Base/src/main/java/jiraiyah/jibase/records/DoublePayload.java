@@ -33,6 +33,11 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 
+/**
+ * Represents a custom payload containing a double value.
+ *
+ * @param value the double value contained in this payload
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -42,15 +47,29 @@ import net.minecraft.util.Identifier;
 
 public record DoublePayload(double value) implements CustomPayload
 {
+    /**
+     * The unique identifier for this custom payload.
+     */
     public static final Id<DoublePayload> ID = new Id<>(Identifier.of("jiralib", "double_payload"));
 
+    /**
+     * The codec used to serialize and deserialize the DoublePayload.
+     */
     public static final Codec<DoublePayload> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             Codec.DOUBLE.fieldOf("value").forGetter(DoublePayload::value)
     ).apply(inst, DoublePayload::new));
 
+    /**
+     * The packet codec used to send and receive the DoublePayload.
+     */
     public static final PacketCodec<RegistryByteBuf, DoublePayload> PACKET_CODEC =
             PacketCodec.tuple(PacketCodecs.DOUBLE, DoublePayload::value, DoublePayload::new);
 
+    /**
+     * Retrieves the unique identifier for this custom payload.
+     *
+     * @return the unique identifier
+     */
     @Override
     public Id<? extends CustomPayload> getId()
     {

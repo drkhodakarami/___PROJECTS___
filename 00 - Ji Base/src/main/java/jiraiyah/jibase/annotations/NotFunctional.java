@@ -29,6 +29,12 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
 
+/**
+ * Annotation to mark a class, method, field, or constructor as not functional.
+ *
+ * <p>This annotation is intended for use in documentation and version control systems
+ * to indicate that the annotated component is intentionally disabled or non-functional.</p>
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -39,5 +45,4 @@ import static java.lang.annotation.ElementType.*;
 @Documented
 @Target(value = {TYPE, METHOD, FIELD, CONSTRUCTOR})
 public @interface NotFunctional
-{
-}
+{}

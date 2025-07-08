@@ -28,6 +28,14 @@ import jiraiyah.jibase.annotations.*;
 
 import java.util.Objects;
 
+/**
+ * Represents an operation that accepts four input arguments and returns no result.
+ *
+ * @param <T> the type of the first argument
+ * @param <U> the type of the second argument
+ * @param <V> the type of the third argument
+ * @param <W> the type of the fourth argument
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -38,8 +46,23 @@ import java.util.Objects;
 @FunctionalInterface
 public interface TetraConsumer<T, U, V, W>
 {
+    /**
+     * Performs this operation on the given arguments.
+     *
+     * @param t the first argument
+     * @param u the second argument
+     * @param v the third argument
+     * @param w the fourth argument
+     */
     void accept(T t, U u, V v, W w);
 
+    /**
+     * Returns a composed {@code TetraConsumer} that performs, in sequence, this operation and another operation.
+     *
+     * @param after the operation to perform after this operation
+     * @return a composed {@code TetraConsumer} that performs, in sequence, this operation and another operation
+     * @throws NullPointerException if {@code after} is null
+     */
     default TetraConsumer<T, U, V, W> andThen(TetraConsumer<? super T, ? super U, ? super V, ? super W> after) {
         Objects.requireNonNull(after);
 

@@ -24,6 +24,7 @@
 
 package jiraiyah.jiralib.blockentity;
 
+import com.mojang.logging.LogUtils;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.interfaces.ISyncedTick;
 import jiraiyah.jibase.interfaces.IUpdatable;
@@ -32,13 +33,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.storage.NbtWriteView;
+import net.minecraft.util.ErrorReporter;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
 
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
@@ -100,8 +105,12 @@ public abstract class JiBlockEntity<T extends JiBlockEntity<T>> extends BlockEnt
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registries)
     {
         NbtCompound nbt = super.toInitialChunkDataNbt(registries);
-        writeNbt(nbt, registries);
-        return nbt;
+        Logger logger = LogUtils.getLogger();
+        try (ErrorReporter.Logging logging = new ErrorReporter.Logging(this.getReporterContext(), logger)) {
+            NbtWriteView view = NbtWriteView.create(logging, registries);
+            writeData(view);
+            return view.getNbt();
+        }
     }
 
     @Override

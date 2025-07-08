@@ -26,6 +26,11 @@ package jiraiyah.jibase.interfaces;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Represents a consumer of components.
+ *
+ * @param <T> the type of the component
+ */
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -36,5 +41,10 @@ import jiraiyah.jibase.annotations.*;
 @FunctionalInterface
 public interface IComponentConsumer<T extends IComponent>
 {
+    /**
+     * Performs an action on the given component.
+     *
+     * @param component the component to consume
+     */
     void accept(T component);
 }

@@ -36,6 +36,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Manages state properties for a block, providing methods to add, retrieve, and apply these properties.
+ */
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -46,19 +49,31 @@ import java.util.concurrent.ConcurrentHashMap;
 @SuppressWarnings("unused")
 public class StateProperties
 {
+    /**
+     * A concurrent map to store state properties by their names.
+     */
     private final Map<String, StateProperty<?>> properties = new ConcurrentHashMap<>();
 
     //region FACING AND AXIS
+    /**
+     * Adds a horizontal facing property to the block state with a default value of NORTH.
+     */
     public void addHorizontalFacing()
     {
         addProperty(new StateProperty<>(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
+    /**
+     * Adds a general facing property to the block state with a default value of NORTH.
+     */
     public void addFacing()
     {
         addProperty(new StateProperty<>(Properties.FACING, Direction.NORTH));
     }
 
+    /**
+     * Adds an axis property to the block state with a default value of Y.
+     */
     public void addAxis()
     {
         addProperty(new StateProperty<>(Properties.AXIS, Direction.Axis.Y));
@@ -66,37 +81,61 @@ public class StateProperties
     //endregion
 
     //region BOOLEAN
+    /**
+     * Adds an enabled property to the block state with a default value of true.
+     */
     public void addEnabled()
     {
         addProperty(new StateProperty<>(Properties.ENABLED, true));
     }
 
+    /**
+     * Adds a locked property to the block state with a default value of false.
+     */
     public void addLocked()
     {
         addProperty(new StateProperty<>(Properties.LOCKED, false));
     }
 
+    /**
+     * Adds a powered property to the block state with a default value of false.
+     */
     public void addPowered()
     {
         addProperty(new StateProperty<>(Properties.POWERED, false));
     }
 
+    /**
+     * Adds a lit property to the block state with a default value of false.
+     */
     public void addLit()
     {
         addProperty(new StateProperty<>(Properties.LIT, false));
     }
 
+    /**
+     * Adds an unstable property to the block state with a default value of false.
+     */
     public void addUnstable()
     {
         addProperty(new StateProperty<>(Properties.UNSTABLE, false));
     }
     //endregion
 
+    /**
+     * Adds a waterloggable property to the block state with a default value of false.
+     */
     public void addWaterlogged()
     {
         addProperty(new StateProperty<>(Properties.WATERLOGGED, false));
     }
 
+    /**
+     * Adds a custom state property to the block state.
+     *
+     * @param <T>       the type of the state property
+     * @param property  the state property to add
+     */
     public <T extends Comparable<T>> void addProperty(StateProperty<T> property)
     {
         if (this.properties.containsKey(property.delegate().getName()))
@@ -105,6 +144,14 @@ public class StateProperties
         this.properties.put(property.delegate().getName(), property);
     }
 
+    /**
+     * Retrieves a state property by its name and type.
+     *
+     * @param <T>       the type of the state property
+     * @param name      the name of the state property
+     * @param type      the class type of the value
+     * @return the retrieved state property
+     */
     @SuppressWarnings("unchecked")
     public <T extends Comparable<T>> StateProperty<T> getProperty(String name, Class<T> type)
     {
@@ -125,22 +172,47 @@ public class StateProperties
         }
     }
 
+    /**
+     * Retrieves a state property by its delegate Property.
+     *
+     * @param property the delegate Property
+     * @return the retrieved state property if it exists; null otherwise
+     */
     public <T extends Comparable<T>> Property<T> getProperty(Property<T> property)
     {
         String name = property.getName();
         return containsProperty(name) ? getProperty(name, property.getType()).delegate() : null;
     }
 
+    /**
+     * Checks if a state property with the specified name exists.
+     *
+     * @param name the name of the state property
+     * @return true if the property exists, false otherwise
+     */
     public boolean containsProperty(String name)
     {
         return this.properties.containsKey(name);
     }
 
+    /**
+     * Checks if a state property with the specified delegate Property exists.
+     *
+     * @param property the delegate Property
+     * @return true if the property exists, false otherwise
+     */
     public boolean containsProperty(Property<?> property)
     {
         return containsProperty(property.getName());
     }
 
+    /**
+     * Sets the default value for a state property by its name and type.
+     *
+     * @param <T>       the type of the state property
+     * @param name      the name of the state property
+     * @param value     the default value for the state property
+     */
     @SuppressWarnings("unchecked")
     public <T extends Comparable<T>> void setDefaultValue(String name, T value)
     {
@@ -148,11 +220,23 @@ public class StateProperties
         stateProperty.setDefaultValue(value);
     }
 
+    /**
+     * Applies the default values to a given block state.
+     *
+     * @param state the block state to apply defaults to
+     * @return the modified block state with default values applied
+     */
     private <T extends Comparable<T>> BlockState applyDefault(BlockState state, StateProperty<T> property)
     {
         return state.with(property.delegate(), property.defaultValue());
     }
 
+    /**
+     * Applies default values to a given block state if it is not null.
+     *
+     * @param state the block state to apply defaults to
+     * @return the modified block state with default values applied, or null if the input state was null
+     */
     public @Nullable BlockState applyDefaults(@Nullable BlockState state)
     {
         if(state == null)
@@ -164,6 +248,11 @@ public class StateProperties
         return state;
     }
 
+    /**
+     * Adds all managed state properties to a builder.
+     *
+     * @param builder the StateManager.Builder to add the properties to
+     */
     public void addToBuilder(StateManager.Builder<Block, BlockState> builder)
     {
         for (StateProperty<?> property : this.properties.values())

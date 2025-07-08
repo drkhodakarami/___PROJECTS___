@@ -27,6 +27,11 @@ package jiraiyah.jibase.interfaces;
 import jiraiyah.jibase.annotations.*;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 
+/**
+ * Represents a screen handler factory for creating custom screens.
+ *
+ * @param <T> the type of the screen handler
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")

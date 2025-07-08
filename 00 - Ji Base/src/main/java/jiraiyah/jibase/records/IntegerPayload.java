@@ -33,6 +33,11 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 
+/**
+ * Represents a custom payload containing an integer value.
+ *
+ * @param value the integer value contained in this payload
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -41,15 +46,29 @@ import net.minecraft.util.Identifier;
 
 public record IntegerPayload(int value) implements CustomPayload
 {
+    /**
+     * The unique identifier for this custom payload.
+     */
     public static final Id<IntegerPayload> ID = new Id<>(Identifier.of("jiralib", "integer_payload"));
 
+    /**
+     * The codec used to serialize and deserialize the IntegerPayload.
+     */
     public static final Codec<IntegerPayload> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             Codec.INT.fieldOf("value").forGetter(IntegerPayload::value)
     ).apply(inst, IntegerPayload::new));
 
+    /**
+     * The packet codec used to send and receive the IntegerPayload.
+     */
     public static final PacketCodec<RegistryByteBuf, IntegerPayload> PACKET_CODEC =
             PacketCodec.tuple(PacketCodecs.INTEGER, IntegerPayload::value, IntegerPayload::new);
 
+    /**
+     * Retrieves the unique identifier for this custom payload.
+     *
+     * @return the unique identifier
+     */
     @Override
     public Id<? extends CustomPayload> getId()
     {

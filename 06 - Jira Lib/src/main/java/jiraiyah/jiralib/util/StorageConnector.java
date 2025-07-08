@@ -45,7 +45,7 @@ import java.util.Map;
 @Discord("https://discord.turtywurty.dev/")
 @Youtube("https://www.youtube.com/@TurtyWurty")
 
-public abstract class StorageConnector<T> implements INBTSerializable<NbtList>, IStorageHandler<T>
+public abstract class StorageConnector<T> implements INBTSerializable, IStorageHandler<T>
 {
     protected final List<T> storages = new ArrayList<>(MappedDirection.values().length);
     protected final Map<MappedDirection, T> sidedMap = new HashMap<>(MappedDirection.values().length);

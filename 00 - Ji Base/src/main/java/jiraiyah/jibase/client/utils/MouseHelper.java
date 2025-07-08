@@ -28,6 +28,12 @@ import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.exceptions.Exceptions;
 import net.minecraft.client.util.math.Rect2i;
 
+/**
+ * Utility class providing methods to determine if the mouse is over a specific area.
+ *
+ * @author Jiraiyah
+ * @since 2025-04-18
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -37,11 +43,27 @@ import net.minecraft.client.util.math.Rect2i;
 
 public class MouseHelper
 {
+    /**
+     * Public constructor to enforce non-instantiation.
+     */
     public MouseHelper()
     {
         Exceptions.throwCtorAssertion();
     }
 
+    /**
+     * Checks if the mouse is over a specified rectangular area considering offsets.
+     *
+     * @param mouseX   The x-coordinate of the mouse.
+     * @param mouseY   The y-coordinate of the mouse.
+     * @param x        The x-coordinate of the rectangle's top-left corner.
+     * @param y        The y-coordinate of the rectangle's top-left corner.
+     * @param width    The width of the rectangle.
+     * @param height   The height of the rectangle.
+     * @param offsetX  The horizontal offset to adjust the mouse position by.
+     * @param offsetY  The vertical offset to adjust the mouse position by.
+     * @return true if the mouse is within the bounds of the area; false otherwise.
+     */
     public static boolean isMouseOver(double mouseX, double mouseY, int x, int y, int width, int height, int offsetX, int offsetY)
     {
         return mouseX >= x + offsetX &&
@@ -50,21 +72,59 @@ public class MouseHelper
                mouseY <= y + offsetY + height;
     }
 
+    /**
+     * Checks if the mouse is over a specified rectangular area.
+     *
+     * @param mouseX The x-coordinate of the mouse.
+     * @param mouseY The y-coordinate of the mouse.
+     * @param x      The x-coordinate of the rectangle's top-left corner.
+     * @param y      The y-coordinate of the rectangle's top-left corner.
+     * @return true if the mouse is within the bounds of the area; false otherwise.
+     */
     public static boolean isMouseOver(double mouseX, double mouseY, int x, int y)
     {
         return isMouseOver(mouseX, mouseY, x, y, 16, 16, 0, 0);
     }
 
+    /**
+     * Checks if the mouse is over a specified rectangular area with uniform size.
+     *
+     * @param mouseX The x-coordinate of the mouse.
+     * @param mouseY The y-coordinate of the mouse.
+     * @param x      The x-coordinate of the rectangle's top-left corner.
+     * @param y      The y-coordinate of the rectangle's top-left corner.
+     * @param size   The width and height of the rectangle.
+     * @return true if the mouse is within the bounds of the area; false otherwise.
+     */
     public static boolean isMouseOver(double mouseX, double mouseY, int x, int y, int size)
     {
         return isMouseOver(mouseX, mouseY, x, y, size, size, 0, 0);
     }
 
+    /**
+     * Checks if the mouse is over a specified rectangular area with uniform size.
+     *
+     * @param mouseX The x-coordinate of the mouse.
+     * @param mouseY The y-coordinate of the mouse.
+     * @param x      The x-coordinate of the rectangle's top-left corner.
+     * @param y      The y-coordinate of the rectangle's top-left corner.
+     * @param width  The width of the rectangle.
+     * @param height The height of the rectangle.
+     * @return true if the mouse is within the bounds of the area; false otherwise.
+     */
     public static boolean isMouseOver(double mouseX, double mouseY, int x, int y, int width, int height)
     {
         return isMouseOver(mouseX, mouseY, x, y, width, height, 0, 0);
     }
 
+    /**
+     * Checks if the mouse is over a specified rectangular area.
+     *
+     * @param mouseX The x-coordinate of the mouse.
+     * @param mouseY The y-coordinate of the mouse.
+     * @param rect   The rectangle representing the area to check against.
+     * @return true if the mouse is within the bounds of the area; false otherwise.
+     */
     public static boolean isMouseOver(double mouseX, double mouseY, Rect2i rect)
     {
         return isMouseOver(mouseX, mouseY, rect.getX(), rect.getY(), rect.getWidth(), rect.getWidth());

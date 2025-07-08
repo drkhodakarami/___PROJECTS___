@@ -31,6 +31,12 @@ import net.minecraft.world.World;
 
 import java.util.Set;
 
+/**
+ * Represents a spreadable storage interface that can distribute its contents to neighboring blocks.
+ *
+ * @param <T> the type of the storage
+ * @param <B> the type of the block entity or another storage entity
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -38,24 +44,64 @@ import java.util.Set;
 @Discord("https://discord.gg/pmM4emCbuH")
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
-public interface ISpread<T, B>
+public interface ISpread<T>
 {
-    long simulateInsersion(T storage, long amount, Transaction outer);
+    /**
+     * Simulates the insertion of a specified amount into the given storage without actually performing the operation.
+     *
+     * @param storage the storage to simulate insertion into
+     * @param amount  the amount to simulate inserting
+     * @param outer   the transaction context (if applicable)
+     * @return the simulated insertion result
+     */
+    long simulateInsertion(T storage, long amount, Transaction outer);
 
-    default void spread(World world, BlockPos pos, B storage)
+    /**
+     * Spreads the contents of the given storage to neighboring blocks.
+     *
+     * @param world   the world containing the block entity
+     * @param pos     the position of the block entity
+     * @param storage the storage to spread from
+     */
+    default void spread(World world, BlockPos pos, T storage)
     {
         spread(world, pos, storage, null);
     }
 
-    default void spread(World world, BlockPos pos, B storage, Set<BlockPos> exceptions)
+    /**
+     * Spreads the contents of the given storage to neighboring blocks, excluding specified positions.
+     *
+     * @param world       the world containing the block entity
+     * @param pos         the position of the block entity
+     * @param storage     the storage to spread from
+     * @param exceptions  a set of block positions to exclude from spreading
+     */
+    default void spread(World world, BlockPos pos, T storage, Set<BlockPos> exceptions)
     {
         spread(world, pos, storage, exceptions, true);
     }
 
-    default void spread(World world, BlockPos pos, B storage, boolean equalAmount)
+    /**
+     * Spreads the contents of the given storage to neighboring blocks with an option to use equal amounts.
+     *
+     * @param world       the world containing the block entity
+     * @param pos         the position of the block entity
+     * @param storage     the storage to spread from
+     * @param equalAmount whether to distribute the contents equally among neighbors
+     */
+    default void spread(World world, BlockPos pos, T storage, boolean equalAmount)
     {
         spread(world, pos, storage, null, equalAmount);
     }
 
-    void spread(World world, BlockPos pos, B storage, Set<BlockPos> exceptions, boolean equalAmount);
+    /**
+     * Spreads the contents of the given storage to neighboring blocks, excluding specified positions and with an option to use equal amounts.
+     *
+     * @param world       the world containing the block entity
+     * @param pos         the position of the block entity
+     * @param storage     the storage to spread from
+     * @param exceptions  a set of block positions to exclude from spreading
+     * @param equalAmount whether to distribute the contents equally among neighbors
+     */
+    void spread(World world, BlockPos pos, T storage, Set<BlockPos> exceptions, boolean equalAmount);
 }

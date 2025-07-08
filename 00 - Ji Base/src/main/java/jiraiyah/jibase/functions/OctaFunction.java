@@ -29,6 +29,19 @@ import jiraiyah.jibase.annotations.*;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Represents a function that accepts eight arguments and produces a result.
+ *
+ * @param <A> the type of the first argument
+ * @param <B> the type of the second argument
+ * @param <C> the type of the third argument
+ * @param <D> the type of the fourth argument
+ * @param <T> the type of the fifth argument
+ * @param <U> the type of the sixth argument
+ * @param <V> the type of the seventh argument
+ * @param <W> the type of the eighth argument
+ * @param <R> the type of the result produced by this function
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -39,10 +52,32 @@ import java.util.function.Function;
 @FunctionalInterface
 public interface OctaFunction<A, B, C, D, T, U, V, W, R>
 {
+    /**
+     * Returns a composed {@code OctaFunction} that first applies this function to
+     * its input, and then applies the {@code after} function to the result.
+     *
+     * @param <X> the type of output of the {@code after} function, and of the new {@code OctaFunction}
+     * @param after the function to apply after this function is applied
+     * @return a composed {@code OctaFunction} that first applies this function to its input, and then applies the {@code after} function to the result
+     * @throws NullPointerException if {@code after} is null
+     */
     default <X> OctaFunction<A, B, C, D, T, U, V, W, X> andThen(final Function<? super R, ? extends X> after) {
         Objects.requireNonNull(after);
         return (final A a, final B b, final C c, final D d, final T t, final U u, final V v, final W w) -> after.apply(apply(a, b, c, d, t, u, v, w));
     }
 
+    /**
+     * Applies this function to the given arguments.
+     *
+     * @param a the first argument
+     * @param b the second argument
+     * @param c the third argument
+     * @param d the fourth argument
+     * @param t the fifth argument
+     * @param u the sixth argument
+     * @param v the seventh argument
+     * @param w the eighth argument
+     * @return the result of applying this function to the given arguments
+     */
     R apply(A a, B b, C c, D d, T t, U u, V v, W w);
 }

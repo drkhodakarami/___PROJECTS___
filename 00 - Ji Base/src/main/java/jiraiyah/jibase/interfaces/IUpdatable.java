@@ -26,6 +26,9 @@ package jiraiyah.jibase.interfaces;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Represents an interface for updatable entities that can be updated at runtime.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -36,9 +39,23 @@ import jiraiyah.jibase.annotations.*;
 
 public interface IUpdatable
 {
+    /**
+     * Performs the main update logic of the entity.
+     */
     void update();
+
+    /**
+     * Called after the tick ends to perform any post-tick updates (default implementation does nothing).
+     */
     void onTickEnd();
 
+    /**
+     * Performs client-side specific update logic (default implementation does nothing).
+     */
     default void updateClient(){}
+
+    /**
+     * Called after the client-side tick ends to perform any client-specific post-tick updates (default implementation does nothing).
+     */
     default void onTickClientEnd(){}
 }

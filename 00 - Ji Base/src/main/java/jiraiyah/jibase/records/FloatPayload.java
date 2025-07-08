@@ -33,6 +33,11 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 
+/**
+ * Represents a custom payload containing a float value.
+ *
+ * @param value the float value contained in this payload
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -42,15 +47,29 @@ import net.minecraft.util.Identifier;
 
 public record FloatPayload(float value) implements CustomPayload
 {
+    /**
+     * The unique identifier for this custom payload.
+     */
     public static final Id<FloatPayload> ID = new Id<>(Identifier.of("jiralib", "float_payload"));
 
+    /**
+     * The codec used to serialize and deserialize the FloatPayload.
+     */
     public static final Codec<FloatPayload> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             Codec.FLOAT.fieldOf("value").forGetter(FloatPayload::value)
     ).apply(inst, FloatPayload::new));
 
+    /**
+     * The packet codec used to send and receive the FloatPayload.
+     */
     public static final PacketCodec<RegistryByteBuf, FloatPayload> PACKET_CODEC =
             PacketCodec.tuple(PacketCodecs.FLOAT, FloatPayload::value, FloatPayload::new);
 
+    /**
+     * Retrieves the unique identifier for this custom payload.
+     *
+     * @return the unique identifier
+     */
     @Override
     public Id<? extends CustomPayload> getId()
     {

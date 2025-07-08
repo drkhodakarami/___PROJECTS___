@@ -29,6 +29,12 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
 
+/**
+ * Annotation to specify the version of a class, method, field, or constructor.
+ *
+ * @author Jiraiyah
+ * @since 2025-04-18
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -40,5 +46,10 @@ import static java.lang.annotation.ElementType.*;
 @Target(value = {TYPE, METHOD, FIELD, CONSTRUCTOR})
 public @interface Version
 {
+    /**
+     * The version number as a string.
+     *
+     * @return the version number
+     */
     String value();
 }

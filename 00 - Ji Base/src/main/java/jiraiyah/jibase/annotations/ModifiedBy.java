@@ -29,6 +29,12 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
 
+/**
+ * Annotation to mark the developer who last modified a class, method, field, or constructor.
+ *
+ * <p>This annotation is intended for use in documentation and version control systems
+ * to indicate who updated the annotated component.</p>
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -39,5 +45,10 @@ import static java.lang.annotation.ElementType.*;
 @Target(value = {TYPE, METHOD, FIELD, CONSTRUCTOR})
 public @interface ModifiedBy
 {
+    /**
+     * The name of the developer who last modified the annotated element.
+     *
+     * @return The developer's name as a String.
+     */
     String value();
 }

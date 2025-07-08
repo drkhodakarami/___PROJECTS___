@@ -26,6 +26,9 @@ package jiraiyah.jibase.exceptions;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Contains custom exceptions for the Jibase project.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -34,11 +37,19 @@ import jiraiyah.jibase.annotations.*;
 
 public class Exceptions
 {
+    /**
+     * Private constructor to prevent instantiation.
+     */
     public Exceptions()
     {
         throwCtorAssertion();
     }
 
+    /**
+     * Throws an assertion error if the constructor is invoked directly.
+     *
+     * @throws InitCtorException always, as this method is a singleton and should not be instantiated
+     */
     public static void throwCtorAssertion()
     {
         throw new InitCtorException();

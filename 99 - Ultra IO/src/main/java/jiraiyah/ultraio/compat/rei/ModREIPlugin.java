@@ -22,13 +22,15 @@
  * SOFTWARE.                                                                       *
  ***********************************************************************************/
 
+/*
 package jiraiyah.ultraio.compat.rei;
 
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 
 public class ModREIPlugin implements REIClientPlugin
 {
-    /*@Override
+    */
+/*@Override
     public void registerCategories(CategoryRegistry registry)
     {
         REIClientPlugin.super.registerCategories(registry);
@@ -44,5 +46,6 @@ public class ModREIPlugin implements REIClientPlugin
     public void registerScreens(ScreenRegistry registry)
     {
         REIClientPlugin.super.registerScreens(registry);
-    }*/
-}
+    }*//*
+
+}*/

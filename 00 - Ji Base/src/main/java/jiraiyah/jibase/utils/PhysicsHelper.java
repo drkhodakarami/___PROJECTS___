@@ -39,6 +39,9 @@ import net.minecraft.world.RaycastContext;
 
 import java.util.Optional;
 
+/**
+ * Provides utility methods for physics-related operations in Minecraft.
+ */
 @SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
@@ -46,6 +49,12 @@ import java.util.Optional;
 @Youtube("https://www.youtube.com/@direwolf20")
 public class PhysicsHelper
 {
+    /**
+     * Gets the block hit result for a player's current look direction.
+     *
+     * @param player The player entity to get the hit result for.
+     * @return The block hit result.
+     */
     public static BlockHitResult getHitResult(PlayerEntity player)
     {
         var playerLook = new Vec3d(player.getX(), player.getY() + player.getEyeY(), player.getZ());
@@ -59,6 +68,13 @@ public class PhysicsHelper
                                                     player));
     }
 
+    /**
+     * Gets the entity that is being looked at by a player within a specified maximum distance.
+     *
+     * @param player The player entity to get the entity look result for.
+     * @param maxDistance The maximum distance to check for entities.
+     * @return The entity being looked at, or null if no entity is found.
+     */
     public static Entity getEntityLookedAt(PlayerEntity player, double maxDistance)
     {
         Vec3d eyePosition = player.getCameraPosVec(1.0F);
@@ -86,6 +102,16 @@ public class PhysicsHelper
         return null;
     }
 
+    /**
+     * Performs a ray trace for entities within the given bounds and returns the closest one.
+     *
+     * @param player The player entity performing the ray trace.
+     * @param start The starting position of the ray.
+     * @param end The ending position of the ray.
+     * @param boundingBox The bounding box to search within.
+     * @param maxDistance The maximum distance to check for entities.
+     * @return The closest entity hit by the ray, or null if no entity is found.
+     */
     private static EntityHitResult rayTraceEntities(PlayerEntity player, Vec3d start, Vec3d end, Box boundingBox, double maxDistance)
     {
         double closestDistance = maxDistance;

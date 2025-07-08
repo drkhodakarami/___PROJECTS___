@@ -48,6 +48,9 @@ import net.minecraft.util.math.random.Random;
 
 import java.util.stream.IntStream;
 
+/**
+ * Represents a custom payload containing output information for an item stack, including the item, count provider, and chance.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -58,20 +61,41 @@ import java.util.stream.IntStream;
 
 public record OutputItemStackPayload(Item output, IntProvider count, FloatProvider chance) implements CustomPayload
 {
+    /**
+     * The unique identifier for this custom payload.
+     */
     public static final Id<BlockPosPayload> ID = new Id<>(Identifier.of("jiralib", "output_item_stack_payload"));
 
+    /**
+     * The default chance value (1.0f).
+     */
     public static final ConstantFloatProvider DEFAULT_CHANCE = ConstantFloatProvider.create(1.0f);
+
+    /**
+     * An empty instance of OutputItemStackPayload.
+     */
     public static final OutputItemStackPayload EMPTY = new OutputItemStackPayload(ItemStack.EMPTY);
 
+    /**
+     * The codec used to serialize and deserialize the OutputItemStackPayload.
+     */
     public static final MapCodec<OutputItemStackPayload> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Registries.ITEM.getCodec().fieldOf("output").forGetter(OutputItemStackPayload::output),
             IntProvider.VALUE_CODEC.fieldOf("count").forGetter(OutputItemStackPayload::count),
             FloatProvider.VALUE_CODEC.fieldOf("chance").forGetter(OutputItemStackPayload::chance)
     ).apply(inst, OutputItemStackPayload::new));
 
+    /**
+     * The packet codec used to send and receive the OutputItemStackPayload.
+     */
     public static final PacketCodec<RegistryByteBuf, OutputItemStackPayload> PACKET_CODEC =
             PacketCodec.ofStatic(OutputItemStackPayload::encode, OutputItemStackPayload::decode);
 
+    /**
+     * Constructs a new {@link OutputItemStackPayload} and performs necessary validations.
+     *
+     * @throws IllegalArgumentException if any of the parameters are null
+     */
     public OutputItemStackPayload
     {
         if(output == null)
@@ -82,61 +106,132 @@ public record OutputItemStackPayload(Item output, IntProvider count, FloatProvid
             throw new IllegalArgumentException("Chance can't be null");
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} with the specified item, count, and chance.
+     *
+     * @param output The item to be included in the payload.
+     * @param count  The count of items.
+     * @param chance The chance of the item being generated.
+     */
     public OutputItemStackPayload(Item output, int count, float chance)
     {
         this(output, ConstantIntProvider.create(count), ConstantFloatProvider.create(chance));
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} from a given {@link ItemStack}.
+     *
+     * @param stack The {@link ItemStack} to be converted into the payload.
+     * @throws IllegalArgumentException if the stack is null or its item is null
+     */
     public OutputItemStackPayload(ItemStack stack)
     {
         this(stack.getItem(), ConstantIntProvider.create(stack.getCount()), DEFAULT_CHANCE);
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} with the given item and count.
+     *
+     * @param output The item to be included in the payload, cannot be null.
+     * @param count  The count provider for the items, cannot be null or provide zero or negative values.
+     * @param chance The chance of the item appearing, cannot be null or less than 0.
+     */
     public OutputItemStackPayload(Item output, IntProvider count, float chance)
     {
         this(output, count, ConstantFloatProvider.create(chance));
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} with the given item and count.
+     *
+     * @param output The item to be included in the payload, cannot be null.
+     * @param count  The count of items, cannot be zero or negative.
+     * @param chance The chance provider for the item appearing, cannot be null.
+     */
     public OutputItemStackPayload(Item output, int count, FloatProvider chance)
     {
         this(output, ConstantIntProvider.create(count), chance);
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} with the given item and count.
+     *
+     * @param output The item to be included in the payload, cannot be null.
+     * @param count  The count of items, cannot be zero or negative.
+     */
     public OutputItemStackPayload(Item output, int count)
     {
         this(output, ConstantIntProvider.create(count), DEFAULT_CHANCE);
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} with the given item and count provider.
+     *
+     * @param output The item to be included in the payload, cannot be null.
+     * @param count  The count provider for the items, cannot be null or provide zero or negative values.
+     */
     public OutputItemStackPayload(Item output, IntProvider count)
     {
         this(output, count, DEFAULT_CHANCE);
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} with the given item and chance.
+     *
+     * @param output The item to be included in the payload, cannot be null.
+     * @param chance The chance of the item appearing, cannot be null or less than 0.
+     */
     public OutputItemStackPayload(Item output, float chance)
     {
         this(output, ConstantIntProvider.create(1), ConstantFloatProvider.create(chance));
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} with the given item and chance provider.
+     *
+     * @param output The item to be included in the payload, cannot be null.
+     * @param chance The chance provider for the item appearing, cannot be null.
+     */
     public OutputItemStackPayload(Item output, FloatProvider chance)
     {
         this(output, ConstantIntProvider.create(1), chance);
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} with the given item.
+     *
+     * @param output The item to be included in the payload, cannot be null.
+     */
     public OutputItemStackPayload(Item output)
     {
         this(output, ConstantIntProvider.create(1), DEFAULT_CHANCE);
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} from a given {@link ItemStack} and chance.
+     *
+     * @param stack  The {@link ItemStack} to be converted into the payload, cannot be null or empty.
+     * @param chance The chance of the item appearing, cannot be null or less than 0.
+     */
     public OutputItemStackPayload(ItemStack stack, float chance)
     {
         this(stack.getItem(), ConstantIntProvider.create(stack.getCount()), ConstantFloatProvider.create(chance));
     }
 
+    /**
+     * Constructs an {@link OutputItemStackPayload} from a given {@link ItemStack} and chance provider.
+     *
+     * @param stack  The {@link ItemStack} to be converted into the payload, cannot be null or empty.
+     * @param chance The chance provider for the item appearing, cannot be null.
+     */
     public OutputItemStackPayload(ItemStack stack, FloatProvider chance)
     {
         this(stack.getItem(), ConstantIntProvider.create(stack.getCount()), chance);
     }
 
+    /**
+     * Represents a payload for an output item stack with configurable properties.
+     */
     public ItemStack createStack(Random random)
     {
         return this.chance.get(random) < random.nextFloat()
@@ -144,6 +239,11 @@ public record OutputItemStackPayload(Item output, IntProvider count, FloatProvid
                : new ItemStack(this.output, this.count.get(random));
     }
 
+    /**
+     * Converts this payload to a display representation of multiple item stacks.
+     *
+     * @return A {@link SlotDisplay} containing multiple item stacks.
+     */
     public SlotDisplay toDisplay()
     {
         return new SlotDisplay.CompositeSlotDisplay(
@@ -155,6 +255,12 @@ public record OutputItemStackPayload(Item output, IntProvider count, FloatProvid
         );
     }
 
+    /**
+     * Encodes the {@link OutputItemStackPayload} into a byte buffer.
+     *
+     * @param buf The registry byte buffer to encode the payload into.
+     * @param stackPayload The payload to encode.
+     */
     private static void encode(RegistryByteBuf buf, OutputItemStackPayload stackPayload)
     {
         buf.writeRegistryKey(Registries.ITEM.getKey(stackPayload.output()).orElseThrow());
@@ -166,6 +272,12 @@ public record OutputItemStackPayload(Item output, IntProvider count, FloatProvid
         ExtraPacketCodecs.encode(buf, stackPayload.chance());
     }
 
+    /**
+     * Decodes a {@link OutputItemStackPayload} from a byte buffer.
+     *
+     * @param buf The registry byte buffer to decode the payload from.
+     * @return The decoded {@link OutputItemStackPayload}.
+     */
     private static OutputItemStackPayload decode(RegistryByteBuf buf)
     {
         Item item = Registries.ITEM.get(buf.readRegistryKey(RegistryKeys.ITEM));
@@ -181,6 +293,11 @@ public record OutputItemStackPayload(Item output, IntProvider count, FloatProvid
         return new OutputItemStackPayload(item, count, chance);
     }
 
+    /**
+     * Retrieves the unique identifier for this custom payload.
+     *
+     * @return the unique identifier
+     */
     @Override
     public Id<? extends CustomPayload> getId()
     {

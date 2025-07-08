@@ -30,6 +30,9 @@ import net.minecraft.network.codec.PacketCodec;
 
 import java.util.function.Function;
 
+/**
+ * Provides utility methods to create packet codecs for tuples of various sizes.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -40,6 +43,41 @@ import java.util.function.Function;
 
 public class PacketCodecTuples
 {
+    /**
+     * Creates a packet codec for a tuple of nine elements.
+     *
+     * @param <B>        the type of byte buffer being used
+     * @param <C>        the type of value being encoded and decoded
+     * @param <T1>       the type of the first element in the tuple
+     * @param <T2>       the type of the second element in the tuple
+     * @param <T3>       the type of the third element in the tuple
+     * @param <T4>       the type of the fourth element in the tuple
+     * @param <T5>       the type of the fifth element in the tuple
+     * @param <T6>       the type of the sixth element in the tuple
+     * @param <T7>       the type of the seventh element in the tuple
+     * @param <T8>       the type of the eighth element in the tuple
+     * @param <T9>       the type of the ninth element in the tuple
+     * @param codec1     the packet codec for the first element
+     * @param from1      a function to extract the first element from the value being decoded
+     * @param codec2     the packet codec for the second element
+     * @param from2      a function to extract the second element from the value being decoded
+     * @param codec3     the packet codec for the third element
+     * @param from3      a function to extract the third element from the value being decoded
+     * @param codec4     the packet codec for the fourth element
+     * @param from4      a function to extract the fourth element from the value being decoded
+     * @param codec5     the packet codec for the fifth element
+     * @param from5      a function to extract the fifth element from the value being decoded
+     * @param codec6     the packet codec for the sixth element
+     * @param from6      a function to extract the sixth element from the value being decoded
+     * @param codec7     the packet codec for the seventh element
+     * @param from7      a function to extract the seventh element from the value being decoded
+     * @param codec8     the packet codec for the eighth element
+     * @param from8      a function to extract the eighth element from the value being decoded
+     * @param codec9     the packet codec for the ninth element
+     * @param from9      a function to extract the ninth element from the value being decoded
+     * @param to         a function to combine the elements into the final value
+     * @return a packet codec for the tuple
+     */
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9> PacketCodec<B, C> tuple(
             PacketCodec<? super B, T1> codec1,
             Function<C, T1> from1,
@@ -94,6 +132,44 @@ public class PacketCodecTuples
         };
     }
 
+    /**
+     * Creates a packet codec for a tuple of ten elements.
+     *
+     * @param <B>        the type of byte buffer being used
+     * @param <C>        the type of value being encoded and decoded
+     * @param <T1>       the type of the first element in the tuple
+     * @param <T2>       the type of the second element in the tuple
+     * @param <T3>       the type of the third element in the tuple
+     * @param <T4>       the type of the fourth element in the tuple
+     * @param <T5>       the type of the fifth element in the tuple
+     * @param <T6>       the type of the sixth element in the tuple
+     * @param <T7>       the type of the seventh element in the tuple
+     * @param <T8>       the type of the eighth element in the tuple
+     * @param <T9>       the type of the ninth element in the tuple
+     * @param <T10>      the type of the tenth element in the tuple
+     * @param codec1     the packet codec for the first element
+     * @param from1      a function to extract the first element from the value being decoded
+     * @param codec2     the packet codec for the second element
+     * @param from2      a function to extract the second element from the value being decoded
+     * @param codec3     the packet codec for the third element
+     * @param from3      a function to extract the third element from the value being decoded
+     * @param codec4     the packet codec for the fourth element
+     * @param from4      a function to extract the fourth element from the value being decoded
+     * @param codec5     the packet codec for the fifth element
+     * @param from5      a function to extract the fifth element from the value being decoded
+     * @param codec6     the packet codec for the sixth element
+     * @param from6      a function to extract the sixth element from the value being decoded
+     * @param codec7     the packet codec for the seventh element
+     * @param from7      a function to extract the seventh element from the value being decoded
+     * @param codec8     the packet codec for the eighth element
+     * @param from8      a function to extract the eighth element from the value being decoded
+     * @param codec9     the packet codec for the ninth element
+     * @param from9      a function to extract the ninth element from the value being decoded
+     * @param codec10    the packet codec for the tenth element
+     * @param from10     a function to extract the tenth element from the value being decoded
+     * @param to         a function to combine the elements into the final value
+     * @return a packet codec for the tuple
+     */
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> PacketCodec<B, C> tuple(
             PacketCodec<? super B, T1> codec1,
             Function<C, T1> from1,
@@ -152,6 +228,47 @@ public class PacketCodecTuples
         };
     }
 
+    /**
+     * Creates a packet codec for a tuple of eleven elements.
+     *
+     * @param <B>        the type of byte buffer being used
+     * @param <C>        the type of value being encoded and decoded
+     * @param <T1>       the type of the first element in the tuple
+     * @param <T2>       the type of the second element in the tuple
+     * @param <T3>       the type of the third element in the tuple
+     * @param <T4>       the type of the fourth element in the tuple
+     * @param <T5>       the type of the fifth element in the tuple
+     * @param <T6>       the type of the sixth element in the tuple
+     * @param <T7>       the type of the seventh element in the tuple
+     * @param <T8>       the type of the eighth element in the tuple
+     * @param <T9>       the type of the ninth element in the tuple
+     * @param <T10>      the type of the tenth element in the tuple
+     * @param <T11>      the type of the eleventh element in the tuple
+     * @param codec1     the packet codec for the first element
+     * @param from1      a function to extract the first element from the value being decoded
+     * @param codec2     the packet codec for the second element
+     * @param from2      a function to extract the second element from the value being decoded
+     * @param codec3     the packet codec for the third element
+     * @param from3      a function to extract the third element from the value being decoded
+     * @param codec4     the packet codec for the fourth element
+     * @param from4      a function to extract the fourth element from the value being decoded
+     * @param codec5     the packet codec for the fifth element
+     * @param from5      a function to extract the fifth element from the value being decoded
+     * @param codec6     the packet codec for the sixth element
+     * @param from6      a function to extract the sixth element from the value being decoded
+     * @param codec7     the packet codec for the seventh element
+     * @param from7      a function to extract the seventh element from the value being decoded
+     * @param codec8     the packet codec for the eighth element
+     * @param from8      a function to extract the eighth element from the value being decoded
+     * @param codec9     the packet codec for the ninth element
+     * @param from9      a function to extract the ninth element from the value being decoded
+     * @param codec10    the packet codec for the tenth element
+     * @param from10     a function to extract the tenth element from the value being decoded
+     * @param codec11    the packet codec for the eleventh element
+     * @param from11     a function to extract the eleventh element from the value being decoded
+     * @param to         a function to combine the elements into the final value
+     * @return a packet codec for the tuple
+     */
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> PacketCodec<B, C> tuple(
             PacketCodec<? super B, T1> codec1,
             Function<C, T1> from1,
@@ -212,6 +329,50 @@ public class PacketCodecTuples
         };
     }
 
+    /**
+     * Creates a packet codec for a tuple of twelve elements.
+     *
+     * @param <B>        the type of byte buffer being used
+     * @param <C>        the type of value being encoded and decoded
+     * @param <T1>       the type of the first element in the tuple
+     * @param <T2>       the type of the second element in the tuple
+     * @param <T3>       the type of the third element in the tuple
+     * @param <T4>       the type of the fourth element in the tuple
+     * @param <T5>       the type of the fifth element in the tuple
+     * @param <T6>       the type of the sixth element in the tuple
+     * @param <T7>       the type of the seventh element in the tuple
+     * @param <T8>       the type of the eighth element in the tuple
+     * @param <T9>       the type of the ninth element in the tuple
+     * @param <T10>      the type of the tenth element in the tuple
+     * @param <T11>      the type of the eleventh element in the tuple
+     * @param <T12>      the type of the twelfth element in the tuple
+     * @param codec1     the packet codec for the first element
+     * @param from1      a function to extract the first element from the value being decoded
+     * @param codec2     the packet codec for the second element
+     * @param from2      a function to extract the second element from the value being decoded
+     * @param codec3     the packet codec for the third element
+     * @param from3      a function to extract the third element from the value being decoded
+     * @param codec4     the packet codec for the fourth element
+     * @param from4      a function to extract the fourth element from the value being decoded
+     * @param codec5     the packet codec for the fifth element
+     * @param from5      a function to extract the fifth element from the value being decoded
+     * @param codec6     the packet codec for the sixth element
+     * @param from6      a function to extract the sixth element from the value being decoded
+     * @param codec7     the packet codec for the seventh element
+     * @param from7      a function to extract the seventh element from the value being decoded
+     * @param codec8     the packet codec for the eighth element
+     * @param from8      a function to extract the eighth element from the value being decoded
+     * @param codec9     the packet codec for the ninth element
+     * @param from9      a function to extract the ninth element from the value being decoded
+     * @param codec10    the packet codec for the tenth element
+     * @param from10     a function to extract the tenth element from the value being decoded
+     * @param codec11    the packet codec for the eleventh element
+     * @param from11     a function to extract the eleventh element from the value being decoded
+     * @param codec12    the packet codec for the twelfth element
+     * @param from12     a function to extract the twelfth element from the value being decoded
+     * @param to         a function to combine the elements into the final value
+     * @return a packet codec for the tuple
+     */
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> PacketCodec<B, C> tuple(
             PacketCodec<? super B, T1> codec1, Function<C, T1> from1,
             PacketCodec<? super B, T2> codec2, Function<C, T2> from2,
@@ -264,6 +425,53 @@ public class PacketCodecTuples
         };
     }
 
+    /**
+     * Creates a packet codec for a tuple of thirteen elements.
+     *
+     * @param <B>        the type of byte buffer being used
+     * @param <C>        the type of value being encoded and decoded
+     * @param <T1>       the type of the first element in the tuple
+     * @param <T2>       the type of the second element in the tuple
+     * @param <T3>       the type of the third element in the tuple
+     * @param <T4>       the type of the fourth element in the tuple
+     * @param <T5>       the type of the fifth element in the tuple
+     * @param <T6>       the type of the sixth element in the tuple
+     * @param <T7>       the type of the seventh element in the tuple
+     * @param <T8>       the type of the eighth element in the tuple
+     * @param <T9>       the type of the ninth element in the tuple
+     * @param <T10>      the type of the tenth element in the tuple
+     * @param <T11>      the type of the eleventh element in the tuple
+     * @param <T12>      the type of the twelfth element in the tuple
+     * @param <T13>      the type of the thirteenth element in the tuple
+     * @param codec1     the packet codec for the first element
+     * @param from1      a function to extract the first element from the value being decoded
+     * @param codec2     the packet codec for the second element
+     * @param from2      a function to extract the second element from the value being decoded
+     * @param codec3     the packet codec for the third element
+     * @param from3      a function to extract the third element from the value being decoded
+     * @param codec4     the packet codec for the fourth element
+     * @param from4      a function to extract the fourth element from the value being decoded
+     * @param codec5     the packet codec for the fifth element
+     * @param from5      a function to extract the fifth element from the value being decoded
+     * @param codec6     the packet codec for the sixth element
+     * @param from6      a function to extract the sixth element from the value being decoded
+     * @param codec7     the packet codec for the seventh element
+     * @param from7      a function to extract the seventh element from the value being decoded
+     * @param codec8     the packet codec for the eighth element
+     * @param from8      a function to extract the eighth element from the value being decoded
+     * @param codec9     the packet codec for the ninth element
+     * @param from9      a function to extract the ninth element from the value being decoded
+     * @param codec10    the packet codec for the tenth element
+     * @param from10     a function to extract the tenth element from the value being decoded
+     * @param codec11    the packet codec for the eleventh element
+     * @param from11     a function to extract the eleventh element from the value being decoded
+     * @param codec12    the packet codec for the twelfth element
+     * @param from12     a function to extract the twelfth element from the value being decoded
+     * @param codec13    the packet codec for the thirteenth element
+     * @param from13     a function to extract the thirteenth element from the value being decoded
+     * @param to         a function to combine the elements into the final value
+     * @return a packet codec for the tuple
+     */
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> PacketCodec<B, C> tuple(
             PacketCodec<? super B, T1> codec1, Function<C, T1> from1,
             PacketCodec<? super B, T2> codec2, Function<C, T2> from2,
@@ -319,6 +527,56 @@ public class PacketCodecTuples
         };
     }
 
+    /**
+     * Creates a packet codec for a tuple of fourteen elements.
+     *
+     * @param <B>        the type of byte buffer being used
+     * @param <C>        the type of value being encoded and decoded
+     * @param <T1>       the type of the first element in the tuple
+     * @param <T2>       the type of the second element in the tuple
+     * @param <T3>       the type of the third element in the tuple
+     * @param <T4>       the type of the fourth element in the tuple
+     * @param <T5>       the type of the fifth element in the tuple
+     * @param <T6>       the type of the sixth element in the tuple
+     * @param <T7>       the type of the seventh element in the tuple
+     * @param <T8>       the type of the eighth element in the tuple
+     * @param <T9>       the type of the ninth element in the tuple
+     * @param <T10>      the type of the tenth element in the tuple
+     * @param <T11>      the type of the eleventh element in the tuple
+     * @param <T12>      the type of the twelfth element in the tuple
+     * @param <T13>      the type of the thirteenth element in the tuple
+     * @param <T14>      the type of the fourteenth element in the tuple
+     * @param codec1     the packet codec for the first element
+     * @param from1      a function to extract the first element from the value being decoded
+     * @param codec2     the packet codec for the second element
+     * @param from2      a function to extract the second element from the value being decoded
+     * @param codec3     the packet codec for the third element
+     * @param from3      a function to extract the third element from the value being decoded
+     * @param codec4     the packet codec for the fourth element
+     * @param from4      a function to extract the fourth element from the value being decoded
+     * @param codec5     the packet codec for the fifth element
+     * @param from5      a function to extract the fifth element from the value being decoded
+     * @param codec6     the packet codec for the sixth element
+     * @param from6      a function to extract the sixth element from the value being decoded
+     * @param codec7     the packet codec for the seventh element
+     * @param from7      a function to extract the seventh element from the value being decoded
+     * @param codec8     the packet codec for the eighth element
+     * @param from8      a function to extract the eighth element from the value being decoded
+     * @param codec9     the packet codec for the ninth element
+     * @param from9      a function to extract the ninth element from the value being decoded
+     * @param codec10    the packet codec for the tenth element
+     * @param from10     a function to extract the tenth element from the value being decoded
+     * @param codec11    the packet codec for the eleventh element
+     * @param from11     a function to extract the eleventh element from the value being decoded
+     * @param codec12    the packet codec for the twelfth element
+     * @param from12     a function to extract the twelfth element from the value being decoded
+     * @param codec13    the packet codec for the thirteenth element
+     * @param from13     a function to extract the thirteenth element from the value being decoded
+     * @param codec14    the packet codec for the fourteenth element
+     * @param from14     a function to extract the fourteenth element from the value being decoded
+     * @param to         a function to combine the elements into the final value
+     * @return a packet codec for the tuple
+     */
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> PacketCodec<B, C> tuple(
             PacketCodec<? super B, T1> codec1, Function<C, T1> from1,
             PacketCodec<? super B, T2> codec2, Function<C, T2> from2,
@@ -377,6 +635,59 @@ public class PacketCodecTuples
         };
     }
 
+    /**
+     * Creates a packet codec for a tuple of fifteen elements.
+     *
+     * @param <B>        the type of byte buffer being used
+     * @param <C>        the type of value being encoded and decoded
+     * @param <T1>       the type of the first element in the tuple
+     * @param <T2>       the type of the second element in the tuple
+     * @param <T3>       the type of the third element in the tuple
+     * @param <T4>       the type of the fourth element in the tuple
+     * @param <T5>       the type of the fifth element in the tuple
+     * @param <T6>       the type of the sixth element in the tuple
+     * @param <T7>       the type of the seventh element in the tuple
+     * @param <T8>       the type of the eighth element in the tuple
+     * @param <T9>       the type of the ninth element in the tuple
+     * @param <T10>      the type of the tenth element in the tuple
+     * @param <T11>      the type of the eleventh element in the tuple
+     * @param <T12>      the type of the twelfth element in the tuple
+     * @param <T13>      the type of the thirteenth element in the tuple
+     * @param <T14>      the type of the fourteenth element in the tuple
+     * @param <T15>      the type of the fifteenth element in the tuple
+     * @param codec1     the packet codec for the first element
+     * @param from1      a function to extract the first element from the value being decoded
+     * @param codec2     the packet codec for the second element
+     * @param from2      a function to extract the second element from the value being decoded
+     * @param codec3     the packet codec for the third element
+     * @param from3      a function to extract the third element from the value being decoded
+     * @param codec4     the packet codec for the fourth element
+     * @param from4      a function to extract the fourth element from the value being decoded
+     * @param codec5     the packet codec for the fifth element
+     * @param from5      a function to extract the fifth element from the value being decoded
+     * @param codec6     the packet codec for the sixth element
+     * @param from6      a function to extract the sixth element from the value being decoded
+     * @param codec7     the packet codec for the seventh element
+     * @param from7      a function to extract the seventh element from the value being decoded
+     * @param codec8     the packet codec for the eighth element
+     * @param from8      a function to extract the eighth element from the value being decoded
+     * @param codec9     the packet codec for the ninth element
+     * @param from9      a function to extract the ninth element from the value being decoded
+     * @param codec10    the packet codec for the tenth element
+     * @param from10     a function to extract the tenth element from the value being decoded
+     * @param codec11    the packet codec for the eleventh element
+     * @param from11     a function to extract the eleventh element from the value being decoded
+     * @param codec12    the packet codec for the twelfth element
+     * @param from12     a function to extract the twelfth element from the value being decoded
+     * @param codec13    the packet codec for the thirteenth element
+     * @param from13     a function to extract the thirteenth element from the value being decoded
+     * @param codec14    the packet codec for the fourteenth element
+     * @param from14     a function to extract the fourteenth element from the value being decoded
+     * @param codec15    the packet codec for the fifteenth element
+     * @param from15     a function to extract the fifteenth element from the value being decoded
+     * @param to         a function to combine the elements into the final value
+     * @return a packet codec for the tuple
+     */
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> PacketCodec<B, C> tuple(
             PacketCodec<? super B, T1> codec1, Function<C, T1> from1,
             PacketCodec<? super B, T2> codec2, Function<C, T2> from2,
@@ -438,6 +749,62 @@ public class PacketCodecTuples
         };
     }
 
+    /**
+     * Creates a packet codec for a tuple of sixteen elements.
+     *
+     * @param <B>        the type of byte buffer being used
+     * @param <C>        the type of value being encoded and decoded
+     * @param <T1>       the type of the first element in the tuple
+     * @param <T2>       the type of the second element in the tuple
+     * @param <T3>       the type of the third element in the tuple
+     * @param <T4>       the type of the fourth element in the tuple
+     * @param <T5>       the type of the fifth element in the tuple
+     * @param <T6>       the type of the sixth element in the tuple
+     * @param <T7>       the type of the seventh element in the tuple
+     * @param <T8>       the type of the eighth element in the tuple
+     * @param <T9>       the type of the ninth element in the tuple
+     * @param <T10>      the type of the tenth element in the tuple
+     * @param <T11>      the type of the eleventh element in the tuple
+     * @param <T12>      the type of the twelfth element in the tuple
+     * @param <T13>      the type of the thirteenth element in the tuple
+     * @param <T14>      the type of the fourteenth element in the tuple
+     * @param <T15>      the type of the fifteenth element in the tuple
+     * @param <T16>      the type of the sixteenth element in the tuple
+     * @param codec1     the packet codec for the first element
+     * @param from1      a function to extract the first element from the value being decoded
+     * @param codec2     the packet codec for the second element
+     * @param from2      a function to extract the second element from the value being decoded
+     * @param codec3     the packet codec for the third element
+     * @param from3      a function to extract the third element from the value being decoded
+     * @param codec4     the packet codec for the fourth element
+     * @param from4      a function to extract the fourth element from the value being decoded
+     * @param codec5     the packet codec for the fifth element
+     * @param from5      a function to extract the fifth element from the value being decoded
+     * @param codec6     the packet codec for the sixth element
+     * @param from6      a function to extract the sixth element from the value being decoded
+     * @param codec7     the packet codec for the seventh element
+     * @param from7      a function to extract the seventh element from the value being decoded
+     * @param codec8     the packet codec for the eighth element
+     * @param from8      a function to extract the eighth element from the value being decoded
+     * @param codec9     the packet codec for the ninth element
+     * @param from9      a function to extract the ninth element from the value being decoded
+     * @param codec10    the packet codec for the tenth element
+     * @param from10     a function to extract the tenth element from the value being decoded
+     * @param codec11    the packet codec for the eleventh element
+     * @param from11     a function to extract the eleventh element from the value being decoded
+     * @param codec12    the packet codec for the twelfth element
+     * @param from12     a function to extract the twelfth element from the value being decoded
+     * @param codec13    the packet codec for the thirteenth element
+     * @param from13     a function to extract the thirteenth element from the value being decoded
+     * @param codec14    the packet codec for the fourteenth element
+     * @param from14     a function to extract the fourteenth element from the value being decoded
+     * @param codec15    the packet codec for the fifteenth element
+     * @param from15     a function to extract the fifteenth element from the value being decoded
+     * @param codec16    the packet codec for the sixteenth element
+     * @param from16     a function to extract the sixteenth element from the value being decoded
+     * @param to         a function to combine the elements into the final value
+     * @return a packet codec for the tuple
+     */
     public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> PacketCodec<B, C> tuple(
             PacketCodec<? super B, T1> codec1, Function<C, T1> from1,
             PacketCodec<? super B, T2> codec2, Function<C, T2> from2,

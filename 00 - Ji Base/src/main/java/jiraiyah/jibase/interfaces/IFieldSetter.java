@@ -27,6 +27,12 @@ package jiraiyah.jibase.interfaces;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.block.entity.BlockEntity;
 
+/**
+ * Represents a functional interface for setting a value on a block entity.
+ *
+ * @param <T> the type of the value to set
+ * @param <B> the type of the block entity
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -38,5 +44,11 @@ import net.minecraft.block.entity.BlockEntity;
 @FunctionalInterface
 public interface IFieldSetter<T, B extends BlockEntity>
 {
+    /**
+     * Sets the specified value on the given block entity.
+     *
+     * @param blockEntity the block entity on which to set the value
+     * @param value the value to set
+     */
     void set(B blockEntity, T value);
 }

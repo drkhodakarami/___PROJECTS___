@@ -29,6 +29,12 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
 
+/**
+ * Annotation to mark the creation date of a class, method, field, or constructor.
+ *
+ * <p>This annotation is intended for use in documentation and version control systems
+ * to indicate when a particular component was created.</p>
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -39,5 +45,12 @@ import static java.lang.annotation.ElementType.*;
 @Target(value = {TYPE, METHOD, FIELD, CONSTRUCTOR})
 public @interface CreatedAt
 {
+    /**
+     * The creation date of the annotated element.
+     *
+     * <p>The date should be in the format "YYYY-MM-DD".</p>
+     *
+     * @return The creation date as a String.
+     */
     String value();
 }

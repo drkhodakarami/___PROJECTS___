@@ -46,15 +46,15 @@ public class ModEntityTagProvider extends FabricTagProvider.EntityTypeTagProvide
     {
         Main.LOGGER.logEntityTagDatagen();
 
-        getOrCreateTagBuilder(REFERENCE.TUNER_BLACKLIST)
+        valueLookupBuilder(REFERENCE.TUNER_BLACKLIST)
                 .add(EntityType.ENDER_DRAGON);
 
-        getOrCreateTagBuilder(REFERENCE.ENDERITE_SWORD_BLACKLIST)
+        valueLookupBuilder(REFERENCE.ENDERITE_SWORD_BLACKLIST)
                 .add(EntityType.ENDER_DRAGON)
                 .add(EntityType.WITHER)
                 .add(EntityType.WARDEN);
 
-        getOrCreateTagBuilder(REFERENCE.RUBY_SWORD_WHITELIST)
+        valueLookupBuilder(REFERENCE.RUBY_SWORD_WHITELIST)
                 .add(EntityType.CAMEL)
                 .add(EntityType.CHICKEN)
                 .add(EntityType.DONKEY)

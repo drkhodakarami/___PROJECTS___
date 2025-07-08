@@ -93,7 +93,7 @@ dependencies {
 	
 	// Ji Lib Mods Dependency ========================================================================================================================
     modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
-    modImplementation "jiraiyah.reference:jireference:${jireferenceVersion}"
+    //modImplementation "jiraiyah.reference:jireference:${jireferenceVersion}"
     modImplementation "jiraiyah.jiralib:jiralib:${jiralibVersion}"
 	modImplementation "jiraiyah.gui:jigui:${jiguiVersion}"
 	//modImplementation files("${project.rootProject.file("../")}/BUILD_MOD/Ji Base-${jibaseVersion}.jar")

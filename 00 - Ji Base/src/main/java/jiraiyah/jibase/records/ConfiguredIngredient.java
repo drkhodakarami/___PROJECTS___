@@ -43,6 +43,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Represents a configured ingredient, combining an item list and stack data payload.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -53,6 +56,9 @@ import java.util.function.Predicate;
 
 public record ConfiguredIngredient(RegistryEntryList<Item> entries, StackDataPayload stackData)
 {
+    /**
+     * The codec used to serialize and deserialize the ConfiguredIngredient.
+     */
     public static final Codec<ConfiguredIngredient> CODEC = Codec.lazyInitialized(() -> RecordCodecBuilder.create(
             inst -> inst.group(
                     Ingredient.ENTRIES_CODEC.fieldOf("ingredients").forGetter(ConfiguredIngredient::entries),
@@ -60,63 +66,125 @@ public record ConfiguredIngredient(RegistryEntryList<Item> entries, StackDataPay
             ).apply(inst, ConfiguredIngredient::new)
     ));
 
+    /**
+     * The packet codec used to send and receive the ConfiguredIngredient.
+     */
     public static final PacketCodec<RegistryByteBuf, ConfiguredIngredient> PACKET_CODEC = PacketCodec.tuple(
             PacketCodecs.registryEntryList(RegistryKeys.ITEM), ConfiguredIngredient::entries,
             StackDataPayload.PACKET_CODEC, ConfiguredIngredient::stackData,
             ConfiguredIngredient::new
     );
 
+    /**
+     * An empty instance of ConfiguredIngredient.
+     */
     public static final ConfiguredIngredient EMPTY = new ConfiguredIngredient(RegistryEntryList.of(), StackDataPayload.EMPTY);
 
+    /**
+     * Creates a new ConfiguredIngredient with the given items and default stack data (count 1).
+     *
+     * @param entries the items to include in the ingredient
+     */
     public ConfiguredIngredient(RegistryEntryList<Item> entries)
     {
         this(entries, StackDataPayload.create(1));
     }
 
+    /**
+     * Creates a new ConfiguredIngredient with the given items and specified count.
+     *
+     * @param entries the items to include in the ingredient
+     * @param count   the count of each item
+     */
     public ConfiguredIngredient(RegistryEntryList<Item> entries, int count)
     {
         this(entries, StackDataPayload.create(count));
     }
 
+    /**
+     * Creates a new ConfiguredIngredient with the given items and default stack data (count 1).
+     *
+     * @param items the items to include in the ingredient
+     */
     @SuppressWarnings("deprecation")
     public ConfiguredIngredient(int count, Item... items)
     {
         this(RegistryEntryList.of(Arrays.stream(items).map(Item::getRegistryEntry).toList()), StackDataPayload.create(count));
     }
 
+    /**
+     * Creates a new ConfiguredIngredient with the given items and default stack data (count 1).
+     *
+     * @param items the items to include in the ingredient
+     */
     @SuppressWarnings("deprecation")
     public ConfiguredIngredient(Item... items)
     {
         this(RegistryEntryList.of(Arrays.stream(items).map(Item::getRegistryEntry).toList()), StackDataPayload.create(1));
     }
 
+    /**
+     * Creates a new ConfiguredIngredient with the given item and default stack data (count 1).
+     *
+     * @param count the count of the item
+     * @param item  the item to include in the ingredient
+     */
     @SuppressWarnings("deprecation")
     public ConfiguredIngredient(int count, Item item)
     {
         this(RegistryEntryList.of(Arrays.stream(new Item[]{item}).map(Item::getRegistryEntry).toList()), StackDataPayload.create(count));
     }
 
+    /**
+     * Creates a new ConfiguredIngredient with the given item and default stack data (count 1).
+     *
+     * @param item the item to include in the ingredient
+     */
     @SuppressWarnings("deprecation")
     public ConfiguredIngredient(Item item)
     {
         this(RegistryEntryList.of(Arrays.stream(new Item[]{item}).map(Item::getRegistryEntry).toList()), StackDataPayload.create(1));
     }
 
+    /**
+     * Creates a new ConfiguredIngredient with the given items and specified count and components.
+     *
+     * @param entries   the items to include in the ingredient
+     * @param count     the count of each item
+     * @param components the component changes for the stack data
+     */
     public ConfiguredIngredient(RegistryEntryList<Item> entries, int count, ComponentChanges components)
     {
         this(entries, StackDataPayload.create(count, components));
     }
 
+    /**
+     * Retrieves a list of ItemStacks that match the configured ingredients.
+     *
+     * @return a list of matching ItemStacks
+     */
     public List<ItemStack> getMatchingStacks()
     {
         return this.entries.stream().map(item -> new ItemStack(item, this.stackData.count(), this.stackData.components())).toList();
     }
 
+    /**
+     * Tests if the given stack can be used in a recipe, considering count and components.
+     *
+     * @param stack the stack to test
+     * @return true if the stack matches the ingredient, false otherwise
+     */
     public boolean testForRecipe(ItemStack stack)
     {
         return test(stack, MathHelper.countLessThanOrEquals(stack.getCount()));
     }
 
+    /**
+     * Tests if the given stack can be used in a recipe, ignoring components.
+     *
+     * @param stack the stack to test
+     * @return true if the stack matches the ingredient, false otherwise
+     */
     public boolean testForRecipeIgnoreComponents(ItemStack stack)
     {
         return this.entries.stream().anyMatch(item ->
@@ -124,6 +192,14 @@ public record ConfiguredIngredient(RegistryEntryList<Item> entries, StackDataPay
                 this.stackData.count() >= stack.getCount());
     }
 
+    /**
+     * Tests if the given stack can be used in a recipe, considering count and components.
+     *
+     * @param stack       the stack to test
+     * @param matchCount  whether to match the count of the ingredient
+     * @param matchComponents whether to match the component changes of the ingredient
+     * @return true if the stack matches the ingredient, false otherwise
+     */
     public boolean test(ItemStack stack, boolean matchCount, boolean matchComponents)
     {
         return this.entries.stream().anyMatch(item ->
@@ -132,11 +208,24 @@ public record ConfiguredIngredient(RegistryEntryList<Item> entries, StackDataPay
                 (!matchComponents || this.stackData.components().equals(stack.getComponentChanges())));
     }
 
+    /**
+     * Tests if the given stack can be used in a recipe, considering count and components.
+     *
+     * @param stack the stack to test
+     * @return true if the stack matches the ingredient, false otherwise
+     */
     public boolean test(ItemStack stack)
     {
         return test(stack, true, true);
     }
 
+    /**
+     * Tests if the given stack can be used in a recipe, considering count.
+     *
+     * @param stack       the stack to test
+     * @param countPredicate a predicate for matching the count of the ingredient
+     * @return true if the stack matches the ingredient, false otherwise
+     */
     public boolean test(ItemStack stack, Predicate<Integer> countPredicate)
     {
         return this.entries.stream().anyMatch(item ->
@@ -145,6 +234,11 @@ public record ConfiguredIngredient(RegistryEntryList<Item> entries, StackDataPay
                   this.stackData.components().equals(stack.getComponentChanges()));
     }
 
+    /**
+     * Creates a display for the configured ingredient.
+     *
+     * @return the SlotDisplay instance
+     */
     public SlotDisplay toDisplay()
     {
         if(isEmpty())
@@ -158,6 +252,11 @@ public record ConfiguredIngredient(RegistryEntryList<Item> entries, StackDataPay
         );
     }
 
+    /**
+     * Checks if the configured ingredient is empty.
+     *
+     * @return true if the ingredient is empty, false otherwise
+     */
     public boolean isEmpty()
     {
         return this == EMPTY;

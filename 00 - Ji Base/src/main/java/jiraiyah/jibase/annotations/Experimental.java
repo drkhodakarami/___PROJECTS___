@@ -31,6 +31,13 @@ import static java.lang.annotation.ElementType.TYPE;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Target;
 
+/**
+ * Annotation to mark a class, method, field, or constructor as experimental.
+ *
+ * <p>This annotation is intended for use in documentation and version control systems
+ * to indicate that the annotated component is still under development and may be subject
+ * to change or removal.</p>
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")

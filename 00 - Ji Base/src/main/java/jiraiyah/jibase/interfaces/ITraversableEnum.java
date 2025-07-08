@@ -26,6 +26,11 @@ package jiraiyah.jibase.interfaces;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Represents an interface for traversable enums, allowing easy navigation between enum constants.
+ *
+ * @param <T> the type of the enum
+ */
 @SuppressWarnings({"unchecked", "unused"})
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -35,6 +40,11 @@ import jiraiyah.jibase.annotations.*;
 
 public interface ITraversableEnum<T extends Enum<T>>
 {
+    /**
+     * Retrieves the next enum constant in a circular fashion after the current one.
+     *
+     * @return the next enum constant
+     */
     default T next()
     {
         T[] values = ((Class<T>) ((T) this).getClass()).getEnumConstants();
@@ -42,6 +52,11 @@ public interface ITraversableEnum<T extends Enum<T>>
         return values[nextOrdinal];
     }
 
+    /**
+     * Retrieves the previous enum constant in a circular fashion before the current one.
+     *
+     * @return the previous enum constant
+     */
     default T previous()
     {
         T[] values = ((Class<T>) ((T) this).getClass()).getEnumConstants();

@@ -28,6 +28,15 @@ import jiraiyah.jibase.annotations.*;
 
 import java.util.Objects;
 
+/**
+ * Represents a functional interface that accepts five arguments and returns no result.
+ *
+ * @param <T> the type of the first argument
+ * @param <U> the type of the second argument
+ * @param <V> the type of the third argument
+ * @param <W> the type of the fourth argument
+ * @param <R> the type of the fifth argument
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -38,8 +47,26 @@ import java.util.Objects;
 @FunctionalInterface
 public interface PentaConsumer<T, U, V, W, R>
 {
+    /**
+     * Performs this operation on the given arguments.
+     *
+     * @param t the first argument
+     * @param u the second argument
+     * @param v the third argument
+     * @param w the fourth argument
+     * @param r the fifth argument
+     */
     void accept(T t, U u, V v, W w, R r);
 
+    /**
+     * Returns a composed {@code PentaConsumer} that performs, in sequence, this
+     * operation followed by the {@code after} operation.
+     *
+     * @param after the operation to perform after this operation
+     * @return a composed {@code PentaConsumer} that performs in sequence this
+     * operation followed by the {@code after} operation
+     * @throws NullPointerException if {@code after} is null
+     */
     default PentaConsumer<T, U, V, W, R> andThen(PentaConsumer<? super T, ? super U, ? super V, ? super W, ? super R> after) {
         Objects.requireNonNull(after);
 

@@ -29,6 +29,18 @@ import jiraiyah.jibase.annotations.*;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Represents a function that accepts seven arguments and produces a result.
+ *
+ * @param <A> the type of the first argument
+ * @param <B> the type of the second argument
+ * @param <C> the type of the third argument
+ * @param <T> the type of the fourth argument
+ * @param <U> the type of the fifth argument
+ * @param <V> the type of the sixth argument
+ * @param <W> the type of the seventh argument
+ * @param <R> the type of the result
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -39,10 +51,31 @@ import java.util.function.Function;
 @FunctionalInterface
 public interface HeptaFunction<A, B, C, T, U, V, W, R>
 {
+    /**
+     * Returns a composed {@code HeptaFunction} that first applies this function to its input, and then
+     * applies the {@code after} function to the result.
+     *
+     * @param <X> the type of output of the {@code after} function, and of the new composed function
+     * @param after the function to apply after this function is applied
+     * @return a composed function that first applies this function and then applies the {@code after} function
+     * @throws NullPointerException if after is null
+     */
     default <X> HeptaFunction<A, B, C, T, U, V, W, X> andThen(final Function<? super R, ? extends X> after) {
         Objects.requireNonNull(after);
         return (final A a, final B b, final C c, final T t, final U u, final V v, final W w) -> after.apply(apply(a, b, c, t, u, v, w));
     }
 
+    /**
+     * Applies this function to the given arguments.
+     *
+     * @param a the first argument
+     * @param b the second argument
+     * @param c the third argument
+     * @param t the fourth argument
+     * @param u the fifth argument
+     * @param v the sixth argument
+     * @param w the seventh argument
+     * @return the result of applying this function to the given arguments
+     */
     R apply(A a, B b, C c, T t, U u, V v, W w);
 }

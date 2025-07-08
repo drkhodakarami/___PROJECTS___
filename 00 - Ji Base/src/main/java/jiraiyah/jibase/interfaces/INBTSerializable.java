@@ -27,7 +27,12 @@ package jiraiyah.jibase.interfaces;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 
+/**
+ * Represents an interface for objects that can be serialized and deserialized to/from NBT data.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -36,8 +41,19 @@ import net.minecraft.registry.RegistryWrapper;
 @Discord("https://discord.turtywurty.dev/")
 @Youtube("https://www.youtube.com/@TurtyWurty")
 
-public interface INBTSerializable<T extends NbtElement>
+public interface INBTSerializable
 {
-    T writeNbt(RegistryWrapper.WrapperLookup registryLookup);
-    void readNbt(T nbt, RegistryWrapper.WrapperLookup registryLookup);
+    /**
+     * Writes the object's data to an NBT view.
+     *
+     * @param view the write view where the data should be written
+     */
+    void writeData(WriteView view);
+
+    /**
+     * Reads the object's data from an NBT view.
+     *
+     * @param view the read view from which the data should be read
+     */
+    void readData(ReadView view);
 }

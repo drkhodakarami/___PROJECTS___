@@ -26,6 +26,9 @@ package jiraiyah.jibase.interfaces;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Represents an interface for components that can be synchronized.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -35,5 +38,8 @@ import jiraiyah.jibase.annotations.*;
 @Youtube("https://www.youtube.com/@TurtyWurty")
 public interface ISyncable
 {
+    /**
+     * Synchronizes the component's state or data.
+     */
     void sync();
 }

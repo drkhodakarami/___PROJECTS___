@@ -30,6 +30,9 @@ import jiraiyah.jibase.annotations.Repository;
 import jiraiyah.jibase.annotations.Youtube;
 import jiraiyah.jibase.interfaces.ITraversableEnum;
 
+/**
+ * Enum representing different redstone modes.
+ */
 @SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
@@ -37,8 +40,23 @@ import jiraiyah.jibase.interfaces.ITraversableEnum;
 @Youtube("https://www.youtube.com/@direwolf20")
 public enum RedstoneMode implements ITraversableEnum<RedstoneMode>
 {
+    /**
+     * Represents a mode where redstone is ignored.
+     */
     IGNORED,
+
+    /**
+     * Represents a mode where the redstone signal level is considered low.
+     */
     LOW,
+
+    /**
+     * Represents a mode where the redstone signal level is considered high.
+     */
     HIGH,
+
+    /**
+     * Represents a mode where the redstone signal creates a pulse.
+     */
     PULSE
 }

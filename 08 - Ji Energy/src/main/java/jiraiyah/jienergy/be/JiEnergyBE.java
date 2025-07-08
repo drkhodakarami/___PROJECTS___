@@ -32,21 +32,20 @@ import jiraiyah.jienergy.interfaces.IEnergyConnector;
 import jiraiyah.jiralib.blockentity.JiScreenBE;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.Text;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
 import team.reborn.energy.api.EnergyStorage;
 
 @SuppressWarnings("UnusedReturnValue")
-public class JiEnergyBE <T extends JiEnergyBE<T, B>, B extends EnergyStorage> extends JiScreenBE<T, BlockPosPayload>
+public abstract class JiEnergyBE <T extends JiEnergyBE<T, B>, B extends EnergyStorage> extends JiScreenBE<T, BlockPosPayload>
         implements IEnergyConnector<B>
 {
     protected final EnergyConnector<B> energyStorage;
@@ -64,37 +63,23 @@ public class JiEnergyBE <T extends JiEnergyBE<T, B>, B extends EnergyStorage> ex
     }
 
     @Override
-    public Text getDisplayName()
-    {
-        return null;
-    }
-
-    @Override
-    public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player)
-    {
-        return null;
-    }
-
-    @Override
     public EnergyConnector<B> getEnergyConnector()
     {
         return this.energyStorage;
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    protected void readData(ReadView view)
     {
-        super.readNbt(nbt, registries);
-        if(nbt.contains("energy" + BEKeys.HAS_ENERGY))
-            nbt.getList("energy" + BEKeys.HAS_ENERGY)
-                    .ifPresent(nbtElements -> energyStorage.readNbt(nbtElements, registries));
+        super.readData(view);
+        energyStorage.readData(view);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    protected void writeData(WriteView view)
     {
-        super.writeNbt(nbt, registries);
-        nbt.put("energy" + BEKeys.HAS_ENERGY, energyStorage.writeNbt(registries));
+        super.writeData(view);
+        energyStorage.writeData(view);
     }
 
     @SuppressWarnings("unchecked")

@@ -27,6 +27,9 @@ package jiraiyah.jibase.enumerations;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.interfaces.ITraversableEnum;
 
+/**
+ * Enum representing different I/O statuses.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -36,15 +39,40 @@ import jiraiyah.jibase.interfaces.ITraversableEnum;
 
 public enum IOStatus implements ITraversableEnum<IOStatus>
 {
+    /**
+     * Indicates no I/O operation is occurring.
+     */
     NONE,
+
+    /**
+     * Indicates an input operation is occurring.
+     */
     INPUT,
+
+    /**
+     * Indicates an output operation is occurring.
+     */
     OUTPUT,
+
+    /**
+     * Indicates both input and output operations are occurring simultaneously.
+     */
     INPUT_OUTPUT;
 
+    /**
+     * Checks if the current status represents an input operation.
+     *
+     * @return true if this status is INPUT or INPUT_OUTPUT, false otherwise.
+     */
     public boolean isInput() {
         return this == INPUT || this == INPUT_OUTPUT;
     }
 
+    /**
+     * Checks if the current status represents an output operation.
+     *
+     * @return true if this status is OUTPUT or INPUT_OUTPUT, false otherwise.
+     */
     public boolean isOutput() {
         return this == OUTPUT || this == INPUT_OUTPUT;
     }

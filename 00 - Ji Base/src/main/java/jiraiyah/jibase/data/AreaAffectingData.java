@@ -33,6 +33,12 @@ import net.minecraft.util.math.Direction;
 
 import java.util.Objects;
 
+/**
+ * A class representing data for area-affecting abilities or mechanics.
+ *
+ * @author Direwolf20
+ * @since 2025-04-18
+ */
 @SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
@@ -40,28 +46,75 @@ import java.util.Objects;
 @Youtube("https://www.youtube.com/@direwolf20")
 public class AreaAffectingData
 {
+    /**
+     * The radius in the X dimension.
+     */
     public double xRadius = 0;
+
+    /**
+     * The radius in the Y dimension.
+     */
     public double yRadius = 0;
+
+    /**
+     * The radius in the Z dimension.
+     */
     public double zRadius = 0;
+
+    /**
+     * The offset along the X dimension.
+     */
     public int xOffset = 0;
+
+    /**
+     * The offset along the Y dimension.
+     */
     public int yOffset = 1;
+
+    /**
+     * The offset along the Z dimension.
+     */
     public int zOffset = 0;
+
+    /**
+     * Whether to render the area.
+     */
     public boolean renderArea = false;
+
+    /**
+     * The bounding box representing the affected area.
+     */
     public Box area;
 
+    /**
+     * Default constructor.
+     */
     public AreaAffectingData() {
-
+        // Default constructor
     }
 
-    public AreaAffectingData(Direction facing)
-    {
+    /**
+     * Constructor with direction parameter.
+     *
+     * @param facing The direction the effect is facing.
+     */
+    public AreaAffectingData(Direction facing) {
         xOffset = facing.getVector().getX();
         yOffset = facing.getVector().getY();
         zOffset = facing.getVector().getZ();
     }
 
-    public AreaAffectingData(double xRadius, double yRadius, double zRadius, int xOffset, int yOffset, int zOffset)
-    {
+    /**
+     * Constructor with all parameters.
+     *
+     * @param xRadius The radius in the X dimension.
+     * @param yRadius The radius in the Y dimension.
+     * @param zRadius The radius in the Z dimension.
+     * @param xOffset The offset along the X dimension.
+     * @param yOffset The offset along the Y dimension.
+     * @param zOffset The offset along the Z dimension.
+     */
+    public AreaAffectingData(double xRadius, double yRadius, double zRadius, int xOffset, int yOffset, int zOffset) {
         this.xRadius = xRadius;
         this.yRadius = yRadius;
         this.zRadius = zRadius;
@@ -70,9 +123,14 @@ public class AreaAffectingData
         this.zOffset = zOffset;
     }
 
+    /**
+     * Checks if the given object is equal to this {@link AreaAffectingData} instance.
+     *
+     * @param o The object to compare with this instance.
+     * @return true if the objects are equal, false otherwise.
+     */
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o)
             return true;
 
@@ -89,9 +147,13 @@ public class AreaAffectingData
                renderArea == that.renderArea;
     }
 
+    /**
+     * Calculates the hash code for this {@link AreaAffectingData} instance.
+     *
+     * @return The hash code value.
+     */
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return Objects.hash(xRadius, yRadius, zRadius, xOffset, yOffset, zOffset, renderArea);
     }
 }

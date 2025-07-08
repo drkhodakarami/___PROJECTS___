@@ -27,6 +27,12 @@ package jiraiyah.jibase.constants;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.exceptions.Exceptions;
 
+/**
+ * A class containing constants representing various key names used in the backend.
+ *
+ * @author Jiraiyah
+ * @since 2025-04-18
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -34,31 +40,109 @@ import jiraiyah.jibase.exceptions.Exceptions;
 @Discord("https://discord.gg/pmM4emCbuH")
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
-public class BEKeys
-{
+public class BEKeys {
+    /**
+     * Key for the energy amount in a backend entity.
+     */
     public static final String ENERGY_AMOUNT = ".be.energy.amount";
-    public static final String ENERGY_CAPACITY = ".be.energy.capacity";
-    public static final String HAS_ENERGY = ".be.has.energy";
-    public static final String FLUID_AMOUNT = ".be.fluid.amount";
-    public static final String FLUID_CAPACITY = ".be.fluid.capacity";
-    public static final String HAS_FLUID = ".be.has.fluid";
-    public static final String PROGRESS_AMOUNT = ".be.progress.amount";
-    public static final String PROGRESS_MAX = ".be.progress.max";
-    public static final String COOLDOWN_AMOUNT = ".be.cooldown.amount";
-    public static final String COOLDOWN_MAX = ".be.cooldown.max";
-    public static final String BURN_AMOUNT = ".be.burn.amount";
-    public static final String BURN_MAX = ".be.burn.max";
-    public static final String HAS_INVENTORY = ".be.has.inventory";
-    public static final String IS_DIRTY ="is.dirty";
-    public static final String IS_DIRTY_CLIENT ="is.dirty.client";
-    public static final String WORLD ="world";
-    public static final String POS ="pos";
-    public static final String CACHED_STATE ="cached.state";
-    public static final String TICKS ="ticks";
-    public static final String TICKS_CLIENT ="ticks.client";
 
-    BEKeys()
-    {
+    /**
+     * Key for the energy capacity in a backend entity.
+     */
+    public static final String ENERGY_CAPACITY = ".be.energy.capacity";
+
+    /**
+     * Key indicating whether a backend entity has energy.
+     */
+    public static final String HAS_ENERGY = ".be.has.energy";
+
+    /**
+     * Key for the fluid amount in a backend entity.
+     */
+    public static final String FLUID_AMOUNT = ".be.fluid.amount";
+
+    /**
+     * Key for the fluid capacity in a backend entity.
+     */
+    public static final String FLUID_CAPACITY = ".be.fluid.capacity";
+
+    /**
+     * Key indicating whether a backend entity has fluid.
+     */
+    public static final String HAS_FLUID = ".be.has.fluid";
+
+    /**
+     * Key for the progress amount in a backend entity.
+     */
+    public static final String PROGRESS_AMOUNT = ".be.progress.amount";
+
+    /**
+     * Key for the maximum progress value in a backend entity.
+     */
+    public static final String PROGRESS_MAX = ".be.progress.max";
+
+    /**
+     * Key for the cooldown amount in a backend entity.
+     */
+    public static final String COOLDOWN_AMOUNT = ".be.cooldown.amount";
+
+    /**
+     * Key for the maximum cooldown value in a backend entity.
+     */
+    public static final String COOLDOWN_MAX = ".be.cooldown.max";
+
+    /**
+     * Key for the burn amount in a backend entity.
+     */
+    public static final String BURN_AMOUNT = ".be.burn.amount";
+
+    /**
+     * Key for the maximum burn value in a backend entity.
+     */
+    public static final String BURN_MAX = ".be.burn.max";
+
+    /**
+     * Key indicating whether a backend entity has an inventory.
+     */
+    public static final String HAS_INVENTORY = ".be.has.inventory";
+
+    /**
+     * Key indicating whether a backend entity is dirty.
+     */
+    public static final String IS_DIRTY = "is.dirty";
+
+    /**
+     * Key indicating whether the client-side version of a backend entity is dirty.
+     */
+    public static final String IS_DIRTY_CLIENT = "is.dirty.client";
+
+    /**
+     * Key for the world information in a backend entity.
+     */
+    public static final String WORLD = "world";
+
+    /**
+     * Key for the position information in a backend entity.
+     */
+    public static final String POS = "pos";
+
+    /**
+     * Key for the cached state of a backend entity.
+     */
+    public static final String CACHED_STATE = "cached.state";
+
+    /**
+     * Key for the tick count in a backend entity.
+     */
+    public static final String TICKS = "ticks";
+
+    /**
+     * Key for the client-side tick count in a backend entity.
+     */
+    public static final String TICKS_CLIENT = "ticks.client";
+
+    // Private constructor to prevent instantiation
+    BEKeys() {
         Exceptions.throwCtorAssertion();
     }
 }

@@ -30,6 +30,12 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 
+/**
+ * Annotation to mark the developer of a class, method, field, or constructor.
+ *
+ * <p>This annotation is intended for use in documentation and version control systems
+ * to indicate who developed the particular component.</p>
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -40,5 +46,10 @@ import static java.lang.annotation.ElementType.CONSTRUCTOR;
 @Target(value = {TYPE, METHOD, FIELD, CONSTRUCTOR})
 public @interface Developer
 {
+    /**
+     * The name of the developer who worked on the annotated element.
+     *
+     * @return The developer's name as a String.
+     */
     String value();
 }

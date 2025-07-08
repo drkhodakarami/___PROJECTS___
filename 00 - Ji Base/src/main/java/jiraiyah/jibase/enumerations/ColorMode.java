@@ -24,14 +24,43 @@
 
 package jiraiyah.jibase.enumerations;
 
+/**
+ * Enum representing different color modification modes.
+ */
 public enum ColorMode
 {
+    /**
+     * Adds the modifier color to the original color.
+     */
     ADDITION,
+
+    /**
+     * Multiplies the original color by the modifier color.
+     */
     MULTIPLICATION,
+
+    /**
+     * Subtracts the modifier color from the original color.
+     */
     SUBTRACTION,
+
+    /**
+     * Divides the original color by the modifier color.
+     */
     DIVISION,
+
+    /**
+     * Replaces the original color with the modifier color.
+     */
     REPLACE;
 
+    /**
+     * Modifies a color based on the provided mode and modifier color.
+     *
+     * @param color The original color to modify.
+     * @param modifierColor The color used as a modifier.
+     * @return The modified color.
+     */
     public static int modifyColor(int color, int modifierColor, ColorMode mode)
     {
         float redModifier = (modifierColor >> 16 & 0xFF) / 255.0F;
@@ -42,6 +71,14 @@ public enum ColorMode
         return modifyColor(color, redModifier, greenModifier, blueModifier, alphaModifier, mode);
     }
 
+    /**
+     * Modifies a color based on the provided mode and modifier color.
+     *
+     * @param color The original color to modify.
+     * @param modifierColor The color used as a modifier.
+     * @param mode The mode of color modification.
+     * @return The modified color.
+     */
     public static int modifyColor(int color, float redModifier, float greenModifier, float blueModifier, float alphaModifier, ColorMode mode) {
         float r = (color >> 16 & 0xFF) / 255.0F;
         float g = (color >> 8 & 0xFF) / 255.0F;

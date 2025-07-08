@@ -32,6 +32,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 
+/**
+ * Provides utility methods for working with directions in Minecraft.
+ */
 @SuppressWarnings("unused")
 @Developer("Direwolf20")
 @CreatedAt("2025-04-18")
@@ -39,6 +42,12 @@ import net.minecraft.util.math.Vec3d;
 @Youtube("https://www.youtube.com/@direwolf20")
 public class DirectionHelper
 {
+    /**
+     * Determines the primary direction based on a vector.
+     *
+     * @param vec The vector to determine the direction from.
+     * @return The primary direction.
+     */
     public static Direction getPrimaryDirection(Vec3d vec)
     {
         double absX = Math.abs(vec.x);
@@ -53,6 +62,12 @@ public class DirectionHelper
         return vec.z > 0 ? Direction.SOUTH : Direction.NORTH;
     }
 
+    /**
+     * Determines the facing direction for a player based on their yaw and pitch.
+     *
+     * @param player The player to determine the facing direction for.
+     * @return The facing direction.
+     */
     public static Direction getFacingDirection(PlayerEntity player)
     {
         float yaw = player.getYaw();

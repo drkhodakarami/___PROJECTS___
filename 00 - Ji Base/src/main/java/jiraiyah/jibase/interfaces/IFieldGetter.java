@@ -27,6 +27,12 @@ package jiraiyah.jibase.interfaces;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.block.entity.BlockEntity;
 
+/**
+ * Represents a functional interface for getting a value from a block entity.
+ *
+ * @param <T> the type of the value to get
+ * @param <B> the type of the block entity
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
@@ -38,5 +44,11 @@ import net.minecraft.block.entity.BlockEntity;
 @FunctionalInterface
 public interface IFieldGetter<T, B extends BlockEntity>
 {
+    /**
+     * Retrieves the value from the specified block entity.
+     *
+     * @param blockEntity the block entity from which to retrieve the value
+     * @return the retrieved value
+     */
     T get(B blockEntity);
 }

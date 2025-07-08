@@ -27,6 +27,12 @@ package jiraiyah.jibase.constants;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jibase.exceptions.Exceptions;
 
+/**
+ * A class containing constants representing direction suffixes.
+ *
+ * @author Jiraiyah
+ * @since 2025-04-18
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -34,18 +40,45 @@ import jiraiyah.jibase.exceptions.Exceptions;
 @Discord("https://discord.gg/pmM4emCbuH")
 @Youtube("https://www.youtube.com/@TheMentorCodeLab")
 
-public class DirectionSuffix
-{
+public class DirectionSuffix {
+
+    /**
+     * Constant representing the north direction suffix.
+     */
     public static final String NORTH = ".north";
+
+    /**
+     * Constant representing the south direction suffix.
+     */
     public static final String SOUTH = ".south";
+
+    /**
+     * Constant representing the west direction suffix.
+     */
     public static final String WEST = ".west";
+
+    /**
+     * Constant representing the east direction suffix.
+     */
     public static final String EAST = ".east";
+
+    /**
+     * Constant representing the top direction suffix.
+     */
     public static final String TOP = ".top";
+
+    /**
+     * Constant representing the bottom direction suffix.
+     */
     public static final String BOTTOM = ".bottom";
+
+    /**
+     * Constant representing no direction suffix.
+     */
     public static final String NO_DIRECTION = ".no.direction";
 
-    DirectionSuffix()
-    {
+    // Private constructor to prevent instantiation
+    DirectionSuffix() {
         Exceptions.throwCtorAssertion();
     }
 }

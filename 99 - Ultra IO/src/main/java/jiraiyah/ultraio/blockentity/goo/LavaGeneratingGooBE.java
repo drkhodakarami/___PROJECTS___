@@ -36,6 +36,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.state.property.Properties;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -62,17 +64,18 @@ public class LavaGeneratingGooBE extends GooBaseBE<LavaGeneratingGooBE>
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    protected void readData(ReadView view)
     {
-        super.readNbt(nbt, registries);
-        originalPos = nbt.get("original.pos", BlockPos.CODEC).orElse(null);
+        super.readData(view);
+        var optional = view.read("original.pos", BlockPos.CODEC);
+        optional.ifPresent(blockPos -> originalPos = blockPos);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries)
+    protected void writeData(WriteView view)
     {
-        super.writeNbt(nbt, registries);
-        nbt.put("original.pos", BlockPos.CODEC, originalPos);
+        super.writeData(view);
+        view.put("original.pos", BlockPos.CODEC, originalPos);
     }
 
     static class TickLogic implements ITickLogic<LavaGeneratingGooBE, BlockEntityFields<LavaGeneratingGooBE>>

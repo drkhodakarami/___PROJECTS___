@@ -34,6 +34,9 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 
+/**
+ * Represents a custom payload containing stack data, including the count of items and component changes.
+ */
 @Developer("TurtyWurty")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -43,30 +46,60 @@ import net.minecraft.util.Identifier;
 
 public record StackDataPayload(int count, ComponentChanges components) implements CustomPayload
 {
+    /**
+     * The unique identifier for this custom payload.
+     */
     public static final Id<IntegerPayload> ID = new Id<>(Identifier.of("jiralib", "component_changes_stack_payload"));
 
+    /**
+     * The codec used to serialize and deserialize the StackDataPayload.
+     */
     public static final Codec<StackDataPayload> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             Codec.INT.fieldOf("count").forGetter(StackDataPayload::count),
             ComponentChanges.CODEC.fieldOf("components").forGetter(StackDataPayload::components)
     ).apply(inst, StackDataPayload::new));
 
+    /**
+     * The packet codec used to send and receive the StackDataPayload.
+     */
     public static final PacketCodec<RegistryByteBuf, StackDataPayload> PACKET_CODEC =
             PacketCodec.tuple(PacketCodecs.INTEGER, StackDataPayload::count,
                               ComponentChanges.PACKET_CODEC, StackDataPayload::components,
                               StackDataPayload::new);
 
+    /**
+     * An empty instance of StackDataPayload with a count of 1 and no component changes.
+     */
     public static StackDataPayload EMPTY = new StackDataPayload(1, ComponentChanges.EMPTY);
 
+    /**
+     * Creates a new {@link StackDataPayload} with the specified count and default component changes.
+     *
+     * @param count The count of items in the stack.
+     * @return A new instance of StackDataPayload with the given count and default component changes.
+     */
     public static StackDataPayload create(int count)
     {
         return new StackDataPayload(count, ComponentChanges.EMPTY);
     }
 
+    /**
+     * Creates a new {@link StackDataPayload} with the specified count and component changes.
+     *
+     * @param count      The count of items in the stack.
+     * @param components The component changes associated with the stack.
+     * @return A new instance of StackDataPayload with the given count and component changes.
+     */
     public static StackDataPayload create(int count, ComponentChanges components)
     {
         return new StackDataPayload(count, components);
     }
 
+    /**
+     * Retrieves the unique identifier for this custom payload.
+     *
+     * @return the unique identifier
+     */
     @Override
     public Id<? extends CustomPayload> getId()
     {

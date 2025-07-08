@@ -29,7 +29,8 @@ import jiraiyah.ultraio.registry.ModMessages;
 import jiraiyah.ultraio.registry.ModModelPredicate;
 import jiraiyah.ultraio.registry.ModScreenRenderers;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.RenderLayer;
 
 import static jiraiyah.ultraio.Main.LOGGER;
@@ -44,28 +45,28 @@ public class Client implements ClientModInitializer
         ModMessages.initS2CPackets();
         ModModelPredicate.init();
 
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CITRINE_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CITRINE_TRAP_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ENDERITE_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ENDERITE_TRAP_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RUBY_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RUBY_TRAP_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SAPPHIRE_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SAPPHIRE_TRAP_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.putBlock(ModBlocks.CITRINE_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.CITRINE_TRAP_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.ENDERITE_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.ENDERITE_TRAP_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.RUBY_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.RUBY_TRAP_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.SAPPHIRE_DOOR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.SAPPHIRE_TRAP_DOOR, BlockRenderLayer.CUTOUT);
 
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TESSERACT, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.putBlock(ModBlocks.TESSERACT,  BlockRenderLayer.TRANSLUCENT);
 
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_COPPER, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_DIAMOND, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_EMERALD, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_ENDERITE, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_GOLD, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_IRON, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_NETHERITE, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_OBSIDIAN, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_STAR, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_STONE, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FLUID_TANK_WOOD, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_COPPER, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_DIAMOND, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_EMERALD, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_ENDERITE, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_GOLD, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_IRON, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_NETHERITE, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_OBSIDIAN, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_STAR, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_STONE, BlockRenderLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(ModBlocks.FLUID_TANK_WOOD, BlockRenderLayer.TRANSLUCENT);
 
         ModScreenRenderers.init();
     }
