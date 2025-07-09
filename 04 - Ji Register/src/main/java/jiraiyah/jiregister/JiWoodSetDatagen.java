@@ -26,6 +26,9 @@ package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Generates data for wood-related items and blocks.
+ */
 @SuppressWarnings("unused")
 @Developer("TurtyWurty")
 @CreatedAt("2025-04-15")

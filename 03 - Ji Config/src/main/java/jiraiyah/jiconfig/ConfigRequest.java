@@ -28,6 +28,9 @@ import jiraiyah.jibase.annotations.*;
 
 import java.io.File;
 
+/**
+ * Represents a configuration request for a mod.
+ */
 @Developer("Magistermaks")
 @ModifiedBy("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -35,10 +38,27 @@ import java.io.File;
 
 public class ConfigRequest
 {
+    /**
+     * The file object representing the configuration file.
+     */
     private final File file;
+
+    /**
+     * The filename of the configuration file.
+     */
     private final String filename;
+
+    /**
+     * The IConfigProvider instance for handling the configuration data.
+     */
     private IConfigProvider provider;
 
+    /**
+     * Constructs a new ConfigRequest with the specified file and filename.
+     *
+     * @param file The file object representing the configuration file.
+     * @param filename The filename of the configuration file.
+     */
     public ConfigRequest(File file, String filename)
     {
         this.file = file;
@@ -46,27 +66,55 @@ public class ConfigRequest
         this.provider = IConfigProvider::empty;
     }
 
+    /**
+     * Retrieves the file object representing the configuration file.
+     *
+     * @return The file object representing the configuration file.
+     */
     public File getFile()
     {
         return this.file;
     }
 
+    /**
+     * Retrieves the filename of the configuration file.
+     *
+     * @return The filename of the configuration file.
+     */
     public String getFilename()
     {
         return this.filename;
     }
 
+    /**
+     * Sets the IConfigProvider instance for handling the configuration data.
+     *
+     * @param provider The IConfigProvider instance to use.
+     * @return This ConfigRequest object.
+     */
     public ConfigRequest provider(IConfigProvider provider)
     {
         this.provider = provider;
         return this;
     }
 
+    /**
+     * Creates a new BaseConfig instance with the specified mod ID and casing type.
+     *
+     * @param modId The unique identifier for the mod.
+     * @param casing The case type for handling keys in the configuration file.
+     * @return A new BaseConfig instance.
+     */
     public BaseConfig request(String modId, ConfigKeyCasing casing)
     {
         return new BaseConfig(modId, this, casing);
     }
 
+    /**
+     * Retrieves the configuration content from the IConfigProvider.
+     *
+     * @return The configuration content.
+     */
     public String getConfig()
     {
         return provider.get(filename) + "\n";

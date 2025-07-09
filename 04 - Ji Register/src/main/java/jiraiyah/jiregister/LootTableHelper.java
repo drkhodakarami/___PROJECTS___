@@ -25,6 +25,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
@@ -38,6 +39,9 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 
+/**
+ * Provides utility methods for generating loot tables.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -47,6 +51,25 @@ import net.minecraft.registry.RegistryWrapper;
 
 public class LootTableHelper
 {
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    public LootTableHelper()
+    {
+        Exceptions.throwCtorAssertion();
+    }
+
+    /**
+     * Generates a loot table entry for an ore block with random item drops and fortune enchantment.
+     *
+     * @param provider      the block loot table provider
+     * @param registries    the registry wrapper lookup
+     * @param block         the ore block
+     * @param item          the item dropped by the ore
+     * @param min           the minimum number of items to drop
+     * @param max           the maximum number of items to drop
+     * @return a loot table builder with the specified drops and enchantments
+     */
     public static LootTable.Builder addOreDrops(FabricBlockLootTableProvider provider, RegistryWrapper.WrapperLookup registries,
                                                 Block block, Item item, float min, float max)
     {
@@ -59,6 +82,16 @@ public class LootTableHelper
                                                                   .oreDrops(impl.getOrThrow(Enchantments.FORTUNE))));
     }
 
+
+    /**
+     * Generates a loot table entry for an ore block with random item drops and a default range (2.0f to 5.0f).
+     *
+     * @param provider      the block loot table provider
+     * @param registries    the registry wrapper lookup
+     * @param block         the ore block
+     * @param item          the item dropped by the ore
+     * @return a loot table builder with the specified drops and enchantments
+     */
     public static LootTable.Builder addOreDrops(FabricBlockLootTableProvider provider, RegistryWrapper.WrapperLookup registries,
                                                 Block block, Item item)
     {

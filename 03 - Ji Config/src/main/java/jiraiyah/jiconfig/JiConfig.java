@@ -27,6 +27,9 @@ package jiraiyah.jiconfig;
 import jiraiyah.jibase.annotations.*;
 import jiraiyah.jilogger.JiLogger;
 
+/**
+ * Provides a base class for managing configuration settings in Minecraft mods.
+ */
 @SuppressWarnings("unused")
 @Developer("Magistermaks")
 @ModifiedBy("Jiraiyah")
@@ -35,25 +38,54 @@ import jiraiyah.jilogger.JiLogger;
 
 public abstract class JiConfig
 {
+    /**
+     * The mod ID.
+     */
     private final String modId;
+
+    /**
+     * The BaseConfig instance for managing configuration data.
+     */
     protected BaseConfig config;
+
+    /**
+     * The ConfigProvider instance for handling the configuration data.
+     */
     protected ConfigProvider provider;
 
+    /**
+     * Constructs a new JiConfig with the specified mod ID.
+     *
+     * @param modId The unique identifier for the mod.
+     */
     public JiConfig(String modId)
     {
         this.modId = modId;
     }
 
+    /**
+     * Retrieves the BaseConfig instance for managing configuration data.
+     *
+     * @return The BaseConfig instance.
+     */
     public BaseConfig getConfig()
     {
         return this.config;
     }
 
+    /**
+     * Loads the configuration using default casing (ALL_UPPER_CASE).
+     */
     public void load()
     {
         load(ConfigKeyCasing.ALL_UPPER_CASE);
     }
 
+    /**
+     * Loads the configuration with a specified casing type.
+     *
+     * @param casing The case type for handling keys in the configuration file.
+     */
     public void load(ConfigKeyCasing casing)
     {
         JiLogger logger = new JiLogger(this.modId);
@@ -75,10 +107,16 @@ public abstract class JiConfig
             logger.logWarning("The loading process is at broken state!");
     }
 
+    /**
+     * Subclasses should implement this method to create configuration pairs.
+     */
     protected void createConfigs()
     {
     }
 
+    /**
+     * Subclasses should implement this method to assign values to configuration keys.
+     */
     protected void assignConfigValues()
     {
     }

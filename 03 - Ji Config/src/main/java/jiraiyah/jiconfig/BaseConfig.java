@@ -38,6 +38,9 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Provides a base configuration management system for Minecraft mods using Fabric API.
+ */
 @SuppressWarnings("unused")
 @Developer("Magistermaks")
 @CreatedAt("2025-04-18")
@@ -45,13 +48,43 @@ import java.util.Scanner;
 
 public class BaseConfig
 {
+    /**
+     * The configuration map to store key-value pairs.
+     */
     private final HashMap<String, String> config = new HashMap<>();
+
+    /**
+     * The request object containing file and other details for the configuration.
+     */
     private final ConfigRequest request;
+
+    /**
+     * Indicates whether the configuration is broken.
+     */
     private boolean broken = false;
+
+    /**
+     * Logger instance for logging messages.
+     */
     private static JiLogger LOGGER;
+
+    /**
+     * Case type for handling keys in the configuration file.
+     */
     private final ConfigKeyCasing casing;
+
+    /**
+     * Case type for handling keys in the configuration file.
+     */
     private boolean exists;
 
+    /**
+     * Constructs an instance of BaseConfig with the specified mod ID, request object, and key casing.
+     *
+     * @param modid The unique identifier for the mod.
+     * @param request The ConfigRequest object containing configuration details.
+     * @param casing The case type for handling keys in the configuration file.
+     */
     public BaseConfig(String modid, ConfigRequest request, ConfigKeyCasing casing)
     {
         LOGGER = new JiLogger(modid);
@@ -90,12 +123,25 @@ public class BaseConfig
 
     }
 
+    /**
+     * Creates a ConfigRequest object for the specified mod ID and filename.
+     *
+     * @param modid The unique identifier for the mod.
+     * @param filename The name of the configuration file without extension.
+     * @return A new ConfigRequest object.
+     */
     public static ConfigRequest of(String modid, String filename)
     {
         Path path = FabricLoader.getInstance().getConfigDir();
         return new ConfigRequest(path.resolve(modid + filename + ".ini").toFile(), modid + filename);
     }
 
+    /**
+     * Retrieves the value associated with the specified key from the configuration.
+     *
+     * @param key The key for which to retrieve the value.
+     * @return The value associated with the key, or null if not found.
+     */
     public String get(String key)
     {
         if(casing == ConfigKeyCasing.ALL_UPPER_CASE)
@@ -105,6 +151,13 @@ public class BaseConfig
         return config.get(key);
     }
 
+    /**
+     * Retrieves the value associated with the specified key from the configuration, or returns a default value if not found.
+     *
+     * @param key The key for which to retrieve the value.
+     * @param def The default value to return if the key is not found.
+     * @return The value associated with the key, or the provided default value.
+     */
     public String getOrDefault(String key, String def)
     {
         String val = get(key);
@@ -117,6 +170,13 @@ public class BaseConfig
         return val;
     }
 
+    /**
+     * Retrieves the integer value associated with the specified key from the configuration, or returns a default value if not found.
+     *
+     * @param key The key for which to retrieve the value.
+     * @param def The default value to return if the key is not found or parsing fails.
+     * @return The integer value associated with the key, or the provided default value.
+     */
     public int getOrDefault(String key, int def)
     {
         try
@@ -132,6 +192,13 @@ public class BaseConfig
         }
     }
 
+    /**
+     * Retrieves the boolean value associated with the specified key from the configuration, or returns a default value if not found.
+     *
+     * @param key The key for which to retrieve the value.
+     * @param def The default value to return if the key is not found or parsing fails.
+     * @return The boolean value associated with the key, or the provided default value.
+     */
     public boolean getOrDefault(String key, boolean def)
     {
         String val = get(key);
@@ -147,6 +214,13 @@ public class BaseConfig
         return def;
     }
 
+    /**
+     * Retrieves the double value associated with the specified key from the configuration, or returns a default value if not found.
+     *
+     * @param key The key for which to retrieve the value.
+     * @param def The default value to return if the key is not found or parsing fails.
+     * @return The double value associated with the key, or the provided default value.
+     */
     public double getOrDefault(String key, double def)
     {
         try
@@ -162,6 +236,11 @@ public class BaseConfig
         }
     }
 
+    /**
+     * Creates a new configuration file with default values.
+     *
+     * @throws IOException If an error occurs while creating the file or writing to it.
+     */
     private void createConfig() throws IOException
     {
         this.exists = false;
@@ -173,6 +252,11 @@ public class BaseConfig
         writer.close();
     }
 
+    /**
+     * Loads the configuration from an existing file.
+     *
+     * @throws IOException If an error occurs while reading the file.
+     */
     private void loadConfig() throws IOException
     {
         Scanner reader = new Scanner(request.getFile());
@@ -181,6 +265,12 @@ public class BaseConfig
         this.exists = true;
     }
 
+    /**
+     * Parses a single configuration entry from the file.
+     *
+     * @param entry The configuration entry to parse.
+     * @param line The line number of the entry in the file.
+     */
     private void parseConfigEntry(String entry, int line)
     {
         if (!entry.isEmpty() && !entry.startsWith("#"))
@@ -193,11 +283,21 @@ public class BaseConfig
         }
     }
 
+    /**
+     * Checks if the configuration is broken.
+     *
+     * @return true if the configuration is broken, false otherwise.
+     */
     public boolean isBroken()
     {
         return broken;
     }
 
+    /**
+     * Deletes the configuration file and logs a warning message.
+     *
+     * @return true if the file was successfully deleted, false otherwise.
+     */
     public boolean delete()
     {
         LOGGER.logWarning("Config '" + request.getFilename() + "' was removed from existence! Restart the game to regenerate it.");

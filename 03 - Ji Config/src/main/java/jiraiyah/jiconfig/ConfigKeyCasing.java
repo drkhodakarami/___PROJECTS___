@@ -26,6 +26,9 @@ package jiraiyah.jiconfig;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Enumerates different casing options for configuration keys.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -34,7 +37,18 @@ import jiraiyah.jibase.annotations.*;
 
 public enum ConfigKeyCasing
 {
+    /**
+     * No change to the case of configuration keys.
+     */
     NO_CHANGE,
+
+    /**
+     * Converts configuration keys to all uppercase letters.
+     */
     ALL_UPPER_CASE,
+
+    /**
+     * Converts configuration keys to all lowercase letters.
+     */
     ALL_LOWER_CASE
 }

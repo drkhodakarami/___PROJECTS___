@@ -25,6 +25,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
 import jiraiyah.jiregister.interfaces.BlockStateModelGeneratorAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.client.data.*;
@@ -32,6 +33,9 @@ import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Identifier;
 
+/**
+ * Provides utility methods for generating block state models.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -41,8 +45,24 @@ import net.minecraft.util.Identifier;
 
 public class ModelHelper
 {
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    public ModelHelper()
+    {
+        Exceptions.throwCtorAssertion();
+    }
+
     // look into registerCooker from BlockStateModelGenerator
     // look into register() from BlockStateModelGenerator and it's Furnace registration
+
+    /**
+     * Registers an orientable variant block with boolean property.
+     *
+     * @param generator the block state model generator
+     * @param block       the block to register
+     * @param property    the boolean property used for determining the model state
+     */
     public static void registerOrientableVariantBlock(BlockStateModelGenerator generator, Block block, BooleanProperty property)
     {
         WeightedVariant blockOFF = BlockStateModelGenerator.createWeightedVariant(TexturedModel.ORIENTABLE.upload(block, generator.modelCollector));
@@ -56,6 +76,13 @@ public class ModelHelper
                                                                                 .coordinate(((BlockStateModelGeneratorAccessor) generator).getNorthDefaultHorizontalRotationOperations()));
     }
 
+    /**
+     * Registers a cube variant block with boolean property.
+     *
+     * @param generator the block state model generator
+     * @param block       the block to register
+     * @param property    the boolean property used for determining the model state
+     */
     @ThanksTo(discordUsers = "Waveless")
     public static void registerCubeVariantBlock(BlockStateModelGenerator generator, Block block, BooleanProperty property)
     {

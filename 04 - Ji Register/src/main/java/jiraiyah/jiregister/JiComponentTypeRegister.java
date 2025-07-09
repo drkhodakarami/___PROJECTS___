@@ -34,6 +34,9 @@ import net.minecraft.registry.RegistryKeys;
 
 import java.util.function.UnaryOperator;
 
+/**
+ * Registers custom component types for Minecraft data.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -42,13 +45,29 @@ import java.util.function.UnaryOperator;
 
 public class JiComponentTypeRegister
 {
+    /**
+     * Registers custom component types for Minecraft data.
+     */
     private final String modId;
 
+    /**
+     * Constructs a new instance of JiComponentTypeRegister with the specified mod ID.
+     *
+     * @param modId the mod ID
+     */
     public JiComponentTypeRegister(String modId)
     {
         this.modId = modId;
     }
 
+    /**
+     * Registers a new component type.
+     *
+     * @param <R>           the type of the component
+     * @param name          the name of the component type
+     * @param buildOperator an operator that builds the component type
+     * @return the registered component type
+     */
     public <R> ComponentType<R> register(String name, UnaryOperator<ComponentType.Builder<R>> buildOperator)
     {
         RegistryKey<ComponentType<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.DATA_COMPONENT_TYPE);

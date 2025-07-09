@@ -35,6 +35,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
+/**
+ * Provides utility methods for registering block items in Minecraft.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -43,13 +46,27 @@ import net.minecraft.registry.RegistryKeys;
 
 public class JiBlockItemRegister
 {
+    /**
+     * The unique identifier for the mod.
+     */
     private final String modId;
 
+    /**
+     * Constructs a new JiBlockItemRegister with the specified mod ID.
+     *
+     * @param modId The unique identifier for the mod.
+     */
     public JiBlockItemRegister(String modId)
     {
         this.modId = modId;
     }
 
+    /**
+     * Registers a block item using default settings.
+     *
+     * @param block The block to register as an item.
+     * @return The registered block item.
+     */
     public BlockItem register(Block block)
     {
         String name = BaseHelper.getRegistryName(block);
@@ -60,6 +77,13 @@ public class JiBlockItemRegister
                                                                              .registryKey(key)));
     }
 
+    /**
+     * Registers a block item using a custom IBlockItemFactory.
+     *
+     * @param block The block to register as an item.
+     * @param factory The factory to create the block item with custom settings.
+     * @return The registered block item.
+     */
     public <R extends BlockItem> R register(Block block, IBlockItemFactory<Item.Settings, R> factory)
     {
         String name = BaseHelper.getRegistryName(block);
@@ -70,6 +94,14 @@ public class JiBlockItemRegister
         return Registry.register(Registries.ITEM, key, item);
     }
 
+    /**
+     * Registers a block item with custom settings using a custom IBlockItemFactory.
+     *
+     * @param block The block to register as an item.
+     * @param settings Custom settings for the block item.
+     * @param factory The factory to create the block item with custom settings.
+     * @return The registered block item.
+     */
     public <R extends BlockItem> R register(Block block, Item.Settings settings, IBlockItemFactory<Item.Settings, R> factory)
     {
         String name = BaseHelper.getRegistryName(block);

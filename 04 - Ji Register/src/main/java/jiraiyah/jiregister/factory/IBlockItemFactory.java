@@ -27,6 +27,9 @@ package jiraiyah.jiregister.factory;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.block.Block;
 
+/**
+ * Represents a factory interface for creating item instances from blocks.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -35,5 +38,12 @@ import net.minecraft.block.Block;
 
 public interface IBlockItemFactory<U, R>
 {
+    /**
+     * Applies the factory to create an item from a block and additional settings.
+     *
+     * @param block The block to create an item for.
+     * @param settings Additional settings required to create the item.
+     * @return The created item instance.
+     */
     R apply(Block block, U settings);
 }

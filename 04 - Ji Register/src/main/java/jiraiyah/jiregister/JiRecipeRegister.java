@@ -35,6 +35,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
+/**
+ * Registers custom recipes and recipe serializers for Minecraft.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -43,19 +46,44 @@ import net.minecraft.registry.RegistryKeys;
 
 public class JiRecipeRegister
 {
+    /**
+     * The mod ID used for registering recipes and serializers.
+     */
     private final String modId;
 
+    /**
+     * Constructs a new instance of JiRecipeRegister with the specified mod ID.
+     *
+     * @param modId the mod ID
+     */
     public JiRecipeRegister(String modId)
     {
         this.modId = modId;
     }
 
+    /**
+     * Registers a recipe serializer.
+     *
+     * @param <R>             the type of the recipe
+     * @param <D>             the type of the recipe input
+     * @param name            the name of the recipe serializer
+     * @param serializer      the recipe serializer to register
+     * @return the registered recipe serializer
+     */
     public <R extends Recipe<D>, D extends RecipeInput> RecipeSerializer<R> register(String name, RecipeSerializer<R> serializer)
     {
         RegistryKey<RecipeSerializer<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.RECIPE_SERIALIZER);
         return Registry.register(Registries.RECIPE_SERIALIZER, key, serializer);
     }
 
+    /**
+     * Registers a recipe type.
+     *
+     * @param <R>             the type of the recipe
+     * @param name            the name of the recipe type
+     * @param recipeType      the recipe type to register
+     * @return the registered recipe type
+     */
     public <R extends Recipe<D>, D extends RecipeInput> RecipeType<R> register(String name, RecipeType<R> recipeType)
     {
         RegistryKey<RecipeType<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.RECIPE_TYPE);

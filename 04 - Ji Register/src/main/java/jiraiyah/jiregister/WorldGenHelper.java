@@ -25,6 +25,7 @@
 package jiraiyah.jiregister;
 
 import jiraiyah.jibase.annotations.*;
+import jiraiyah.jibase.exceptions.Exceptions;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -36,6 +37,9 @@ import net.minecraft.world.gen.placementmodifier.*;
 
 import java.util.List;
 
+/**
+ * Provides utility methods for registering world generation features and placed features.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -45,6 +49,22 @@ import java.util.List;
 
 public class WorldGenHelper
 {
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    public WorldGenHelper()
+    {
+        Exceptions.throwCtorAssertion();
+    }
+
+    /**
+     * Registers a placed feature with the given configuration and modifiers.
+     *
+     * @param context       the registerable context for placing features
+     * @param key           the registry key for the placed feature
+     * @param configuration the configured feature to place
+     * @param modifiers     the placement modifiers to apply
+     */
     public static void registerPlacedFeature(Registerable<PlacedFeature> context,
                                              RegistryKey<PlacedFeature> key,
                                              RegistryEntry<ConfiguredFeature<?, ?>> configuration,
@@ -53,6 +73,14 @@ public class WorldGenHelper
         context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
     }
 
+    /**
+     * Registers a placed feature with the given configuration and modifiers.
+     *
+     * @param context       the registerable context for placing features
+     * @param key           the registry key for the placed feature
+     * @param configuration the configured feature to place
+     * @param modifiers     the placement modifiers to apply
+     */
     public static void registerPlacedFeature(Registerable<PlacedFeature> context,
                                              RegistryKey<PlacedFeature> key,
                                              RegistryEntry<ConfiguredFeature<?, ?>> configuration,
@@ -61,6 +89,14 @@ public class WorldGenHelper
         registerPlacedFeature(context, key, configuration, List.of(modifiers));
     }
 
+    /**
+     * Registers a configured feature with the given feature and configuration.
+     *
+     * @param context       the registerable context for placing features
+     * @param key           the registry key for the configured feature
+     * @param feature       the feature to configure
+     * @param configuration the configuration for the feature
+     */
     public static <FC extends FeatureConfig, F extends Feature<FC>> void registerConfiguredFeature(Registerable<ConfiguredFeature<?, ?>> context,
                                                                                                    RegistryKey<ConfiguredFeature<?, ?>> key,
                                                                                                    F feature, FC configuration)
@@ -68,16 +104,37 @@ public class WorldGenHelper
         context.register(key, new ConfiguredFeature<>(feature, configuration));
     }
 
+    /**
+     * Creates a list of placement modifiers with the given count and height modifier.
+     *
+     * @param countModifier   the count placement modifier
+     * @param heightModifier  the height placement modifier
+     * @return a list of placement modifiers
+     */
     public static List<PlacementModifier> modifiers(PlacementModifier countModifier, PlacementModifier heightModifier)
     {
         return List.of(countModifier, SquarePlacementModifier.of(), heightModifier, BiomePlacementModifier.of());
     }
 
+    /**
+     * Creates a list of placement modifiers with the given count and height modifier.
+     *
+     * @param count           the number of times to place the feature
+     * @param heightModifier  the height placement modifier
+     * @return a list of placement modifiers
+     */
     public static List<PlacementModifier> modifiersWithCount(int count, PlacementModifier heightModifier)
     {
         return modifiers(CountPlacementModifier.of(count), heightModifier);
     }
 
+    /**
+     * Creates a list of placement modifiers with the given rarity and height modifier.
+     *
+     * @param chance          the rarity chance
+     * @param heightModifier  the height placement modifier
+     * @return a list of placement modifiers
+     */
     public static List<PlacementModifier> modifiersWithRarity(int chance, PlacementModifier heightModifier)
     {
         return modifiers(RarityFilterPlacementModifier.of(chance), heightModifier);

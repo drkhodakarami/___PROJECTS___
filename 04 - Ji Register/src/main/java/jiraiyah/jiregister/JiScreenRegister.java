@@ -37,6 +37,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 
+/**
+ * Registers custom screens and screen handlers for Minecraft.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -45,13 +48,31 @@ import net.minecraft.screen.ScreenHandlerType;
 
 public class JiScreenRegister
 {
+    /**
+     * The mod ID used for registering screens and handlers.
+     */
     private final String modId;
 
+    /**
+     * Constructs a new instance of JiScreenRegister with the specified mod ID.
+     *
+     * @param modId the mod ID
+     */
     public JiScreenRegister(String modId)
     {
         this.modId = modId;
     }
 
+    /**
+     * Registers an extended screen handler type.
+     *
+     * @param <R>             the type of the screen handler
+     * @param <D>             the type of the custom payload
+     * @param name            the name of the screen handler type
+     * @param factory         the factory used to create instances of the screen handler
+     * @param codec           the packet codec for the custom payload
+     * @return the registered extended screen handler type
+     */
     public <R extends ScreenHandler, D extends CustomPayload> ExtendedScreenHandlerType<R, D>
             register(String name, ExtendedScreenHandlerType.ExtendedFactory<R, D> factory,
                      PacketCodec<? super RegistryByteBuf, D> codec)

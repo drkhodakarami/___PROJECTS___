@@ -38,6 +38,9 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
+/**
+ * Registers custom block entities and entity types for Minecraft.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -46,13 +49,30 @@ import net.minecraft.registry.RegistryKeys;
 
 public class JiEntityRegister
 {
+    /**
+     * The mod ID used for registering block entities and entity types.
+     */
     private final String modId;
 
+    /**
+     * Constructs a new instance of JiEntityRegister with the specified mod ID.
+     *
+     * @param modId the mod ID
+     */
     public JiEntityRegister(String modId)
     {
         this.modId = modId;
     }
 
+    /**
+     * Registers a new block entity type.
+     *
+     * @param <R>             the type of the block entity
+     * @param name            the name of the block entity type
+     * @param block           the block associated with the block entity
+     * @param factory         the factory used to create instances of the block entity
+     * @return the registered block entity type
+     */
     public <R extends BlockEntity> BlockEntityType<R> register(String name, Block block, FabricBlockEntityTypeBuilder.Factory<R> factory)
     {
         RegistryKey<BlockEntityType<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.BLOCK_ENTITY_TYPE);
@@ -60,6 +80,15 @@ public class JiEntityRegister
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, key, beType);
     }
 
+    /**
+     * Registers a new entity type.
+     *
+     * @param <R>             the type of the entity
+     * @param name            the name of the entity type
+     * @param spawnGroup      the spawn group for the entity
+     * @param factory         the factory used to create instances of the entity
+     * @return the registered entity type
+     */
     public <R extends Entity> EntityType<R> register(String name, SpawnGroup spawnGroup, EntityType.EntityFactory<R> factory)
     {
         RegistryKey<EntityType<?>> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ENTITY_TYPE);

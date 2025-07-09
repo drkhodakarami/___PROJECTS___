@@ -31,12 +31,23 @@ import net.minecraft.client.render.model.json.ModelVariantOperator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * Mixin implementation of BlockStateModelGeneratorAccessor interface.
+ */
 @Mixin(BlockStateModelGenerator.class)
 public class BlockStateModelGeneratorMixin implements BlockStateModelGeneratorAccessor
 {
+    /**
+     * The static field representing the default horizontal rotation operations for the north-facing variant.
+     */
     @Shadow
     private static BlockStateVariantMap<ModelVariantOperator> NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS;
 
+    /**
+     * Retrieves the default horizontal rotation operations for the north-facing variant of a block.
+     *
+     * @return The block state variant map containing operations for the north-facing variant.
+     */
     @Override
     public BlockStateVariantMap<ModelVariantOperator> getNorthDefaultHorizontalRotationOperations()
     {

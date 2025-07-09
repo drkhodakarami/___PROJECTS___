@@ -39,6 +39,9 @@ import net.minecraft.registry.RegistryKeys;
 
 import java.util.function.Function;
 
+/**
+ * Registers custom items for Minecraft.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -48,33 +51,77 @@ import java.util.function.Function;
 
 public class JiItemRegister
 {
+    /**
+     * The mod ID used for registering items.
+     */
     private final String modId;
 
+    /**
+     * Constructs a new instance of JiItemRegister with the specified mod ID.
+     *
+     * @param mod_ID the mod ID
+     */
     public JiItemRegister(String mod_ID)
     {
         this.modId = mod_ID;
     }
 
+    /**
+     * Registers an item using default settings and a factory function.
+     *
+     * @param name    the name of the item
+     * @return the registered item
+     */
     public Item register(String name)
     {
         return register(name, Item::new);
     }
 
+    /**
+     * Registers an item with custom settings and a factory function.
+     *
+     * @param name    the name of the item
+     * @param settings the custom settings for the item
+     * @return the registered item
+     */
     public Item register(String name, Item.Settings settings)
     {
         return register(name, settings, Item::new);
     }
 
+    /**
+     * Registers an item with a stack count and default settings using a factory function.
+     *
+     * @param name      the name of the item
+     * @param stackCount the maximum stack size for the item
+     * @return the registered item
+     */
     public Item register(String name, int stackCount)
     {
         return register(name, stackCount, Item::new);
     }
 
+    /**
+     * Registers an item with a stack count and custom settings using a factory function.
+     *
+     * @param name      the name of the item
+     * @param stackCount the maximum stack size for the item
+     * @param settings  the custom settings for the item
+     * @return the registered item
+     */
     public Item register(String name, int stackCount, Item.Settings settings)
     {
         return register(name, stackCount, settings, Item::new);
     }
 
+    /**
+     * Registers an item using a factory function.
+     *
+     * @param <R>             the type of the item
+     * @param name            the name of the item
+     * @param factory         the factory used to create instances of the item
+     * @return the registered item
+     */
     public <R extends Item> R register(String name, Function<Item.Settings, R> factory)
     {
         RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
@@ -82,6 +129,15 @@ public class JiItemRegister
         return Registry.register(Registries.ITEM, key, item);
     }
 
+    /**
+     * Registers an item with a stack count using a factory function.
+     *
+     * @param <R>             the type of the item
+     * @param name            the name of the item
+     * @param stackCount      the maximum stack size for the item
+     * @param factory         the factory used to create instances of the item
+     * @return the registered item
+     */
     public <R extends Item> R register(String name, int stackCount, Function<Item.Settings, R> factory)
     {
         RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
@@ -89,6 +145,15 @@ public class JiItemRegister
         return Registry.register(Registries.ITEM, key, item);
     }
 
+    /**
+     * Registers an item with custom settings using a factory function.
+     *
+     * @param <R>             the type of the item
+     * @param name            the name of the item
+     * @param settings        the custom settings for the item
+     * @param factory         the factory used to create instances of the item
+     * @return the registered item
+     */
     public <R extends Item> R register(String name, Item.Settings settings, Function<Item.Settings, R> factory)
     {
         RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
@@ -96,6 +161,16 @@ public class JiItemRegister
         return Registry.register(Registries.ITEM, key, item);
     }
 
+    /**
+     * Registers an item with a stack count and custom settings using a factory function.
+     *
+     * @param <R>             the type of the item
+     * @param name            the name of the item
+     * @param stackCount      the maximum stack size for the item
+     * @param settings        the custom settings for the item
+     * @param factory         the factory used to create instances of the item
+     * @return the registered item
+     */
     public <R extends Item> R register(String name, int stackCount, Item.Settings settings, Function<Item.Settings, R> factory)
     {
         RegistryKey<Item> key = BaseHelper.getKey(this.modId, name, RegistryKeys.ITEM);
@@ -103,31 +178,87 @@ public class JiItemRegister
         return Registry.register(Registries.ITEM, key, item);
     }
 
+    /**
+     * Registers an axe with default settings and a material.
+     *
+     * @param name            the name of the axe
+     * @param material        the tool material for the axe
+     * @param attackDamage    the attack damage of the axe
+     * @param attackSpeed     the attack speed of the axe
+     * @return the registered axe item
+     */
     public Item registerAxe(String name, ToolMaterial material, float attackDamage, float attackSpeed)
     {
         return register(name, new Item.Settings().axe(material, attackDamage, attackSpeed), Item::new);
     }
 
+    /**
+     * Registers a hoe with default settings and a material.
+     *
+     * @param name            the name of the hoe
+     * @param material        the tool material for the hoe
+     * @param attackDamage    the attack damage of the hoe
+     * @param attackSpeed     the attack speed of the hoe
+     * @return the registered hoe item
+     */
     public Item registerHoe(String name, ToolMaterial material, float attackDamage, float attackSpeed)
     {
         return register(name, new Item.Settings().hoe(material, attackDamage, attackSpeed), Item::new);
     }
 
+    /**
+     * Registers a pickaxe with default settings and a material.
+     *
+     * @param name            the name of the pickaxe
+     * @param material        the tool material for the pickaxe
+     * @param attackDamage    the attack damage of the pickaxe
+     * @param attackSpeed     the attack speed of the pickaxe
+     * @return the registered pickaxe item
+     */
     public Item registerPickaxe(String name, ToolMaterial material, float attackDamage, float attackSpeed)
     {
         return register(name, new Item.Settings().pickaxe(material, attackDamage, attackSpeed), Item::new);
     }
 
+    /**
+     * Registers a shovel with default settings and a material.
+     *
+     * @param name            the name of the shovel
+     * @param material        the tool material for the shovel
+     * @param attackDamage    the attack damage of the shovel
+     * @param attackSpeed     the attack speed of the shovel
+     * @return the registered shovel item
+     */
     public Item registerShovel(String name, ToolMaterial material, float attackDamage, float attackSpeed)
     {
         return register(name, new Item.Settings().shovel(material, attackDamage, attackSpeed), Item::new);
     }
 
+    /**
+     * Registers a sword with default settings and a material.
+     *
+     * @param name            the name of the sword
+     * @param material        the tool material for the sword
+     * @param attackDamage    the attack damage of the sword
+     * @param attackSpeed     the attack speed of the sword
+     * @return the registered sword item
+     */
     public Item registerSword(String name, ToolMaterial material, float attackDamage, float attackSpeed)
     {
         return register(name, new Item.Settings().sword(material, attackDamage, attackSpeed), Item::new);
     }
 
+    /**
+     * Registers a tool with default settings and a material.
+     *
+     * @param <R>             the type of the tool item
+     * @param name            the name of the tool item
+     * @param material        the tool material for the tool
+     * @param attackDamage    the attack damage of the tool
+     * @param attackSpeed     the attack speed of the tool
+     * @param factory         the factory used to create instances of the tool item
+     * @return the registered tool item
+     */
     public <R extends Item> R registerTool(String name, ToolMaterial material, float attackDamage, float attackSpeed,
                                            IToolFactory<Item.Settings, R> factory)
     {
@@ -136,6 +267,18 @@ public class JiItemRegister
         return Registry.register(Registries.ITEM, key, item);
     }
 
+    /**
+     * Registers a tool with custom settings and a material.
+     *
+     * @param <R>             the type of the tool item
+     * @param name            the name of the tool item
+     * @param material        the tool material for the tool
+     * @param attackDamage    the attack damage of the tool
+     * @param attackSpeed     the attack speed of the tool
+     * @param settings        the custom settings for the tool item
+     * @param factory         the factory used to create instances of the tool item
+     * @return the registered tool item
+     */
     public <R extends Item> R registerTool(String name, ToolMaterial material, float attackDamage, float attackSpeed,
                                            Item.Settings settings, IToolFactory<Item.Settings, R> factory)
     {
@@ -144,16 +287,42 @@ public class JiItemRegister
         return Registry.register(Registries.ITEM, key, item);
     }
 
+    /**
+     * Registers an armor item with default settings and a material.
+     *
+     * @param name            the name of the armor item
+     * @param material        the armor material for the armor item
+     * @param equipment   the type of armor (e.g., helmet, chestplate)
+     * @return the registered armor item
+     */
     public Item registerArmor(String name, ArmorMaterial material, EquipmentType equipment)
     {
         return register(name, new Item.Settings().armor(material, equipment), Item::new);
     }
 
+    /**
+     * Registers an armor item with custom settings and a material.
+     *
+     * @param name            the name of the armor item
+     * @param material        the armor material for the armor item
+     * @param equipment   the type of armor (e.g., helmet, chestplate)
+     * @param settings        the custom settings for the armor item
+     * @return the registered armor item
+     */
     public Item registerArmor(String name, ArmorMaterial material, EquipmentType equipment, Item.Settings settings)
     {
         return register(name, settings.armor(material, equipment), Item::new);
     }
 
+    /**
+     * Registers a snack food item with default settings.
+     *
+     * @param name            the name of the food item
+     * @param stackCount      the maximum stack size for the food item
+     * @param nutrition       the nutritional value of the food item
+     * @param saturation      the saturation modifier of the food item
+     * @return the registered snack food item
+     */
     public Item registerSnackFood(String name, int stackCount, int nutrition, float saturation)
     {
         return register(name, stackCount,
@@ -165,6 +334,15 @@ public class JiItemRegister
                                                           .build()));
     }
 
+    /**
+     * Registers a food item with default settings.
+     *
+     * @param name            the name of the food item
+     * @param stackCount      the maximum stack size for the food item
+     * @param nutrition       the nutritional value of the food item
+     * @param saturation      the saturation modifier of the food item
+     * @return the registered food item
+     */
     public Item registerFood(String name, int stackCount, int nutrition, float saturation)
     {
         return register(name, stackCount,

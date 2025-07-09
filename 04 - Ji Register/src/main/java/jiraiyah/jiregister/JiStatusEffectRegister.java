@@ -36,6 +36,9 @@ import net.minecraft.registry.entry.RegistryEntry;
 
 import java.util.function.BiFunction;
 
+/**
+ * Registers custom status effects for Minecraft.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -44,13 +47,30 @@ import java.util.function.BiFunction;
 
 public class JiStatusEffectRegister
 {
+    /**
+     * The mod ID used for registering status effects.
+     */
     private final String modId;
 
+    /**
+     * Constructs a new instance of JiStatusEffectRegister with the specified mod ID.
+     *
+     * @param modId the mod ID
+     */
     public JiStatusEffectRegister(String modId)
     {
         this.modId = modId;
     }
 
+    /**
+     * Registers a status effect using a factory function.
+     *
+     * @param name          the name of the status effect
+     * @param category      the category of the status effect (e.g., BENEFICIAL, HARMFUL)
+     * @param color         the color of the status effect icon
+     * @param factory       the factory used to create instances of the status effect
+     * @return the registered status effect entry
+     */
     public RegistryEntry<StatusEffect> register(String name, StatusEffectCategory category, int color,
                                                BiFunction<StatusEffectCategory, Integer, StatusEffect> factory)
     {

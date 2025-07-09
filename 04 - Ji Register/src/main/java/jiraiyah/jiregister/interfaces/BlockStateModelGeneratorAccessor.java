@@ -27,7 +27,15 @@ package jiraiyah.jiregister.interfaces;
 import net.minecraft.client.data.BlockStateVariantMap;
 import net.minecraft.client.render.model.json.ModelVariantOperator;
 
+/**
+ * Provides access to block state model generator operations.
+ */
 public interface BlockStateModelGeneratorAccessor
 {
+    /**
+     * Retrieves the default horizontal rotation operations for the north-facing variant of a block.
+     *
+     * @return The block state variant map containing operations for the north-facing variant.
+     */
     BlockStateVariantMap<ModelVariantOperator> getNorthDefaultHorizontalRotationOperations();
 }

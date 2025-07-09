@@ -49,6 +49,9 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Provides utility methods for managing armor-related data.
+ */
 @SuppressWarnings("unused")
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
@@ -58,8 +61,9 @@ import java.util.Map;
 
 public class ArmorHelper
 {
-
-
+    /**
+     * Maps equipment slots to their corresponding armor model names.
+     */
     public static Map<String, Identifier> SlotToArmorNames = new HashMap<>();
 
     static
@@ -71,6 +75,24 @@ public class ArmorHelper
         SlotToArmorNames.put(EquipmentSlot.BODY.getName(), ItemModelGenerator.getTrimAssetIdPrefix(EquipmentSlot.BODY.getName()));
     }
 
+    /**
+     * Creates a new armor material with the specified properties.
+     *
+     * @param modID               The unique identifier for the mod.
+     * @param name                The name of the armor material.
+     * @param durability          The durability of the armor material.
+     * @param bootDefence         The defence value for boots.
+     * @param leggingsDefence     The defence value for leggings.
+     * @param chestplateDefence   The defence value for chestplates.
+     * @param helmetDefence       The defence value for helmets.
+     * @param bodyDefence         The defence value for body armor.
+     * @param enchantmentValue    The enchantment value of the armor material.
+     * @param equipSound          The sound event to play when equipping the armor.
+     * @param toughness           The toughness value of the armor material.
+     * @param knockbackResistance The knockback resistance value of the armor material.
+     * @param repairIngredient    The tag key for repairing ingredients.
+     * @return A new ArmorMaterial instance.
+     */
     public static ArmorMaterial getArmorMaterial(String modID, String name, int durability, int bootDefence, int leggingsDefence, int chestplateDefence, int helmetDefence,
                                                  int bodyDefence, int enchantmentValue, RegistryEntry<SoundEvent> equipSound, float toughness,
                                                  float knockbackResistance, TagKey<Item> repairIngredient)
@@ -91,6 +113,13 @@ public class ArmorHelper
                                  key);
     }
 
+    /**
+     * Generates all armor models for the specified armors.
+     *
+     * @param modID The unique identifier for the mod.
+     * @param generator The ItemModelGenerator instance for generating models.
+     * @param armors An array of armor items to generate models for.
+     */
     public static void generateAllArmorModels(String modID, ItemModelGenerator generator, Item[] armors)
     {
         EquipmentType slot;
@@ -99,11 +128,26 @@ public class ArmorHelper
             generateArmorModel(modID, generator, armor);
     }
 
+    /**
+     * Generates an armor model for the specified armor item.
+     *
+     * @param modID The unique identifier for the mod.
+     * @param generator The ItemModelGenerator instance for generating models.
+     * @param armor The armor item to generate a model for.
+     */
     public static void generateArmorModel(String modID, ItemModelGenerator generator, Item armor)
     {
         generateArmorModel(modID, generator, armor, false);
     }
 
+    /**
+     * Generates an armor model for the specified armor item with an option to mark it as dyeable.
+     *
+     * @param modID The unique identifier for the mod.
+     * @param generator The ItemModelGenerator instance for generating models.
+     * @param armor The armor item to generate a model for.
+     * @param dyeable Whether the armor model should be marked as dyeable.
+     */
     public static void generateArmorModel(String modID, ItemModelGenerator generator, Item armor, boolean dyeable)
     {
         Component<EquippableComponent> component = armor.getComponents().getTyped(DataComponentTypes.EQUIPPABLE);
@@ -115,11 +159,25 @@ public class ArmorHelper
         generator.registerArmor(armor, key, TrimID, dyeable);
     }
 
+    /**
+     * Builds an EquipmentModel for a humanoid entity.
+     *
+     * @param modID The unique identifier for the mod.
+     * @param name The name of the model.
+     * @return An EquipmentModel instance with humanoid layers.
+     */
     public static EquipmentModel buildHumanoid(String modID, String name)
     {
         return EquipmentModel.builder().addHumanoidLayers(BaseHelper.identifier(modID, name)).build();
     }
 
+    /**
+     * Builds an EquipmentModel for a humanoid and horse entity.
+     *
+     * @param modID The unique identifier for the mod.
+     * @param name The name of the model.
+     * @return An EquipmentModel instance with humanoid and horse layers.
+     */
     public static EquipmentModel buildHumanoidAndHorse(String modID, String name)
     {
         return EquipmentModel.builder()

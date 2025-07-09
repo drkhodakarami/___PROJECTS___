@@ -27,6 +27,9 @@ package jiraiyah.jiregister.factory;
 import jiraiyah.jibase.annotations.*;
 import net.minecraft.item.ToolMaterial;
 
+/**
+ * Represents a factory interface for creating tool instances from materials and settings.
+ */
 @Developer("Jiraiyah")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/drkhodakarami/___PROJECTS___")
@@ -35,5 +38,14 @@ import net.minecraft.item.ToolMaterial;
 
 public interface IToolFactory<U, R>
 {
+    /**
+     * Applies the factory to create a tool from a material, damage stat, speed stat, and additional settings.
+     *
+     * @param material The material of the tool.
+     * @param damage The base damage stat of the tool.
+     * @param speed The attack speed stat of the tool.
+     * @param settings Additional settings required to create the tool.
+     * @return The created tool instance.
+     */
     R apply(ToolMaterial material, Float damage, float speed, U settings);
 }

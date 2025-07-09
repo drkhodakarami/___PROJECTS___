@@ -26,16 +26,31 @@ package jiraiyah.jiconfig;
 
 import jiraiyah.jibase.annotations.*;
 
+/**
+ * Provides a contract for handling configuration data.
+ */
 @Developer("Magistermaks")
 @CreatedAt("2025-04-18")
 @Repository("https://github.com/magistermaks/fabric-simplelibs/blob/master/simple-config/SimpleConfig.java")
 
 public interface IConfigProvider
 {
+    /**
+     * Retrieves an empty string as the configuration content.
+     *
+     * @param ignoredNamespace The namespace parameter is not used in this implementation.
+     * @return An empty string representing the configuration content.
+     */
     static String empty(String ignoredNamespace)
     {
         return "";
     }
 
+    /**
+     * Retrieves the configuration content for a given namespace.
+     *
+     * @param namespace The namespace for which to retrieve the configuration content.
+     * @return The configuration content as a string.
+     */
     String get(String namespace);
 }
