@@ -31,22 +31,46 @@ import net.minecraft.block.entity.BlockEntity;
 
 import java.util.function.Supplier;
 
+/**
+ * Represents an action node in a tick logic system.
+ *
+ * <p>Action nodes execute a specified action and return a tick status.</p>
+ */
 public class ActionNode<T extends BlockEntity> extends Node<T>
 {
+    /**
+     * The supplier for the action to be executed.
+     */
     private Supplier<TickStatus> action;
 
+    /**
+     * Constructs an ActionNode with no Blackboard.
+     *
+     * @param action the action to be executed
+     */
     public ActionNode(Supplier<TickStatus> action)
     {
         super();
         this.action = action;
     }
 
+    /**
+     * Constructs an ActionNode with a Blackboard.
+     *
+     * @param blackboard the Blackboard instance
+     * @param action the action to be executed
+     */
     public ActionNode(Blackboard blackboard, Supplier<TickStatus> action)
     {
         super(blackboard);
         this.action = action;
     }
 
+    /**
+     * Executes the action and returns its status.
+     *
+     * @return the tick status of the action execution
+     */
     @Override
     public TickStatus tick()
     {
@@ -67,6 +91,11 @@ public class ActionNode<T extends BlockEntity> extends Node<T>
         }
     }
 
+    /**
+     * Sets a new action for the node.
+     *
+     * @param action the new action to be executed
+     */
     public void setAction(Supplier<TickStatus> action)
     {
         this.action = action;

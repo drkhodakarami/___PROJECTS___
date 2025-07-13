@@ -34,11 +34,30 @@ import net.minecraft.block.entity.BlockEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the start node in a tick logic system.
+ *
+ * <p>The StartNode manages the execution of a tree of nodes, handling running nodes and aggregating their results based on the specified aggregation policy.</p>
+ */
 public class StartNode<T extends BlockEntity> extends Node<T>
 {
+    /**
+     * A list of currently running child nodes.
+     */
     private List<Node<T>> runningNodes = new ArrayList<>();
+
+    /**
+     * The aggregation policy to determine the final tick status based on child node results.
+     */
     private final AggregationPolicy aggregationPolicy;
 
+    /**
+     * Constructs a StartNode with no Blackboard and a specified aggregation policy.
+     *
+     * @param root the root node of the tick logic tree
+     * @param blackboard the Blackboard instance
+     * @param aggregationPolicy the aggregation policy to determine the final tick status
+     */
     public StartNode(Node<T> root, Blackboard blackboard, AggregationPolicy aggregationPolicy)
     {
         super(blackboard);
@@ -46,6 +65,11 @@ public class StartNode<T extends BlockEntity> extends Node<T>
         this.aggregationPolicy = aggregationPolicy;
     }
 
+    /**
+     * Evaluates the child nodes based on the specified aggregation policy and returns a tick status.
+     *
+     * @return the final tick status based on the evaluated child nodes
+     */
     @Override
     public TickStatus tick()
     {
@@ -104,6 +128,11 @@ public class StartNode<T extends BlockEntity> extends Node<T>
         }
     }
 
+    /**
+     * Adds a running node to the list of currently running nodes.
+     *
+     * @param node the node to add as running
+     */
     public void addRunningNode(Node<T> node)
     {
         if(node.getParent() instanceof IRunningNodeManager)
@@ -113,6 +142,9 @@ public class StartNode<T extends BlockEntity> extends Node<T>
             runningNodes.add(node);
     }
 
+    /**
+     * Resets the state of this node and clears the list of running nodes.
+     */
     @Override
     public void reset()
     {

@@ -35,8 +35,24 @@ import net.minecraft.block.entity.BlockEntity;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+/**
+ * A logic tree that handles resource adjustments based on a condition.
+ *
+ * @param <T> the type of block entity associated with this logic tree
+ */
 public class HandleResourceSubTree<T extends BlockEntity> extends LogicTree<T>
 {
+    /**
+     * Constructs a HandleResourceSubTree instance with the specified parameters.
+     *
+     * @param shouldUseResource whether to use resource adjustments
+     * @param properties        properties associated with the block entity
+     * @param blackboard        the blackboard used for data storage
+     * @param adjustmentAmount  the amount to adjust resources by
+     * @param resourceAmountSupplier a supplier that provides the current resource amount
+     * @param resourceMaxAmountSupplier a supplier that provides the maximum resource amount (can be null)
+     * @param adjustResourceConsumer a consumer that adjusts the resource amount
+     */
     public HandleResourceSubTree(boolean shouldUseResource, BEProperties<T> properties, Blackboard blackboard,
                                  long adjustmentAmount,
                                  Supplier<Long> resourceAmountSupplier, Supplier<Long> resourceMaxAmountSupplier,
@@ -48,6 +64,15 @@ public class HandleResourceSubTree<T extends BlockEntity> extends LogicTree<T>
         initTree(shouldUseResource, adjustmentAmount, resourceAmountSupplier, resourceMaxAmountSupplier, adjustResourceConsumer);
     }
 
+    /**
+     * Initializes the logic tree based on the provided parameters.
+     *
+     * @param useResource whether to use resource adjustments
+     * @param adjustmentAmount the amount to adjust resources by
+     * @param resourceAmountSupplier a supplier that provides the current resource amount
+     * @param resourceMaxAmountSupplier a supplier that provides the maximum resource amount (can be null)
+     * @param adjustResourceConsumer a consumer that adjusts the resource amount
+     */
     private void initTree(boolean useResource, long adjustmentAmount, Supplier<Long> resourceAmountSupplier, Supplier<Long> resourceMaxAmountSupplier, Consumer<Long> adjustResourceConsumer)
     {
         ConditionNode<T> shouldUseResource = new ConditionNode<T>(this.blackboard, () -> useResource);

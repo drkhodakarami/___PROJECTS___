@@ -33,8 +33,21 @@ import net.minecraft.block.entity.BlockEntity;
 
 import java.util.function.Supplier;
 
+/**
+ * A logic tree that checks if a resource exists based on a condition.
+ *
+ * @param <T> the type of block entity associated with this logic tree
+ */
 public class HasResourceSubTree<T extends BlockEntity> extends LogicTree<T>
 {
+    /**
+     * Constructs a HasResourceSubTree instance with the specified parameters.
+     *
+     * @param shouldUseResource whether to use resource checks
+     * @param properties        properties associated with the block entity
+     * @param blackboard        the blackboard used for data storage
+     * @param resourceAmountSupplier a supplier that provides the current resource amount
+     */
     public HasResourceSubTree(boolean shouldUseResource, BEProperties<T> properties, Blackboard blackboard,
                               Supplier<Long> resourceAmountSupplier)
     {
@@ -44,6 +57,12 @@ public class HasResourceSubTree<T extends BlockEntity> extends LogicTree<T>
         initTree(shouldUseResource, resourceAmountSupplier);
     }
 
+    /**
+     * Initializes the logic tree based on the provided parameters.
+     *
+     * @param useResource whether to use resource checks
+     * @param resourceAmountSupplier a supplier that provides the current resource amount
+     */
     private void initTree(boolean useResource, Supplier<Long> resourceAmountSupplier)
     {
         ConditionNode<T> shouldUseResource = new ConditionNode<T>(this.blackboard, () -> useResource);

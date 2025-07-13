@@ -36,28 +36,71 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Represents a node in a logic tree used for managing tick logic.
+ *
+ * @param <T> the type of block entity associated with this node
+ */
 public abstract class Node<T extends BlockEntity>
 {
+    /**
+     * The blackboard used to store and retrieve data during tick operations.
+     */
     protected Blackboard blackboard;
+
+    /**
+     * A list of child nodes that are part of this node's subtree.
+     */
     protected List<Node<T>> children = new ArrayList<>();
+
+    /**
+     * The parent node of this node.
+     */
     protected Node<T> parent;
+
+    /**
+     * The logic tree to which this node belongs.
+     */
     protected LogicTree<T> tree;
+
+    /**
+     * Properties associated with the block entity.
+     */
     protected BEProperties<T> properties;
 
+    /**
+     * Constructs an empty Node instance.
+     */
     public Node()
     {}
 
+    /**
+     * Constructs a Node instance with the specified blackboard.
+     *
+     * @param blackboard the blackboard used to store data during tick operations
+     */
     public Node(Blackboard blackboard)
     {
         this.blackboard = blackboard;
     }
 
+    /**
+     * Adds a child node to this node's subtree.
+     *
+     * @param child the child node to add
+     */
     public void addChild(Node<T> child)
     {
         child.parent = this;
         children.add(child);
     }
 
+    /**
+     * Sets the logic tree and properties for this node and all its children.
+     *
+     * @param tree    the logic tree to which this node belongs
+     * @param properties the properties associated with the block entity
+     */
     public void setTree(LogicTree<T> tree, BEProperties<T> properties)
     {
         this.tree = tree;
@@ -66,28 +109,51 @@ public abstract class Node<T extends BlockEntity>
             child.setTree(tree, properties);
     }
 
+    /**
+     * Resets all nodes in the subtree rooted at this node.
+     */
     public void reset()
     {
         for (Node<T> child : children)
             child.reset();
     }
 
+    /**
+     * Retrieves the parent node of this node.
+     *
+     * @return the parent node, or null if there is no parent
+     */
     public Node<T> getParent()
     {
         return parent;
     }
 
+    /**
+     * Checks if this node is a child of a parallel node.
+     *
+     * @return true if this node is a child of a parallel node, false otherwise
+     */
     public boolean isChildOfParallelNode()
     {
         return parent instanceof ParallelNode;
     }
 
+    /**
+     * Retrieves the logger instance associated with this node's logic tree.
+     *
+     * @return the JiLogger instance
+     */
     public JiLogger getLogger()
     {
         return this.tree.getLogger();
     }
 
-    public NbtCompound writeNbt()
+    /**
+     * Writes the data of this node and its children to an NBT compound.
+     *
+     * @return the NBT compound representation of the node and its children
+     */
+    public NbtCompound writeData()
     {
         NbtCompound nbt = new NbtCompound();
 
@@ -95,14 +161,19 @@ public abstract class Node<T extends BlockEntity>
         {
             NbtList childrenList = new NbtList();
             for(Node<T> child : children)
-                childrenList.add(child.writeNbt());
+                childrenList.add(child.writeData());
             nbt.put("children", childrenList);
         }
 
         return nbt;
     }
 
-    public void readNbt(NbtCompound nbt)
+    /**
+     * Reads the data of this node and its children from an NBT compound.
+     *
+     * @param nbt the NBT compound representation of the node and its children
+     */
+    public void readData(NbtCompound nbt)
     {
         if(nbt.contains("children"))
         {
@@ -113,11 +184,16 @@ public abstract class Node<T extends BlockEntity>
                                        {
                                            Optional<NbtCompound> childCompound = list.getCompound(i);
                                            Node<T> child = children.get(i);
-                                           childCompound.ifPresent(child::readNbt);
+                                           childCompound.ifPresent(child::readData);
                                        }
                                    });
         }
     }
 
+    /**
+     * Ticks this node and its subtree.
+     *
+     * @return the tick status of this node
+     */
     public abstract TickStatus tick();
 }

@@ -55,7 +55,6 @@ ext.fabricVersion = sharedProperties.getProperty("fabric_version")
 ext.jibaseVersion = sharedProperties.getProperty("jibase_version")
 ext.jiloggerVersion = sharedProperties.getProperty("jilogger_version")
 ext.jiticlogicVersion = sharedProperties.getProperty("jiticlogic_version")
-ext.jiregisterVersion = sharedProperties.getProperty("jiregister_version")
 
 ext.energyVersion = sharedProperties.getProperty("energy_version")
 
@@ -104,7 +103,6 @@ dependencies {
 	// Ji Lib Mods Dependency ========================================================================================================================
     modImplementation "jiraiyah.base:jibase:${jibaseVersion}"
     modImplementation "jiraiyah.logger:jilogger:${jiloggerVersion}"
-    modImplementation "jiraiyah.register:jiregister:${jiregisterVersion}"
 }
 
 //======================================================================================== PROCESS RESOURCES

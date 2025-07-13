@@ -30,20 +30,41 @@ import jiraiyah.jiticklogic.base.IRunningNodeManager;
 import jiraiyah.jiticklogic.base.Node;
 import net.minecraft.block.entity.BlockEntity;
 
+/**
+ * Represents a random node in a tick logic system.
+ *
+ * <p>Random nodes randomly select and execute one of their child nodes.</p>
+ */
 public class RandomNode<T extends BlockEntity> extends Node<T> implements IRunningNodeManager
 {
+    /**
+     * The child node currently being executed.
+     */
     private Node<T> runningChild = null;
 
+    /**
+     * Constructs a RandomNode with no Blackboard.
+     */
     public RandomNode()
     {
         super();
     }
 
+    /**
+     * Constructs a RandomNode with a Blackboard.
+     *
+     * @param blackboard the Blackboard instance
+     */
     public RandomNode(Blackboard blackboard)
     {
         super(blackboard);
     }
 
+    /**
+     * Executes a randomly selected child node and returns its status.
+     *
+     * @return the tick status of the executed child node
+     */
     @Override
     public TickStatus tick()
     {
@@ -70,6 +91,9 @@ public class RandomNode<T extends BlockEntity> extends Node<T> implements IRunni
         return status;
     }
 
+    /**
+     * Resets the state of this node and clears the running child.
+     */
     @Override
     public void reset()
     {

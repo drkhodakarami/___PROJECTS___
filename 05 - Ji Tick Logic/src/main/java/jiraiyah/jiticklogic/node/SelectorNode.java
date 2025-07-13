@@ -30,21 +30,46 @@ import jiraiyah.jiticklogic.base.IRunningNodeManager;
 import jiraiyah.jiticklogic.base.Node;
 import net.minecraft.block.entity.BlockEntity;
 
+/**
+ * Represents a selector node in a tick logic system.
+ *
+ * <p>Selector nodes evaluate its child nodes sequentially and returns the first success or running status encountered.</p>
+ */
 public class SelectorNode<T extends BlockEntity> extends Node<T> implements IRunningNodeManager
 {
+    /**
+     * The current index of the child node being evaluated.
+     */
     private int currentChildIndex = 0;
+
+    /**
+     * The child node currently being evaluated.
+     */
     private Node<T> runningChild = null;
 
+    /**
+     * Constructs a SelectorNode with no Blackboard.
+     */
     public SelectorNode()
     {
         super();
     }
 
+    /**
+     * Constructs a SelectorNode with a Blackboard.
+     *
+     * @param blackboard the Blackboard instance
+     */
     public SelectorNode(Blackboard blackboard)
     {
         super(blackboard);
     }
 
+    /**
+     * Evaluates child nodes sequentially and returns the first success or running status encountered.
+     *
+     * @return the tick status of the evaluated child node
+     */
     @Override
     public TickStatus tick()
     {
@@ -80,6 +105,10 @@ public class SelectorNode<T extends BlockEntity> extends Node<T> implements IRun
         return TickStatus.FAILURE;
     }
 
+    /**
+     * Evaluates child nodes sequentially and returns the first success or running status encountered.
+     *
+     */
     @Override
     public void reset()
     {

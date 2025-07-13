@@ -24,10 +24,25 @@
 
 package jiraiyah.jiticklogic.base;
 
+/**
+ * Defines policies for aggregating results of multiple tick logic operations.
+ */
 public enum AggregationPolicy
 {
+    /**
+     * Succeeds if any individual operation succeeds. Fails otherwise.
+     */
     SUCCEED_ON_ANY_SUCCESS,
+    /**
+     * Fails if any individual operation fails. Succeeds otherwise.
+     */
     FAIL_ON_ANY_FAILURE,
+    /**
+     * Succeeds only if all individual operations succeed. Fails otherwise.
+     */
     SUCCEED_IF_ALL_SUCCESS,
+    /**
+     * Fails only if all individual operations fail. Succeeds otherwise.
+     */
     FAIL_IF_ALL_FAILURE
 }

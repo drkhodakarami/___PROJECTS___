@@ -32,18 +32,23 @@ import net.minecraft.nbt.NbtOps;
 
 import static jiraiyah.jiticklogic.base.Blackboard.getCodec;
 
-public class BlackboardEntry
+/**
+ * Represents an entry in a blackboard, containing a type ID and its corresponding value.
+ */
+public record BlackboardEntry(String typeId, Object value)
 {
-    public final String typeId;
-    public final Object value;
-
+    /**
+     * Codec for serializing and deserializing {@link BlackboardEntry} instances.
+     */
     public static final Codec<BlackboardEntry> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("type").forGetter(entry -> entry.typeId),
-            Codec.PASSTHROUGH.fieldOf("value").forGetter( entry -> {
-                NbtElement nbt = getCodec(entry.typeId).encodeStart(NbtOps.INSTANCE, entry.value).result().orElseThrow();
-                return new Dynamic<>(NbtOps.INSTANCE, nbt);
-            })
-    ).apply(instance, (type, dyn) -> {
+            Codec.PASSTHROUGH.fieldOf("value").forGetter(entry ->
+                                                         {
+                                                             NbtElement nbt = getCodec(entry.typeId).encodeStart(NbtOps.INSTANCE, entry.value).result().orElseThrow();
+                                                             return new Dynamic<>(NbtOps.INSTANCE, nbt);
+                                                         })
+    ).apply(instance, (type, dyn) ->
+    {
         Codec<Object> codec = getCodec(type);
 
         NbtElement nbt = (NbtElement) dyn.getValue();
@@ -51,10 +56,4 @@ public class BlackboardEntry
 
         return new BlackboardEntry(type, value);
     }));
-
-    public BlackboardEntry(String typeId, Object value)
-    {
-        this.typeId = typeId;
-        this.value = value;
-    }
 }

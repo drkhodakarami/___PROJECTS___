@@ -35,24 +35,56 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Represents a random selector node in a tick logic system.
+ *
+ * <p>Random selector nodes randomly select and execute one of their child nodes until a success or running status is returned.</p>
+ */
 public class RandomSelectorNode<T extends BlockEntity> extends Node<T> implements IRunningNodeManager
 {
+    /**
+     * The current index of the child node being executed.
+     */
     private int currentChildIndex = 0;
+
+    /**
+     * The child node currently being executed.
+     */
     private Node<T> runningChild = null;
+
+    /**
+     * A shuffled list of child nodes to ensure random selection.
+     */
     List<Node<T>> shuffledChildren;
 
+    /**
+     * A random number generator used for shuffling the child nodes.
+     */
     private final Random rand = new Random();
 
+    /**
+     * Constructs a RandomSelectorNode with no Blackboard.
+     */
     public RandomSelectorNode()
     {
         super();
     }
 
+    /**
+     * Constructs a RandomSelectorNode with a Blackboard.
+     *
+     * @param blackboard the Blackboard instance
+     */
     public RandomSelectorNode(Blackboard blackboard)
     {
         super(blackboard);
     }
 
+    /**
+     * Executes a randomly selected child node and returns its status until a success or running status is returned.
+     *
+     * @return the tick status of the executed child node
+     */
     @Override
     public TickStatus tick()
     {
@@ -91,6 +123,9 @@ public class RandomSelectorNode<T extends BlockEntity> extends Node<T> implement
         return TickStatus.FAILURE;
     }
 
+    /**
+     * Resets the state of this node, shuffles the child nodes, and clears the running child.
+     */
     @Override
     public void reset()
     {

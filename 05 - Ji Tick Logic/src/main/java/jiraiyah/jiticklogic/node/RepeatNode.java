@@ -30,17 +30,42 @@ import jiraiyah.jiticklogic.base.IRunningNodeManager;
 import jiraiyah.jiticklogic.base.Node;
 import net.minecraft.block.entity.BlockEntity;
 
+/**
+ * Represents a repeat node in a tick logic system.
+ *
+ * <p>Repeat nodes execute their child node multiple times, specified by the repeat count.</p>
+ */
 public class RepeatNode<T extends BlockEntity> extends Node<T> implements IRunningNodeManager
 {
+    /**
+     * Represents a repeat node in a tick logic system.
+     *
+     * <p>Repeat nodes execute their child node multiple times, specified by the repeat count.</p>
+     */
     private final int repeatCount;
+
+    /**
+     * The current iteration count during the repeat cycle.
+     */
     private int currentIteration;
 
+    /**
+     * Constructs a RepeatNode with no Blackboard and a specified repeat count.
+     *
+     * @param repeatCount the number of times to repeat the execution of the child node
+     */
     public RepeatNode(int repeatCount)
     {
         this.repeatCount = repeatCount;
         currentIteration = 0;
     }
 
+    /**
+     * Constructs a RepeatNode with a Blackboard and a specified repeat count.
+     *
+     * @param blackboard the Blackboard instance
+     * @param repeatCount the number of times to repeat the execution of the child node
+     */
     public RepeatNode(Blackboard blackboard, int repeatCount)
     {
         super(blackboard);
@@ -48,6 +73,11 @@ public class RepeatNode<T extends BlockEntity> extends Node<T> implements IRunni
         currentIteration = 0;
     }
 
+    /**
+     * Executes the child node multiple times based on the specified repeat count.
+     *
+     * @return the tick status of the executed child node
+     */
     @Override
     public TickStatus tick()
     {
@@ -74,6 +104,9 @@ public class RepeatNode<T extends BlockEntity> extends Node<T> implements IRunni
         return TickStatus.SUCCESS;
     }
 
+    /**
+     * Resets the state of this node and its child nodes.
+     */
     @Override
     public void reset()
     {

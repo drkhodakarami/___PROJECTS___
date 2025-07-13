@@ -31,22 +31,46 @@ import net.minecraft.block.entity.BlockEntity;
 
 import java.util.function.Supplier;
 
+/**
+ * Represents a condition node in a tick logic system.
+ *
+ * <p>Condition nodes evaluate a specified condition and return a tick status.</p>
+ */
 public class ConditionNode<T extends BlockEntity> extends Node<T>
 {
+    /**
+     * The supplier for the condition to be evaluated.
+     */
     private Supplier<Boolean> condition;
 
+    /**
+     * Constructs a ConditionNode with no Blackboard.
+     *
+     * @param condition the condition to be evaluated
+     */
     public ConditionNode(Supplier<Boolean> condition)
     {
         super();
         this.condition = condition;
     }
 
+    /**
+     * Constructs a ConditionNode with a Blackboard.
+     *
+     * @param blackboard the Blackboard instance
+     * @param condition the condition to be evaluated
+     */
     public ConditionNode(Blackboard blackboard, Supplier<Boolean> condition)
     {
         super(blackboard);
         this.condition = condition;
     }
 
+    /**
+     * Evaluates the condition and returns its status.
+     *
+     * @return the tick status based on the evaluation of the condition
+     */
     @Override
     public TickStatus tick()
     {
@@ -64,6 +88,11 @@ public class ConditionNode<T extends BlockEntity> extends Node<T>
         }
     }
 
+    /**
+     * Sets a new condition for the node.
+     *
+     * @param condition the new condition to be evaluated
+     */
     public void setCondition(Supplier<Boolean> condition)
     {
         this.condition = condition;

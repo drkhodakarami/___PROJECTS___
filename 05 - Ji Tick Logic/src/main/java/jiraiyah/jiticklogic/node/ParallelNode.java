@@ -33,13 +33,38 @@ import net.minecraft.block.entity.BlockEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a parallel node in a tick logic system.
+ *
+ * <p>Parallel nodes evaluate multiple child nodes concurrently and return a tick status based on a success threshold.</p>
+ */
 public class ParallelNode<T extends BlockEntity> extends Node<T> implements IRunningNodeManager
 {
+    /**
+     * The minimum number of successful child nodes required for this node to be considered successful.
+     */
     private int successThreshold;
-    private int successCount;
-    private int runningCount;
-    private List<TickStatus> childStatuses;
 
+    /**
+     * The count of child nodes that have successfully completed.
+     */
+    private int successCount;
+
+    /**
+     * The count of child nodes that are currently running.
+     */
+    private int runningCount;
+
+    /**
+     * A list to store the tick statuses of each child node.
+     */
+    private final List<TickStatus> childStatuses;
+
+    /**
+     * Constructs a ParallelNode with no Blackboard and a specified success threshold.
+     *
+     * @param successThreshold the minimum number of successful child nodes required
+     */
     public ParallelNode(int successThreshold)
     {
         super();
@@ -49,6 +74,12 @@ public class ParallelNode<T extends BlockEntity> extends Node<T> implements IRun
         this.runningCount = 0;
     }
 
+    /**
+     * Constructs a ParallelNode with a Blackboard and a specified success threshold.
+     *
+     * @param blackboard the Blackboard instance
+     * @param successThreshold the minimum number of successful child nodes required
+     */
     public ParallelNode(Blackboard blackboard, int successThreshold)
     {
         super(blackboard);
@@ -58,6 +89,11 @@ public class ParallelNode<T extends BlockEntity> extends Node<T> implements IRun
         this.runningCount = 0;
     }
 
+    /**
+     * Evaluates the child nodes and returns a tick status based on the success threshold.
+     *
+     * @return the tick status based on the evaluation of the child nodes
+     */
     @Override
     public TickStatus tick()
     {
@@ -94,6 +130,9 @@ public class ParallelNode<T extends BlockEntity> extends Node<T> implements IRun
         return TickStatus.FAILURE;
     }
 
+    /**
+     * Resets the state of this node and its child nodes.
+     */
     @Override
     public void reset()
     {
@@ -101,5 +140,15 @@ public class ParallelNode<T extends BlockEntity> extends Node<T> implements IRun
         childStatuses.clear();
         successCount = 0;
         runningCount = 0;
+    }
+
+    /**
+     * Sets a new success threshold for this node.
+     *
+     * @param threshold the new minimum number of successful child nodes required
+     */
+    public void setSuccessThreshold(int threshold)
+    {
+        this.successThreshold = threshold;
     }
 }

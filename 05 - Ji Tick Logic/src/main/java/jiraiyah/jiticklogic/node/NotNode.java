@@ -30,18 +30,36 @@ import jiraiyah.jiticklogic.base.IRunningNodeManager;
 import jiraiyah.jiticklogic.base.Node;
 import net.minecraft.block.entity.BlockEntity;
 
+/**
+ * Represents a not node in a tick logic system.
+ *
+ * <p>Not nodes invert the tick status of their child node.</p>
+ */
 public class NotNode<T extends BlockEntity> extends Node<T> implements IRunningNodeManager
 {
+    /**
+     * Constructs a NotNode with no Blackboard.
+     */
     public NotNode()
     {
         super();
     }
 
+    /**
+     * Constructs a NotNode with a Blackboard.
+     *
+     * @param blackboard the Blackboard instance
+     */
     public NotNode(Blackboard blackboard)
     {
         super(blackboard);
     }
 
+    /**
+     * Inverts the tick status of the child node and returns it.
+     *
+     * @return the inverted tick status based on the evaluation of the child node
+     */
     @Override
     public TickStatus tick()
     {

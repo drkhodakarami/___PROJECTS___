@@ -15,14 +15,6 @@
 	"license": "MIT",
 	"icon": "assets/jiticklogic/icon.png",
 	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"jiraiyah.jiticklogic.test.Main"
-		],
-		"client": [
-		"jiraiyah.jiticklogic.test.Client"
-		]
-	},
 	"depends": {
 		"fabricloader": ">=${loader_ver}",
 		"minecraft": "~${game_ver}",

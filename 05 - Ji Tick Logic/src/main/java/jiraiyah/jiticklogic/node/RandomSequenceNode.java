@@ -35,23 +35,56 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Represents a random sequence node in a tick logic system.
+ *
+ * <p>Random sequence nodes execute their child nodes randomly, but ensure that each child is executed only once before moving on to the next.</p>
+ */
 public class RandomSequenceNode<T extends BlockEntity> extends Node<T> implements IRunningNodeManager
 {
+    /**
+     * The current index of the child node being executed.
+     */
     private int currentChildIndex = 0;
+
+    /**
+     * The child node currently being executed.
+     */
     private Node<T> runningChild = null;
+
+    /**
+     * A shuffled list of child nodes to ensure random selection.
+     */
     List<Node<T>> shuffledChildren;
+
+    /**
+     * A random number generator used for shuffling the child nodes.
+     */
     private final Random rand = new Random();
 
+    /**
+     * Constructs a RandomSequenceNode with no Blackboard.
+     */
     public RandomSequenceNode()
     {
         super();
     }
 
+    /**
+     * Constructs a RandomSequenceNode with a Blackboard.
+     *
+     * @param blackboard the Blackboard instance
+     */
     public RandomSequenceNode(Blackboard blackboard)
     {
         super(blackboard);
     }
 
+    /**
+     * Executes child nodes randomly and ensures that each child is executed only once before moving on to the next.
+     *
+     * @return the tick status of the executed child node
+     */
     @Override
     public TickStatus tick()
     {
@@ -93,6 +126,9 @@ public class RandomSequenceNode<T extends BlockEntity> extends Node<T> implement
         return TickStatus.SUCCESS;
     }
 
+    /**
+     * Resets the state of this node, shuffles the child nodes, and clears the running child.
+     */
     @Override
     public void reset()
     {

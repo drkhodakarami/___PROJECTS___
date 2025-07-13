@@ -24,5 +24,8 @@
 
 package jiraiyah.jiticklogic.base;
 
+/**
+ * Interface for marking nodes that will manage running status in a tick logic system.
+ */
 public interface IRunningNodeManager
 {}

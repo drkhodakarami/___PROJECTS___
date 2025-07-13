@@ -31,22 +31,46 @@ import jiraiyah.jiticklogic.base.LogicTree;
 import jiraiyah.jiticklogic.base.Node;
 import net.minecraft.block.entity.BlockEntity;
 
+/**
+ * Represents a sub-tree node in a tick logic system.
+ *
+ * <p>Sub-tree nodes encapsulate another LogicTree, allowing for nested tick logic structures.</p>
+ */
 public class SubTreeNode <T extends BlockEntity> extends Node<T> implements IRunningNodeManager
 {
+    /**
+     * The encapsulated LogicTree to be executed as a sub-tree.
+     */
     private final LogicTree<T> subTree;
 
+    /**
+     * Constructs a SubTreeNode with no Blackboard and an encapsulated LogicTree.
+     *
+     * @param subTree the LogicTree to be executed as a sub-tree
+     */
     public SubTreeNode(LogicTree<T> subTree)
     {
         super();
         this.subTree = subTree;
     }
 
+    /**
+     * Constructs a SubTreeNode with a Blackboard and an encapsulated LogicTree.
+     *
+     * @param blackboard the Blackboard instance
+     * @param subTree the LogicTree to be executed as a sub-tree
+     */
     public SubTreeNode(Blackboard blackboard, LogicTree<T> subTree)
     {
         super(blackboard);
         this.subTree = subTree;
     }
 
+    /**
+     * Executes the encapsulated LogicTree and returns its tick status.
+     *
+     * @return the tick status of the executed LogicTree
+     */
     @Override
     public TickStatus tick()
     {
@@ -61,6 +85,9 @@ public class SubTreeNode <T extends BlockEntity> extends Node<T> implements IRun
         return status;
     }
 
+    /**
+     * Resets the state of this node and its encapsulated LogicTree.
+     */
     @Override
     public void reset()
     {

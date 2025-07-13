@@ -30,21 +30,46 @@ import jiraiyah.jiticklogic.base.IRunningNodeManager;
 import jiraiyah.jiticklogic.base.Node;
 import net.minecraft.block.entity.BlockEntity;
 
+/**
+ * Represents a sequence node in a tick logic system.
+ *
+ * <p>Sequence nodes evaluate its child nodes sequentially and returns the first failure or running status encountered.</p>
+ */
 public class SequenceNode<T extends BlockEntity> extends Node<T> implements IRunningNodeManager
 {
+    /**
+     * The current index of the child node being evaluated.
+     */
     private int currentChildIndex = 0;
+
+    /**
+     * The child node currently being evaluated.
+     */
     private Node<T> runningChild = null;
 
+    /**
+     * Constructs a SequenceNode with no Blackboard.
+     */
     public SequenceNode()
     {
         super();
     }
 
+    /**
+     * Constructs a SequenceNode with a Blackboard.
+     *
+     * @param blackboard the Blackboard instance
+     */
     public SequenceNode(Blackboard blackboard)
     {
         super(blackboard);
     }
 
+    /**
+     * Evaluates child nodes sequentially and returns the first failure or running status encountered.
+     *
+     * @return the tick status of the evaluated child node
+     */
     @Override
     public TickStatus tick()
     {
@@ -80,6 +105,9 @@ public class SequenceNode<T extends BlockEntity> extends Node<T> implements IRun
         return TickStatus.SUCCESS;
     }
 
+    /**
+     * Resets the state of this node and clears the running child.
+     */
     @Override
     public void reset()
     {
