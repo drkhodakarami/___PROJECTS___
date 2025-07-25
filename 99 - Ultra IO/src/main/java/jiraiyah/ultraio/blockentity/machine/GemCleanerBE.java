@@ -6,6 +6,7 @@ package jiraiyah.ultraio.blockentity.machine;
 //TODO: Add Custom Recipe Datagen
 
 import jiraiyah.jibase.enumerations.MappedDirection;
+import jiraiyah.jibase.utils.PosHelper;
 import jiraiyah.jinventory.be.JInventoryBE;
 import jiraiyah.jinventory.storage.OutputInventory;
 import jiraiyah.jinventory.storage.SyncedInventory;
@@ -15,11 +16,13 @@ import jiraiyah.ultraio.screen.handler.GemCleanerSH;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.fluid.base.SingleFluidStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.state.property.Properties;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
 import net.minecraft.text.Text;
@@ -116,5 +119,67 @@ public class GemCleanerBE extends JInventoryBE<GemCleanerBE, SimpleInventory>
     private int getFluidUpgradeCount()
     {
         return 2;
+    }
+
+    public InventoryStorage getInventoryStorage(Direction direction) {
+        if(this.world.getBlockState(this.pos).getProperties().contains(Properties.HORIZONTAL_FACING))
+        {
+            var facing = this.world.getBlockState(this.pos).get(Properties.HORIZONTAL_FACING);
+            Direction side = PosHelper.relativeDirection(direction, facing);
+        }
+        if (this.world == null) {
+            return null;
+        } else {
+            return this.world.getBlockState(this.pos).getProperties().contains(Properties.FACING)
+                   ? this.getStorageProvider(direction, this.world.getBlockState(this.pos).get(Properties.FACING))
+                    : this.world.getBlockState(this.pos).getProperties().contains(Properties.HORIZONTAL_FACING)
+                        ? this.getStorageProvider(direction, this.world.getBlockState(this.pos).get(Properties.HORIZONTAL_FACING))
+                        : this.inventory.getStorage(direction);
+        }
+    }
+
+    public InventoryStorage getStorageProvider(Direction direction, Direction facing) {
+        Direction side = relativeDirection(direction, facing);
+        return this.inventory.getSidedMap().containsKey(MappedDirection.fromDirection(side)) ? (InventoryStorage)this.inventory.getStorage(side) : null;
+    }
+
+    public static Direction relativeDirection(@Nullable Direction direction, @Nullable Direction facing) {
+        if (direction == null)
+            return null;
+        if (facing == null)
+            return direction;
+
+        Direction relative = direction;
+
+        // If looking straight up or down, and the input direction is vertical,
+        // return the direction as is
+        if (direction.getAxis().isVertical() && facing.getAxis().isVertical()) {
+            return direction;
+        }
+
+        // Handle vertical facings
+        if (facing == Direction.UP)
+            // When looking up, rotate once counterclockwise
+            return direction.rotateYCounterclockwise();
+        if (facing == Direction.DOWN)
+            // When looking down, rotate once clockwise
+            return direction.rotateYClockwise();
+        // Calculate rotations based on facing direction
+        switch (facing) {
+            case SOUTH: // 180 degrees from north, need 2 rotations
+                relative = relative.rotateYClockwise().rotateYClockwise();
+                break;
+            case EAST:  // 270 degrees from north, need 1 rotation counterclockwise
+                relative = relative.rotateYCounterclockwise();
+                break;
+            case WEST:  // 90 degrees from north, need 1 rotation clockwise
+                relative = relative.rotateYClockwise();
+                break;
+            case NORTH: // no rotation needed
+            default:
+                break;
+        }
+
+        return relative;
     }
 }

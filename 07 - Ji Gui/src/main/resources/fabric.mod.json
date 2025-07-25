@@ -32,10 +32,13 @@
 
 	"custom": {
 		"modmenu": {
+			"badges": [
+				"library"
+			],
 			"links": {
-			"modmenu.discord": "https://discord.gg/pmM4emCbuH"
-		},
-		"update_checker": true
-    }
-  }
+				"modmenu.discord": "https://discord.gg/pmM4emCbuH"
+			},
+			"update_checker": true
+    	}
+  	}
 }
