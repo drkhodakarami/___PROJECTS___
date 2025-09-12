@@ -1770,7 +1770,7 @@ public class ModRecipeProvider extends FabricRecipeProvider
                                   RecipeCategory category, TagKey<Item> tag, Item output, float experience, int processTime,
                                   String criterion, String group, String suffix)
     {
-        //TODO: chaned in 1.21.8 from .fromTag to .ofTag
+        //TODO: changed in 1.21.8 from .fromTag to .ofTag
         var input = Ingredient.ofTag(registries.getOrThrow(RegistryKeys.ITEM).getOrThrow(tag));
         CookingRecipeJsonBuilder.create(input, category, output, experience, processTime,
                                         RecipeSerializer.BLASTING, BlastingRecipe::new)

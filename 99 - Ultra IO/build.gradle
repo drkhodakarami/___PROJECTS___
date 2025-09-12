@@ -218,9 +218,9 @@ dependencies {
     //modCompileOnly "dev.emi:emi-fabric:${emiVersion}:api"
 
 	// REI Compatibility =============================================================================================================================
-    //modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${reiVersion}"
-    //modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${reiVersion}"
-    //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${reiVersion}"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${reiVersion}"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${reiVersion}"
+    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${reiVersion}"
 
 	// JEI Compatibility =============================================================================================================================
     //modCompileOnlyApi("mezz.jei:jei-${project.jeiMcVersion}-fabric-api:${jeiVersion}")

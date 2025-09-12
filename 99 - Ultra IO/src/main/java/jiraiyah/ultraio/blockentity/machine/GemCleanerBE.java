@@ -20,6 +20,7 @@ import net.fabricmc.fabric.api.transfer.v1.item.InventoryStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.property.Properties;
@@ -72,6 +73,12 @@ public class GemCleanerBE extends JInventoryBE<GemCleanerBE, SimpleInventory>
         protected void onFinalCommit()
         {
             update();
+        }
+
+        @Override
+        public FluidVariant getResource()
+        {
+            return FluidVariant.of(Fluids.WATER);
         }
     };
 
